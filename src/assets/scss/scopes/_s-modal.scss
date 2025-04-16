@@ -1,0 +1,44 @@
+// Abstracts
+@use "../abstracts/dimension" as *;
+@use "../abstracts/colors" as *;
+@use "../abstracts/mixins" as *;
+@use "../abstracts/border-radius" as *;
+
+// Swiper
+.s-modal {
+   $sSwiper: &;
+   
+   .ion-page {
+      background: $white;
+   }
+
+   &--order-completed {
+      .ion-page {
+         @include box-shadow-outset(0, 20px, 30px, 0, $color-primary-40-rgba);
+
+         width: $width-320px;
+         height: $height-100vh-403px;
+         border-radius: $border-radius-10px;
+         top: 50%;
+         left: 50%;
+         transform: translate(-50%, -50%);
+      }
+
+      // Modal wrapper
+      .l-modal-wrapper {
+         &--order-completed {
+            display: block;
+         }
+
+         &--order-status {
+            display: none;
+         }
+      }
+   }
+
+   &--ion-page--height-100vh-403px {
+      .ion-page {
+         height: $height-100vh-403px;
+      }
+   }
+}

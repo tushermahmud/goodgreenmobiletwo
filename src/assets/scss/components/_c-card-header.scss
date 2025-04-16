@@ -1,0 +1,16 @@
+// Abstracts
+@use "../abstracts/typography" as *;
+@use "../abstracts/colors" as *;
+
+// Card header
+.c-card-header {
+  $cCardHeader: &;
+
+  &--our-services {
+    margin-top: 30px;
+  }
+
+  &--service-documents {
+    margin-top: 15px;
+  }
+}

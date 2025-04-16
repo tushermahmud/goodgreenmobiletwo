@@ -1,0 +1,48 @@
+// Abstracts
+@use "../abstracts/colors" as *;
+@use "../abstracts/border-radius" as *;
+@use "../abstracts/typography" as *;
+
+// Card content
+.c-card-content {
+  $cCardContent: &;
+
+  margin-top: 10px;
+
+  &--inter-16px {
+    font-size: $font-size-16px;
+  }
+
+  &--color-black {
+    color: $black;
+  }
+
+  &--inter-14px {
+    font-size: $font-size-14px;
+  }
+
+  &--color-primary {
+    color: $color-primary;
+  }
+
+  &--inter-medium {
+    font-weight: $font-weight-500;
+  }
+
+  &--order-details {
+    line-height: $line-height-21px;
+  }
+
+  &--video-capture {
+    line-height: $line-height-24px;
+    margin: 15px 0;
+  }
+
+  &--color-primary-1-1 {
+    color: $color-primary-1-1;
+  }
+
+  &--ion-color-get-started-swiper {
+    color: var(--ion-color-get-started-swiper);
+  }
+}

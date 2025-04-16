@@ -1,0 +1,146 @@
+<!-- Header -->
+<ion-header collapse="fade" class="l-header u-no--pad-top u-no--pad-bot">
+  <app-header [headerMeta]="heraderInfo"></app-header>
+</ion-header>
+<!-- /Header -->
+
+
+<ion-content class="pad-t-20px">
+
+  <!-- Main wrapper -->
+  <div class="l-main-wrapper">
+
+    <!-- Row -->
+    <ion-row>
+
+      <!-- Col -->
+      <ion-col class="u-display--flex u-align-items--center u-no--pad-top u-no--pad-bot u-no--pad-lt">
+        <!-- c-title -->
+        <ion-title
+          class="ion-no-padding c-title c-title--login u-no--mg-top c-title--review-service-request c-label--inter-14px c-title--h1-inter-semibold c-title--h1-color-brand u-position--relative ion-text-start">
+
+          <!-- Title h1 -->
+          <h1 class="c-title__h1 pad-t-20px">Enter verification code received in the email</h1>
+          <!-- /Title h1 -->
+        </ion-title>
+
+      </ion-col>
+      <!-- /Col -->
+
+    </ion-row>
+    <!-- /Row -->
+
+    <!-- Form -->
+    <form class="l-form l-form--height-100vh-120px" [formGroup]="otpForm" (ngSubmit)="onSubmit()" novalidate>
+
+      <!-- Content wrapper -->
+      <div
+        class="c-card--otp ion-no-margin u-no--box-shadow u-no--mg-bot c-card--video-instructions u-no--mg-top l-content-wrapper l-content-wrapper--pickup-location">
+
+        <!-- Item group wrapper -->
+        <ion-item-group class="c-item-group-wrapper">
+
+          <!-- Item group -->
+          <ion-item-group class="c-item-group c-item-group--pickup-location">
+
+            <!-- Item -->
+            <ion-item class="c-item ion-no-padding">
+              <!-- c-title -->
+              <ion-title
+                class="ion-no-padding c-title c-title--login u-no--mg-top c-title--review-service-request c-label--inter-14px c-title--h1-inter-semibold c-title--h1-color-brand u-position--relative ion-text-start">
+
+                <!-- Title h1 -->
+                <h1 class="c-title__h1">Click on Next after entering the code</h1>
+                <!-- /Title h1 -->
+
+              </ion-title>
+            </ion-item>
+            <!-- /Item -->
+
+            <!-- Item -->
+            <ion-item class="c-item ion-no-padding" [ngClass]="{'has-error': submitted && f.otp.errors}">
+
+              <!-- Input -->
+              <ion-input formControlName="otp" type="number" placeholder="Verification Code"
+                class="c-input"></ion-input>
+              <!-- /Input -->
+
+              <!-- Content -->
+              <div
+                class="c-content c-content--login c-content--p-inter-12px c-content--color-red c-content--form-message"
+                *ngIf="submitted && f.otp.errors">
+
+                <!-- Content p -->
+                <p class="c-content__p">
+                  Code cannot be empty.
+                </p>
+                <!-- /Content p -->
+
+              </div>
+              <!-- /Content -->
+
+            </ion-item>
+            <!-- /Item -->
+
+          </ion-item-group>
+          <!-- /Item group -->
+
+        </ion-item-group>
+        <!-- /Item group wrapper -->
+
+      </div>
+      <!-- /Content wrapper -->
+
+      <!-- Footer -->
+      <ion-footer collapse="fade" class="l-footer l-footer--order-completed">
+        <!-- Button -->
+        <ion-button class="c-button ion-no-margin u-no--text-transform" [ngClass]="{'is-inactive': !otpForm.valid}"
+          fill="clear" expand="full" type="submit">
+
+          <!-- Title -->
+          <ion-title
+            class="ion-no-padding c-title c-title--inter-medium c-title--h1-inter-18px u-no--flex  c-title--h1-white">
+
+            <!-- Title h1 -->
+            <h1 class="c-title__h1">
+              Next
+
+              <!-- Icon -->
+              <ion-icon src="../../../assets/images/outline-caret-right--color-white.svg"
+                class="c-icon c-icon--caret-rt u-no--mg-rt" slot="end"></ion-icon>
+              <!-- /Icon -->
+
+            </h1>
+            <!-- /Title h1 -->
+
+          </ion-title>
+          <!-- /Title -->
+
+        </ion-button>
+        <!-- /Button -->
+
+
+        <!-- c-title -->
+        <ion-title
+          class="ion-padding c-title c-title--login u-no--mg-top c-title--review-service-request c-label--inter-16px c-title--h1-inter-semibold c-title--h1-color-brand u-position--relative ion-text-start">
+
+          <!-- Title h1 -->
+          <h1 class="c-title__h1 pad-t-20px ion-text-center" (click)="requestNewOtp()">Request for new Otp?</h1>
+          <!-- /Title h1 -->
+        </ion-title>
+        <!-- <div class="ion-padding ion-text-center">
+          <span (click)="requestNewOtp()">
+            Request for new Otp?
+          </span>
+        </div> -->
+
+      </ion-footer>
+      <!-- /Footer -->
+
+    </form>
+    <!-- /Form -->
+
+
+  </div>
+  <!-- /Main wrapper -->
+</ion-content>

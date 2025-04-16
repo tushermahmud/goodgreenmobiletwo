@@ -1,0 +1,70 @@
+// Abstracts
+@use "../abstracts/dimension" as *;
+@use "../abstracts/colors" as *;
+
+// Col
+.l-col {
+  $lCol: &;
+
+  &--padding-10px {
+    padding: 10px;
+  }
+
+  &--view-vendor-quote {
+    padding: 5px;
+  }
+
+  &--vendor-details {
+    -ms-flex: 0 0 $width-96px;
+    flex: 0 0 $width-96px;
+    max-width: $width-96px;
+  }
+
+  &--user-menu {
+    -ms-flex: 0 0 $width-86px;
+    flex: 0 0 $width-86px;
+    max-width: $width-86px;
+  }
+
+  &--pick-up-location {
+    &.has-error {
+      flex-direction: column;
+      align-items: flex-start;
+
+      // Icon buttons
+      .c-input {
+        .native-input,
+        .native-textarea {
+          border-color: $color-red;
+        }
+      }
+    }
+  }
+
+  &--video-capture {
+    padding: 6px;
+  }
+
+  &--width-102px {
+    width: $width-102px;
+    -ms-flex: 0 0 $width-102px;
+    flex: 0 0 $width-102px;
+    max-width: $width-102px;
+  }
+
+  &--width-60px {
+    width: $width-60px;
+    -ms-flex: 0 0 $width-60px;
+    flex: 0 0 $width-60px;
+    max-width: $width-60px;
+  }
+
+  &--our-services {
+    border-bottom: 1px solid rgba(var(--ion-color-our-services-border-rgb), 0.2);
+
+    &:nth-child(odd) {
+      border-right: 1px solid
+        rgba(var(--ion-color-our-services-border-rgb), 0.2);
+    }
+  }
+}

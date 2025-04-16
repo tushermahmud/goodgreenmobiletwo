@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>854140978931-qn04ek67ggbtl44mth5946bb0rsh1ekq.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.854140978931-qn04ek67ggbtl44mth5946bb0rsh1ekq</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDRJsYHv1dJCj0NSvIdZPXJoOxSrjCk2Ow</string>
+	<key>GCM_SENDER_ID</key>
+	<string>854140978931</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.goodgreen.app</string>
+	<key>PROJECT_ID</key>
+	<string>ggm-dev-2f06c</string>
+	<key>STORAGE_BUCKET</key>
+	<string>ggm-dev-2f06c.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:854140978931:ios:79094870cc79125dc79986</string>
+</dict>
+</plist>

@@ -1,0 +1,22 @@
+// Abstracts
+@use "../abstracts/colors" as *;
+@use "../abstracts/dimension" as *;
+
+
+// Item divider
+.c-item-divider {
+   $cItemDivider: &;
+
+   --background: #ccced1;
+   
+   margin: 10px 0;
+   box-shadow: 0 1px 0 $white;
+
+   &--width-100p {
+      width: 100%;
+   }
+
+   &--min-height-2px {
+      min-height: $height-2px;
+   }
+}

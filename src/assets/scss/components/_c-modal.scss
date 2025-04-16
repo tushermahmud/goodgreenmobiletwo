@@ -1,0 +1,43 @@
+// Abstracts
+@use "../abstracts/mixins" as *;
+@use "../abstracts/colors" as *;
+@use "../abstracts/dimension" as *;
+@use "../abstracts/border-radius" as *;
+
+// Modal
+.c-modal {
+  $cModal: &;
+
+  &::part(content) {
+    background-color: transparent;
+  }
+
+  &--video-capture {
+    // --height: fit-content;
+    --border-radius: 0;
+    --box-shadow: none;
+
+    .ion-page {
+      width: $width-100p-60px;
+      margin: 0 auto;
+      background: $white;
+      border-radius: $border-radius-6px;
+      padding: 15px;
+      padding-top: 0;
+    }
+  }
+
+  &--pickup-location {
+    &.md,
+    &.ios {
+      &::part(content) {
+        background-color: $white;
+        color: $color-primary;
+      }
+    }
+  }
+
+  &--height-100vh-360px {
+    --height: calc(100vh - 360px);
+  }
+}

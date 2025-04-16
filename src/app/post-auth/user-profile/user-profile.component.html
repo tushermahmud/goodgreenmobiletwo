@@ -1,0 +1,779 @@
+<!-- Header -->
+<ion-header collapse="fade" mode="md" class="l-header">
+  <app-header [headerMeta]="heraderInfo"></app-header>
+</ion-header>
+<!-- /Header -->
+
+<ion-content>
+
+  <!-- Main wrapper -->
+  <div class="l-main-wrapper l-main-wrapper--get-started">
+    <!-- Row -->
+    <ion-row>
+
+      <!-- Col -->
+      <ion-col
+        class="u-display--flex u-align-items--center u-justify-content--center u-flex-direction--column ion-no-padding">
+
+        <!-- Avatar -->
+        <ion-avatar class="c-icon u-no--border-radius u-no--mg-rt c-icon--width-80px c-icon--height-80px">
+          <img alt="Avatar icon"
+            [src]="profileUrl ? authMeta.profileUrl :  '../../../../assets/images/header/default-user-avatar.svg'" />
+        </ion-avatar>
+        <!-- /Avatar -->
+
+        <!-- Button -->
+        <ion-button (click)="presentProfilePicOptions()"
+          class="c-button ion-no-margin u-no--text-transform c-button--outline c-button--border-color-primary u-no--border u-no--bg c-button--account-details"
+          fill="clear" expand="full">
+
+          <!-- Icon -->
+          <ion-icon src="../../../assets/images/fill-edit--color-blue.svg"
+            class="c-icon c-icon--button c-icon--card-outline-caret-right c-icon--outline-clock"></ion-icon>
+          <!-- /Icon -->
+
+          <!-- Label -->
+          <ion-label class="c-label c-label--inter-14px c-label--inter-regular c-label--color-blue ion-no-margin">
+            Change
+          </ion-label>
+          <!-- /Label -->
+
+        </ion-button>
+        <!-- /Button -->
+
+      </ion-col>
+      <!-- /Col -->
+
+    </ion-row>
+    <!-- /Row -->
+
+    <!-- Form -->
+    <form class="l-form" [formGroup]="userProfileForm" novalidate>
+
+      <!-- Content wrapper -->
+      <div
+        class="c-card ion-no-margin u-no--box-shadow u-no--mg-bot c-card--video-instructions u-no--mg-top l-content-wrapper l-content-wrapper--pickup-location l-content-wrapper--min-height-100vh-242px u-no--height">
+
+        <!-- Item group wrapper -->
+        <ion-item-group class="c-item-group-wrapper">
+
+          <!-- Item group STATUS -->
+          <ion-item-group class="c-item-group c-item-group--pickup-location">
+
+            <!-- Item -->
+            <ion-item class="c-item ion-no-padding">
+
+              <ion-grid class="ion-no-padding">
+                <ion-row>
+                  <!-- Col -->
+                  <ion-col class="ion-no-padding u-display--flex u-align-items--center u-justify-content--center">
+
+                    <!-- c-title -->
+                    <ion-title
+                      class="ion-no-padding c-title c-title--login u-no--mg-top c-title--review-service-request c-title--h1-inter-12px c-title--h1-inter-semibold c-title--h1-color-brand u-position--relative ion-text-start">
+                      <!-- Title h1 -->
+                      <h1 class="c-title__h1">ACCOUNT STATUS</h1>
+                      <!-- /Title h1 -->
+                    </ion-title>
+                    <!-- /c-title -->
+
+                  </ion-col>
+                  <!-- /Col -->
+
+                  <!-- Col -->
+                  <ion-col class="ion-no-padding u-display--flex u-align-items--center u-justify-content--flex-end">
+
+                    <!-- Chip -->
+                    <ion-chip class="c-chip c-chip--bg-color-red c-chip--color-white u-no--height c-chip--inter-12px"
+                      [ngClass]="{'c-chip--bg-color-brand': accountStatus === 'active'}">
+                      {{accountStatus | uppercase}}</ion-chip>
+                    <!-- /Chip -->
+
+                  </ion-col>
+                  <!-- /Col -->
+                </ion-row>
+              </ion-grid>
+
+            </ion-item>
+            <!-- /Item -->
+
+            <!-- Item -->
+            <ion-item class="c-item ion-no-padding">
+
+              <!-- Label -->
+              <ion-label
+                class="c-label c-label--inter-13px c-label--inter-medium c-label--color-primary-1-2 ion-no-margin">
+                User Since</ion-label>
+              <p style="color: black;">{{customer?.createdAt | date}}</p>
+              <!-- /Label -->
+
+            </ion-item>
+            <!-- /Item -->
+
+            <!-- Item -->
+            <ion-item class="c-item ion-no-padding" *ngIf="false">
+
+              <!-- Input -->
+              <!-- <ion-input class="c-input c-input--white" name="date" placeholder="02/03/2022"
+                value="{{customer?.createdAt | date}}" required readonly></ion-input> -->
+              <!-- /Input -->
+
+            </ion-item>
+            <!-- /Item -->
+
+          </ion-item-group>
+          <!-- /Item group -->
+          <!-- Item group Additional Settings -->
+          <ion-item-group class="c-item-group c-item-group--pickup-location" *ngIf="customer?.accountStatus === 'pending'">
+
+            <!-- Item -->
+            <ion-item class="c-item ion-no-padding">
+
+              <!-- c-title -->
+              <ion-title
+                class="ion-no-padding c-title c-title--login u-no--mg-top c-title--review-service-request c-title--h1-inter-12px c-title--h1-inter-semibold c-title--h1-color-brand u-position--relative ion-text-start">
+
+                <!-- Title h1 -->
+                <h1 class="c-title__h1">ACCOUNT VERIFICATION</h1>
+                <!-- /Title h1 --> 
+
+              </ion-title>
+              <!-- /c-title -->
+
+            </ion-item>
+            <!-- /Item -->
+
+            <ion-item class="c-item ion-no-padding">
+
+              <!-- Label -->
+              <ion-label
+                class="c-label c-label--inter-13px c-label--inter-medium c-label--color-primary-1-2 ion-no-margin c-label--text-no-wrap">
+                Your email address is not validated yet. For seamless usage of Good Green app, you are required to verify your email. Click the button below to validate your email.</ion-label>
+              
+              <!-- /Label -->
+
+            </ion-item>
+
+            <!-- Item -->
+            <ion-item class="c-item ion-no-padding">
+
+              <!-- Delete account button -->
+              <ion-button
+                class="c-button ion-no-margin u-no--text-transform c-button--text-inter-18px c-button--text-inter-medium c-button--width-100p"
+                fill="clear" expand="full" (click)="validateEmail(customer.email)">
+                Validate Email
+                <!-- Delete account caret right icon -->
+                <!-- <ion-icon name="chevron-forward-outline" slot="end"></ion-icon> -->
+                <!-- /Delete account caret right icon -->
+              </ion-button>
+
+              <!-- /Delete account button -->
+            </ion-item>
+            <!-- /Item -->
+
+          </ion-item-group>
+          <!-- /Item group -->
+
+          <!-- Item divider -->
+          <ion-item-divider
+            class="ion-no-padding c-item-divider c-item-divider--width-100p c-item-divider--min-height-2px">
+          </ion-item-divider>
+          <!-- /Item divider -->
+
+          <!-- Item group CONTACT DETAILS-->
+          <ion-item-group class="c-item-group c-item-group--pickup-location">
+
+            <ion-grid class="ion-no-padding">
+              <ion-row>
+                <!-- Col -->
+                <ion-col class="ion-no-padding u-display--flex u-align-items--center u-justify-content--center">
+
+                  <!-- c-title -->
+                  <ion-title
+                    class="ion-no-padding c-title c-title--login u-no--mg-top c-title--review-service-request c-title--h1-inter-12px c-title--h1-inter-semibold c-title--h1-color-brand u-position--relative ion-text-start">
+
+                    <!-- Title h1 -->
+                    <h1 class="c-title__h1">CONTACT DETAILS</h1>
+                    <!-- /Title h1 -->
+
+                  </ion-title>
+                  <!-- /c-title -->
+
+                </ion-col>
+                <!-- /Col -->
+
+                <!-- Col -->
+                <ion-col class="ion-no-padding u-display--flex u-align-items--center u-justify-content--flex-end">
+
+                  <!-- Button -->
+                  <ion-button (click)="enableEdit()"
+                    class="c-button ion-no-margin ion-no-padding u-no--text-transform c-button--outline c-button--border-color-primary u-no--border u-no--bg c-button--account-details"
+                    fill="clear">
+
+                    <!-- Icon -->
+                    <ion-icon src="../../../assets/images/fill-edit--color-blue.svg"
+                      class="c-icon c-icon--button c-icon--card-outline-caret-right c-icon--outline-clock"></ion-icon>
+                    <!-- /Icon -->
+
+                    <!-- Label -->
+                    <ion-label
+                      class="c-label c-label--inter-14px c-label--inter-regular c-label--color-blue ion-no-margin">
+                      Edit
+                    </ion-label>
+                    <!-- /Label -->
+
+
+                  </ion-button>
+                  <!-- /Button -->
+
+                </ion-col>
+                <!-- /Col -->
+              </ion-row>
+            </ion-grid>
+
+            <!-- Item -->
+            <ion-item class="c-item ion-no-padding">
+
+              <!-- Label -->
+              <ion-label
+                class="c-label c-label--inter-13px c-label--inter-medium c-label--color-primary-1-2 ion-no-margin">
+                First Name</ion-label>
+              <!-- /Label -->
+
+            </ion-item>
+            <!-- /Item -->
+
+            <!-- Item Firstname-->
+            <ion-item class="c-item ion-no-padding" [ngClass]="{'has-error': isSubmitted && f.firstname.errors}">
+
+              <!-- Input -->
+              <ion-input class="c-input c-input--white" name="first-name" placeholder="First name" ngDefaultControl
+                formControlName="firstname" type="text" value="firstname" required></ion-input>
+              <!-- /Input -->
+
+              <!-- Icon -->
+              <!-- <ion-icon src="../../../assets/images/account-details/fill-edit--color-bg-gainsboro.svg"
+                *ngIf="isEditable"
+                class="c-icon u-no--mg-rt c-icon--button u-position--absolute u-top--50p u-transform--translate-y-minus-50p c-icon--review-service-request">
+              </ion-icon> -->
+              <!-- /Icon -->
+
+              <!-- UI error handle -->
+              <div
+                class="c-content c-content--login c-content--p-inter-12px c-content--color-red c-content--form-message"
+                *ngIf="isSubmitted && f.firstname.errors?.required">
+
+                <!-- Content p -->
+                <p class="c-content__p c-content--margin-left-5px">
+                  Firstname cannot be empty
+                </p>
+                <!-- /Content p -->
+
+              </div>
+              <!-- /UI error handle -->
+
+            </ion-item>
+            <!-- /Item -->
+
+            <!-- Item  -->
+            <ion-item class="c-item ion-no-padding">
+
+              <!-- Label -->
+              <ion-label
+                class="c-label c-label--inter-13px c-label--inter-medium c-label--color-primary-1-2 ion-no-margin">
+                Last Name</ion-label>
+              <!-- /Label -->
+
+            </ion-item>
+            <!-- /Item -->
+
+            <!-- Item  Last Name-->
+            <ion-item class="c-item ion-no-padding" [ngClass]="{'has-error': isSubmitted && f.lastname.errors}">
+
+              <!-- Input -->
+              <ion-input class="c-input c-input--white" name="last-name" placeholder="Last name" ngDefaultControl
+                formControlName="lastname" type="text" required>
+              </ion-input>
+              <!-- /Input -->
+
+              <!-- Icon -->
+              <!-- <ion-icon src="../../../assets/images/account-details/fill-edit--color-bg-gainsboro.svg"
+                *ngIf="isEditable"
+                class="c-icon u-no--mg-rt c-icon--button u-position--absolute u-top--50p u-transform--translate-y-minus-50p c-icon--review-service-request">
+              </ion-icon> -->
+              <!-- /Icon -->
+
+              <!-- UI error handle -->
+              <div
+                class="c-content c-content--login c-content--p-inter-12px c-content--color-red c-content--form-message"
+                *ngIf="isSubmitted && f.lastname.errors?.required">
+
+                <!-- Content p -->
+                <p class="c-content__p c-content--margin-left-5px">
+                  Lastname cannot be empty
+                </p>
+                <!-- /Content p -->
+
+              </div>
+              <!-- /UI error handle -->
+
+
+            </ion-item>
+            <!-- /Item -->
+
+            <!-- Item -->
+            <ion-item class="c-item ion-no-padding">
+
+              <!-- Label -->
+              <ion-label name="phonenumber"
+                class="c-label c-label--inter-13px c-label--inter-medium c-label--color-primary-1-2 ion-no-margin">
+                Phone Number</ion-label>
+              <!-- /Label -->
+
+            </ion-item>
+            <!-- /Item -->
+
+            <!-- Item -->
+            <ion-item class="c-item ion-no-padding" [ngClass]="{'has-error': isSubmitted && f.phonenumber.errors}">
+            
+              <!-- Input -->
+              <ion-input class="c-input c-input--white" name="phonenumber" type="text" placeholder="(000) 000-0000"
+                [ngClass]="{'has-error': isSubmitted && f.phonenumber.errors}" ngDefaultControl minlength="10" maxlength="14"
+                formControlName="phonenumber" required (keypress)="alphanumericValidation($event)"
+                (keyup)="validateContactPhoneNumber($event)">
+              </ion-input>
+              <!-- /Input -->
+            
+              <!-- Icon -->
+              <!-- <ion-icon src="../../../../assets/images/account-details/fill-edit--color-bg-gainsboro.svg" *ngIf="isEditable"
+                class="c-icon u-no--mg-rt c-icon--button u-position--absolute u-top--50p u-transform--translate-y-minus-50p c-icon--review-service-request">
+              </ion-icon> -->
+              <!-- /Icon -->
+            
+            
+              <!-- UI error handle -->
+              <div class="c-content c-content--login c-content--p-inter-12px c-content--color-red c-content--form-message"
+                *ngIf="isSubmitted && f?.phonenumber?.errors?.required && !f?.phonenumber?.dirty">
+                <!-- Content p -->
+                <p class="c-content__p c-content--margin-left-5px">
+                  Phone number cannot be empty
+                </p>
+                <!-- /Content p -->
+              </div>
+              <!-- /UI error handle -->
+            
+              <!-- UI error handle -->
+              <div class="c-content c-content--login c-content--p-inter-12px c-content--color-red c-content--form-message"
+                *ngIf="isSubmitted && f.phonenumber.errors && f?.phonenumber?.dirty">
+                <!-- Content p -->
+                <p class="c-content__p c-content--margin-left-5px">
+                  Please enter valid phone number
+                </p>
+                <!-- /Content p -->
+              </div>
+              <!-- /UI error handle -->
+            
+            </ion-item>
+            <!-- /Item -->
+
+            <!-- Item -->
+            <ion-item class="c-item ion-no-padding">
+            
+              <!-- Label -->
+              <ion-label class="c-label c-label--inter-13px c-label--inter-medium c-label--color-primary-1-2 ion-no-margin">
+                Email</ion-label>
+              <!-- /Label -->
+            
+            </ion-item>
+            <!-- /Item -->
+
+            <!-- Item -->
+            <ion-item class="c-item ion-no-padding" [ngClass]="{'has-error': isSubmitted && f.email.errors}">
+
+              <!-- Input -->
+              <ion-input class="c-input is_not-editable" name="email-address" type="email" ngDefaultControl
+                formControlName="email" placeholder="Email Address" required readonly></ion-input>
+              <!-- /Input -->
+
+              <!-- Icon -->
+              <!-- <ion-icon src="../../../../assets/images/account-details/fill-edit--color-bg-gainsboro.svg"
+                *ngIf="isEditable"
+                class="c-icon u-no--mg-rt c-icon--button u-position--absolute u-top--50p u-transform--translate-y-minus-50p c-icon--review-service-request">
+              </ion-icon> -->
+              <!-- /Icon -->
+
+            </ion-item>
+            <!-- /Item -->
+
+          </ion-item-group>
+          <!-- /Item group -->
+
+          <!-- Item divider -->
+          <ion-item-divider
+            class="ion-no-padding c-item-divider c-item-divider--width-100p c-item-divider--min-height-2px">
+          </ion-item-divider>
+          <!-- /Item divider -->
+
+          <!-- Item group BILLING ADDRESS -->
+          <ion-item-group class="c-item-group c-item-group--pickup-location">
+
+            <!-- Item -->
+            <ion-item class="c-item ion-no-padding">
+
+              <!-- c-title -->
+              <ion-title
+                class="ion-no-padding c-title c-title--login u-no--mg-top c-title--review-service-request c-title--h1-inter-12px c-title--h1-inter-semibold c-title--h1-color-brand u-position--relative ion-text-start">
+
+                <!-- Title h1 -->
+                <h1 class="c-title__h1">BILLING ADDRESS</h1>
+                <!-- /Title h1 -->
+
+              </ion-title>
+              <!-- /c-title -->
+
+            </ion-item>
+            <!-- /Item -->
+
+            <!-- Item -->
+            <ion-item class="c-item ion-no-padding">
+
+              <!-- Label -->
+              <ion-label
+                class="c-label c-label--inter-13px c-label--inter-medium c-label--color-primary-1-2 ion-no-margin">
+                Address</ion-label>
+              <!-- /Label -->
+
+            </ion-item>
+            <!-- /Item -->
+
+            <!-- Item -->
+            <ion-item class="c-item ion-no-padding" [ngClass]="{'has-error': isSubmitted && f.address.errors}">
+
+              <!-- Input wrapper -->
+              <div class="c-input-wrapper c-input-wrapper--width-100p">
+                <div class="u-position--relative">
+                  <!-- Textarea -->
+                  <ion-textarea class="c-input c-input--white ion-no-margin" name="address" ngDefaultControl #address
+                    (ionInput)="searchAddress(address.value)" placeholder="Address" formControlName="address" required>
+                  </ion-textarea>
+                  <!-- /Textarea -->
+
+                  <!-- Icon -->
+                  <!-- <ion-icon src="../../../../assets/images/account-details/fill-edit--color-bg-gainsboro.svg"
+                    *ngIf="isEditable"
+                    class="c-icon u-no--mg-rt c-icon--button u-position--absolute u-top--50p u-transform--translate-y-minus-50p c-icon--review-service-request">
+                  </ion-icon> -->
+                  <!-- /Icon -->
+
+                  <!-- UI error handle -->
+                  <div
+                    class="c-content c-content--login c-content--p-inter-12px c-content--color-red c-content--form-message"
+                    *ngIf="isSubmitted && f.address.errors?.required">
+
+                    <!-- Content p -->
+                    <p class="c-content__p c-content--margin-left-5px">
+                      Address cannot be empty
+                    </p>
+                    <!-- /Content p -->
+
+                  </div>
+                  <!-- /UI error handle -->
+                </div>
+
+                <!-- List -->
+                <ion-list [hidden]="autocompleteItems.length === 0"
+                  class="c-list c-list--bg-white c-list--border-color-primary-1-5 c-list--pickup-location u-no--pad-top u-no--pad-bot">
+
+                  <!-- Item -->
+                  <ion-item *ngFor="let item of autocompleteItems" tappable (click)="selectSearchResult(item)"
+                    class="c-item c-item--pickup-location c-item--border-color-primary-1-5">
+
+                    <!-- Title -->
+                    <div class="c-title ion-no-padding c-title--h1-inter-13px">
+
+                      <!-- Title h1 -->
+                      <h1 class="c-title__h1 u-no--font-weight-initial">{{ item.description }}</h1>
+                      <!-- /Title h1 -->
+
+                    </div>
+                    <!-- /Title -->
+                  </ion-item>
+                  <!-- /Item -->
+
+                </ion-list>
+                <!-- /List -->
+
+              </div>
+              <!-- /Input wrapper -->
+
+            </ion-item>
+            <!-- /Item -->
+
+            <!-- Item -->
+            <ion-item class="c-item ion-no-padding" [ngClass]="{'has-error': isSubmitted && f.city.errors}">
+
+              <!-- Row -->
+              <ion-row class="l-row u-no--mg l-row--pickup-location">                
+                <ion-col
+                  class="u-align-items--center u-no--pad-top u-no--pad-bot u-no--pad-lt l-col l-col--view-vendor-quote l-col--pick-up-location">
+
+                  <!-- Input -->
+                  <ion-input class="c-input c-input--white" placeholder="City" name="city" ngDefaultControl
+                    formControlName="city" required>
+                  </ion-input>
+                  <!-- /Input -->
+
+                  <!-- Icon -->
+                  <!-- <ion-icon src="../../../../assets/images/account-details/fill-edit--color-bg-gainsboro.svg"
+                    class="c-icon u-no--mg-rt c-icon--button u-position--absolute u-top--50p u-transform--translate-y-minus-50p c-icon--review-service-request">
+                  </ion-icon> -->
+                  <!-- /Icon -->
+
+                  <!-- UI error handle -->
+                  <div class="c-content c-content--login c-content--p-inter-12px c-content--color-red c-content--form-message"
+                    *ngIf="isSubmitted && f?.city?.errors">
+                  
+                    <!-- Content p -->
+                    <p class="c-content__p c-content--margin-left-5px">
+                      City cannot be empty
+                    </p>
+                    <!-- /Content p -->
+                  </div>
+                  <!-- /UI error handle -->
+                </ion-col>
+
+                <ion-col
+                  class="u-align-items--center u-justify-content--flex-end u-no--pad-top u-no--pad-bot u-no--pad-rt l-col l-col--view-vendor-quote l-col--pick-up-location">
+
+                  <!-- Input -->
+                  <ion-input class="c-input c-input--white ion-no-margin" placeholder="State" name="state" ngDefaultControl
+                    formControlName="state" required>
+                  </ion-input>
+                  <!-- /Input -->
+
+                  <!-- Icon -->
+                  <!-- <ion-icon src="../../../../assets/images/account-details/fill-edit--color-bg-gainsboro.svg"
+                    class="c-icon u-no--mg-rt c-icon--button u-position--absolute u-top--50p u-transform--translate-y-minus-50p c-icon--review-service-request">
+                  </ion-icon> -->
+                  <!-- /Icon -->
+
+                  <!-- UI error handle -->
+                  <div class="c-content c-content--login c-content--p-inter-12px c-content--color-red c-content--form-message"
+                    *ngIf="isSubmitted && f?.state?.errors?.required">
+                  
+                    <!-- Content p -->
+                    <p class="c-content__p c-content--margin-left-5px">
+                      State cannot be empty
+                    </p>
+                    <!-- /Content p -->
+                  </div>
+                 <!-- /UI error handle -->
+                </ion-col>
+              </ion-row>
+              <!-- /Row -->
+
+            </ion-item>
+            <!-- /Item -->
+
+            <!-- Item -->
+            <ion-item class="c-item ion-no-padding" [ngClass]="{'has-error': isSubmitted && f.country.errors}">
+
+              <!-- Row -->
+              <ion-row class="l-row u-no--mg l-row--pickup-location">
+                <ion-col
+                  class="u-align-items--center u-no--pad-top u-no--pad-bot u-no--pad-lt l-col l-col--view-vendor-quote l-col--pick-up-location">
+
+                  <!-- Input -->
+                  <ion-input class="c-input c-input--white" placeholder="Country" ngDefaultControl
+                    formControlName="country" required>
+                  </ion-input>
+                  <!-- /Input -->
+
+                  <!-- Icon -->
+                  <!-- <ion-icon src="../../../../assets/images/account-details/fill-edit--color-bg-gainsboro.svg"
+                    class="c-icon u-no--mg-rt c-icon--button u-position--absolute u-top--50p u-transform--translate-y-minus-50p c-icon--review-service-request">
+                  </ion-icon> -->
+                  <!-- /Icon -->
+                  <!-- UI error handle -->
+                  <div class="c-content c-content--login c-content--p-inter-12px c-content--color-red c-content--form-message"
+                    *ngIf="isSubmitted && f?.country?.errors?.required">
+                  
+                    <!-- Content p -->
+                    <p class="c-content__p c-content--margin-left-5px">
+                      Country cannot be empty
+                    </p>
+                    <!-- /Content p -->
+                  
+                  </div>
+                 <!-- /UI error handle -->
+                </ion-col>
+
+                <ion-col
+                  class="u-align-items--center u-justify-content--flex-end u-no--pad-top u-no--pad-bot u-no--pad-rt l-col l-col--view-vendor-quote l-col--pick-up-location">
+
+                  <!-- Input -->
+                  <ion-input class="c-input c-input--white" type="text" placeholder="Zipcode" minlength="5" maxlength="6"
+                    ngDefaultControl formControlName="zipCode" required (keypress)="noDecimal($event)"></ion-input>
+                  <!-- /Input -->
+
+                  <!-- Icon -->
+                  <!-- <ion-icon src="../../../../assets/images/account-details/fill-edit--color-bg-gainsboro.svg"
+                    class="c-icon u-no--mg-rt c-icon--button u-position--absolute u-top--50p u-transform--translate-y-minus-50p c-icon--review-service-request">
+                  </ion-icon> -->
+                  <!-- /Icon -->
+
+                  <!-- UI error handle -->
+                  <div class="c-content c-content--login c-content--p-inter-12px c-content--color-red c-content--form-message"
+                    *ngIf="isSubmitted && f?.zipCode?.errors?.required && !f?.zipCode?.dirty">
+                    <!-- Content p -->
+                    <p class="c-content__p c-content--margin-left-5px">
+                      Zipcode cannot be empty
+                    </p>
+                    <!-- /Content p -->
+                  </div>
+                  <!-- /UI error handle -->
+
+                  <!-- UI error handle -->
+                  <div class="c-content c-content--login c-content--p-inter-12px c-content--color-red c-content--form-message"
+                    *ngIf="isSubmitted && f?.zipCode?.errors && f?.zipCode?.dirty">
+                    <!-- Content p -->
+                    <p class="c-content__p c-content--margin-left-5px">
+                      Please enter valid zipcode
+                    </p>
+                    <!-- /Content p -->
+                  </div>
+                  <!-- /UI error handle -->
+                  
+                </ion-col>
+              </ion-row>
+              <!-- /Row -->
+
+            </ion-item>
+            <!-- /Item -->
+
+          </ion-item-group>
+          <!-- /Item group -->
+
+          <!-- Item divider -->
+          <ion-item-divider
+            class="ion-no-padding c-item-divider c-item-divider--width-100p c-item-divider--min-height-2px">
+          </ion-item-divider>
+          <!-- /Item divider -->
+
+          <!-- Item group Additional Settings -->
+          <ion-item-group class="c-item-group c-item-group--pickup-location">
+
+            <!-- Item -->
+            <ion-item class="c-item ion-no-padding">
+
+              <!-- c-title -->
+              <ion-title
+                class="ion-no-padding c-title c-title--login u-no--mg-top c-title--review-service-request c-title--h1-inter-12px c-title--h1-inter-semibold c-title--h1-color-brand u-position--relative ion-text-start">
+
+                <!-- Title h1 -->
+                <h1 class="c-title__h1">ADDITIONAL SETTINGS</h1>
+                <!-- /Title h1 -->
+
+              </ion-title>
+              <!-- /c-title -->
+
+            </ion-item>
+            <!-- /Item -->
+
+            <!-- Item -->
+            <ion-item class="c-item ion-no-padding">
+              <!-- Change Password button -->
+              <ion-button *ngIf="false"
+                class="c-button ion-no-margin ion-no-padding u-no--text-transform u-no--border-radius u-no--bg c-button--text-inter-14px c-button--text-inter-medium c-button--text-color-blue"
+                fill="clear" expand="full" slot="start">
+                Change Password
+                <!-- Right-caret icon -->
+                <ion-icon name="chevron-forward-outline" slot="end"></ion-icon>
+                <!-- /Right-caret icon -->
+              </ion-button>
+              <!-- /Change Password button -->
+
+              <!-- Delete account button -->
+              <ion-button
+                class="c-button ion-no-margin u-no--text-transform c-button--text-inter-18px c-button--text-inter-medium c-button--bg-color-red c-button--width-100p"
+                fill="clear" expand="full" (click)="presentDeleteAccountAlert()">
+                Delete account
+                <!-- Delete account caret right icon -->
+                <!-- <ion-icon name="chevron-forward-outline" slot="end"></ion-icon> -->
+                <!-- /Delete account caret right icon -->
+              </ion-button>
+              <!-- /Delete account button -->
+            </ion-item>
+            <!-- /Item -->
+
+          </ion-item-group>
+          <!-- /Item group -->
+
+        </ion-item-group>
+        <!-- /Item group wrapper -->
+
+      </div>
+      <!-- /Content wrapper -->
+
+      <p class="l-footer__app-version">
+        <ion-text color="primary"><sub>&copy; {{currAppName}} | Version {{currAppVersion}}</sub></ion-text>
+      </p>
+
+    </form>
+    <!-- /Form -->
+
+  </div>
+  <!-- /Main wrapper -->
+
+</ion-content>
+
+
+<!-- Footer -->
+<ion-footer collapse="fade" class="l-footer l-footer--order-completed" *ngIf="isProfileDatEdited && isEditable">
+
+  <!-- Main wrapper -->
+  <ion-toolbar class="l-main-wrapper ion-text-center">
+
+    <!-- Row -->
+    <ion-row class="l-row l-row--quote-documents l-row--bg-color-white">
+
+      <!-- Col -->
+      <ion-col class="l-col l-col--view-vendor-quote ion-text-center">
+
+        <!-- Cancel button -->
+        <ion-button
+          class="c-button ion-no-margin u-no--text-transform c-button--outline c-button--border-color-brand-1-1 c-button--text-color-brand-1-1 c-button--text-inter-14px c-button--text-inter-medium"
+          fill="clear" expand="full" (click)="cancleEdit()">
+          Cancel
+        </ion-button>
+        <!-- /Cancel button -->
+
+      </ion-col>
+      <!-- /Col -->
+
+      <!-- Col -->
+      <ion-col class="l-col l-col--view-vendor-quote">
+
+        <!-- Save button -->
+        <ion-button
+          class="c-button ion-no-margin u-no--text-transform c-button--text-inter-18px c-button--text-inter-medium"
+          fill="clear" expand="full" (click)="saveInfo()">
+          Save
+          <!-- Right-caret icon -->
+          <ion-icon src="../../../assets/images/outline-caret-right--color-white.svg"
+            class="c-icon c-icon--caret-rt u-no--mg-rt" slot="end"></ion-icon>
+          <!-- /Right-caret icon -->
+        </ion-button>
+        <!-- /Save button -->
+
+      </ion-col>
+      <!-- /Col -->
+
+    </ion-row>
+    <!-- /Row -->
+
+  </ion-toolbar>
+  <!-- /Main wrapper -->
+
+</ion-footer>
+<!-- /Footer -->

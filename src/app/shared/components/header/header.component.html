@@ -1,0 +1,93 @@
+<!-- Header main wrapper -->
+<ion-toolbar class="l-main-wrapper u-no--mg l-main-wrapper--width-100p">
+    <!-- Header go back buttons -->
+    <ion-buttons class="u-no--mg-lt u-position--absolute u-top--50p u-transform--translate-y-minus-50p"
+        (click)="goBack()" *ngIf="headerMeta.isBackBtnVisible" slot="start">
+        <!-- Header caret left icon -->
+        <ion-icon src="../../../../assets/images/header/outline-caret-left--color-brand.svg"
+            class="c-icon c-icon--caret-lt u-no--mg-rt c-icon--header"></ion-icon>
+        <!-- /Header caret left icon -->
+    </ion-buttons>
+    <!-- /Header go back buttons -->
+
+    <!-- Affiliations tab for agent -->
+    <ion-buttons class="u-no--mg-lt u-position--absolute u-top--50p u-transform--translate-y-minus-50p"
+        (click)="openAffiliations()" *ngIf="userType ==='agent' && router.url.includes('agent/agent-dashboard')" slot="start">
+        <!-- Header caret left icon -->
+        <ion-icon src="../../../../assets/images/header/affiliate-marketing.svg" class="u-no--border-radius c-icon--width-35px c-icon--height-35px c-icon c-icon--caret-lt u-no--mg-rt c-icon--header color-switch-icon"></ion-icon>
+        <!-- /Header caret left icon -->
+    </ion-buttons>
+    <!-- /Affiliations tab for agent -->
+
+    <!-- Header title -->
+    <ion-title
+        class="ion-no-padding ion-text-center c-title c-title--color-black c-title--inter-bold c-title--service-item"
+        size="small">{{
+        headerMeta.headerText }}</ion-title>
+    <!-- /Header title -->
+
+    <!-- List -->
+    <ion-list *ngIf="headerMeta.isnotificationIconVisible || headerMeta.isUserProfileVisible"
+        class="c-list u-no--bg ion-no-padding u-no--mg-top u-no--mg-bot u-no--pad-bot u-position--absolute u-top--50p u-transform--translate-y-minus-50p u-no--position-rt c-list--header">
+
+        <!-- Item group -->
+        <ion-item-group
+            class="c-item-group u-no--mg-top u-no--mg-bot u-display--flex u-align-items--center c-item-group--additional-service">
+
+            <!-- Item -->
+            <ion-item class="c-item ion-no-padding u-no--pad-top u-no--pad-bot c-item--additional-service"
+                *ngIf="headerMeta.isUserProfileVisible">
+
+                <!-- Button -->
+                <ion-buttons (click)="toProfile()">
+
+                    <!-- Avatar -->
+                    <ion-avatar class="c-icon u-no--border-radius u-no--mg-rt c-icon--width-35px c-icon--height-35px">
+                        <img alt="Avatar icon"
+                            [src]="authData.authMeta.profileUrl ? authData.authMeta.profileUrl : '../../../../assets/images/header/default-user-avatar.svg'" />
+                    </ion-avatar>
+                    <!-- /Avatar -->
+                </ion-buttons>
+                <!-- /Button -->
+
+            </ion-item>
+            <!-- /Item -->
+
+            <!-- Item -->
+            <ion-item class="c-item ion-no-padding u-no--pad-top u-no--pad-bot c-item--additional-service"
+                *ngIf="router.url.includes('/user/profile')">
+
+                <!-- Button -->
+                <ion-buttons (click)="signOut()">
+                    <ion-button color="danger">
+                        Log Out
+                        <!-- <ion-icon slot="end" name="log-out-outline"></ion-icon> -->
+                    </ion-button>
+                </ion-buttons>
+                <!-- /Button -->
+
+            </ion-item>
+            <!-- /Item -->
+
+        </ion-item-group>
+        <!-- /Item group -->
+
+    </ion-list>
+    <!-- /List -->
+      <!-- Item -->
+
+    <!-- Button -->
+    <ion-button class="c-list u-no--bg ion-no-padding u-no--mg-top u-no--mg-bot u-no--pad-bot u-position--absolute u-top--50p u-transform--translate-y-minus-50p u-no--position-rt c-list--header" 
+        fill="clear" color="danger" (click)="employeeSignout()" *ngIf="router.url.includes('/lead/employee-profile')">
+        Log Out
+    </ion-button>
+
+    <!-- Button -->
+    <ion-button class="c-list u-no--bg ion-no-padding u-no--mg-top u-no--mg-bot u-no--pad-bot u-position--absolute u-top--50p u-transform--translate-y-minus-50p u-no--position-rt c-list--header" 
+        fill="clear" color="danger" (click)="agentSignout()" *ngIf="router.url.includes('/agent/agent-profile')">
+        Log Out
+    </ion-button>
+   
+
+</ion-toolbar>
+<!-- /Header main wrapper -->

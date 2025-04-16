@@ -1,0 +1,140 @@
+$map-for-breakpoints: (
+  "xsmall": 0,
+  "small": 576px,
+  "medium": 768px,
+  "large": 992px,
+  "xlarge": 1200px,
+) !default;
+
+$map-for-directions: (
+  "top": to top,
+  "top-right": to top right,
+  "right": to right,
+  "bottom-right": to bottom right,
+  "bottom": to bottom,
+  "bottom-left": to bottom left,
+  "left": to left,
+  "top-left": to top left,
+) !default;
+
+$map-for-font-formats: (
+  "eot": format("embedded-opentype"),
+  "woff2": format("woff2"),
+  "woff": format("woff"),
+  "ttf": format("truetype"),
+  "svg": format("svg"),
+) !default;
+
+$map-for-positions: (
+  "top": at top,
+  "top-right": at top right,
+  "right": at right,
+  "bottom-right": at bottom right,
+  "bottom": at bottom,
+  "bottom-left": at bottom left,
+  "left": at left,
+  "top-left": at top left,
+  "center": at center,
+) !default;
+
+$map-for-smartphones: (
+  "iPhone4": (
+    width: 320px,
+    height: 480px,
+  ),
+  "iPhone-SE": (
+    width: 320px,
+    height: 568px,
+  ),
+  "iPhone5-SE": (
+    width: 320px,
+    height: 568px,
+  ),
+  "iPhone6": (
+    width: 375px,
+    height: 667px,
+  ),
+  "iPhone6-Plus": (
+    width: 414px,
+    height: 736px,
+  ),
+  "iPhone7": (
+    width: 375px,
+    height: 667px,
+  ),
+  "iPhone7-Plus": (
+    width: 414px,
+    height: 736px,
+  ),
+  "iPhone8": (
+    width: 375px,
+    height: 667px,
+  ),
+  "iPhone8-Plus": (
+    width: 414px,
+    height: 736px,
+  ),
+  "iPhone11": (
+    width: 414px,
+    height: 896px,
+  ),
+  "iPhone11-Pro": (
+    width: 375px,
+    height: 812px,
+  ),
+  "iPhone11-Pro-Max": (
+    width: 414px,
+    height: 896px,
+  ),
+  "iPhoneX": (
+    width: 375px,
+    height: 812px,
+  ),
+  "Galaxy-S7": (
+    width: 360px,
+    height: 640px,
+  ),
+  "Galaxy-S8": (
+    width: 360px,
+    height: 740px,
+  ),
+  "Galaxy-S8-Plus": (
+    width: 360px,
+    height: 740px,
+  ),
+  "Galaxy-S10": (
+    width: 360px,
+    height: 760px,
+  ),
+) !default;
+
+$map-for-tablets: (
+  "iPadMini": (
+    width: 768px,
+    height: 1024px,
+  ),
+  "iPad": (
+    width: 810px,
+    height: 1080px,
+  ),
+  "iPadAir": (
+    width: 834px,
+    height: 1112px,
+  ),
+  "iPadPro": (
+    width: 1024px,
+    height: 1366px,
+  ),
+  "Nexus7": (
+    width: 600px,
+    height: 960px,
+  ),
+  "Nexus9": (
+    width: 768px,
+    height: 1024px,
+  ),
+  "Nexus10": (
+    width: 800px,
+    height: 1280px,
+  ),
+) !default;

@@ -1,0 +1,22 @@
+// Abstracts
+@use "../abstracts/dimension" as *;
+@use "../abstracts/colors" as *;
+@use "../abstracts/border-radius" as *;
+
+
+// Count
+.c-count {
+   $cCount: &;
+   
+   width: $width-15px;
+   height: $height-15px;
+   background: $color-brand-1-1;
+   border-radius: $border-radius-55p;
+   top: -5px;
+   right: -8px;
+   border: 2px solid;
+
+   &--border-white {
+      border-color: $white;
+   }
+}

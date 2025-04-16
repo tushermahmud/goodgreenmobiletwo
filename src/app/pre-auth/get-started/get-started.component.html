@@ -1,0 +1,93 @@
+<!-- Get started header -->
+<ion-header collapse="fade" mode="md"
+  class="l-header l-header--pt-20 l-header--pb-20 l-header--padding-top-40px-r has-no-shadow">
+  <!-- Get started main wrapper -->
+  <ion-toolbar class="l-main-wrapper">
+    <!-- Logo -->
+    <ion-img src="../../../assets/images/get-started/logo.svg"
+      class="c-img c-img--width-230px c-img--margin-vertical-auto">
+    </ion-img>
+    <!-- /Logo -->
+  </ion-toolbar>
+  <!--/ Get started main wrapper -->
+</ion-header>
+<!-- /Get started header -->
+
+<!-- Get started content -->
+<ion-content scroll-y="false">
+  <!-- Get started main wrapper -->
+  <div class="l-main-wrapper l-main-wrapper--get-started l-main-wrapper--height-100p">
+    <!-- Get started swiper -->
+    <swiper class="s-swiper" [pagination]="true" [spaceBetween]="15" (swiper)="onSwiper($event)"
+      (slideChange)="onSlideChange($event)">
+
+      <ng-template swiperSlide class="ion-text-center" *ngFor="let slide of swiperSlides">
+        <!-- Get started card -->
+        <ion-card class="ion-no-margin u-no--box-shadow">
+          <!-- Select a service image -->
+          <ion-img [src]="slide.image" class="c-img c-img--margin-bottom-20px">
+          </ion-img>
+          <!-- /Select a service image -->
+
+          <!-- Get started card header -->
+          <ion-card-header class="ion-no-padding">
+            <!-- Get started card title -->
+            <ion-card-title
+              class="c-card-title c-card-title--inter-20px c-card-title--inter-bold c-card-title--color-primary ion-no-margin c-card-title--sm-inter-16px">
+              {{slide.title}}</ion-card-title>
+            <!-- /Get started card title -->
+          </ion-card-header>
+          <!-- /Get started card header -->
+
+          <!-- Get started card content -->
+          <ion-card-content
+            class="c-card-content ion-no-padding c-card-content--inter-16px c-card-content--ion-color-get-started-swiper c-card-content--sm-inter-14px c-card-content--sm-get-started">
+            {{slide.content}}
+          </ion-card-content>
+          <!-- /Get started card content -->
+        </ion-card>
+        <!-- /Get started card -->
+      </ng-template>
+
+    </swiper>
+    <!-- /Get started swiper -->
+
+  </div>
+  <!-- /Get started main wrapper -->
+
+</ion-content>
+<!-- /Get started content -->
+
+<!-- Get started footer -->
+<ion-footer collapse="fade" class="l-footer l-footer--order-completed">
+
+  <!-- Get started footer main wrapper -->
+  <ion-toolbar class="l-main-wrapper ion-text-center" *ngIf="isActionBtnVisible">
+
+    <!-- Get started button -->
+    <ion-button
+      class="c-button ion-no-margin u-no--text-transform c-button--text-inter-18px c-button--text-inter-medium"
+      fill="clear" expand="full" (click)="nextStepNavigate()">
+      {{actionButtonLabel}}
+      <!-- Next button caret right icon -->
+      <ion-icon src="../../../assets/images/outline-caret-right--color-white.svg"
+        class="c-icon c-icon--caret-rt u-no--mg-rt" slot="end"></ion-icon>
+      <!-- /Next button caret right icon -->
+    </ion-button>
+    <!-- /Get started button -->
+
+    <!-- Log in from get started -->
+    <p class="c-card-content ion-no-padding c-card-content--inter-16px c-card-content--color-black c-card-content--sm-inter-14px c-card-content--sm-get-started"
+      *ngIf="!authData.isAuthenticated">
+      Already have an account?
+      <!-- Get started log in link -->
+      <ion-text routerLink="login" class="c-link u-no--text-decoration">Log in</ion-text>
+      <!-- /Get started log in link -->
+    </p>
+    <!-- /Log in from get started -->
+
+  </ion-toolbar>
+  <!-- /Get started footer main wrapper -->
+
+</ion-footer>
+<!-- /Get started footer -->

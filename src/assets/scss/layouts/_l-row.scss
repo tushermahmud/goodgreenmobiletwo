@@ -1,0 +1,40 @@
+// Abstracts
+@use "../abstracts/dimension" as *;
+@use "../abstracts/colors" as *;
+
+// Row
+.l-row {
+  $lRow: &;
+
+  &--n-margin-10px {
+    margin: -10px;
+  }
+
+  &--video-instructions {
+    padding-top: 25px;
+  }
+
+  &--pickup-location {
+    width: $width-100p;
+  }
+
+  &--view-vendor-quote {
+    margin-bottom: 10px;
+  }
+
+  &--quote-documents {
+    margin: -5px;
+  }
+
+  &--video-capture {
+    margin: -6px;
+  }
+
+  &--bg-color-white {
+    background: $white;
+  }
+
+  &--width-100p {
+    width: $width-100p;
+  }
+}

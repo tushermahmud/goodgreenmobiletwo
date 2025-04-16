@@ -1,0 +1,287 @@
+<!-- Top Row -->
+<ion-row class="l-row u-no--mg-top u-no--mg-rt u-no--mg-lt l-row--pickup-location l-row--view-vendor-quote">
+
+	<!-- Main Title -->
+	<ion-col class="u-display--flex u-align-items--center u-no--pad-top u-no--pad-bot u-no--pad-lt" size="8">
+		<!-- Title -->
+		<div
+			class="c-title ion-no-padding c-title--h1-color-brand c-title--text-transform c-title--addition-services c-title--h1-inter-12px c-title--view-vendor-quote">
+			<!-- Title h1 -->
+			<h1 class="c-title__h1">LOGISTICS</h1>
+			<!-- /Title h1 -->
+		</div>
+		<!-- /Title -->
+	</ion-col>
+	<!-- /Main Title -->
+
+	<!-- edit action icons -->
+	<ion-col
+		class="u-display--flex u-align-items--center u-justify-content--flex-end u-no--pad-top u-no--pad-bot u-no--pad-rt">
+		<!-- Icon -->
+		<ion-icon src="../../../../assets/images/fill-edit--color-blue.svg" (click)="editLogistics()"
+			*ngIf="!editModeLogistics"
+			class="c-icon u-no--mg-rt c-icon--button u-position--absolute u-top--50p u-transform--translate-y-minus-50p c-icon--review-service-request c-icon--width-12px c-icon--height-12px u-no--position-rt">
+		</ion-icon>
+		<!-- /Icon -->
+
+	</ion-col>
+	<!-- edit action icons -->
+
+</ion-row>
+<!-- /Top Row -->
+
+<!-- List -->
+<ion-list class="c-list u-no--bg ion-no-padding u-no--pad-bot c-list--view-vendor-quote">
+
+	<!-- Item group -->
+	<ion-item-group class="c-item-group u-no--pad-top u-no--pad-bot c-item-group--pickup-location">
+		<form [formGroup]="logisticLocationsForm">
+
+			<ng-container formArrayName="locations" *ngIf="editModeLogistics">
+				<!-- ;else otherServiceTemplate -->
+
+
+				<!-- Item -->
+				<ion-item class="c-item ion-no-padding u-display--flex u-align-items--flex-start"
+					*ngFor="let location of logisticsFormGetter['controls']; let i = index;">
+					<!-- Item wrap -->
+					<div class="c-item c-item--100p" [formGroupName]="i">
+						<!-- c-title -->
+						<ion-title #titleEle
+							class="ion-no-padding c-title c-title--h1-inter-14px c-title--inter-medium c-title--h1-color-brand c-title--logistics u-position--relative ion-text-start">
+							<!-- <ng-container *ngIf="(logisticsInfo?.serviceCategory === 'moving_long_distance' || logisticsInfo?.serviceCategory === 'moving_short_distance'); else otherServiceTemplate"> -->
+
+							<ion-row class="u-justify-content--space-between">
+
+								<ion-col class="u-display--flex u-align-items--center">
+
+									<ng-container
+										*ngIf="(logisticsInfo?.serviceCategory === 'moving_long_distance' || logisticsInfo?.serviceCategory === 'moving_short_distance'); else dropTitleTemplate">
+										<!-- Title h1 -->
+										<h1 class="c-title__h1" *ngIf="i === 0">Pick-up</h1>
+										<h1 class="c-title__h1" *ngIf="i !== 0 && i !== logisticsFormGetter['controls']?.length-1">Intermediate</h1>
+										<h1 class="c-title__h1" *ngIf="i === logisticsFormGetter['controls']?.length-1">Drop-off</h1>
+										<!-- /Title h1 -->
+
+									</ng-container>
+
+									<ng-template #dropTitleTemplate>
+										<h1 class="c-title__h1" *ngIf="i === 0">Site</h1>
+										<h1 class="c-title__h1" *ngIf="i !== 0">Intermediate</h1>
+										<!-- <span>save</span> -->
+									</ng-template>
+								</ion-col>
+
+								<ion-col class="u-display--flex u-align-items--center u-justify-content--flex-end">
+									<ion-button (click)="saveLocationdata(logisticLocationsForm.value, i)" color="primary" size="small"
+										strong="true">
+										<ion-icon slot="icon-only" name="checkmark"></ion-icon>
+									</ion-button>
+								</ion-col>
+
+							</ion-row>
+						</ion-title>
+						<!-- /c-title -->
+
+						<ng-container>
+							<!-- Item -->
+							<ion-item class="c-item ion-no-padding">
+
+								<!-- Label -->
+								<ion-label
+									class="c-label c-label--inter-13px c-label--inter-medium c-label--color-primary-1-1 ion-no-margin">
+									Address</ion-label>
+								<!-- /Label -->
+
+							</ion-item>
+							<!-- /Item -->
+
+							<!-- Item -->
+							<ion-item class="c-item ion-no-padding">
+
+								<!-- Input wrapper -->
+								<div class="c-input-wrapper c-input-wrapper--width-100p">
+									<div class="u-position--relative">
+										<!-- Textarea -->
+										<ion-textarea class="c-input c-input--white ion-no-margin" formControlName="address" #address
+											(ionInput)="searchAddress(address, address.value, i)" [name]="i" placeholder="Address Line 1">
+										</ion-textarea>
+										<!-- /Textarea -->
+									</div>
+
+									<!-- List -->
+									<ion-list [hidden]="autocompleteItems.length === 0" *ngIf="i === selectedAddressFieldIndex"
+										class="c-list c-list--bg-white c-list--border-color-primary-1-5 c-list--pickup-location u-no--pad-top u-no--pad-bot">
+
+										<!-- Item -->
+										<ion-item *ngFor="let item of autocompleteItems" tappable (click)="selectSearchResult(item, i)"
+											class="c-item c-item--pickup-location c-item--border-color-primary-1-5">
+
+											<!-- Title -->
+											<div class="c-title ion-no-padding c-title--h1-inter-13px">
+
+												<!-- Title h1 -->
+												<h1 class="c-title__h1 u-no--font-weight-initial">{{ item.description }}</h1>
+												<!-- /Title h1 -->
+
+											</div>
+											<!-- /Title -->
+
+										</ion-item>
+										<!-- /Item -->
+
+									</ion-list>
+									<!-- /List -->
+
+								</div>
+								<!-- /Input wrapper -->
+
+							</ion-item>
+							<!-- /Item -->
+
+							<!-- Item -->
+							<ion-item class="c-item ion-no-padding">
+
+								<!-- Row -->
+								<ion-row class="l-row u-no--mg l-row--pickup-location">
+									<ion-col
+										class="u-display--flex u-align-items--center u-no--pad-top u-no--pad-bot u-no--pad-lt l-col l-col--view-vendor-quote l-col--pick-up-location">
+
+										<!-- Input -->
+										<ion-input class="c-input c-input--white" placeholder="City" formControlName="city" name="city">
+										</ion-input>
+										<!-- /Input -->
+
+									</ion-col>
+
+									<ion-col
+										class="u-display--flex u-align-items--center u-justify-content--flex-end u-no--pad-top u-no--pad-bot u-no--pad-rt l-col l-col--view-vendor-quote l-col--pick-up-location">
+
+										<!-- Input -->
+										<ion-input class="c-input c-input--white" placeholder="State" formControlName="state" name="state">
+										</ion-input>
+										<!-- /Input -->
+
+									</ion-col>
+								</ion-row>
+								<!-- /Row -->
+
+							</ion-item>
+							<!-- /Item -->
+
+							<!-- Item -->
+							<ion-item class="c-item ion-no-padding">
+
+								<!-- Row -->
+								<ion-row class="l-row u-no--mg l-row--pickup-location">
+									<ion-col
+										class="u-display--flex u-align-items--center u-no--pad-top u-no--pad-bot u-no--pad-lt l-col l-col--view-vendor-quote l-col--pick-up-location">
+
+										<!-- Input -->
+										<ion-input class="c-input c-input--white" placeholder="Country" formControlName="country">
+										</ion-input>
+										<!-- /Input -->
+
+									</ion-col>
+
+									<ion-col
+										class="u-display--flex u-align-items--center u-justify-content--flex-end u-no--pad-top u-no--pad-bot u-no--pad-rt l-col l-col--view-vendor-quote l-col--pick-up-location">
+
+										<!-- Input -->
+										<ion-input class="c-input c-input--white" type="text" formControlName="zipcode"
+											placeholder="Zipcode" minlength="5" maxlength="6" (keypress)="noDecimal($event)"></ion-input>
+										<!-- /Input -->
+
+									</ion-col>
+								</ion-row>
+								<!-- /Row -->
+
+							</ion-item>
+							<!-- /Item -->
+						</ng-container>
+
+					</div>
+					<!-- /Item wrap -->
+				</ion-item>
+				<!-- /Item -->
+			</ng-container>
+
+			<ng-container *ngIf="!editModeLogistics">
+				<div class="c-item c-item--100p" *ngFor="let location of logisticsInfo?.serviceLocations; let i = index">
+					<!-- {{location | json}} -->
+					<!-- c-title -->
+					<ion-title #titleEle
+						class="ion-no-padding c-title c-title--h1-inter-14px c-title--inter-medium c-title--h1-color-brand c-title--logistics u-position--relative ion-text-start">
+						<!-- <ng-container *ngIf="(logisticsInfo?.serviceCategory === 'moving_long_distance' || logisticsInfo?.serviceCategory === 'moving_short_distance'); else otherServiceTemplate"> -->
+						<ng-container
+							*ngIf="(logisticsInfo?.serviceCategory === 'moving_long_distance' || logisticsInfo?.serviceCategory === 'moving_short_distance'); else dropTitleTemplate">
+							<!-- Title h1 -->
+							<h1 class="c-title__h1" *ngIf="i === 0">Pick-up</h1>
+							<h1 class="c-title__h1" *ngIf="i !== 0 && i !== logisticsFormGetter['controls']?.length-1">Intermediate</h1>
+							<h1 class="c-title__h1" *ngIf="i === logisticsFormGetter['controls']?.length-1">Drop-off</h1>
+							<!-- /Title h1 -->
+
+						</ng-container>
+
+						<ng-template #dropTitleTemplate>
+							<h1 class="c-title__h1" *ngIf="i === 0">Site</h1>
+							<h1 class="c-title__h1" *ngIf="i === 1">Intermediate</h1>
+
+							<!-- <span>save</span> -->
+						</ng-template>
+
+					</ion-title>
+					<!-- /c-title -->
+					<div class="u-display--flex u-align-items--flex-start" *ngIf="location?.pin === 'site'; else siteReadOnlyTemplate">
+						<!-- Icon -->
+						<ion-icon src="../../../../assets/images/fill-location--color-brand-1-2.svg"
+							class="c-icon c-icon--view-vendor-quote"></ion-icon>
+						<!-- /Icon -->
+						<!-- Title -->
+						<div
+							class="c-title ion-no-padding c-title--h1-color-primary-1-1 c-title--inter-medium c-title--h1-inter-14px u-flex--flex-1 has-input-group">
+							<!-- Title h1 -->
+							<h1 class="c-title__h1">
+								{{location.address}},
+								{{location.city}},
+								{{location.state}},
+								{{location.zipcode}}
+							</h1>
+
+						</div>
+						<!-- /Title -->
+					</div>
+
+					<ng-template #siteReadOnlyTemplate>
+						<div class="u-display--flex u-align-items--flex-start">
+							<!-- Icon -->
+							<ion-icon src="../../../../assets/images/fill-location--color-brand-1-2.svg"
+								class="c-icon c-icon--view-vendor-quote"></ion-icon>
+							<!-- /Icon -->
+							<!-- Title -->
+							<div
+								class="c-title ion-no-padding c-title--h1-color-primary-1-1 c-title--inter-medium c-title--h1-inter-14px u-flex--flex-1 has-input-group">
+								<!-- Title h1 -->
+								<h1 class="c-title__h1">
+									{{location.address}},
+									{{location.city}},
+									{{location.state}},
+									{{location.zipcode}}
+								</h1>
+
+							</div>
+							<!-- /Title -->
+						</div>
+					</ng-template>
+
+				</div>
+
+			</ng-container>
+
+		</form>
+
+	</ion-item-group>
+	<!-- /Item group -->
+
+</ion-list>
+<!-- /List -->

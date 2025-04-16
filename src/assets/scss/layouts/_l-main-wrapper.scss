@@ -1,0 +1,61 @@
+// Abstracts
+@use "../abstracts/dimension" as *;
+
+// Main wrapper
+.l-main-wrapper {
+  $cMainWrapper: &;
+
+  --padding-top: 0;
+  --padding-end: 0;
+  --padding-bottom: 0;
+  --padding-start: 0;
+  --border-color: transparent;
+  --background: transparent;
+
+  width: $width-100p-30px;
+  margin: 0 auto;
+
+  &--get-started {
+    padding-top: 15px;
+  }
+
+  &--list-of-services {
+    height: $height-100vh-206px;
+  }
+
+  &--min-height-100vh-166px {
+    min-height: $height-100vh-166px;
+  }
+
+  &--modal {
+    width: $width-100p-20px;
+  }
+
+  &--order-status {
+    padding-top: 30px;
+  }
+
+  &--order-completed {
+    padding-top: 20px;
+  }
+
+  &--height-100vh-71px {
+    height: $height-100vh-71px;
+  }
+
+  &--notifications-list {
+    width: $width-100p;
+  }
+
+  &--height-100vh-143px {
+    height: $height-100vh-143px;
+  }
+
+  &--height-100p {
+    height: $height-100p;
+  }
+
+  &--width-100p {
+    width: $width-100p;
+  }
+}

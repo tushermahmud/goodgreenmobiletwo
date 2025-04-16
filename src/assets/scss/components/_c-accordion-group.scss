@@ -1,0 +1,20 @@
+// Abstracts
+@use "../abstracts/dimension" as *;
+
+// Accordion group
+.c-accordion-group {
+  $cAccordionGroup: &;
+
+  &--height-100vh-206px {
+    height: $height-100vh-206px;
+  }
+
+  &--overflow {
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+}

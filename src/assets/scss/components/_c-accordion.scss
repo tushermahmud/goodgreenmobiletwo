@@ -1,0 +1,75 @@
+// Abstracts
+@use "../abstracts/colors" as *;
+@use "../abstracts/border-radius" as *;
+@use "../abstracts/dimension" as *;
+
+// Accordion
+.c-accordion {
+  $cAccordion: &;
+
+  border: 1px solid;
+  border-radius: $border-radius-5px;
+  margin-bottom: 10px;
+
+  // global changes
+  &.accordion-next {
+    ion-item[slot="header"] {
+      border-width: 0 !important;
+    }
+  }
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  ::part(native) {
+    --padding-start: 0;
+    --inner-padding-end: 0;
+  }
+
+  &__content-wrapper {
+    border-top: 1px solid;
+  }
+
+  &.accordion-expanding,
+  &.accordion-expanded {
+    margin: 30px auto;
+    box-shadow: 0 25px 30px -20px $color-primary-50-rgba;
+
+    .c-item--service-item {
+      border-bottom: none;
+    }
+
+    // Card
+    .c-card {
+      &--dashboard {
+        background: $color-zircon-E2E4E8;
+        background: $color-brand;
+
+        .l-row {
+          filter: grayscale(1) brightness(0) invert(1);
+        }
+      }
+    }
+  }
+
+  &--wrapper-bg-color-brand-8-rba {
+    #{$cAccordion}__content-wrapper {
+      background: $color-brand-8-rba;
+    }
+  }
+
+  &--border-color-primary-1-5 {
+    border-color: $color-primary-1-5;
+  }
+
+  &--wrapper-border-color-primary-1-5 {
+    #{$cAccordion}__content-wrapper {
+      border-color: $color-primary-1-5;
+    }
+  }
+
+  &--width-100vw-32px {
+    width: $width-100vw-32px;
+  }
+}

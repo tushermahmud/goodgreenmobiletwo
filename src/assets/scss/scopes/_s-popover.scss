@@ -1,0 +1,14 @@
+// Abstracts
+@use "../abstracts/dimension" as *;
+@use "../abstracts/colors" as *;
+@use "../abstracts/mixins" as *;
+@use "../abstracts/border-radius" as *;
+
+// Swiper
+.s-popover {
+   $sPopover: &;
+
+   .content-ltr {
+      background: $white;
+   }
+}

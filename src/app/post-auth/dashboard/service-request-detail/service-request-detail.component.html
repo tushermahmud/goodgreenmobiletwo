@@ -1,0 +1,160 @@
+<!-- Header -->
+<ion-header collapse="fade" mode="md" class="l-header">
+   <app-header [headerMeta]="heraderInfo"></app-header>
+</ion-header>
+<!-- /Header -->
+
+<ion-content>
+
+   <!-- Main wrapper -->
+   <div class="l-main-wrapper l-main-wrapper--get-started l-main-wrapper--min-height-100vh-166px">
+
+      <!-- Row -->
+      <ion-row>
+
+         <!-- Col -->
+         <ion-col class="u-display--flex u-align-items--center u-no--pad-top u-no--pad-bot u-no--pad-lt">
+
+            <!-- Title -->
+            <div
+               class="ion-no-padding c-title c-title--get-started c-title--our-services c-title--h1-inter-16px c-title--inter-regular c-title--h1-black c-title--video-instructions u-no--mg-top">
+
+               <!-- Title h1 -->
+               <h1 class="c-title__h1">{{request?.name}}</h1>
+               <!-- /Title h1 -->
+
+            </div>
+            <!-- /Title -->
+
+         </ion-col>
+         <!-- /Col -->
+
+      </ion-row>
+      <!-- /Row -->
+
+      <!-- Form -->
+      <div class="l-form">
+
+         <!-- List -->
+         <ion-list class="c-list u-no--bg ion-no-padding u-no--pad-bot c-list--overflow c-list--height-100vh-203px">
+
+            <!-- Item group -->
+            <ion-item-group class="c-item-group u-no--pad-top u-no--pad-bot c-item-group--pickup-location">
+
+               <!-- Item -->
+               <ion-item class="c-item ion-no-padding" *ngFor="let item of request?.serviceItems; let i = index;"
+                  (click)="getDetails(i)">
+
+                  <!-- Card -->
+                  <ion-card
+                     class="c-card ion-no-margin u-no--box-shadow u-display--flex u-align-items--center u-justify-content--center u-flex-direction--column c-card--our-services u-no--mg-bot c-card--video-instructions c-card--addition-services c-card--width-100p u-no--bg u-no--height c-card--dashboard">
+
+                     <!-- Row -->
+                     <ion-row class="l-row u-no--mg l-row--pickup-location">
+                        <ion-col class="u-display--flex u-align-items--center u-no--pad-top u-no--pad-bot u-no--pad-lt"
+                           size="10">
+
+                           <!-- Icon -->
+                           <ion-icon src="../../../assets/images/fill-building--color-brand-plus-primary.svg"
+                              class="c-icon u-no--border-radius c-icon--organizing c-icon--width-24px c-icon--height-24px">
+                           </ion-icon>
+                           <!-- /Icon -->
+
+                           <!-- Card wrap -->
+                           <div class="c-card__wrap">
+
+                              <!-- Title -->
+                              <div class="ion-no-padding c-title c-title--h1-color-primary-1-1 c-title--h1-inter-14px">
+
+                                 <!-- Title h1 -->
+                                 <h1 class="c-title__h1">{{item.serviceLabel}}</h1>
+                                 <!-- /Title h1 -->
+
+                              </div>
+                              <!-- /Title -->
+
+                              <!-- List -->
+                              <ion-list class="c-list u-no--bg ion-no-padding u-no--pad-bot c-list--reviews">
+
+                                 <!-- Item group -->
+                                 <ion-item-group
+                                    class="c-item-group u-no--mg-top u-no--mg-bot u-no--pad-top u-no--pad-bot u-display--flex u-align-items--center c-item-group--additional-service c-item-group--reviews">
+
+                                    <!-- Item -->
+                                    <ion-item
+                                       class="c-item ion-no-padding u-no--pad-top u-no--pad-bot c-item--additional-service c-item--reviews">
+
+                                       <!-- Title -->
+                                       <div
+                                          class="ion-no-padding c-title c-title--addition-services c-title--h1-inter-12px c-title--h1-color-primary-1-2 c-title--inter-medium">
+
+                                          <!-- Title h1 -->
+                                          <h1 class="c-title__h1">Ordered on {{item.createdAt | date}}</h1>
+                                          <!-- /Title h1 -->
+
+                                       </div>
+                                       <!-- /Title -->
+
+                                    </ion-item>
+                                    <!-- /Item -->
+
+                                 </ion-item-group>
+                                 <!-- /Item group -->
+
+                              </ion-list>
+                              <!-- /List -->
+
+                              <!-- Title -->
+                              <!-- c-title--h1-color-brand-1-1
+                             c-title--h1-color-yellow-1-1
+                             c-title--color-red -->
+                              <div
+                                 class="ion-no-padding c-title u-position--absolute c-title--inter-medium c-title--tag c-title--h1-color-brand-1-1 u-no--position">
+
+                                 <!-- Title h1 -->
+                                 <h1 class="c-title__h1">in progress</h1>
+                                 <!-- /Title h1 -->
+
+                              </div>
+
+                           </div>
+                           <!-- /Card wrap -->
+
+                        </ion-col>
+
+                        <ion-col
+                           class="u-display--flex u-align-items--center u-justify-content--flex-end u-no--pad-top u-no--pad-bot u-no--pad-rt">
+
+                           <!-- Icon -->
+                           <ion-icon src="../../../assets/images/outline-caret-right--color-primary-1-2.svg"
+                              class="c-icon u-no--mg-rt u-no--border-radius c-icon--card-outline-caret-right">
+                           </ion-icon>
+                           <!-- /Icon -->
+
+                           <!-- Icon -->
+                           <!-- <ion-icon src="../../../assets/images/fill-bell--color-blue.svg" class="c-icon u-no--mg-rt u-no--border-radius c-icon--card-fill-bell"></ion-icon> -->
+                           <!-- /Icon -->
+
+                        </ion-col>
+                     </ion-row>
+                     <!-- /Row -->
+
+                  </ion-card>
+                  <!-- /Card -->
+
+               </ion-item>
+               <!-- /Item -->
+
+            </ion-item-group>
+            <!-- /Item group -->
+
+         </ion-list>
+         <!-- /List -->
+
+      </div>
+      <!-- /Form -->
+
+   </div>
+   <!-- /Main wrapper -->
+
+</ion-content>

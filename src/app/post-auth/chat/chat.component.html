@@ -1,0 +1,85 @@
+<!-- Chat header -->
+<ion-header collapse="fade" class="l-header u-no--pad-top u-no--pad-bot">
+	<app-header [headerMeta]="heraderInfo"></app-header>
+</ion-header>
+<!-- /Chat header -->
+
+<!-- Chat content -->
+<ion-content #chatAreaContent fullscreen id="chat-body">
+
+	<!-- Chat main wrapper -->
+	<ion-grid class="l-main-wrapper ion-no-padding l-main-wrapper--get-started">
+		<ion-row>
+			<ion-col class="ion-no-padding">
+				<!-- Chat friendly name -->
+				<ion-list-header
+					class="ion-no-padding c-title c-title--inter-14px c-title--color-black c-title--inter-bold u-no--min-height c-list-header c-list-header--chat">
+					{{conversation?.conversation?.friendlyName}}
+				</ion-list-header>
+				<!-- /Chat friendly name -->
+				<!-- <span (click)="scrollToBottom()">scroll</span> -->
+				<!-- Chat send or receive section  -->
+				<ion-item *ngFor="let msg of chatMsg; let i = index;" [ngClass]="{'is-sender': !msg?.isReceived}"
+					class="c-item u-align-items--flex-start c-item--chat">
+					<!-- No message here -->
+					<ion-text class="c-title ion-no-padding c-title--color-primary-1-1 c-title--inter-semibold"
+						*ngIf="chatMsg && chatMsg?.length === 0">
+						<h1 class="c-title__h1">No Messages here</h1>
+					</ion-text>
+					<!-- /No message here -->
+
+					<!-- User avatar -->
+					<ion-avatar *ngIf="chatMsg[i-1]?.userId !== msg?.userId"
+						class="c-icon ion-no-margin c-icon--width-30px c-icon--height-30px u-display--flex u-align-items--center u-justify-content--center">
+						<img [src]="msg?.meta.profileImage ? msg?.meta.profileImage : '../../../../assets/images/chat/me.svg'" />
+						<!-- ../../../../assets/images/fill-doc--color-blue.svg -->
+					</ion-avatar>
+					<!-- /User avatar -->
+
+					<!-- User message -->
+					<ion-label
+						class="ion-no-margin c-label c-label--bg-gray-1-1 c-label--width-80p c-label--chat c-title--h1-inter-12px c-title--h1-inter-regular c-content--p-inter-14px c-content--p-color-primary-1-1 c-content--p-inter-mediumX c-content--login">
+						<h1 class="c-title__h1 c-title--opacity-8 u-no--mg-top u-no--mg-bot u-no--white-space">{{msg.name}}</h1>
+						<span
+							class="c-title c-title--inter-11px c-title--inter-regular c-title--color-primary-1-1 c-title--opacity-8 chat-time">
+							{{msg.time | date: 'shortTime'}}</span>
+						<p class="c-content__p u-no--mg-top u-no--mg-bot u-no--white-space">{{msg?.text}} </p>
+					</ion-label>
+					<!-- /User message -->
+				</ion-item>
+				<!-- /Chat send or receive section  -->
+
+			</ion-col>
+			<!-- /Col -->
+		</ion-row>
+	</ion-grid>
+	<!-- /Chat main wrapper -->
+
+</ion-content>
+<!-- /Chat content -->
+
+<!-- Chat footer -->
+<ion-footer collapse="fade" class="l-footer l-footer--order-completed">
+	<!-- Chat footer main wrapper -->
+	<ion-toolbar class="l-main-wrapper">
+		<!-- Chat textarea -->
+		<ion-textarea class="c-input c-input--white ion-no-margin c-input--chat-area" #txtArea
+			placeholder="Start typing here!!">
+		</ion-textarea>
+		<!-- /Chat textarea -->
+
+		<ion-buttons slot="end" class="c-buttons u-position--absolute c-buttons--chat">
+			<!-- Chat message send button -->
+			<ion-button
+				class="c-button ion-no-margin u-no--mg-rt u-no--mg-lt c-button--width-40px c-button--height-40px c-button--chat"
+				fill="clear" expand="full" id="changeText" (click)="submitMessage(txtArea.value)">
+				<!-- Next button caret right icon -->
+				<ion-icon class="c-icon c-icon--caret-rt u-no--mg-rt" slot="start" name="send-outline"></ion-icon>
+				<!-- /Next button caret right icon -->
+			</ion-button>
+			<!-- /Chat message send button -->
+		</ion-buttons>
+	</ion-toolbar>
+	<!-- /Chat footer main wrapper -->
+</ion-footer>
+<!-- /Chat footer -->

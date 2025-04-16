@@ -1,0 +1,38 @@
+// Abstracts
+@use "../abstracts/colors" as *;
+@use "../abstracts/typography" as *;
+
+// Link
+.c-link {
+  $cLink: &;
+
+  font-size: $font-size-16px;
+  font-weight: $font-weight-400;
+  color: $color-brand;
+
+  &--login,
+  &--register,
+  &--view-quote {
+    font-weight: $font-weight-500;
+  }
+
+  &--inter-14px {
+    font-size: $font-size-14px;
+  }
+
+  &--login {
+    margin-top: 10px;
+  }
+
+  &--terms-and-policy {
+    font-size: $font-size-12px;
+  }
+
+  &--register {
+    color: $color-brand-1-1;
+  }
+
+  &--view-quote {
+    color: $color-blue;
+  }
+}

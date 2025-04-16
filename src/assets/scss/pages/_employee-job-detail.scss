@@ -1,0 +1,60 @@
+@use "../abstracts/colors" as *;
+@use "../utilities/u-center-position";
+@use "../utilities/u-flexbox";
+
+.o-job-detail{
+
+  &--pad-t-8px{
+    padding-top: 8px !important;
+  }
+
+  &--pad-b-8px{
+    padding-bottom: 8px;
+  }
+
+  &--job-status{
+    border: 1px solid $color-brand;
+    background: transparent;
+  }
+
+}
+.column-marker {
+  // float: left;
+  width: 2px;
+  padding: 2px;
+  height: 60px; 
+  background-color: blue;
+    background-image: linear-gradient(orange 20%, green 70%, red 20%);
+}
+.column-location {
+  // float: left;
+  width: 98%;
+  padding: 2px;
+  height: 60px; 
+}
+
+.row-location:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.icon-position{
+  position: relative;
+  left: -6px;
+}
+
+.padding-top-bot-15px{
+  padding: 10px 0px;
+}
+
+.padding-bottom-5px{
+  padding-bottom: 5px;
+}
+
+.padding-30px{
+  padding: 25px;
+
+  &--top{
+    padding-top: 25px;
+  }
+}

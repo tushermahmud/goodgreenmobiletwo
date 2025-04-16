@@ -1,0 +1,53 @@
+<ion-grid class="ion-no-padding">
+    <!-- Service documents row -->
+    <ion-row>
+      <ng-container *ngIf="documents?.length > 0; else noDocTemp ">
+        <!-- Service documents col -->
+        <ion-col class="l-col l-col--view-vendor-quote" size="4" *ngFor="let document of documents">
+          <!-- Service documents card -->
+          <ion-card (click)="presentDocViewer(document)"
+            class="c-thumbnail c-thumbnail--width-100p ion-no-margin c-card u-no--box-shadow u-display--flex u-align-items--center u-justify-content--center u-flex-direction--column c-card--our-services u-no--mg-bot u-no--height c-card--bg-white c-card--video-upload-and-shoot c-card--pickup-location">
+            <!-- Service documents thumbnail -->
+            <ion-thumbnail class="c-thumbnail c-thumbnail--width-50px">
+              <!-- Service documents icon -->
+              <ion-icon
+                [src]="document.type === 'quote' ? '../../../../assets/images/order-details/document-quote.svg' : '../../../../assets/images/order-details/document-contract.svg'"
+                class="u-no--border-radius c-icon--width-100p c-icon--height-100p"></ion-icon>
+              <!-- /Service documents icon -->
+            </ion-thumbnail>
+            <!-- /Service documents thumbnail -->
+
+            <!-- Service documents card header -->
+            <ion-card-header class="ion-no-padding c-card-header c-card-header--service-documents">
+              <!-- Service documents card title -->
+              <ion-card-title
+                class="c-card-title c-card-title--inter-12px c-card-title--inter-medium c-card-title--color-primary-1-1 ion-no-margin ion-text-center">
+                {{document.type}}</ion-card-title>
+              <!-- /Service documents card title -->
+            </ion-card-header>
+            <!-- /Service documents card header -->
+
+            <!-- Document read or unread check icon -->
+            <ion-icon name="checkmark-done-outline" *ngIf="false"
+              class="c-icon c-icon--width-12px c-icon--height-12px c-icon--color-primary-1-2 u-no--mg-rt u-position--absolute c-icon--service-documents">
+            </ion-icon>
+            <!-- /Document read or unread check icon -->
+          </ion-card>
+          <!-- /Service documents card -->
+        </ion-col>
+        <!-- /Service documents col -->
+      </ng-container>
+
+      <ng-template #noDocTemp>
+        <ion-col>
+          <!-- No documents available yet label -->
+          <ion-text
+            class="c-title ion-no-padding c-title--h1-color-primary-1-1 c-title--inter-medium c-title--h1-inter-14px">
+            <h1 class="c-title__h1">No documents available yet</h1>
+          </ion-text>
+          <!-- /No documents available yet label -->
+        </ion-col>
+      </ng-template>
+    </ion-row>
+    <!-- /Our services main row -->
+  </ion-grid>

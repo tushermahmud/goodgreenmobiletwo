@@ -1,0 +1,157 @@
+<!-- View quotes header -->
+<ion-header collapse="fade" mode="md" class="l-header">
+  <app-header [headerMeta]="heraderInfo"></app-header>
+</ion-header>
+<!-- /View quotes header -->
+
+<!-- View quotes content -->
+<ion-content class="o-received-quotes">
+  <!-- View quotes refresher -->
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)" class="c-refresher c-refresher--color-brand"
+    pullFactor="1" pullMin="100" pullMax="200">
+    <ion-refresher-content pullingText="Pull to refresh" refreshingSpinner="bubbles" refreshingText="Refreshing...">
+    </ion-refresher-content>
+  </ion-refresher>
+  <!-- /View quotes refresher -->
+
+  <!-- View quotes main wrapper -->
+  <ion-grid class="l-main-wrapper ion-no-padding l-main-wrapper--get-started">
+    <ion-row>
+      <ion-col class="ion-no-padding">
+        <!-- View quotes header -->
+        <ion-row>
+          <ion-col class="u-display--flex u-align-items--center u-no--pad-top u-no--pad-bot u-no--pad-lt">
+            <!-- Vendor quotes title -->
+            <ion-text
+              class="ion-no-padding c-title c-title--get-started c-title--our-services c-title--h1-inter-16px c-title--inter-regular c-title--h1-black c-title--video-instructions u-no--mg-top">
+              <h1 class="c-title__h1">Vendor Quotes</h1>
+            </ion-text>
+            <!-- /Vendor quotes title -->
+          </ion-col>
+
+          <ion-col
+            class="u-display--flex u-align-items--center u-justify-content--flex-end u-no--pad-top u-no--pad-bot u-no--pad-rt">
+            <!-- Step info -->
+            <ion-text
+              class="ion-no-padding c-title c-title--login c-title--h1-color-primary c-title--pickup-location c-title--inter-regular u-no--mg-top c-title--header">
+              <h1 class="c-title__h1">
+                <span class="c-title__span">Showing {{quotes.length}}</span>
+                of {{quotes.length}}
+              </h1>
+            </ion-text>
+            <!-- /Step info -->
+
+            <!-- Step caret right icon -->
+            <ion-icon src="../../../assets/images/outline-caret-right--color-primary-1-2.svg"
+              class="c-icon u-no--mg-rt c-icon--header-outline-caret-right"></ion-icon>
+            <!-- /Step caret right icon -->
+          </ion-col>
+        </ion-row>
+        <!-- /View quotes header -->
+
+        <!-- View quotes wrapper -->
+        <div class="l-form">
+          <!-- View quotes list -->
+          <ion-list class="c-list u-no--bg ion-no-padding u-no--pad-bot c-list--overflow c-list--height-100vh-125px">
+            <ion-item-group class="c-item-group u-no--pad-top u-no--pad-bot c-item-group--pickup-location">
+              <!-- View quotes item -->
+              <ion-item class="c-item ion-no-padding" *ngFor="let quote of quotes; let i = index;"
+                (click)="toQuoteDetail(i)">
+                <!-- Quotes card -->
+                <ion-card
+                  class="c-card ion-no-margin u-no--box-shadow u-display--flex u-align-items--center u-justify-content--center u-flex-direction--column c-card--our-services u-no--mg-bot c-card--video-instructions c-card--addition-services c-card--width-100p u-no--bg c-card--dashboard c-card--view-quotes"
+                  [ngClass]="{'is-accepted': quote.status === 'accepted'}">
+                  <ion-row class="l-row u-no--mg l-row--pickup-location">
+                    <ion-col class="u-display--flex u-align-items--center u-no--pad-top u-no--pad-bot u-no--pad-lt">
+                      <!-- Star & check icon -->
+                      <div
+                        class="c-icon u-display--flex u-align-items--center u-justify-content--center u-flex-direction--column c-icon--rating-wrap c-icon--width-40px c-icon--height-40px u-position--relative">
+                        <!-- Star icon -->
+                        <ion-icon src="../../../../assets/images/fill-star--color-brand-1-2.svg"
+                          class="c-icon u-no--border-radius u-no--mg-rt c-icon--star hidden-accepted"></ion-icon>
+                        <!-- /Star icon -->
+
+                        <!-- Rating label -->
+                        <div
+                          class="c-title ion-no-padding c-title--h1-color-primary-1-1 c-title--h1-inter-14px c-title--inter-medium c-title--rating  hidden-accepted">
+                          <h1 class="c-title__h1">4.9</h1>
+                        </div>
+                        <!-- /Rating label -->
+
+                        <!-- Check icon -->
+                        <ion-icon src="../../../../assets/images/fill-check--color-brand.svg"
+                          class="c-icon u-no--mg-rt u-no--border-radius u-position--absolute u-top--50p u-left--50p u-transform--translate-minus-50p c-icon--width-40px c-icon--height-40px c-icon--accepted">
+                        </ion-icon>
+                        <!-- /Check icon -->
+                      </div>
+                      <!-- /Star & check icon -->
+
+                      <!-- Quotes card wrap -->
+                      <div class="c-card__wrap">
+                        <!-- Quotes business account name -->
+                        <ion-text
+                          class="c-title ion-no-padding c-title--h1-color-primary-1-1 c-title--h1-inter-14px c-title--text-transform">
+                          <h1 class="c-title__h1">{{quote.businessAccount.name}}</h1>
+                        </ion-text>
+                        <!-- /Quotes business account name -->
+
+                        <!-- Quotes created date -->
+                        <ion-text
+                          class="c-title ion-no-padding c-title--addition-services c-title--h1-inter-12px c-title--h1-color-primary-1-1 c-title--inter-medium">
+                          <h1 class="c-title__h1">{{quote.createdAt | date}}</h1>
+                        </ion-text>
+                        <!-- /Quotes created date -->
+
+                        <!-- Accepted status -->
+                        <ion-text
+                          class="c-title ion-no-padding c-title--addition-services c-title--h1-inter-12px c-title--h1-color-primary-1-1 c-title--h1-inter-semibold c-title--user-name c-title--accepted"
+                          *ngIf="quote.status === 'accepted'">
+                          <h1 class="c-title__h1"><b>ACCEPTED</b></h1>
+                        </ion-text>
+                        <!-- /Accepted status -->
+                      </div>
+                      <!-- /Quotes card wrap -->
+                    </ion-col>
+
+                    <ion-col
+                      class="u-display--flex u-align-items--center u-justify-content--flex-end u-no--pad-top u-no--pad-bot u-no--pad-rt">
+
+                      <!-- Quote grand total amount tag -->
+                      <ion-text class="o-received-quotes__quotes-amount">
+                        <h2 class="c-title__h1">
+                          ${{quote.grandTotal}}</h2>
+                      </ion-text>
+                      <!-- /Quote grand total amount tag -->
+
+                      <!-- Icon -->
+                      <!-- <ion-icon src="../../../assets/images/outline-caret-right--color-primary-1-2.svg"
+                        class="c-icon u-no--mg-rt u-no--border-radius c-icon--card-outline-caret-right"></ion-icon> -->
+                      <!-- /Icon -->
+
+                      <!-- Icon -->
+                      <!-- <ion-icon src="../../../assets/images/fill-bell--color-blue.svg" class="c-icon u-no--mg-rt u-no--border-radius c-icon--card-fill-bell"></ion-icon> -->
+                      <!-- /Icon -->
+
+                    </ion-col>
+                  </ion-row>
+                </ion-card>
+                <!-- /Quotes card -->
+              </ion-item>
+              <!-- /View quotes item -->
+
+              <!-- No quotes available label -->
+              <ion-text class="c-title ion-no-padding c-title--get-started" *ngIf="quotes.length === 0">
+                <h1 class="c-title__h1">No quotes available</h1>
+              </ion-text>
+              <!-- /No quotes available label -->
+            </ion-item-group>
+          </ion-list>
+          <!-- /View quotes list -->
+        </div>
+        <!-- /View quotes wrapper -->
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <!-- /View quotes main wrapper -->
+</ion-content>
+<!-- /View quotes content -->

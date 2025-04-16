@@ -1,0 +1,13 @@
+@use "../abstracts/dimension" as *;
+
+
+// Row wrapper
+.l-row-wrapper {
+   $lRowWrapper: &;
+   
+   position: relative;
+
+   &--width-100p {
+      width: $width-100p;
+   }
+}

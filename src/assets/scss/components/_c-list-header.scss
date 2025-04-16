@@ -1,0 +1,12 @@
+// Abstracts
+@use "../abstracts/colors" as *;
+@use "../abstracts/typography" as *;
+
+// Link
+.c-list-header {
+  $cListHeader: &;
+
+  &--chat {
+    padding-bottom: 10px;
+  }
+}

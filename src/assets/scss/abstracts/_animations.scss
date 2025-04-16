@@ -1,0 +1,15 @@
+// Transitions
+$transition-cubic: cubic-bezier(0, 0, .2, 1);
+
+
+// Animations
+@mixin animate( $animation, $duration, $method, $times ){
+    animation: $animation $duration $method $times;
+}
+
+// Keyframes
+@mixin keyframes( $name ){
+    @keyframes #{$name}{
+        @content;
+    }
+}

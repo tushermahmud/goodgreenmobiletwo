@@ -1,0 +1,43 @@
+// Abstracts
+@use "../abstracts/colors" as *;
+@use "../abstracts/typography" as *;
+
+// Action sheet
+.c-action-sheet {
+  $cActionSheet: &;
+
+  .action-sheet-icon {
+    color: $color-primary;
+
+    &.sc-ion-action-sheet-md {
+      padding: 0;
+    }
+  }
+
+  .action-sheet-button.sc-ion-action-sheet-ios
+    .action-sheet-icon.sc-ion-action-sheet-ios,
+  .action-sheet-icon.sc-ion-action-sheet-md {
+    margin-right: 15px;
+    font-size: $font-size-24px;
+  }
+
+  .action-sheet-button-inner {
+    font-weight: $font-weight-500;
+    color: $color-primary;
+    font-size: $font-size-17px;
+  }
+
+  .action-sheet-button.sc-ion-action-sheet-ios:last-child {
+    .action-sheet-button-inner,
+    .action-sheet-icon {
+      color: $color-red;
+    }
+  }
+
+  .action-sheet-cancel.sc-ion-action-sheet-ios:last-child {
+    .action-sheet-button-inner,
+    .action-sheet-icon {
+      color: $color-primary;
+    }
+  }
+}

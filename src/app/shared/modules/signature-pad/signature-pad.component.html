@@ -1,0 +1,172 @@
+<!-- <p>signature-pad works!</p> -->
+<ion-header>
+  <app-header [headerMeta]="headerInfo"></app-header>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-refresher (ionRefresh)="doRefresh($event)" slot="fixed" class="c-refresher c-refresher--color-brand"
+    pullFactor="1" pullMin="100" pullMax="200">
+    <ion-refresher-content pullingText="Pull to refresh" refreshingSpinner="bubbles" refreshingText="Refreshing...">
+    </ion-refresher-content>
+  </ion-refresher>
+
+
+
+
+  <!-- Signature Pad -->
+  <ion-item>
+      <ion-label>Signature Pad</ion-label>
+  </ion-item>
+  <ion-card class="ion-no-padding">
+    <ion-card-content>
+
+      <ion-text class="c-title ion-no-padding c-title--h1-color-brand c-title--text-transform c-title--addition-services c-title--h1-inter-12px c-title--view-vendor-quote">
+        <p>Take client signature confirming job start</p>
+      </ion-text>
+
+      <canvas #signaturePad class="c-signature-pad--height-width c-signature-pad--border-1px"></canvas>
+
+      <ion-button class="button-block button-solid" (click)="clearCanvas()">Clear <ion-icon size="small" name="chevron-forward-outline"></ion-icon></ion-button>
+
+    </ion-card-content>
+  </ion-card>
+  <!-- /Signature Pad -->
+
+  <!-- Media item -->
+  <ion-item class="c-item ion-no-padding"><!-- Media main wrapper -->
+      <ion-row class="c-thumbnail c-thumbnail--video-capture c-thumbnail--width-100p c-thumbnail--body-bg-gray-1-1 c-card u-no--mg-bot u-no--height c-card--pickup-location c-card--addition-services">
+          <ion-col class="ion-no-padding" size="12">
+              <!-- Media header -->
+              <ion-row class="l-row u-no--mg-top u-no--mg-rt u-no--mg-lt l-row--pickup-location l-row--view-vendor-quote">
+                  <ion-col class="u-display--flex u-align-items--center ion-no-padding">
+                  <!-- Media title -->
+                  <ion-text
+                      class="c-title ion-no-padding c-title--h1-color-brand c-title--text-transform c-title--addition-services c-title--h1-inter-12px c-title--view-vendor-quote">
+                      <h1 class="c-title__h1">MEDIA</h1>
+                  </ion-text>
+                  <!-- /Media title -->
+                  </ion-col>
+              </ion-row>
+              <!-- /Media header -->
+
+              <!-- Media gallery -->
+              <ion-row class="l-row l-row--quote-documents"> 
+
+                <ion-col class="l-col l-col--view-vendor-quote" size="4">
+                    <!-- Media gallery add thumbnail -->
+                    <ion-thumbnail (click)="mediaUploadActionSheet()"
+                    class="c-thumbnail c-thumbnail--width-100p c-thumbnail--height-114px c-thumbnail--bg-color-white u-display--flex u-align-items--center u-justify-content--center c-thumbnail--video-capture u-overflow--hidden c-thumbnail--sm-height-106px c-thumbnail--sm-height-101px c-thumbnail--sm-height-83px"
+                    id="size-button" >
+                    <!-- Media gallery add icon -->
+                    <ion-icon src="../../../../assets/images/outline-add--color-brand-1-1.svg"
+                        class="c-icon c-icon--width-30px c-icon--height-30px u-no--mg-rt">
+                    </ion-icon>
+                    <!-- /Media gallery add icon -->
+                    </ion-thumbnail>
+                    <!-- /Media gallery add thumbnail -->
+                </ion-col>
+                
+                <ion-col class="l-col l-col--view-vendor-quote" size="4"  *ngFor="let media of jobMedia; let i = index">
+                  
+                  <!-- Media gallery image thumbnail -->
+                  <ion-thumbnail (click)="playMedia(i)"
+                    class="c-thumbnail c-thumbnail--width-100p c-thumbnail--height-114px c-thumbnail--video-capture u-overflow--hidden c-thumbnail--sm-height-106px c-thumbnail--sm-height-101px c-thumbnail--sm-height-83px">
+
+                    <!-- Play iccon -->
+                    <ion-icon src="../../../../assets/images/fill-play--color-white.svg" *ngIf="media?.fileType !== 'image'"
+                      class="c-icon u-no--mg-rt u-no--border-radius u-position--absolute u-top--50p u-left--50p u-transform--translate-minus-50p c-icon--play">
+                    </ion-icon>
+                    <!-- /Play iccon -->
+
+                    <!-- Uploaded image preview -->
+                    <img [src]="media?.thumbnail" [alt]="media?.referenceId">
+                    <!-- /Uploaded image preview -->
+
+                  </ion-thumbnail>
+                  <!-- /Media gallery image thumbnail -->
+
+                  <!-- Media gallery image thumbnail -->
+                  <ion-thumbnail  *ngIf="false"
+                      class="c-thumbnail c-thumbnail--width-100p c-thumbnail--height-114px c-thumbnail--video-capture u-overflow--hidden c-thumbnail--sm-height-106px c-thumbnail--sm-height-101px c-thumbnail--sm-height-83px">
+
+
+                      <!-- (click)="presentActionSheet(i)" -->
+                          <!-- Play iccon -->
+                          <ion-icon src="https://ionicframework.com/docs/img/demos/thumbnail.svg"
+                              class="c-icon u-no--mg-rt u-no--border-radius u-position--absolute u-top--50p u-left--50p u-transform--translate-minus-50p c-icon--play">
+                          </ion-icon>
+                          <!-- /Play iccon -->
+
+                          <!-- Uploaded image preview -->
+                          <img [src]="'https://ionicframework.com/docs/img/demos/thumbnail.svg'" alt="Media">
+                          <!-- /Uploaded image preview -->
+                  </ion-thumbnail>
+                  <!-- /Media gallery image thumbnail -->
+                
+                </ion-col>
+             
+
+              </ion-row>
+              <!-- /Media gallery -->
+          </ion-col>
+      </ion-row>
+  </ion-item>
+  <!-- /Media item -->
+
+  <!-- Remark notes item -->
+  <ion-item class="c-item ion-no-padding">
+    <!-- Remark notes main wrapper -->
+    <ion-row
+      class="c-thumbnail c-thumbnail--video-capture c-thumbnail--width-100p c-thumbnail--body-bg-gray-1-1 c-card u-no--mg-bot u-no--height c-card--pickup-location c-card--addition-services">
+      <ion-col class="ion-no-padding">
+        <!-- Remark notes header -->
+        <ion-row
+          class="l-row u-no--mg-top u-no--mg-rt u-no--mg-lt l-row--pickup-location l-row--view-vendor-quote">
+          <ion-col class="u-display--flex u-align-items--center u-no--pad-top u-no--pad-bot u-no--pad-lt"
+            size="8">
+            <!-- Remark notes title -->
+            <ion-text class="c-title ion-no-padding c-title--h1-color-brand c-title--text-transform c-title--addition-services c-title--h1-inter-12px c-title--view-vendor-quote">
+              <h1 class="c-title__h1">Remark</h1>
+            </ion-text>
+            <!-- /Remark notes title -->
+          </ion-col>
+          <ion-col class="u-display--flex u-align-items--center u-justify-content--flex-end u-no--pad-top u-no--pad-bot u-no--pad-rt">
+            <!-- Edit icon -->
+            <ion-icon src="../../../../assets/images/fill-edit--color-blue.svg"  class="c-icon u-no--mg-rt c-icon--button u-position--absolute u-top--50p u-transform--translate-y-minus-50p c-icon--review-service-request c-icon--width-12px c-icon--height-12px u-no--position-rt">
+            </ion-icon>
+            <!-- /Edit icon -->
+
+            <!-- Checkmark icon -->
+            <ion-button color="primary" size="small" strong="true">Clear</ion-button>
+            <!-- /Checkmark icon -->
+          </ion-col>
+        </ion-row>
+        <!-- /Remark notes header -->
+
+        <!-- Remark notes instruction -->
+        <ion-text
+          class="c-content c-content--p-inter-14px u-no--mg-top c-content--color-primary-1-2 c-content--view-vendor-quote c-content--p-inter-semibold c-content--customer-reviews">
+          <p class="c-content__p">Type your remarks here!!
+          </p>
+        </ion-text>
+        <!-- /Remark notes instruction -->
+
+        <!-- Remark notes -->
+        <ion-textarea class="c-content c-content--p-inter-14px u-no--mg-top c-content--color-primary-1-2 c-content--view-vendor-quote c-content--p-inter-semibold c-content--customer-reviews"  placeholder="Type your remarks here!!"></ion-textarea> 
+        <ion-text
+          class="c-content c-content--p-inter-14px u-no--mg-top c-content--color-primary-1-2 c-content--view-vendor-quote c-content--p-inter-medium">
+          <p class="c-content__p">
+            <!-- {{ (item?.notes === '' || item?.notes === null) ? 'Notes is empty!' : item?.notes }} -->
+          </p>
+        </ion-text>
+
+      </ion-col>
+    </ion-row>
+    <!-- /Remark notes main wrapper -->
+  </ion-item>
+  <!-- /Remark notes item -->
+
+  <ion-button class="c-button--min-width-166px" (click)="cancelCanvas()" color="danger">Cancel <ion-icon size="small" name="chevron-forward-outline"></ion-icon></ion-button>
+  <ion-button class="c-button--min-width-166px" (click)="saveSignature()">Confirm <ion-icon size="small" name="chevron-forward-outline"></ion-icon></ion-button>
+
+</ion-content>

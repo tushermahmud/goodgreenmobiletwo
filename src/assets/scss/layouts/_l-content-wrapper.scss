@@ -1,0 +1,40 @@
+// Abstracts
+@use "../abstracts/dimension" as *;
+
+// Content wrapper
+.l-content-wrapper {
+  $lContentWrapper: &;
+
+  &--pickup-location {
+    padding: 10px;
+  }
+
+  &--min-height-100vh-274px {
+    min-height: $height-100vh-274px;
+  }
+
+  &--min-height-100vh-262px {
+    min-height: $height-100vh-262px;
+  }
+
+  &--video-capture {
+    margin-top: 30px;
+  }
+
+  &--min-height-100vh-224px {
+    min-height: $height-100vh-224px;
+  }
+
+  &--min-height-100vh-262px {
+    min-height: $height-100vh-262px;
+  }
+
+  &--min-height-100vh-242px {
+    min-height: $height-100vh-242px;
+  }
+}
+
+// global
+ion-content {
+  background-color: white;
+}

@@ -1,0 +1,19 @@
+ion-modal {
+  --height: 50%;
+  --border-radius: 16px;
+  --box-shadow: 0 15px 60px -10px rgba(0, 0, 0, 0.1);
+}
+
+ion-modal::part(backdrop) {
+  background: rgba(209, 213, 219);
+  opacity: 1;
+}
+
+ion-modal ion-toolbar {
+  --background:#0c9447;
+  --color: white;
+}
+
+.modal-close-button {
+  font-size: 14px;
+}

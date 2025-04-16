@@ -1,0 +1,38 @@
+<ion-header collapse="fade" mode="md" class="l-header" >
+  <app-header [headerMeta]="headerInfo"></app-header>
+</ion-header>
+
+<ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)" class="c-refresher c-refresher--color-brand"
+    pullFactor="1" pullMin="100" pullMax="200">
+    <ion-refresher-content pullingText="Pull to refresh" refreshingSpinner="bubbles"
+      refreshingText="Refreshing..."></ion-refresher-content>
+  </ion-refresher>
+
+   <!--No Job history-->
+  <ion-card *ngIf="completedJobs?.length === 0" class="backgroud-color-card--bg-color no-time-off-card-align">
+    <ion-card-content class="no-time-off pad-left-right-60px">
+      <ion-note class="text-color-time ion-padding">You have no assigned jobs</ion-note>
+    </ion-card-content>
+  </ion-card>
+   <!--No Job history-->
+
+    <!--Job history-->
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-list>
+          <ion-item *ngFor="let job of completedJobs" (click)="openJobdetails(job)">
+            <ion-icon src="{{job?.jobCard?.serviceInfo?.logoUrl}}" color="primary"></ion-icon>
+             <ion-label class="ion-margin">
+              {{job?.jobCard?.serviceInfo?.label}}
+              <p>On {{job?.job?.scheduledDateTime | date:'fullDate'}} as {{job.job?.role | titlecase}}</p>
+            </ion-label>
+            <!-- <ion-note slot="end"></ion-note> -->
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <!--Job history-->
+</ion-content>

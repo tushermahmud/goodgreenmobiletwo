@@ -1,0 +1,118 @@
+// Abstracts
+@use "../abstracts/mixins" as *;
+@use "../abstracts/dimension" as *;
+@use "../abstracts/colors" as *;
+@use "../abstracts/border-radius" as *;
+
+// Thumnail
+.c-thumbnail {
+  $cThumnail: &;
+
+  &--width-95px {
+    width: $width-95px;
+  }
+
+  &--height-95px {
+    height: $height-95px;
+  }
+
+  &--height-114px {
+    height: $height-114px;
+  }
+
+  &--width-100p {
+    width: $width-100p;
+  }
+
+  &--height-320px {
+    height: $height-320px;
+  }
+
+  &--body-bg-gray-1-1 {
+    background: $body-bg-gray-1-1;
+  }
+
+  &--get-started {
+    border-radius: $border-radius-15px;
+    margin-bottom: 20px;
+  }
+
+  &--bg-color-primary-1-5 {
+    background: $color-primary-1-5;
+  }
+
+  &--video-capture {
+    border-radius: $border-radius-5px;
+  }
+
+  &--height-120px {
+    height: $height-120px;
+  }
+
+  &--bg-color-primary {
+    background: $color-primary;
+  }
+
+  &--width-100p-12px {
+    width: $width-100p-12px;
+  }
+
+  &--height-100p-12px {
+    height: $height-100p-12px;
+  }
+
+  &--bg-color-white {
+    background: $white;
+  }
+
+  &--height-108px {
+    height: $height-108px;
+  }
+
+  &--width-80px {
+    width: $width-80px;
+  }
+
+  &--height-80px {
+    height: $height-80px;
+  }
+
+  &--order-details {
+    @include box-shadow-outset(0, 0, 60px, 5px, $color-brand);
+    margin: 40px auto;
+    border-radius: $border-radius-55p;
+  }
+
+  &--width-75px {
+    width: $width-75px;
+    -ms-flex: 0 0 $width-75px;
+    flex: 0 0 $width-75px;
+    max-width: $width-75px;
+  }
+
+  &--width-50px {
+    width: $width-50px;
+    -ms-flex: 0 0 $width-50px;
+    flex: 0 0 $width-50px;
+    max-width: $width-50px;
+  }
+
+  &--width-100px {
+    width: $width-100px;
+    -ms-flex: 0 0 $width-100px;
+    flex: 0 0 $width-100px;
+    max-width: $width-100px;
+  }
+
+  &--selected-service {
+    margin-bottom: 10px;
+  }
+
+  &--height-100p {
+    height: $height-100p;
+  }
+
+  &--background-none {
+    background: none;
+  }
+}

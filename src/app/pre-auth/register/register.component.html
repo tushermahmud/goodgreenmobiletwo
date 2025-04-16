@@ -1,0 +1,218 @@
+<!-- Register header -->
+<ion-header collapse="fade" mode="md" class="l-header">
+  <app-header [headerMeta]="heraderInfo"></app-header>
+</ion-header>
+<!-- /Register header -->
+
+<!-- Register content -->
+<ion-content>
+  <!-- Register main wrapper -->
+  <ion-grid class="l-main-wrapper ion-no-padding l-main-wrapper--get-started">
+    <ion-row>
+      <ion-col class="ion-no-padding">
+        <!-- Register header -->
+        <ion-row>
+          <!-- Register header col left -->
+          <ion-col class="u-display--flex u-align-items--center u-no--pad-top u-no--pad-bot u-no--pad-lt">
+            <!-- Create your account title -->
+            <ion-text
+              class="ion-no-padding c-title c-title--get-started c-title--our-services c-title--h1-inter-16px c-title--inter-regular c-title--h1-black c-title--video-instructions u-no--mg-top">
+              <h1 class="c-title__h1">Create Your Account</h1>
+            </ion-text>
+            <!-- /Create your account title -->
+          </ion-col>
+          <!-- /Register header col left -->
+
+          <!-- Register header col right -->
+          <ion-col
+            class="u-display--flex u-align-items--center u-justify-content--flex-end u-no--pad-top u-no--pad-bot u-no--pad-rt">
+            <!-- Step info -->
+            <ion-text
+              class="ion-no-padding c-title c-title--login c-title--h1-color-primary c-title--pickup-location c-title--inter-regular u-no--mg-top">
+              <h1 class="c-title__h1">
+                <span class="c-title__span">Step 4</span>
+                of 4
+              </h1>
+            </ion-text>
+            <!-- /Step info -->
+          </ion-col>
+          <!-- /Register header col right -->
+        </ion-row>
+        <!-- /Register header -->
+
+        <!-- Register form -->
+        <form class="l-form l-form--pickup-location" [formGroup]="signupForm" (ngSubmit)="onSubmit()" novalidate>
+          <!-- Register main wrapper -->
+          <ion-row
+            class="c-thumbnail c-thumbnail--video-capture c-thumbnail--width-100p c-thumbnail--body-bg-gray-1-1 c-card u-no--mg-bot u-no--height c-card--pickup-location c-card--min-height-100vh-215px">
+            <ion-col
+              class="ion-no-padding u-display--flex u-align-items--center u-justify-content--space-between u-flex-direction--column">
+              <!-- Register main field wrapper -->
+              <ion-row class="c-item-group-wrapper">
+                <ion-col class="ion-no-padding">
+                  <!-- Register field wrapper -->
+                  <ion-item-group class="c-item-group c-item-group--pickup-location">
+                    <!-- More info label wrapper -->
+                    <ion-item class="c-item ion-no-padding">
+                      <!-- More info message -->
+                      <p
+                        class="c-content u-no--mg-top c-content--inter-14px c-content--color-primary-1-2 c-content--view-vendor-quote c-content--inter-medium">
+                        A verification code will be sent to the below email. Please use the code to verify your account
+                        and login to the app.
+                      </p>
+                      <!-- /More info message -->
+                    </ion-item>
+                    <!-- /More info label wrapper -->
+
+                    <!-- First name input wrapper -->
+                    <ion-item class="c-item ion-no-padding" [ngClass]="{'has-error': submitted && f.firstname.errors}">
+                      <!-- First name input -->
+                      <ion-input class="c-input c-input--white" formControlName="firstname" type="text"
+                        placeholder="First name"></ion-input>
+                      <!-- /First name input -->
+
+                      <!-- First name field validation error -->
+                      <p class="c-content c-content--inter-12px c-content--login c-content--color-red c-content--form-message"
+                        *ngIf="submitted && f.firstname.errors">
+                        Firstname cannot be empty
+                      </p>
+                      <!-- /First name field validation error -->
+                    </ion-item>
+                    <!-- /First name input wrapper -->
+
+                    <!-- Last name input wrapper -->
+                    <ion-item class="c-item ion-no-padding" [ngClass]="{'has-error': submitted && f.lastname.errors}">
+                      <!-- Last name input -->
+                      <ion-input class="c-input c-input--white" formControlName="lastname" type="text"
+                        placeholder="Last name">
+                      </ion-input>
+                      <!-- /Last name input -->
+
+                      <!-- Last name field validation error -->
+                      <p class="c-content c-content--inter-12px c-content--login c-content--color-red c-content--form-message"
+                        *ngIf="submitted && f.lastname.errors">
+                        Lastname cannot be empty
+                      </p>
+                      <!-- /Last name field validation error -->
+                    </ion-item>
+                    <!-- /Last name input wrapper -->
+
+                    <!-- Email input wrapper -->
+                    <ion-item class="c-item ion-no-padding" [ngClass]="{'has-error': submitted && f.email.errors}">
+                      <!-- Email input -->
+                      <ion-input class="c-input c-input--white" formControlName="email" type="text"
+                        placeholder="Email Address" pattern="[a-zA-Z0-9._+-]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}">
+                      </ion-input>
+                      <!-- /Email input -->
+
+                      <!-- Email field validation error -->
+                      <p class="c-content c-content--inter-12px c-content--login c-content--color-red c-content--form-message"
+                        *ngIf="submitted && f.email.errors && !f.email.dirty">
+                        Email cannot be empty
+                      </p>
+                      <!-- /Email field validation error -->
+
+                       <!-- Email field validation error -->
+                       <p class="c-content c-content--inter-12px c-content--login c-content--color-red c-content--form-message"
+                       *ngIf="submitted && f.email.errors && f.email.dirty">
+                       Please enter valid email
+                     </p>
+                     <!-- /Email field validation error -->
+                    </ion-item>
+                    <!-- /Email input wrapper -->
+
+                    <!-- Password input wrapper -->
+                    <ion-item class="c-item ion-no-padding" [ngClass]="{'has-error': submitted && f.password.errors}">
+                      <!-- Password input -->
+                      <ion-input class="c-input c-input--white" formControlName="password" type="password"
+                        placeholder="Password"></ion-input>
+                      <!-- /Password input -->
+
+                      <!-- Password field validation error -->
+                      <p class="c-content c-content--inter-12px c-content--login c-content--color-red c-content--form-message"
+                        *ngIf="submitted && f.password.errors">
+                        Password cannot be empty
+                      </p>
+                      <!-- /Password field validation error -->
+                    </ion-item>
+                    <!-- /Password input wrapper -->
+
+                    <!-- Confirm password input wrapper -->
+                    <ion-item class="c-item ion-no-padding"
+                      [ngClass]="{'has-error': submitted && f.confirmPassword.errors}">
+                      <!-- Confirm password input -->
+                      <ion-input class="c-input c-input--white" formControlName="confirmPassword" type="password"
+                        placeholder="Re-type Password"></ion-input>
+                      <!-- /Confirm password input -->
+
+                      <!-- Confirm password field validation error -->
+                      <p class="c-content c-content--inter-12px c-content--login c-content--color-red c-content--form-message"
+                        *ngIf="submitted && f.confirmPassword.errors">
+                        Confirm password must match with passwrd
+                      </p>
+                      <!-- /Confirm password field validation error -->
+                    </ion-item>
+                    <!-- /Confirm password input wrapper -->
+
+                    <!-- Terms of service & privacy policy wrapper -->
+                    <ion-item class="c-item ion-no-padding">
+                      <!-- Terms of service & privacy policy -->
+                      <p
+                        class="c-content c-content--inter-12px c-content--login c-content--form-message c-content--inter-medium">
+                        By continuing you agree to our
+                        <!-- Terms of service link -->
+                        <a href="#" class="c-link u-no--text-decoration c-link--terms-and-policy c-link--register">Terms
+                          of
+                          Service</a>
+                        <!-- /Terms of service link -->
+                        and
+                        <!-- Privacy policy link -->
+                        <a href="#"
+                          class="c-link u-no--text-decoration c-link--terms-and-policy c-link--register">Privacy
+                          Policy.</a>
+                        <!-- /Privacy policy link -->
+                      </p>
+                      <!-- /Terms of service & privacy policy -->
+                    </ion-item>
+                    <!-- /Terms of service & privacy policy wrapper -->
+                  </ion-item-group>
+                  <!-- /Register field wrapper -->
+                </ion-col>
+              </ion-row>
+              <!-- /Register main field wrapper -->
+
+              <!-- Log in -->
+              <p class="c-content c-content--inter-16px u-no--mg-top">
+                Already have an account?
+                <!-- Log in link -->
+                <a class="c-link u-no--text-decoration" (click)="toLogin()">Log in</a>
+                <!-- /Log in link -->
+              </p>
+              <!-- /Log in -->
+            </ion-col>
+          </ion-row>
+          <!-- /Register main wrapper -->
+
+          <!-- Register footer -->
+          <ion-footer collapse="fade"
+            class="l-header l-footer u-position--fixed u-no--position-bot u-left--50p u-transform--translate-x-minus-50p l-footer--bg-white">
+            <!-- Register main wrapper -->
+            <ion-toolbar class="l-main-wrapper">
+              <!-- Submit button -->
+              <ion-button
+                class="c-button ion-no-margin u-no--text-transform c-button--text-inter-18px c-button--text-inter-medium" 
+                [ngClass]="{'is-inactive': !isFormValid}"
+                fill="clear" expand="full" type="submit">Submit</ion-button>
+              <!-- /Submit button -->
+            </ion-toolbar>
+            <!-- /Register main wrapper -->
+          </ion-footer>
+          <!-- /Register footer -->
+        </form>
+        <!-- /Register form -->
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <!-- /Register main wrapper -->
+</ion-content>
+<!-- /Register content -->

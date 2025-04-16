@@ -1,0 +1,2495 @@
+<!-- Order details header -->
+<ion-header collapse="fade" mode="md" class="l-header">
+  <app-header [headerMeta]="headerInfo"></app-header>
+</ion-header>
+<!-- /Order details header -->
+
+<!-- Order details content -->
+<ion-content>
+  <!-- Order details refresher -->
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)" class="c-refresher c-refresher--color-brand"
+    pullFactor="1" pullMin="100" pullMax="200">
+    <ion-refresher-content pullingText="Pull to refresh" refreshingSpinner="bubbles" refreshingText="Refreshing...">
+    </ion-refresher-content>
+  </ion-refresher>
+  <!-- /Order details refresher -->
+
+  <!-- Order details main wrapper -->
+  <ion-grid class="l-main-wrapper ion-no-padding l-main-wrapper--get-started">
+    <ion-row>
+      <ion-col class="ion-no-padding">
+        <!-- Order details header -->
+        <ion-row>
+          <ion-col class="u-display--flex u-align-items--center u-no--pad-top u-no--pad-bot">
+            <!-- Order details header icon -->
+            <ion-icon src="{{item?.logoUrl}}"
+              class="c-icon u-no--border-radius c-icon--dollar-envelope c-icon--width-20px c-icon--height-20px">
+            </ion-icon>
+            <!-- /Order details header icon -->
+
+            <ion-row>
+              <ion-col class="u-no--pad-top u-no--pad-bot">
+                <!-- Service label -->
+                <ion-text
+                  class="ion-no-padding c-title c-title--get-started c-title--our-services c-title--h1-inter-16px c-title--inter-regular c-title--h1-black c-title--video-instructions u-no--mg-top">
+                  <h1 class="c-title__h1">{{item?.serviceLabel}}</h1>
+                </ion-text>
+                <!-- /Service label -->
+
+                <!-- Service date -->
+                <ion-text
+                  class="ion-no-padding c-title--addition-services c-title--h1-inter-12px c-title--h1-color-primary-1-1 c-title--time-stamp">
+                  <h1 class="c-title__h1">{{item?.serviceDate | date}}</h1>
+                </ion-text>
+                <!-- /Service date -->
+              </ion-col>
+            </ion-row>
+          </ion-col>
+        </ion-row>
+        <!-- /Order details header -->
+
+        <!-- Order details wrapper -->
+        <div class="l-form">
+          <!-- Order details list -->
+          <ion-list class="c-list u-no--bg ion-no-padding u-no--pad-bot c-list--dashboard">
+            <!-- Order details item group -->
+            <ion-item-group class="c-item-group u-no--pad-top u-no--pad-bot c-item-group--pickup-location">
+              <!-- Order details item -->
+              <ion-item class="c-item ion-no-padding">
+                <!-- Order details main wrapper -->
+                <ion-row
+                  class="c-thumbnail c-thumbnail--video-capture c-thumbnail--width-100p c-thumbnail--body-bg-gray-1-1 c-card u-no--mg-bot u-no--height c-card--pickup-location c-card--addition-services">
+                  <ion-col class="ion-no-padding">
+                    <ion-row class="l-row u-no--mg l-row--pickup-location">
+                      <ion-col class="u-no--pad-top u-no--pad-bot u-no--pad-lt" size="8">
+                        <ion-row
+                          class="l-row u-no--mg-top u-no--mg-rt u-no--mg-lt l-row--pickup-location l-row--view-vendor-quote">
+                          <ion-col
+                            class="u-display--flex u-align-items--center u-no--pad-top u-no--pad-bot u-no--pad-lt">
+                            <!-- Order details -->
+                            <ion-text
+                              class="c-title ion-no-padding c-title--h1-color-brand c-title--text-transform c-title--addition-services c-title--h1-inter-12px c-title--view-vendor-quote">
+                              <h1 class="c-title__h1">ORDER DETAILS</h1>
+                            </ion-text>
+                            <!-- /Order details -->
+                          </ion-col>
+                        </ion-row>
+
+                        <!-- Order details id -->
+                        <ion-text
+                          class="c-title ion-no-padding c-title--h1-color-primary c-title--h1-inter-14px c-title--h1-inter-semibold">
+                          <h1 class="c-title__h1">ID #{{item?.serviceRequestId}}</h1>
+                        </ion-text>
+                        <!-- /Order details id -->
+                      </ion-col>
+
+                      <ion-col
+                        class="u-no--pad-top u-no--pad-bot u-no--pad-rt u-display--flex u-align-items--center u-justify-content--flex-end"
+                        size="4">
+                        <!-- View quotes button -->
+                        <ion-button
+                          class="c-button ion-no-margin u-no--text-transform c-button--text-inter-10px c-button--text-inter-medium c-button--height-25px c-button--bg-color-brand"
+                          fill="clear" expand="full" (click)="viewQuotes()" *ngIf="quotesPresent">
+                          View Quotes
+                        </ion-button>
+                        <!-- /View quotes button -->
+
+                        <!-- No quotes label -->
+                        <ion-text
+                          class="c-title ion-no-padding c-title--h1-color-primary-1-1 c-title--h1-inter-14px c-title--h1-inter-semibold"
+                          *ngIf="!quotesPresent">
+                          <em class="c-title__h1">No quotes</em>
+                        </ion-text>
+                        <!-- /No quotes label -->
+                      </ion-col>
+                    </ion-row>
+                    <!-- /Order details row -->
+                  </ion-col>
+                </ion-row>
+                <!-- /Order details main wrapper -->
+              </ion-item>
+              <!-- /Order details item -->
+
+              <!-- Payment details item -->
+              <ion-item class="c-item ion-no-padding" *ngIf="showPaymentInfo">
+                <!-- Payment details main wrapper -->
+                <ion-row
+                  class="c-thumbnail c-thumbnail--video-capture c-thumbnail--width-100p c-thumbnail--body-bg-gray-1-1 c-card u-no--mg-bot u-no--height c-card--pickup-location c-card--addition-services">
+                  <ion-col class="ion-no-padding">
+                    <!-- Payment details header -->
+                    <ion-row
+                      class="l-row u-no--mg-top u-no--mg-rt u-no--mg-lt l-row--pickup-location l-row--view-vendor-quote">
+                      <ion-col class="u-display--flex u-align-items--center u-no--pad-top u-no--pad-bot u-no--pad-lt"
+                        size="8">
+                        <!-- Payment details title -->
+                        <ion-text
+                          class="c-title ion-no-padding c-title--h1-color-brand c-title--text-transform c-title--addition-services c-title--h1-inter-12px c-title--view-vendor-quote">
+                          <h1 class="c-title__h1">PAYMENT DETAILS</h1>
+                        </ion-text>
+                        <!-- /Payment details title -->
+                      </ion-col>
+                    </ion-row>
+                    <!-- /Payment details header -->
+
+                    <!-- Payment details list -->
+                    <ion-list class="c-list u-no--bg ion-no-padding u-no--pad-bot c-list--view-vendor-quote">
+                      <ion-item-group class="c-item-group u-no--pad-top u-no--pad-bot c-item-group--pickup-location">
+                        <!-- Total amount item -->
+                        <ion-item class="c-item ion-no-padding u-display--flex u-align-items--flex-center">
+                          <!-- Ellipse icon -->
+                          <ion-icon name="ellipse"
+                            class="c-icon c-icon--width-8px c-icon--height-8px c-icon--color-brand">
+                          </ion-icon>
+                          <!-- /Ellipse icon -->
+
+                          <!-- Total amount wrapper -->
+                          <ion-grid class="u-no--pad">
+                            <ion-row>
+                              <ion-col
+                                class="u-display--flex u-align-items--center u-no--pad-top u-no--pad-bot u-no--pad-lt">
+                                <!-- Total amount label -->
+                                <ion-text
+                                  class="c-title ion-no-padding c-title--h1-color-primary-1-1 c-title--inter-medium c-title--h1-inter-14px">
+                                  <h1 class="c-title__h1">Total amount</h1>
+                                </ion-text>
+                                <!-- /Total amount label -->
+                              </ion-col>
+
+                              <ion-col
+                                class="u-display--flex u-align-items--center u-justify-content--flex-end u-no--pad-top u-no--pad-bot u-no--pad-rt">
+                                <!-- Total amount figure -->
+                                <ion-text
+                                  class="c-title ion-no-padding c-title--h1-color-primary-1-1 c-title--inter-medium c-title--h1-inter-14px">
+                                  <h1 class="c-title__h1">${{totalAmount | number : '1.2-2'}}</h1>
+                                </ion-text>
+                                <!-- /Total amount figure -->
+                              </ion-col>
+                            </ion-row>
+                          </ion-grid>
+                          <!-- /Total amount wrapper -->
+                        </ion-item>
+                        <!-- /Total amount item -->
+
+
+                        <!-- Addendum amount item -->
+                        <ion-item class="c-item ion-no-padding u-display--flex u-align-items--flex-center">
+                          <!-- Ellipse icon -->
+                          <ion-icon name="ellipse"
+                            class="c-icon c-icon--width-8px c-icon--height-8px c-icon--color-brand">
+                          </ion-icon>
+                          <!-- /Ellipse icon -->
+
+                          <!-- Addendum amount wrapper -->
+                          <ion-grid class="u-no--pad">
+                            <ion-row>
+                              <ion-col
+                                class="u-display--flex u-align-items--center u-no--pad-top u-no--pad-bot u-no--pad-lt">
+                                <!-- Addendum amount label -->
+                                <ion-text
+                                  class="c-title ion-no-padding c-title--h1-color-primary-1-1 c-title--inter-medium c-title--h1-inter-14px">
+                                  <h1 class="c-title__h1">Addendum amount</h1>
+                                </ion-text>
+                                <!-- /Addendum amount label -->
+                              </ion-col>
+
+                              <ion-col
+                                class="u-display--flex u-align-items--center u-justify-content--flex-end u-no--pad-top u-no--pad-bot u-no--pad-rt">
+                                <!-- Addendum amount figure -->
+                                <ion-text
+                                  class="c-title ion-no-padding c-title--h1-color-primary-1-1 c-title--inter-medium c-title--h1-inter-14px">
+                                  <h1 class="c-title__h1">${{ addendumAmount | number : '1.2-2'}}</h1>
+                                </ion-text>
+                                <!-- /Addendum amount figure -->
+                              </ion-col>
+                            </ion-row>
+                          </ion-grid>
+                          <!-- /Addendum amount wrapper -->
+                        </ion-item>
+                        <!-- /Addendum amount item -->
+
+
+                        <!-- Paid amount item -->
+                        <ion-item class="c-item ion-no-padding u-display--flex u-align-items--flex-center">
+                          <!-- Ellipse icon -->
+                          <ion-icon name="ellipse"
+                            class="c-icon c-icon--width-8px c-icon--height-8px c-icon--color-brand">
+                          </ion-icon>
+                          <!-- /Ellipse icon -->
+
+                          <!-- Paid amount wrapper -->
+                          <ion-grid class="u-no--pad">
+                            <ion-row>
+                              <ion-col
+                                class="u-display--flex u-align-items--center u-no--pad-top u-no--pad-bot u-no--pad-lt">
+                                <!-- Paid amount label -->
+                                <ion-text
+                                  class="c-title ion-no-padding c-title--h1-color-primary-1-1 c-title--inter-medium c-title--h1-inter-14px">
+                                  <h1 class="c-title__h1">Paid amount</h1>
+                                </ion-text>
+                                <!-- /Paid amount label -->
+                              </ion-col>
+
+                              <ion-col
+                                class="u-display--flex u-align-items--center u-justify-content--flex-end u-no--pad-top u-no--pad-bot u-no--pad-rt">
+                                <!-- Paid amount figure -->
+                                <ion-text
+                                  class="c-title ion-no-padding c-title--h1-color-primary-1-1 c-title--inter-medium c-title--h1-inter-14px">
+                                  <h1 class="c-title__h1">${{ amountPaid | number : '1.2-2'}}</h1>
+                                </ion-text>
+                                <!-- /Paid amount figure -->
+                              </ion-col>
+                            </ion-row>
+                          </ion-grid>
+                          <!-- /Paid amount wrapper -->
+                        </ion-item>
+                        <!-- /Paid amount item -->
+
+                        <!-- Amount to be paid item -->
+                        <ion-item class="c-item ion-no-padding u-display--flex u-align-items--flex-center">
+                          <!-- Ellipse icon -->
+                          <ion-icon name="ellipse"
+                            class="c-icon c-icon--width-8px c-icon--height-8px c-icon--color-brand">
+                          </ion-icon>
+                          <!-- /Ellipse icon -->
+
+                          <!-- Amount to be paid wrapper -->
+                          <ion-grid class="u-no--pad">
+                            <ion-row>
+                              <ion-col
+                                class="u-display--flex u-align-items--center u-no--pad-top u-no--pad-bot u-no--pad-lt">
+                                <!-- Amount to be paid label -->
+                                <ion-text
+                                  class="c-title ion-no-padding c-title--h1-color-primary-1-1 c-title--inter-medium c-title--h1-inter-14px">
+                                  <h1 class="c-title__h1">Amount to be paid</h1>
+                                </ion-text>
+                                <!-- /Amount to be paid label -->
+                              </ion-col>
+
+                              <ion-col
+                                class="u-display--flex u-align-items--center u-justify-content--flex-end u-no--pad-top u-no--pad-bot u-no--pad-rt">
+                                <!-- Quote grand total amount tag -->
+                                <ion-text class="o-received-quotes__quotes-amount">
+                                  <h2 class="c-title__h1">
+                                    ${{ pendingAmount | number : '1.2-2' }}</h2>
+                                </ion-text>
+                                <!-- /Quote grand total amount tag -->
+                              </ion-col>
+                            </ion-row>
+                          </ion-grid>
+                          <!-- /Amount to be paid wrapper -->
+                        </ion-item>
+                        <!-- /Amount to be paid item -->
+
+                        <!-- Make payment button item -->
+                        <ion-item class="c-item ion-no-padding" *ngIf="(totalAmount - amountPaid > 0)">
+                          <!-- Make payment button -->
+                          <ion-button
+                            class="c-button ion-no-margin u-no--text-transform c-button--text-inter-10px c-button--text-inter-medium c-button--height-25px c-button--bg-color-brand c-button--payment"
+                            fill="clear" expand="full" (click)="goToPayment()" slot="end">
+                            Make Payment
+                            <!-- /Right-caret icon -->
+                          </ion-button>
+                          <!-- /Make payment button -->
+                        </ion-item>
+                        <!-- /Make payment button item -->
+                      </ion-item-group>
+                    </ion-list>
+                    <!-- /Payment details list -->
+                  </ion-col>
+                </ion-row>
+                <!-- /Payment details main wrapper -->
+              </ion-item>
+              <!-- /Payment details item -->
+
+              <!-- Contact details item -->
+              <ion-item class="c-item ion-no-padding">
+                <!-- Contact details main wrapper -->
+                <ion-row
+                  class="c-thumbnail c-thumbnail--video-capture c-thumbnail--width-100p c-thumbnail--body-bg-gray-1-1 c-card u-no--mg-bot u-no--height c-card--pickup-location c-card--addition-services">
+                  <ion-col class="ion-no-padding">
+                    <!-- Contact details header -->
+                    <ion-row
+                      class="l-row u-no--mg-top u-no--mg-rt u-no--mg-lt l-row--pickup-location l-row--view-vendor-quote">
+                      <ion-col class="u-display--flex u-align-items--center u-no--pad-top u-no--pad-bot u-no--pad-lt"
+                        size="8">
+                        <!-- Contact details title -->
+                        <ion-text
+                          class="c-title ion-no-padding c-title--h1-color-brand c-title--text-transform c-title--addition-services c-title--h1-inter-12px c-title--view-vendor-quote">
+                          <h1 class="c-title__h1">CONTACT DETAILS</h1>
+                        </ion-text>
+                        <!-- /Contact details title -->
+                      </ion-col>
+
+                      <ion-col
+                        class="u-display--flex u-align-items--center u-justify-content--flex-end u-no--pad-top u-no--pad-bot u-no--pad-rt">
+                        <!-- Edit icon -->
+                        <ion-icon src="../../../../assets/images/fill-edit--color-blue.svg"
+                          (click)="editContactDetails()" *ngIf="!editModeContactDetails"
+                          class="c-icon u-no--mg-rt c-icon--button u-position--absolute u-top--50p u-transform--translate-y-minus-50p c-icon--review-service-request c-icon--width-12px c-icon--height-12px u-no--position-rt">
+                        </ion-icon>
+                        <!-- /Edit icon -->
+
+                        <!-- Checkmark icon -->
+                        <ion-button (click)="saveContactDetails(contactDetailsForm.value)" color="primary" size="small"
+                          strong="true" *ngIf="editModeContactDetails">
+                          <ion-icon slot="icon-only" name="checkmark"></ion-icon>
+                        </ion-button>
+                        <!-- /Checkmark icon -->
+                      </ion-col>
+                    </ion-row>
+                    <!-- /Contact details header -->
+
+                    <!-- Contact details list -->
+                    <ion-list class="c-list u-no--bg ion-no-padding u-no--pad-bot c-list--view-vendor-quote"
+                      *ngIf="!editModeContactDetails">
+                      <ion-item-group class="c-item-group u-no--pad-top u-no--pad-bot c-item-group--pickup-location">
+                        <!-- Contact full name item -->
+                        <ion-item class="c-item ion-no-padding u-display--flex u-align-items--flex-center">
+                          <!-- Avatar icon -->
+                          <ion-icon src="../../../../assets/images/fill-avatar--color-brand-1-2.svg"
+                            class="c-icon c-icon--view-vendor-quote"></ion-icon>
+                          <!-- /Avatar icon -->
+
+                          <!-- Contact full name label -->
+                          <ion-text
+                            class="c-title ion-no-padding c-title--h1-color-primary-1-1 c-title--inter-medium c-title--h1-inter-14px">
+                            <h1 class="c-title__h1">{{contactFullName}}</h1>
+                          </ion-text>
+                          <!-- /Contact full name label -->
+                        </ion-item>
+                        <!-- /Contact full name item -->
+
+                        <!-- Contact phone item -->
+                        <ion-item class="c-item ion-no-padding u-display--flex u-align-items--flex-center"
+                          *ngIf="contactPhone">
+                          <!-- Phone icon -->
+                          <ion-icon src="../../../../assets/images/fill-phone--color-brand-1-2.svg"
+                            class="c-icon c-icon--view-vendor-quote"></ion-icon>
+                          <!-- /Phone icon -->
+
+                          <!-- Contact phone label -->
+                          <ion-text
+                            class="c-title ion-no-padding c-title--h1-color-primary-1-1 c-title--inter-medium c-title--h1-inter-14px">
+                            <h1 class="c-title__h1">{{contactPhone}}</h1>
+                          </ion-text>
+                          <!-- Contact phone label -->
+                        </ion-item>
+                        <!-- /Contact phone item -->
+
+                        <!-- Contact email item -->
+                        <ion-item class="c-item ion-no-padding u-display--flex u-align-items--flex-center">
+                          <!-- Email icon -->
+                          <ion-icon src="../../../../assets/images/fill-email--color-brand-1-2.svg"
+                            class="c-icon c-icon--view-vendor-quote"></ion-icon>
+                          <!-- /Email icon -->
+
+                          <!-- Contact email label -->
+                          <ion-text
+                            class="c-title ion-no-padding c-title--h1-color-primary-1-1 c-title--inter-medium c-title--h1-inter-14px">
+                            <h1 class="c-title__h1">{{contactEmail}}</h1>
+                          </ion-text>
+                          <!-- /Contact email label -->
+                        </ion-item>
+                        <!-- /Contact email item -->
+                      </ion-item-group>
+                    </ion-list>
+                    <!-- /Contact details list -->
+
+                    <!-- Contact details list -->
+                    <ion-list class="c-list u-no--bg ion-no-padding u-no--pad-bot c-list--view-vendor-quote" *ngIf="editModeContactDetails">
+                      <ion-item-group [formGroup]="contactDetailsForm"
+                        class="c-item-group u-no--pad-top u-no--pad-bot c-item-group--pickup-location">
+                        <!-- Contact first name item -->
+                        <ion-item class="c-item ion-no-padding u-display--flex u-align-items--flex-center">
+                          <!-- Avatar icon -->
+                          <ion-icon src="../../../../assets/images/fill-avatar--color-brand-1-2.svg"
+                            class="c-icon c-icon--view-vendor-quote"></ion-icon>
+                          <!-- /Avatar icon -->
+                    
+                          <!-- Contact full name input -->
+                          <ion-input class="c-input c-input--white" formControlName="firstname" type="text">
+                          </ion-input>
+                          <!-- /Contact full name input -->
+                        </ion-item>
+                        <!-- /Contact first name item -->
+                    
+                        <!-- Contact last name item -->
+                        <ion-item class="c-item ion-no-padding u-display--flex u-align-items--flex-center">
+                          <!-- Avatar icon -->
+                          <ion-icon src="../../../../assets/images/fill-avatar--color-brand-1-2.svg"
+                            class="c-icon c-icon--view-vendor-quote"></ion-icon>
+                          <!-- /Avatar icon -->
+                    
+                          <!-- Contact full name input -->
+                          <ion-input class="c-input c-input--white" formControlName="lastname" type="text">
+                          </ion-input>
+                          <!-- /Contact full name input -->
+                        </ion-item>
+                        <!-- /Contact last name item -->
+                    
+                        <!-- Contact phone item -->
+                        <ion-item class="c-item ion-no-padding u-display--flex u-align-items--flex-center">
+                          <!-- Phone icon -->
+                          <ion-icon src="../../../../assets/images/fill-phone--color-brand-1-2.svg"
+                            class="c-icon c-icon--view-vendor-quote"></ion-icon>
+                          <!-- /Phone icon -->
+                    
+                          <!-- Contact full name input -->
+                          <ion-input class="c-input c-input--white" formControlName="phoneNumber" type="text" placeholder="(000) 000-0000"
+                            minlength="10" maxlength="14" (keypress)="alphanumericValidation($event)"
+                            (keyup)="validateContactPhoneNumber($event)"></ion-input>
+                          <!-- phone field validation error -->
+                          <p class="c-content c-content--inter-12px c-content--login c-content--color-red c-content--form-message"
+                            *ngIf="contactDetailsForm.controls['phoneNumber']?.errors && contactDetailsForm.controls['phoneNumber']?.dirty">
+                            please enter valid number
+                          </p>
+                          <!-- /phone field validation error -->
+                          <!-- /Contact full name input -->
+                        </ion-item>
+                        <!-- /Contact phone item -->
+                    
+                        <!-- Contact email item -->
+                        <ion-item class="c-item ion-no-padding u-display--flex u-align-items--flex-center">
+                          <!-- Email icon -->
+                          <ion-icon src="../../../../assets/images/fill-email--color-brand-1-2.svg"
+                            class="c-icon c-icon--view-vendor-quote"></ion-icon>
+                          <!-- /Email icon -->
+                    
+                          <!-- Contact email input -->
+                          <ion-input class="c-input c-input--white" type="email" formControlName="email" placeholder="john@doe.com"
+                            pattern="[a-zA-Z0-9._+-]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}"></ion-input>
+                          <!-- /Contact email input -->
+                          <!-- Email field validation error -->
+                          <p class="c-content c-content--inter-12px c-content--login c-content--color-red c-content--form-message"
+                            *ngIf="contactDetailsForm.controls['email']?.errors && contactDetailsForm.controls['email']?.dirty">
+                            please enter valid email
+                          </p>
+                          <!-- /Email field validation error -->
+                        </ion-item>
+                        <!-- /Contact email item -->
+                      </ion-item-group>
+                    </ion-list>
+                    <!-- /Contact details list -->
+                  </ion-col>
+                </ion-row>
+                <!-- /Contact details main wrapper -->
+              </ion-item>
+              <!-- /Contact details item -->
+
+              <!-- Logistics item -->
+              <ion-item class="c-item ion-no-padding">
+                <!-- Logistics main wrapper -->
+                <ion-row
+                  class="c-thumbnail c-thumbnail--video-capture c-thumbnail--width-100p c-thumbnail--body-bg-gray-1-1 c-card u-no--mg-bot u-no--height c-card--pickup-location c-card--addition-services">
+                  <ion-col class="ion-no-padding">
+                    <app-order-logistics (emitRefresh)="handleRefreshFromMedia($event)"></app-order-logistics>
+                  </ion-col>
+                </ion-row>
+                <!-- /Logistics main wrapper -->
+              </ion-item>
+              <!-- /Logistics item -->
+
+              <app-service-documents [documents]="item?.documents" [customerId]="authData?.authMeta?.customer?.id"
+                [contractId]="item?.contractId"></app-service-documents>
+
+              <!-- Media item -->
+              <ion-item class="c-item ion-no-padding"><!-- Media main wrapper -->
+                <ion-row
+                  class="c-thumbnail c-thumbnail--video-capture c-thumbnail--width-100p c-thumbnail--body-bg-gray-1-1 c-card u-no--mg-bot u-no--height c-card--pickup-location c-card--addition-services">
+                  <ion-col class="ion-no-padding" size="12">
+                    <app-order-media [orderMedie]="item?.media" [srOrderData]="item" [authMeta]="authData?.authMeta"
+                      (emitRefresh)="handleRefreshFromMedia($event)">
+                    </app-order-media>
+                  </ion-col>
+                </ion-row>
+                <!-- /Media main wrapper -->
+              </ion-item>
+              <!-- /Media item -->
+
+              <!-- Additional notes item -->
+              <ion-item class="c-item ion-no-padding">
+                <!-- Additional notes main wrapper -->
+                <ion-row
+                  class="c-thumbnail c-thumbnail--video-capture c-thumbnail--width-100p c-thumbnail--body-bg-gray-1-1 c-card u-no--mg-bot u-no--height c-card--pickup-location c-card--addition-services">
+                  <ion-col class="ion-no-padding">
+                    <!-- Additional notes header -->
+                    <ion-row
+                      class="l-row u-no--mg-top u-no--mg-rt u-no--mg-lt l-row--pickup-location l-row--view-vendor-quote">
+                      <ion-col class="u-display--flex u-align-items--center u-no--pad-top u-no--pad-bot u-no--pad-lt"
+                        size="8">
+                        <!-- Additional notes title -->
+                        <ion-text
+                          class="c-title ion-no-padding c-title--h1-color-brand c-title--text-transform c-title--addition-services c-title--h1-inter-12px c-title--view-vendor-quote">
+                          <h1 class="c-title__h1">ADDITIONAL NOTES</h1>
+                        </ion-text>
+                        <!-- /Additional notes title -->
+                      </ion-col>
+                      <ion-col
+                        class="u-display--flex u-align-items--center u-justify-content--flex-end u-no--pad-top u-no--pad-bot u-no--pad-rt">
+                        <!-- Edit icon -->
+                        <ion-icon src="../../../../assets/images/fill-edit--color-blue.svg" (click)="editNotes()"
+                          *ngIf="!editMode"
+                          class="c-icon u-no--mg-rt c-icon--button u-position--absolute u-top--50p u-transform--translate-y-minus-50p c-icon--review-service-request c-icon--width-12px c-icon--height-12px u-no--position-rt">
+                        </ion-icon>
+                        <!-- /Edit icon -->
+
+                        <!-- Checkmark icon -->
+                        <ion-button (click)="saveNotes()" color="primary" size="small" strong="true" *ngIf="editMode">
+                          <ion-icon slot="icon-only" name="checkmark"></ion-icon>
+                        </ion-button>
+                        <!-- /Checkmark icon -->
+                      </ion-col>
+                    </ion-row>
+                    <!-- /Additional notes header -->
+
+                    <!-- Additional notes instruction -->
+                    <ion-text
+                      class="c-content c-content--p-inter-14px u-no--mg-top c-content--color-primary-1-2 c-content--view-vendor-quote c-content--p-inter-semibold c-content--customer-reviews">
+                      <p class="c-content__p">
+                        Any extra instructions or special requests to help move things along on the day of your service
+                      </p>
+                    </ion-text>
+                    <!-- /Additional notes instruction -->
+
+                    <!-- Additional notes -->
+                    <ion-text
+                      class="c-content c-content--p-inter-14px u-no--mg-top c-content--color-primary-1-2 c-content--view-vendor-quote c-content--p-inter-medium"
+                      *ngIf="!editMode">
+                      <p class="c-content__p">
+                        {{ (item?.notes === '' || item?.notes === null) ? 'Notes is empty!' : item?.notes }}
+                      </p>
+                    </ion-text>
+                    <!-- /Additional notes -->
+
+                    <!-- Additional notes textarea -->
+                    <ion-textarea class="c-input c-input--white order-details-additional-notes" *ngIf="editMode"
+                      [(ngModel)]="item.notes"></ion-textarea>
+                    <!-- /Additional notes textarea -->
+                  </ion-col>
+                </ion-row>
+                <!-- /Additional notes main wrapper -->
+              </ion-item>
+              <!-- /Additional notes item -->
+            </ion-item-group>
+            <!-- /Order details item group -->
+          </ion-list>
+          <!-- /Order details list -->
+        </div>
+        <!-- /Order details wrapper -->
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <!-- /Order details main wrapper -->
+
+  <!-- Partner, lead & customer chat fab button-->
+  <!-- hide chat function for now, not used -->
+  <!-- <ion-fab vertical="bottom" horizontal="end" slot="fixed" *ngIf="canChat">
+    <ion-fab-button (click)="openChat()">
+      <ion-icon name="chatbox-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab> -->
+  <!-- /Partner, lead & customer chat fab button-->
+</ion-content>
+<!-- /Order details content -->
+
+<!-- Footer -->
+<ion-footer collapse="fade" class="l-footer l-footer--order-completed" *ngIf="false">
+  <!-- <ion-footer collapse="fade" class="l-footer l-footer--order-completed" *ngIf="canChat"> -->
+
+  <!-- Main wrapper -->
+  <ion-toolbar class="l-main-wrapper ion-text-center">
+
+    <!-- Row -->
+    <ion-row class="l-row l-row--quote-documents l-row--bg-color-white">
+
+      <!-- Col -->
+      <ion-col class="l-col l-col--view-vendor-quote ion-text-center" *ngIf="canChat">
+
+        <!-- Button -->
+        <ion-button (click)="openChat()"
+          class="c-button ion-no-margin u-no--text-transform c-button--outline c-button--border-color-brand c-button--text-color-brand c-button--text-inter-14px c-button--text-inter-medium"
+          fill="clear" expand="full">
+          Chat
+          <!-- Icon -->
+          <ion-icon src="../../../../assets/images/outline-caret-right--color-brand.svg"
+            class="c-icon u-no--mg-rt u-no--border-radius c-icon--caret-down" slot="end"></ion-icon>
+          <!-- /Icon -->
+        </ion-button>
+        <!-- /Button -->
+
+      </ion-col>
+      <!-- /Col -->
+
+      <!-- Col -->
+      <ion-col class="l-col l-col--view-vendor-quote" *ngIf="false">
+
+        <!-- Button -->
+        <ion-button
+          class="c-button ion-no-margin u-no--text-transform c-button--text-inter-14px c-button--text-inter-medium"
+          fill="clear" expand="full" (click)="openPaymentsScreen()">
+          Make payment
+          <!-- Icon -->
+          <ion-icon src="../../../../assets/images/outline-caret-right--color-white.svg"
+            class="c-icon u-no--mg-rt u-no--border-radius c-icon--caret-down" slot="end"></ion-icon>
+          <!-- /Icon -->
+        </ion-button>
+        <!-- /Button -->
+
+      </ion-col>
+      <!-- /Col -->
+
+    </ion-row>
+    <!-- /Row -->
+
+  </ion-toolbar>
+  <!-- /Main wrapper -->
+
+</ion-footer>
+<!-- /Footer -->
+
+
+<!-- user menu -->
+<div *ngIf="false">
+  <!-- Header -->
+  <ion-header collapse="fade" class="l-header u-no--pad-top u-no--pad-bot">
+    <!-- Main wrapper -->
+    <ion-toolbar class="l-main-wrapper">
+      <ion-buttons class="u-position--absolute u-top--50p u-transform--translate-y-minus-50p">
+        <!-- Icon -->
+        <ion-icon src="../../../../assets/images/header/outline-caret-left--color-brand.svg"
+          class="c-icon c-icon--caret-lt u-no--mg-rt"></ion-icon>
+        <!-- /Icon -->
+      </ion-buttons>
+      <!-- List -->
+      <ion-list
+        class="c-list u-no--bg ion-no-padding u-no--mg-top u-no--mg-bot u-no--pad-bot u-position--absolute u-top--50p u-transform--translate-y-minus-50p u-no--position-rt">
+        <!-- Item group -->
+        <ion-item-group
+          class="c-item-group u-no--mg-top u-no--mg-bot u-display--flex u-align-items--center c-item-group--additional-service">
+          <!-- Item -->
+          <ion-item class="c-item ion-no-padding u-no--pad-top u-no--pad-bot c-item--additional-service">
+            <!-- Button -->
+            <ion-buttons>
+              <!-- Icon -->
+              <ion-icon src="../../../../assets/images/fill-bell--color-primary.svg"
+                class="c-icon u-no--mg-rt c-icon--additional-service"></ion-icon>
+              <!-- /Icon -->
+              <!-- Icon -->
+              <ion-icon src="../../../../assets/images/fill-notification-indication--color-blue.svg"
+                class="c-icon u-no--mg-rt u-position--absolute c-icon--notification-indication u-no--position-top">
+              </ion-icon>
+              <!-- /Icon -->
+            </ion-buttons>
+            <!-- /Button -->
+          </ion-item>
+          <!-- /Item -->
+          <!-- Item -->
+          <ion-item class="c-item ion-no-padding u-no--pad-top u-no--pad-bot c-item--additional-service">
+            <!-- Button -->
+            <ion-buttons>
+              <!-- Icon -->
+              <ion-icon src="../../../../assets/images/fill-user-profile--color-brand-1-3-plus-primary.svg"
+                class="c-icon u-no--mg-rt c-icon--additional-service"></ion-icon>
+              <!-- /Icon -->
+            </ion-buttons>
+            <!-- /Button -->
+          </ion-item>
+          <!-- /Item -->
+        </ion-item-group>
+        <!-- /Item group -->
+      </ion-list>
+      <!-- /List -->
+    </ion-toolbar>
+    <!-- /Main wrapper -->
+  </ion-header>
+  <!-- /Header -->
+  <ion-content>
+    <!-- Main wrapper -->
+    <div class="l-main-wrapper l-main-wrapper--get-started l-main-wrapper--min-height-100vh-166px">
+      <!-- Row -->
+      <ion-row>
+        <!-- Col -->
+        <ion-col class="u-display--flex u-align-items--center u-no--pad-top u-no--pad-bot u-no--pad-lt" size="11">
+          <!-- Icon -->
+          <ion-icon src="../../../../assets/images/default-avatar.svg"
+            class="c-icon u-no--border-radius c-icon--user-menu c-icon--width-40px c-icon--height-40px"></ion-icon>
+          <!-- /Icon -->
+          <!-- Title -->
+          <div
+            class="ion-no-padding c-title c-title--our-services c-title--h1-inter-16px c-title--inter-regular c-title--h1-black c-title--video-instructions u-no--mg-top c-title--user-menu c-title--h2-color-primary-1-1">
+            <!-- Title h1 -->
+            <h1 class="c-title__h1">John Doe</h1>
+            <!-- /Title h1 -->
+            <!-- Title h2 -->
+            <h2 class="c-title__h2">Account Details</h2>
+            <!-- /Title h2 -->
+          </div>
+          <!-- /Title -->
+        </ion-col>
+        <!-- /Col -->
+        <!-- Col -->
+        <ion-col
+          class="u-display--flex u-align-items--center u-justify-content--flex-end u-no--pad-top u-no--pad-bot u-no--pad-rt">
+          <!-- Icon -->
+          <ion-icon src="../../../assets/images/outline-caret-right--color-primary-1-2.svg"
+            class="c-icon u-no--mg-rt c-icon--header-outline-caret-right"></ion-icon>
+          <!-- /Icon -->
+        </ion-col>
+        <!-- /Col -->
+      </ion-row>
+      <!-- /Row -->
+      <!-- Form -->
+      <div class="l-form">
+        <!-- List -->
+        <ion-list class="c-list u-no--bg ion-no-padding u-no--pad-bot c-list--user-menu">
+          <!-- Item group -->
+          <ion-item-group class="c-item-group u-no--pad-top u-no--pad-bot c-item-group--pickup-location">
+            <!-- Item -->
+            <ion-item class="c-item ion-no-padding">
+              <!-- Card -->
+              <ion-card
+                class="c-card ion-no-margin u-no--box-shadow u-display--flex u-align-items--center u-justify-content--center u-flex-direction--column c-card--our-services u-no--mg-bot c-card--video-instructions c-card--addition-services c-card--width-100p u-no--bg u-no--height c-card--dashboard">
+                <!-- Row -->
+                <ion-row class="l-row u-no--mg l-row--pickup-location">
+                  <ion-col class="u-display--flex u-align-items--center u-no--pad-top u-no--pad-bot u-no--pad-lt"
+                    size="11">
+                    <!-- Icon -->
+                    <div class="c-icon c-icon--organizing c-icon--width-24px c-icon--height-24px c-icon--notifications">
+                      <!-- Icon -->
+                      <ion-icon src="../../../../assets/images/fill-bell--color-primary.svg"
+                        class="u-no--border-radius c-icon--width-100p c-icon--height-100p"></ion-icon>
+                      <!-- /Icon -->
+                      <!-- Count -->
+                      <div
+                        class="c-count u-position--absolute u-display--flex u-align-items--center u-justify-content--center c-count--border-white">
+                        <!-- Title -->
+                        <div class="ion-no-padding c-title c-title--h1-white c-title--rating c-title--notifications">
+                          <!-- Title h1 -->
+                          <h1 class="c-title__h1">1</h1>
+                          <!-- /Title h1 -->
+                        </div>
+                        <!-- /Title -->
+                        <!-- Title -->
+                        <div class="ion-no-padding c-title c-title--h1-white c-title--rating c-title--notifications"
+                          style="display: none;">
+                          <!-- Title h1 -->
+                          <h1 class="c-title__h1">9+</h1>
+                          <!-- /Title h1 -->
+                        </div>
+                        <!-- /Title -->
+                      </div>
+                      <!-- /Count -->
+                    </div>
+                    <!-- /Icon -->
+                    <!-- Card wrap -->
+                    <div class="c-card__wrap">
+                      <!-- Title -->
+                      <div class="ion-no-padding c-title c-title--h1-color-primary-1-1 c-title--h1-inter-14px">
+                        <!-- Title h1 -->
+                        <h1 class="c-title__h1">Notifications</h1>
+                        <!-- /Title h1 -->
+                      </div>
+                      <!-- /Title -->
+                      <!-- List -->
+                      <ion-list class="c-list u-no--bg ion-no-padding u-no--pad-bot c-list--reviews u-no--mg-bot">
+                        <!-- Item group -->
+                        <ion-item-group
+                          class="c-item-group u-no--mg-top u-no--mg-bot u-no--pad-top u-no--pad-bot u-display--flex u-align-items--center c-item-group--additional-service c-item-group--reviews">
+                          <!-- Item -->
+                          <ion-item
+                            class="c-item ion-no-padding u-no--pad-top u-no--pad-bot c-item--additional-service c-item--reviews">
+                            <!-- Title -->
+                            <div
+                              class="ion-no-padding c-title c-title--addition-services c-title--h1-inter-12px c-title--h1-color-primary-1-1 c-title--inter-medium">
+                              <!-- Title h1 -->
+                              <h1 class="c-title__h1">Order updates, offers, discounts</h1>
+                              <!-- /Title h1 -->
+                            </div>
+                            <!-- /Title -->
+                          </ion-item>
+                          <!-- /Item -->
+                        </ion-item-group>
+                        <!-- /Item group -->
+                      </ion-list>
+                      <!-- /List -->
+                    </div>
+                    <!-- /Card wrap -->
+                  </ion-col>
+                  <ion-col
+                    class="u-display--flex u-align-items--center u-justify-content--flex-end u-no--pad-top u-no--pad-bot u-no--pad-rt">
+                    <!-- Icon -->
+                    <ion-icon src="../../../assets/images/outline-caret-right--color-primary-1-2.svg"
+                      class="c-icon u-no--mg-rt u-no--border-radius c-icon--card-outline-caret-right"></ion-icon>
+                    <!-- /Icon -->
+                  </ion-col>
+                </ion-row>
+                <!-- /Row -->
+              </ion-card>
+              <!-- /Card -->
+            </ion-item>
+            <!-- /Item -->
+            <!-- Item -->
+            <ion-item class="c-item ion-no-padding">
+              <!-- Card -->
+              <ion-card
+                class="c-card ion-no-margin u-no--box-shadow u-display--flex u-align-items--center u-justify-content--center u-flex-direction--column c-card--our-services u-no--mg-bot c-card--video-instructions c-card--addition-services c-card--width-100p u-no--bg u-no--height c-card--dashboard">
+                <!-- Row -->
+                <ion-row class="l-row u-no--mg l-row--pickup-location">
+                  <ion-col class="u-display--flex u-align-items--center u-no--pad-top u-no--pad-bot u-no--pad-lt"
+                    size="11">
+                    <!-- Icon -->
+                    <ion-icon src="../../../../assets/images/fill-services--color-brand-plus-primary.svg"
+                      class="c-icon u-no--border-radius c-icon--organizing c-icon--width-24px c-icon--height-24px">
+                    </ion-icon>
+                    <!-- /Icon -->
+                    <!-- Card wrap -->
+                    <div class="c-card__wrap">
+                      <!-- Title -->
+                      <div class="ion-no-padding c-title c-title--h1-color-primary-1-1 c-title--h1-inter-14px">
+                        <!-- Title h1 -->
+                        <h1 class="c-title__h1">Services</h1>
+                        <!-- /Title h1 -->
+                      </div>
+                      <!-- /Title -->
+                      <!-- List -->
+                      <ion-list class="c-list u-no--bg ion-no-padding u-no--pad-bot c-list--reviews u-no--mg-bot">
+                        <!-- Item group -->
+                        <ion-item-group
+                          class="c-item-group u-no--mg-top u-no--mg-bot u-no--pad-top u-no--pad-bot u-display--flex u-align-items--center c-item-group--additional-service c-item-group--reviews">
+                          <!-- Item -->
+                          <ion-item
+                            class="c-item ion-no-padding u-no--pad-top u-no--pad-bot c-item--additional-service c-item--reviews">
+                            <!-- Title -->
+                            <div
+                              class="ion-no-padding c-title c-title--addition-services c-title--h1-inter-12px c-title--h1-color-primary-1-1 c-title--inter-medium">
+                              <!-- Title h1 -->
+                              <h1 class="c-title__h1">List of services, New service request</h1>
+                              <!-- /Title h1 -->
+                            </div>
+                            <!-- /Title -->
+                          </ion-item>
+                          <!-- /Item -->
+                        </ion-item-group>
+                        <!-- /Item group -->
+                      </ion-list>
+                      <!-- /List -->
+                    </div>
+                    <!-- /Card wrap -->
+                  </ion-col>
+                  <ion-col
+                    class="u-display--flex u-align-items--center u-justify-content--flex-end u-no--pad-top u-no--pad-bot u-no--pad-rt">
+                    <!-- Icon -->
+                    <ion-icon src="../../../assets/images/outline-caret-right--color-primary-1-2.svg"
+                      class="c-icon u-no--mg-rt u-no--border-radius c-icon--card-outline-caret-right"></ion-icon>
+                    <!-- /Icon -->
+                  </ion-col>
+                </ion-row>
+                <!-- /Row -->
+              </ion-card>
+              <!-- /Card -->
+            </ion-item>
+            <!-- /Item -->
+            <!-- Item -->
+            <ion-item class="c-item ion-no-padding">
+              <!-- Card -->
+              <ion-card
+                class="c-card ion-no-margin u-no--box-shadow u-display--flex u-align-items--center u-justify-content--center u-flex-direction--column c-card--our-services u-no--mg-bot c-card--video-instructions c-card--addition-services c-card--width-100p u-no--bg u-no--height c-card--dashboard">
+                <!-- Row -->
+                <ion-row class="l-row u-no--mg l-row--pickup-location">
+                  <ion-col class="u-display--flex u-align-items--center u-no--pad-top u-no--pad-bot u-no--pad-lt"
+                    size="11">
+                    <!-- Icon -->
+                    <ion-icon src="../../../../assets/images/fill-payment-details--color-brand-plus-primary.svg"
+                      class="c-icon u-no--border-radius c-icon--organizing c-icon--width-24px c-icon--height-24px">
+                    </ion-icon>
+                    <!-- /Icon -->
+                    <!-- Card wrap -->
+                    <div class="c-card__wrap">
+                      <!-- Title -->
+                      <div class="ion-no-padding c-title c-title--h1-color-primary-1-1 c-title--h1-inter-14px">
+                        <!-- Title h1 -->
+                        <h1 class="c-title__h1">Payment Details</h1>
+                        <!-- /Title h1 -->
+                      </div>
+                      <!-- /Title -->
+                      <!-- List -->
+                      <ion-list class="c-list u-no--bg ion-no-padding u-no--pad-bot c-list--reviews u-no--mg-bot">
+                        <!-- Item group -->
+                        <ion-item-group
+                          class="c-item-group u-no--mg-top u-no--mg-bot u-no--pad-top u-no--pad-bot u-display--flex u-align-items--center c-item-group--additional-service c-item-group--reviews">
+                          <!-- Item -->
+                          <ion-item
+                            class="c-item ion-no-padding u-no--pad-top u-no--pad-bot c-item--additional-service c-item--reviews">
+                            <!-- Title -->
+                            <div
+                              class="ion-no-padding c-title c-title--addition-services c-title--h1-inter-12px c-title--h1-color-primary-1-1 c-title--inter-medium">
+                              <!-- Title h1 -->
+                              <h1 class="c-title__h1">Saved cards, Bank details</h1>
+                              <!-- /Title h1 -->
+                            </div>
+                            <!-- /Title -->
+                          </ion-item>
+                          <!-- /Item -->
+                        </ion-item-group>
+                        <!-- /Item group -->
+                      </ion-list>
+                      <!-- /List -->
+                    </div>
+                    <!-- /Card wrap -->
+                  </ion-col>
+                  <ion-col
+                    class="u-display--flex u-align-items--center u-justify-content--flex-end u-no--pad-top u-no--pad-bot u-no--pad-rt">
+                    <!-- Icon -->
+                    <ion-icon src="../../../assets/images/outline-caret-right--color-primary-1-2.svg"
+                      class="c-icon u-no--mg-rt u-no--border-radius c-icon--card-outline-caret-right"></ion-icon>
+                    <!-- /Icon -->
+                  </ion-col>
+                </ion-row>
+                <!-- /Row -->
+              </ion-card>
+              <!-- /Card -->
+            </ion-item>
+            <!-- /Item -->
+            <!-- Item -->
+            <ion-item class="c-item ion-no-padding">
+              <!-- Card -->
+              <ion-card
+                class="c-card ion-no-margin u-no--box-shadow u-display--flex u-align-items--center u-justify-content--center u-flex-direction--column c-card--our-services u-no--mg-bot c-card--video-instructions c-card--addition-services c-card--width-100p u-no--bg u-no--height c-card--dashboard">
+                <!-- Row -->
+                <ion-row class="l-row u-no--mg l-row--pickup-location">
+                  <ion-col class="u-display--flex u-align-items--center u-no--pad-top u-no--pad-bot u-no--pad-lt"
+                    size="11">
+                    <!-- Icon -->
+                    <ion-icon src="../../../../assets/images/fill-order--color-brand-plus-primary.svg"
+                      class="c-icon u-no--border-radius c-icon--organizing c-icon--width-24px c-icon--height-24px">
+                    </ion-icon>
+                    <!-- /Icon -->
+                    <!-- Card wrap -->
+                    <div class="c-card__wrap">
+                      <!-- Title -->
+                      <div class="ion-no-padding c-title c-title--h1-color-primary-1-1 c-title--h1-inter-14px">
+                        <!-- Title h1 -->
+                        <h1 class="c-title__h1">Orders</h1>
+                        <!-- /Title h1 -->
+                      </div>
+                      <!-- /Title -->
+                      <!-- List -->
+                      <ion-list class="c-list u-no--bg ion-no-padding u-no--pad-bot c-list--reviews u-no--mg-bot">
+                        <!-- Item group -->
+                        <ion-item-group
+                          class="c-item-group u-no--mg-top u-no--mg-bot u-no--pad-top u-no--pad-bot u-display--flex u-align-items--center c-item-group--additional-service c-item-group--reviews">
+                          <!-- Item -->
+                          <ion-item
+                            class="c-item ion-no-padding u-no--pad-top u-no--pad-bot c-item--additional-service c-item--reviews">
+                            <!-- Title -->
+                            <div
+                              class="ion-no-padding c-title c-title--addition-services c-title--h1-inter-12px c-title--h1-color-primary-1-1 c-title--inter-medium">
+                              <!-- Title h1 -->
+                              <h1 class="c-title__h1">Current, past orders and documents</h1>
+                              <!-- /Title h1 -->
+                            </div>
+                            <!-- /Title -->
+                          </ion-item>
+                          <!-- /Item -->
+                        </ion-item-group>
+                        <!-- /Item group -->
+                      </ion-list>
+                      <!-- /List -->
+                    </div>
+                    <!-- /Card wrap -->
+                  </ion-col>
+                  <ion-col
+                    class="u-display--flex u-align-items--center u-justify-content--flex-end u-no--pad-top u-no--pad-bot u-no--pad-rt">
+                    <!-- Icon -->
+                    <ion-icon src="../../../assets/images/outline-caret-right--color-primary-1-2.svg"
+                      class="c-icon u-no--mg-rt u-no--border-radius c-icon--card-outline-caret-right"></ion-icon>
+                    <!-- /Icon -->
+                  </ion-col>
+                </ion-row>
+                <!-- /Row -->
+              </ion-card>
+              <!-- /Card -->
+            </ion-item>
+            <!-- /Item -->
+            <!-- Item -->
+            <ion-item class="c-item ion-no-padding">
+              <!-- Card -->
+              <ion-card
+                class="c-card ion-no-margin u-no--box-shadow u-display--flex u-align-items--center u-justify-content--center u-flex-direction--column c-card--our-services u-no--mg-bot c-card--video-instructions c-card--addition-services c-card--width-100p u-no--bg u-no--height c-card--dashboard">
+                <!-- Row -->
+                <ion-row class="l-row u-no--mg l-row--pickup-location">
+                  <ion-col class="u-display--flex u-align-items--center u-no--pad-top u-no--pad-bot u-no--pad-lt"
+                    size="11">
+                    <!-- Icon -->
+                    <ion-icon src="../../../../assets/images/fill-help-and-support--color-brand-plus-primary.svg"
+                      class="c-icon u-no--border-radius c-icon--organizing c-icon--width-24px c-icon--height-24px">
+                    </ion-icon>
+                    <!-- /Icon -->
+                    <!-- Card wrap -->
+                    <div class="c-card__wrap">
+                      <!-- Title -->
+                      <div class="ion-no-padding c-title c-title--h1-color-primary-1-1 c-title--h1-inter-14px">
+                        <!-- Title h1 -->
+                        <h1 class="c-title__h1">Help & Support</h1>
+                        <!-- /Title h1 -->
+                      </div>
+                      <!-- /Title -->
+                      <!-- List -->
+                      <ion-list class="c-list u-no--bg ion-no-padding u-no--pad-bot c-list--reviews u-no--mg-bot">
+                        <!-- Item group -->
+                        <ion-item-group
+                          class="c-item-group u-no--mg-top u-no--mg-bot u-no--pad-top u-no--pad-bot u-display--flex u-align-items--center c-item-group--additional-service c-item-group--reviews">
+                          <!-- Item -->
+                          <ion-item
+                            class="c-item ion-no-padding u-no--pad-top u-no--pad-bot c-item--additional-service c-item--reviews">
+                            <!-- Title -->
+                            <div
+                              class="ion-no-padding c-title c-title--addition-services c-title--h1-inter-12px c-title--h1-color-primary-1-1 c-title--inter-medium">
+                              <!-- Title h1 -->
+                              <h1 class="c-title__h1">FAQs, Contact support</h1>
+                              <!-- /Title h1 -->
+                            </div>
+                            <!-- /Title -->
+                          </ion-item>
+                          <!-- /Item -->
+                        </ion-item-group>
+                        <!-- /Item group -->
+                      </ion-list>
+                      <!-- /List -->
+                    </div>
+                    <!-- /Card wrap -->
+                  </ion-col>
+                  <ion-col
+                    class="u-display--flex u-align-items--center u-justify-content--flex-end u-no--pad-top u-no--pad-bot u-no--pad-rt">
+                    <!-- Icon -->
+                    <ion-icon src="../../../assets/images/outline-caret-right--color-primary-1-2.svg"
+                      class="c-icon u-no--mg-rt u-no--border-radius c-icon--card-outline-caret-right"></ion-icon>
+                    <!-- /Icon -->
+                  </ion-col>
+                </ion-row>
+                <!-- /Row -->
+              </ion-card>
+              <!-- /Card -->
+            </ion-item>
+            <!-- /Item -->
+          </ion-item-group>
+          <!-- /Item group -->
+        </ion-list>
+        <!-- /List -->
+      </div>
+      <!-- /Form -->
+    </div>
+    <!-- /Main wrapper -->
+  </ion-content>
+
+  <!-- Footer -->
+  <ion-footer collapse="fade" class="l-footer l-footer--order-completed">
+    <!-- Main wrapper -->
+    <ion-toolbar class="l-main-wrapper ion-text-center">
+      <!-- Row -->
+      <ion-row class="l-row l-row--quote-documents">
+        <!-- Col -->
+        <ion-col class="l-col l-col--view-vendor-quote l-col--user-menu">
+          <!-- Button -->
+          <ion-button
+            class="c-button ion-no-margin u-no--text-transform c-button--outline c-button--border-color-primary u-no--border u-no--bg"
+            fill="clear" expand="full">
+
+            <!-- Title -->
+            <ion-title
+              class="ion-no-padding c-title c-title--inter-medium u-no--flex c-title--h1-color-primary-1-1 c-title--inter-medium c-title--h1-inter-semibold c-title--h1-inter-14px c-title--about-us-button">
+
+              <!-- Title h1 -->
+              <h1 class="c-title__h1">
+                About us
+
+                <!-- Icon -->
+                <ion-icon src="../../../../assets/images/outline-caret-right--color-primary.svg"
+                  class="c-icon u-no--mg-rt c-icon--header-outline-caret-right" slot="end"></ion-icon>
+                <!-- /Icon -->
+
+              </h1>
+              <!-- /Title h1 -->
+
+            </ion-title>
+            <!-- /Title -->
+          </ion-button>
+          <!-- /Button -->
+        </ion-col>
+        <!-- /Col -->
+        <!-- Col -->
+        <ion-col class="l-col l-col--view-vendor-quote u-display--flex u-align-items--center u-justify-content--center">
+          <!-- Title -->
+          <div
+            class="ion-no-padding c-title c-title--addition-services c-title--h1-inter-12px c-title--h1-color-primary-1-1 c-title--inter-medium c-title--app-version c-title--inter-regular">
+            <!-- Title h1 -->
+            <h1 class="c-title__h1">App version v1.2.16</h1>
+            <!-- /Title h1 -->
+          </div>
+          <!-- /Title -->
+        </ion-col>
+        <!-- /Col -->
+        <!-- Col -->
+        <ion-col class="l-col l-col--view-vendor-quote l-col--user-menu">
+          <!-- Button -->
+          <ion-button
+            class="c-button ion-no-margin u-no--text-transform c-button--outline c-button--border-color-primary u-no--border u-no--bg"
+            fill="clear" expand="full">
+
+            <!-- Title -->
+            <ion-title
+              class="ion-no-padding c-title c-title--inter-medium u-no--flex c-title--h1-color-brand-1-1 c-title--inter-medium c-title--h1-inter-semibold c-title--h1-inter-14px c-title--about-us-button">
+
+              <!-- Title h1 -->
+              <h1 class="c-title__h1">
+                Log out
+
+                <!-- Icon -->
+                <ion-icon src="../../../../assets/images/outline-logout--color-brand-1-1.svg"
+                  class="c-icon u-no--mg-rt c-icon--card-outline-caret-right" slot="end"></ion-icon>
+                <!-- /Icon -->
+
+              </h1>
+              <!-- /Title h1 -->
+
+            </ion-title>
+            <!-- /Title -->
+          </ion-button>
+          <!-- /Button -->
+        </ion-col>
+        <!-- /Col -->
+      </ion-row>
+      <!-- /Row -->
+    </ion-toolbar>
+    <!-- /Main wrapper -->
+  </ion-footer>
+  <!-- /Footer -->
+</div>
+
+
+<!-- payment details -->
+<div *ngIf="false">
+  <!-- Header -->
+  <ion-header collapse="fade" class="l-header u-no--pad-top u-no--pad-bot">
+    <!-- Main wrapper -->
+    <ion-toolbar class="l-main-wrapper">
+      <ion-buttons class="u-position--absolute u-top--50p u-transform--translate-y-minus-50p">
+        <!-- Icon -->
+        <ion-icon src="../../../../assets/images/header/outline-caret-left--color-brand.svg"
+          class="c-icon c-icon--caret-lt u-no--mg-rt"></ion-icon>
+        <!-- /Icon -->
+      </ion-buttons>
+      <!-- c-title -->
+      <ion-title class="ion-no-padding c-title c-title--login c-title--h1-black u-no--mg-top ion-text-center">
+        <!-- Title h1 -->
+        <h1 class="c-title__h1">Payment Details</h1>
+        <!-- /Title h1 -->
+      </ion-title>
+      <!-- /c-title -->
+      <!-- List -->
+      <ion-list
+        class="c-list u-no--bg ion-no-padding u-no--mg-top u-no--mg-bot u-no--pad-bot u-position--absolute u-top--50p u-transform--translate-y-minus-50p u-no--position-rt">
+        <!-- Item group -->
+        <ion-item-group
+          class="c-item-group u-no--mg-top u-no--mg-bot u-display--flex u-align-items--center c-item-group--additional-service">
+          <!-- Item -->
+          <ion-item class="c-item ion-no-padding u-no--pad-top u-no--pad-bot c-item--additional-service">
+            <!-- Button -->
+            <ion-buttons>
+              <!-- Icon -->
+              <ion-icon src="../../../../assets/images/fill-bell--color-primary.svg"
+                class="c-icon u-no--mg-rt c-icon--additional-service"></ion-icon>
+              <!-- /Icon -->
+              <!-- Icon -->
+              <ion-icon src="../../../../assets/images/fill-notification-indication--color-blue.svg"
+                class="c-icon u-no--mg-rt u-position--absolute c-icon--notification-indication u-no--position-top">
+              </ion-icon>
+              <!-- /Icon -->
+            </ion-buttons>
+            <!-- /Button -->
+          </ion-item>
+          <!-- /Item -->
+          <!-- Item -->
+          <ion-item class="c-item ion-no-padding u-no--pad-top u-no--pad-bot c-item--additional-service">
+            <!-- Button -->
+            <ion-buttons>
+              <!-- Icon -->
+              <ion-icon src="../../../../assets/images/fill-setting--color-primary.svg"
+                class="c-icon u-no--mg-rt c-icon--additional-service"></ion-icon>
+              <!-- /Icon -->
+            </ion-buttons>
+            <!-- /Button -->
+          </ion-item>
+          <!-- /Item -->
+        </ion-item-group>
+        <!-- /Item group -->
+      </ion-list>
+      <!-- /List -->
+    </ion-toolbar>
+    <!-- /Main wrapper -->
+  </ion-header>
+  <!-- /Header -->
+  <ion-content>
+    <!-- Main wrapper -->
+    <div class="l-main-wrapper l-main-wrapper--get-started">
+      <!-- Row -->
+      <ion-row>
+        <!-- Col -->
+        <ion-col class="u-display--flex u-align-items--center u-no--pad-top u-no--pad-bot u-no--pad-lt" size="8">
+          <!-- Title -->
+          <div
+            class="ion-no-padding c-title c-title--get-started c-title--our-services c-title--h1-inter-16px c-title--inter-regular c-title--h1-black c-title--video-instructions u-no--mg-top">
+            <!-- Title h1 -->
+            <h1 class="c-title__h1">Manage Saved Cards</h1>
+            <!-- /Title h1 -->
+          </div>
+          <!-- /Title -->
+        </ion-col>
+        <!-- /Col -->
+        <!-- Col -->
+        <ion-col
+          class="u-display--flex u-align-items--center u-justify-content--flex-end u-no--pad-top u-no--pad-bot u-no--pad-rt">
+          <!-- Button -->
+          <ion-button
+            class="c-button ion-no-margin u-no--text-transform c-button--outline c-button--border-color-primary u-no--border u-no--bg c-button--order-details u-no--height"
+            fill="clear" expand="full">
+
+            <!-- Title -->
+            <ion-title
+              class="ion-no-padding c-title c-title--inter-medium u-no--flex c-title--h1-color-brand-1-1 c-title--inter-medium c-title--h1-inter-semibold c-title--h1-inter-14px c-title--about-us-button">
+
+              <!-- Title h1 -->
+              <h1 class="c-title__h1">
+                Add new
+
+                <!-- Icon -->
+                <ion-icon src="../../../../assets/images/fill-circle-add--color-brand.svg"
+                  class="c-icon u-no--mg-rt c-icon--card-outline-caret-right" slot="end"></ion-icon>
+                <!-- /Icon -->
+
+              </h1>
+              <!-- /Title h1 -->
+
+            </ion-title>
+            <!-- /Title -->
+
+            <!-- Icon -->
+            <ion-icon src="../../../../assets/images/fill-circle-add--color-brand.svg"
+              class="c-icon u-no--mg-rt c-icon--card-outline-caret-right"></ion-icon>
+            <!-- /Icon -->
+          </ion-button>
+          <!-- /Button -->
+        </ion-col>
+        <!-- /Col -->
+      </ion-row>
+      <!-- /Row -->
+      <!-- Form -->
+      <div class="l-form">
+        <!-- List -->
+        <ion-list class="c-list u-no--bg ion-no-padding u-no--pad-bot">
+          <!-- Item group -->
+          <ion-item-group class="c-item-group u-no--pad-top u-no--pad-bot c-item-group--pickup-location">
+            <!-- Item -->
+            <ion-item class="c-item ion-no-padding">
+              <!-- Card -->
+              <ion-card
+                class="c-card ion-no-margin u-no--box-shadow u-display--flex u-align-items--center u-justify-content--center u-flex-direction--column c-card--our-services u-no--mg-bot c-card--video-instructions c-card--addition-services c-card--width-100p u-no--bg u-no--height c-card--dashboard c-card--view-quotes">
+                <!-- Row -->
+                <ion-row class="l-row u-no--mg l-row--pickup-location">
+                  <ion-col class="u-display--flex u-align-items--center u-no--pad-top u-no--pad-bot u-no--pad-lt"
+                    size="10">
+                    <!-- Icon -->
+                    <ion-icon src="../../../../assets/images/fill-circle-america-credit-card--color-primary-1-5.svg"
+                      class="c-icon u-no--border-radius c-icon--user-menu c-icon--width-40px c-icon--height-40px">
+                    </ion-icon>
+                    <!-- /Icon -->
+                    <!-- Card wrap -->
+                    <div class="c-card__wrap">
+                      <!-- Title -->
+                      <div class="c-title ion-no-padding c-title--h1-color-primary-1-1 c-title--h1-inter-14px">
+                        <!-- Title h1 -->
+                        <h1 class="c-title__h1">Bank of America Credit Card</h1>
+                        <!-- /Title h1 -->
+                      </div>
+                      <!-- /Title -->
+                      <!-- List -->
+                      <ion-list class="c-list u-no--bg ion-no-padding u-no--pad-bot c-list--reviews u-no--mg-bot">
+                        <!-- Item group -->
+                        <ion-item-group
+                          class="c-item-group u-no--mg-top u-no--mg-bot u-no--pad-top u-no--pad-bot u-display--flex u-align-items--center c-item-group--additional-service c-item-group--reviews">
+                          <!-- Item -->
+                          <ion-item
+                            class="c-item ion-no-padding u-no--pad-top u-no--pad-bot c-item--additional-service c-item--reviews">
+                            <!-- Title -->
+                            <div
+                              class="c-title ion-no-padding c-title--addition-services c-title--h1-inter-12px c-title--h1-color-primary-1-1 c-title--inter-medium">
+                              <!-- Title h1 -->
+                              <h1 class="c-title__h1">5175 72XX XXXX XXXX</h1>
+                              <!-- /Title h1 -->
+                            </div>
+                            <!-- /Title -->
+                          </ion-item>
+                          <!-- /Item -->
+                        </ion-item-group>
+                        <!-- /Item group -->
+                      </ion-list>
+                      <!-- /List -->
+                    </div>
+                    <!-- /Card wrap -->
+                  </ion-col>
+                  <ion-col
+                    class="u-display--flex u-align-items--center u-justify-content--flex-end u-no--pad-top u-no--pad-bot u-no--pad-rt">
+                    <!-- Icon -->
+                    <ion-icon src="../../../../assets/images/fill-edit--color-blue.svg"
+                      class="c-icon u-no--mg-rt c-icon--button u-position--absolute u-top--50p u-transform--translate-y-minus-50p c-icon--review-service-request u-no--position-rt">
+                    </ion-icon>
+                    <!-- /Icon -->
+                  </ion-col>
+                </ion-row>
+                <!-- /Row -->
+              </ion-card>
+              <!-- /Card -->
+            </ion-item>
+            <!-- /Item -->
+            <!-- Item -->
+            <ion-item class="c-item ion-no-padding">
+              <!-- Card -->
+              <ion-card
+                class="c-card ion-no-margin u-no--box-shadow u-display--flex u-align-items--center u-justify-content--center u-flex-direction--column c-card--our-services u-no--mg-bot c-card--video-instructions c-card--addition-services c-card--width-100p u-no--bg u-no--height c-card--dashboard c-card--view-quotes">
+                <!-- Row -->
+                <ion-row class="l-row u-no--mg l-row--pickup-location">
+                  <ion-col class="u-display--flex u-align-items--center u-no--pad-top u-no--pad-bot u-no--pad-lt"
+                    size="10">
+                    <!-- Icon -->
+                    <ion-icon src="../../../../assets/images/fill-circle-credit-card--color-primary-1-5.svg"
+                      class="c-icon u-no--border-radius c-icon--user-menu c-icon--width-40px c-icon--height-40px">
+                    </ion-icon>
+                    <!-- /Icon -->
+                    <!-- Card wrap -->
+                    <div class="c-card__wrap">
+                      <!-- Title -->
+                      <div class="c-title ion-no-padding c-title--h1-color-primary-1-1 c-title--h1-inter-14px">
+                        <!-- Title h1 -->
+                        <h1 class="c-title__h1">Discover Credit Card</h1>
+                        <!-- /Title h1 -->
+                      </div>
+                      <!-- /Title -->
+                      <!-- List -->
+                      <ion-list class="c-list u-no--bg ion-no-padding u-no--pad-bot c-list--reviews u-no--mg-bot">
+                        <!-- Item group -->
+                        <ion-item-group
+                          class="c-item-group u-no--mg-top u-no--mg-bot u-no--pad-top u-no--pad-bot u-display--flex u-align-items--center c-item-group--additional-service c-item-group--reviews">
+                          <!-- Item -->
+                          <ion-item
+                            class="c-item ion-no-padding u-no--pad-top u-no--pad-bot c-item--additional-service c-item--reviews">
+                            <!-- Title -->
+                            <div
+                              class="c-title ion-no-padding c-title--addition-services c-title--h1-inter-12px c-title--h1-color-primary-1-1 c-title--inter-medium">
+                              <!-- Title h1 -->
+                              <h1 class="c-title__h1">5175 72XX XXXX XXXX</h1>
+                              <!-- /Title h1 -->
+                            </div>
+                            <!-- /Title -->
+                          </ion-item>
+                          <!-- /Item -->
+                        </ion-item-group>
+                        <!-- /Item group -->
+                      </ion-list>
+                      <!-- /List -->
+                    </div>
+                    <!-- /Card wrap -->
+                  </ion-col>
+                  <ion-col
+                    class="u-display--flex u-align-items--center u-justify-content--flex-end u-no--pad-top u-no--pad-bot u-no--pad-rt">
+                    <!-- Icon -->
+                    <ion-icon src="../../../../assets/images/fill-edit--color-blue.svg"
+                      class="c-icon u-no--mg-rt c-icon--button u-position--absolute u-top--50p u-transform--translate-y-minus-50p c-icon--review-service-request u-no--position-rt">
+                    </ion-icon>
+                    <!-- /Icon -->
+                  </ion-col>
+                </ion-row>
+                <!-- /Row -->
+              </ion-card>
+              <!-- /Card -->
+            </ion-item>
+            <!-- /Item -->
+            <!-- Item -->
+            <ion-item class="c-item ion-no-padding">
+              <!-- Card -->
+              <ion-card
+                class="c-card ion-no-margin u-no--box-shadow u-display--flex u-align-items--center u-justify-content--center u-flex-direction--column c-card--our-services u-no--mg-bot c-card--video-instructions c-card--addition-services c-card--width-100p u-no--bg u-no--height c-card--dashboard c-card--view-quotes">
+                <!-- Row -->
+                <ion-row class="l-row u-no--mg l-row--pickup-location">
+                  <ion-col class="u-display--flex u-align-items--center u-no--pad-top u-no--pad-bot u-no--pad-lt"
+                    size="10">
+                    <!-- Icon -->
+                    <ion-icon src="../../../../assets/images/fill-circle-city-debit-card--color-primary-1-5.svg"
+                      class="c-icon u-no--border-radius c-icon--user-menu c-icon--width-40px c-icon--height-40px">
+                    </ion-icon>
+                    <!-- /Icon -->
+                    <!-- Card wrap -->
+                    <div class="c-card__wrap">
+                      <!-- Title -->
+                      <div class="c-title ion-no-padding c-title--h1-color-primary-1-1 c-title--h1-inter-14px">
+                        <!-- Title h1 -->
+                        <h1 class="c-title__h1">City Debit Card</h1>
+                        <!-- /Title h1 -->
+                      </div>
+                      <!-- /Title -->
+                      <!-- List -->
+                      <ion-list class="c-list u-no--bg ion-no-padding u-no--pad-bot c-list--reviews u-no--mg-bot">
+                        <!-- Item group -->
+                        <ion-item-group
+                          class="c-item-group u-no--mg-top u-no--mg-bot u-no--pad-top u-no--pad-bot u-display--flex u-align-items--center c-item-group--additional-service c-item-group--reviews">
+                          <!-- Item -->
+                          <ion-item
+                            class="c-item ion-no-padding u-no--pad-top u-no--pad-bot c-item--additional-service c-item--reviews">
+                            <!-- Title -->
+                            <div
+                              class="c-title ion-no-padding c-title--addition-services c-title--h1-inter-12px c-title--h1-color-primary-1-1 c-title--inter-medium">
+                              <!-- Title h1 -->
+                              <h1 class="c-title__h1">5175 72XX XXXX XXXX</h1>
+                              <!-- /Title h1 -->
+                            </div>
+                            <!-- /Title -->
+                          </ion-item>
+                          <!-- /Item -->
+                        </ion-item-group>
+                        <!-- /Item group -->
+                      </ion-list>
+                      <!-- /List -->
+                    </div>
+                    <!-- /Card wrap -->
+                  </ion-col>
+                  <ion-col
+                    class="u-display--flex u-align-items--center u-justify-content--flex-end u-no--pad-top u-no--pad-bot u-no--pad-rt">
+                    <!-- Icon -->
+                    <ion-icon src="../../../../assets/images/fill-edit--color-blue.svg"
+                      class="c-icon u-no--mg-rt c-icon--button u-position--absolute u-top--50p u-transform--translate-y-minus-50p c-icon--review-service-request u-no--position-rt">
+                    </ion-icon>
+                    <!-- /Icon -->
+                  </ion-col>
+                </ion-row>
+                <!-- /Row -->
+              </ion-card>
+              <!-- /Card -->
+            </ion-item>
+            <!-- /Item -->
+          </ion-item-group>
+          <!-- /Item group -->
+        </ion-list>
+        <!-- /List -->
+      </div>
+      <!-- /Form -->
+      <!-- Row -->
+      <ion-row>
+        <!-- Col -->
+        <ion-col class="u-display--flex u-align-items--center u-no--pad-top u-no--pad-bot u-no--pad-lt" size="8">
+          <!-- Title -->
+          <div
+            class="ion-no-padding c-title c-title--get-started c-title--our-services c-title--h1-inter-16px c-title--inter-regular c-title--h1-black c-title--video-instructions u-no--mg-top">
+            <!-- Title h1 -->
+            <h1 class="c-title__h1">Manage Saved Bank A/C</h1>
+            <!-- /Title h1 -->
+          </div>
+          <!-- /Title -->
+        </ion-col>
+        <!-- /Col -->
+        <!-- Col -->
+        <ion-col
+          class="u-display--flex u-align-items--center u-justify-content--flex-end u-no--pad-top u-no--pad-bot u-no--pad-rt">
+          <!-- Button -->
+          <ion-button
+            class="c-button ion-no-margin u-no--text-transform c-button--outline c-button--border-color-primary u-no--border u-no--bg c-button--order-details u-no--height"
+            fill="clear" expand="full">
+            <!-- Title -->
+            <ion-title
+              class="ion-no-padding c-title c-title--inter-medium u-no--flex c-title--h1-color-brand-1-1 c-title--inter-medium c-title--h1-inter-semibold c-title--h1-inter-14px c-title--about-us-button">
+              <!-- Title h1 -->
+              <h1 class="c-title__h1">
+                Add new
+
+                <!-- Icon -->
+                <ion-icon src="../../../../assets/images/fill-circle-add--color-brand.svg"
+                  class="c-icon u-no--mg-rt c-icon--card-outline-caret-right" slot="end"></ion-icon>
+                <!-- /Icon -->
+              </h1>
+              <!-- /Title h1 -->
+            </ion-title>
+            <!-- /Title -->
+          </ion-button>
+          <!-- /Button -->
+        </ion-col>
+        <!-- /Col -->
+      </ion-row>
+      <!-- /Row -->
+      <!-- Form -->
+      <div class="l-form">
+        <!-- List -->
+        <ion-list class="c-list u-no--bg ion-no-padding u-no--pad-bot">
+          <!-- Item group -->
+          <ion-item-group class="c-item-group u-no--pad-top u-no--pad-bot c-item-group--pickup-location">
+            <!-- Item -->
+            <ion-item class="c-item ion-no-padding">
+              <!-- Card -->
+              <ion-card
+                class="c-card ion-no-margin u-no--box-shadow u-display--flex u-align-items--center u-justify-content--center u-flex-direction--column c-card--our-services u-no--mg-bot c-card--video-instructions c-card--addition-services c-card--width-100p u-no--bg u-no--height c-card--dashboard c-card--view-quotes">
+                <!-- Row -->
+                <ion-row class="l-row u-no--mg l-row--pickup-location">
+                  <ion-col class="u-display--flex u-align-items--center u-no--pad-top u-no--pad-bot u-no--pad-lt"
+                    size="10">
+                    <!-- Icon -->
+                    <ion-icon src="../../../../assets/images/fill-circle-bank-of-america--color-primary-1-5.svg"
+                      class="c-icon u-no--border-radius c-icon--user-menu c-icon--width-40px c-icon--height-40px">
+                    </ion-icon>
+                    <!-- /Icon -->
+                    <!-- Card wrap -->
+                    <div class="c-card__wrap">
+                      <!-- Title -->
+                      <div class="c-title ion-no-padding c-title--h1-color-primary-1-1 c-title--h1-inter-14px">
+                        <!-- Title h1 -->
+                        <h1 class="c-title__h1">Bank of America</h1>
+                        <!-- /Title h1 -->
+                      </div>
+                      <!-- /Title -->
+                      <!-- List -->
+                      <ion-list class="c-list u-no--bg ion-no-padding u-no--pad-bot c-list--reviews u-no--mg-bot">
+                        <!-- Item group -->
+                        <ion-item-group
+                          class="c-item-group u-no--mg-top u-no--mg-bot u-no--pad-top u-no--pad-bot u-display--flex u-align-items--center c-item-group--additional-service c-item-group--reviews">
+                          <!-- Item -->
+                          <ion-item
+                            class="c-item ion-no-padding u-no--pad-top u-no--pad-bot c-item--additional-service c-item--reviews">
+                            <!-- Title -->
+                            <div
+                              class="c-title ion-no-padding c-title--addition-services c-title--h1-inter-12px c-title--h1-color-primary-1-1 c-title--inter-medium">
+                              <!-- Title h1 -->
+                              <h1 class="c-title__h1">5175 72XX XXXX XXXX</h1>
+                              <!-- /Title h1 -->
+                            </div>
+                            <!-- /Title -->
+                          </ion-item>
+                          <!-- /Item -->
+                        </ion-item-group>
+                        <!-- /Item group -->
+                      </ion-list>
+                      <!-- /List -->
+                    </div>
+                    <!-- /Card wrap -->
+                  </ion-col>
+                  <ion-col
+                    class="u-display--flex u-align-items--center u-justify-content--flex-end u-no--pad-top u-no--pad-bot u-no--pad-rt">
+                    <!-- Icon -->
+                    <ion-icon src="../../../../assets/images/fill-edit--color-blue.svg"
+                      class="c-icon u-no--mg-rt c-icon--button u-position--absolute u-top--50p u-transform--translate-y-minus-50p c-icon--review-service-request u-no--position-rt">
+                    </ion-icon>
+                    <!-- /Icon -->
+                  </ion-col>
+                </ion-row>
+                <!-- /Row -->
+              </ion-card>
+              <!-- /Card -->
+            </ion-item>
+            <!-- /Item -->
+            <!-- Item -->
+            <ion-item class="c-item ion-no-padding">
+              <!-- Card -->
+              <ion-card
+                class="c-card ion-no-margin u-no--box-shadow u-display--flex u-align-items--center u-justify-content--center u-flex-direction--column c-card--our-services u-no--mg-bot c-card--video-instructions c-card--addition-services c-card--width-100p u-no--bg u-no--height c-card--dashboard c-card--view-quotes">
+                <!-- Row -->
+                <ion-row class="l-row u-no--mg l-row--pickup-location">
+                  <ion-col class="u-display--flex u-align-items--center u-no--pad-top u-no--pad-bot u-no--pad-lt"
+                    size="10">
+                    <!-- Icon -->
+                    <ion-icon src="../../../../assets/images/fill-circle-bank-of-america--color-primary-1-5.svg"
+                      class="c-icon u-no--border-radius c-icon--user-menu c-icon--width-40px c-icon--height-40px">
+                    </ion-icon>
+                    <!-- /Icon -->
+                    <!-- Card wrap -->
+                    <div class="c-card__wrap">
+                      <!-- Title -->
+                      <div class="c-title ion-no-padding c-title--h1-color-primary-1-1 c-title--h1-inter-14px">
+                        <!-- Title h1 -->
+                        <h1 class="c-title__h1">Bank of America</h1>
+                        <!-- /Title h1 -->
+                      </div>
+                      <!-- /Title -->
+                      <!-- List -->
+                      <ion-list class="c-list u-no--bg ion-no-padding u-no--pad-bot c-list--reviews u-no--mg-bot">
+                        <!-- Item group -->
+                        <ion-item-group
+                          class="c-item-group u-no--mg-top u-no--mg-bot u-no--pad-top u-no--pad-bot u-display--flex u-align-items--center c-item-group--additional-service c-item-group--reviews">
+                          <!-- Item -->
+                          <ion-item
+                            class="c-item ion-no-padding u-no--pad-top u-no--pad-bot c-item--additional-service c-item--reviews">
+                            <!-- Title -->
+                            <div
+                              class="c-title ion-no-padding c-title--addition-services c-title--h1-inter-12px c-title--h1-color-primary-1-1 c-title--inter-medium">
+                              <!-- Title h1 -->
+                              <h1 class="c-title__h1">5175 72XX XXXX XXXX</h1>
+                              <!-- /Title h1 -->
+                            </div>
+                            <!-- /Title -->
+                          </ion-item>
+                          <!-- /Item -->
+                        </ion-item-group>
+                        <!-- /Item group -->
+                      </ion-list>
+                      <!-- /List -->
+                    </div>
+                    <!-- /Card wrap -->
+                  </ion-col>
+                  <ion-col
+                    class="u-display--flex u-align-items--center u-justify-content--flex-end u-no--pad-top u-no--pad-bot u-no--pad-rt">
+                    <!-- Icon -->
+                    <ion-icon src="../../../../assets/images/fill-edit--color-blue.svg"
+                      class="c-icon u-no--mg-rt c-icon--button u-position--absolute u-top--50p u-transform--translate-y-minus-50p c-icon--review-service-request u-no--position-rt">
+                    </ion-icon>
+                    <!-- /Icon -->
+                  </ion-col>
+                </ion-row>
+                <!-- /Row -->
+              </ion-card>
+              <!-- /Card -->
+            </ion-item>
+            <!-- /Item -->
+          </ion-item-group>
+          <!-- /Item group -->
+        </ion-list>
+        <!-- /List -->
+      </div>
+      <!-- /Form -->
+    </div>
+    <!-- /Main wrapper -->
+  </ion-content>
+</div>
+
+
+<!-- add new card -->
+<div *ngIf="false">
+  <!-- Header -->
+  <ion-header collapse="fade" class="l-header u-no--pad-top u-no--pad-bot">
+    <!-- Main wrapper -->
+    <ion-toolbar class="l-main-wrapper">
+      <ion-buttons class="u-position--absolute u-top--50p u-transform--translate-y-minus-50p">
+        <!-- Icon -->
+        <ion-icon src="../../../assets/images/header/outline-caret-left--color-brand.svg"
+          class="c-icon c-icon--caret-lt u-no--mg-rt"></ion-icon>
+        <!-- /Icon -->
+      </ion-buttons>
+      <!-- c-title -->
+      <ion-title class="ion-no-padding c-title c-title--login c-title--h1-black u-no--mg-top ion-text-center">
+        <!-- Title h1 -->
+        <h1 class="c-title__h1">Add New Card</h1>
+        <!-- /Title h1 -->
+      </ion-title>
+      <!-- /c-title -->
+    </ion-toolbar>
+    <!-- /Main wrapper -->
+  </ion-header>
+  <!-- /Header -->
+  <ion-content>
+    <!-- Main wrapper -->
+    <div class="l-main-wrapper l-main-wrapper--get-started l-main-wrapper--min-height-100vh-166px">
+      <!-- Row -->
+      <ion-row>
+        <!-- Col -->
+        <ion-col class="u-display--flex u-align-items--center u-no--pad-top u-no--pad-bot u-no--pad-lt">
+          <!-- Title -->
+          <div
+            class="ion-no-padding c-title c-title--get-started c-title--our-services c-title--h1-inter-16px c-title--inter-regular c-title--h1-black c-title--video-instructions u-no--mg-top">
+            <!-- Title h1 -->
+            <h1 class="c-title__h1">Fill Up Card Details</h1>
+            <!-- /Title h1 -->
+          </div>
+          <!-- /Title -->
+        </ion-col>
+        <!-- /Col -->
+        <!-- Col -->
+        <ion-col
+          class="u-display--flex u-align-items--center u-justify-content--flex-end u-no--pad-top u-no--pad-bot u-no--pad-rt">
+          <!-- Button -->
+          <ion-button
+            class="c-button ion-no-margin u-no--text-transform c-button--outline c-button--border-color-primary u-no--border u-no--bg c-button--order-details u-no--height"
+            fill="clear" expand="full">
+            <!-- Title -->
+            <ion-title
+              class="ion-no-padding c-title c-title--inter-medium u-no--flex c-title--h1-color-brand-1-1 c-title--inter-medium c-title--h1-inter-semibold c-title--h1-inter-14px c-title--about-us-button">
+              <!-- Title h1 -->
+              <h1 class="c-title__h1">Cancel</h1>
+              <!-- /Title h1 -->
+            </ion-title>
+            <!-- /Title -->
+          </ion-button>
+          <!-- /Button -->
+        </ion-col>
+        <!-- /Col -->
+      </ion-row>
+      <!-- /Row -->
+      <!-- Form -->
+      <form class="l-form l-form--height-100vh-120px">
+        <!-- Content wrapper -->
+        <div
+          class="c-card ion-no-margin u-no--box-shadow u-no--mg-bot c-card--video-instructions u-no--mg-top l-content-wrapper l-content-wrapper--pickup-location">
+          <!-- Item group wrapper -->
+          <ion-item-group class="c-item-group-wrapper">
+            <!-- Item group -->
+            <ion-item-group class="c-item-group c-item-group--pickup-location">
+              <!-- Item -->
+              <ion-item class="c-item ion-no-padding">
+                <!-- Input -->
+                <ion-input class="c-input c-input--white" type="number" placeholder="Card Number"></ion-input>
+                <!-- /Input -->
+                <!-- Content -->
+                <div
+                  class="c-content c-content--login c-content--p-inter-12px c-content--color-red c-content--form-message">
+                  <!-- Content p -->
+                  <p class="c-content__p">
+                    Card Number cannot be empty
+                  </p>
+                  <!-- /Content p -->
+                </div>
+                <!-- /Content -->
+              </ion-item>
+              <!-- /Item -->
+              <!-- Item -->
+              <ion-item class="c-item ion-no-padding">
+                <!-- Input -->
+                <ion-input class="c-input c-input--white" placeholder="Name of the card"></ion-input>
+                <!-- /Input -->
+                <!-- Content -->
+                <div
+                  class="c-content c-content--login c-content--p-inter-12px c-content--color-red c-content--form-message">
+                  <!-- Content p -->
+                  <p class="c-content__p">
+                    Name of the card cannot be empty
+                  </p>
+                  <!-- /Content p -->
+                </div>
+                <!-- /Content -->
+              </ion-item>
+              <!-- /Item -->
+              <!-- Item -->
+              <ion-item class="c-item ion-no-padding">
+                <!-- Row -->
+                <ion-row class="l-row u-no--mg l-row--pickup-location">
+                  <ion-col
+                    class="u-display--flex u-align-items--center u-no--pad-top u-no--pad-bot u-no--pad-lt l-col l-col--view-vendor-quote l-col--pick-up-location">
+                    <!-- Input -->
+                    <ion-input class="c-input c-input--white" placeholder="Expiry month"></ion-input>
+                    <!-- /Input -->
+                    <!-- Content -->
+                    <div
+                      class="c-content c-content--login c-content--p-inter-12px c-content--color-red c-content--form-message">
+                      <!-- Content p -->
+                      <p class="c-content__p">
+                        Expiry month cannot be empty
+                      </p>
+                      <!-- /Content p -->
+                    </div>
+                    <!-- /Content -->
+                  </ion-col>
+                  <ion-col
+                    class="u-display--flex u-align-items--center u-justify-content--flex-end u-no--pad-top u-no--pad-bot u-no--pad-rt l-col l-col--view-vendor-quote l-col--pick-up-location">
+                    <!-- Input -->
+                    <ion-input class="c-input c-input--white" type="number" placeholder="Expiry year"></ion-input>
+                    <!-- /Input -->
+                    <!-- Content -->
+                    <div
+                      class="c-content c-content--login c-content--p-inter-12px c-content--color-red c-content--form-message">
+                      <!-- Content p -->
+                      <p class="c-content__p">
+                        Expiry year cannot be empty
+                      </p>
+                      <!-- /Content p -->
+                    </div>
+                    <!-- /Content -->
+                  </ion-col>
+                </ion-row>
+                <!-- /Row -->
+              </ion-item>
+              <!-- /Item -->
+              <!-- Item -->
+              <ion-item class="c-item ion-no-padding">
+                <!-- Input -->
+                <ion-input class="c-input c-input--white" type="number" placeholder="CVV"></ion-input>
+                <!-- /Input -->
+                <!-- Content -->
+                <div
+                  class="c-content c-content--login c-content--p-inter-12px c-content--color-red c-content--form-message">
+                  <!-- Content p -->
+                  <p class="c-content__p">
+                    CVV cannot be empty
+                  </p>
+                  <!-- /Content p -->
+                </div>
+                <!-- /Content -->
+              </ion-item>
+              <!-- /Item -->
+            </ion-item-group>
+            <!-- /Item group -->
+          </ion-item-group>
+          <!-- /Item group wrapper -->
+        </div>
+        <!-- /Content wrapper -->
+        <!-- Footer -->
+        <ion-footer collapse="fade" class="l-footer l-footer--order-completed">
+          <!-- Button -->
+          <ion-button
+            class="c-button ion-no-margin u-no--text-transform c-button--text-inter-18px c-button--text-inter-medium"
+            fill="clear" expand="full" type="submit">
+            Save Card
+            <!-- Icon -->
+            <ion-icon src="../../../assets/images/outline-caret-right--color-white.svg"
+              class="c-icon c-icon--caret-rt u-no--mg-rt" slot="end"></ion-icon>
+            <!-- /Icon -->
+          </ion-button>
+          <!-- /Button -->
+        </ion-footer>
+        <!-- /Footer -->
+      </form>
+      <!-- /Form -->
+    </div>
+    <!-- /Main wrapper -->
+  </ion-content>
+</div>
+
+
+<!-- notifications -->
+<div *ngIf="false">
+  <!-- Header -->
+  <ion-header collapse="fade" class="l-header u-no--pad-top u-no--pad-bot">
+    <!-- Main wrapper -->
+    <ion-toolbar class="l-main-wrapper">
+      <ion-buttons class="u-position--absolute u-top--50p u-transform--translate-y-minus-50p">
+        <!-- Icon -->
+        <ion-icon src="../../../../assets/images/header/outline-caret-left--color-brand.svg"
+          class="c-icon c-icon--caret-lt u-no--mg-rt"></ion-icon>
+        <!-- /Icon -->
+      </ion-buttons>
+      <!-- c-title -->
+      <ion-title class="ion-no-padding c-title c-title--login c-title--h1-black u-no--mg-top ion-text-center">
+        <!-- Title h1 -->
+        <h1 class="c-title__h1">Notifications</h1>
+        <!-- /Title h1 -->
+      </ion-title>
+      <!-- /c-title -->
+      <!-- List -->
+      <ion-list
+        class="c-list u-no--bg ion-no-padding u-no--mg-top u-no--mg-bot u-no--pad-bot u-position--absolute u-top--50p u-transform--translate-y-minus-50p u-no--position-rt">
+        <!-- Item group -->
+        <ion-item-group
+          class="c-item-group u-no--mg-top u-no--mg-bot u-display--flex u-align-items--center c-item-group--additional-service">
+          <!-- Item -->
+          <ion-item class="c-item ion-no-padding u-no--pad-top u-no--pad-bot c-item--additional-service">
+            <!-- Button -->
+            <ion-buttons>
+              <!-- Icon -->
+              <ion-icon src="../../../../assets/images/fill-bell--color-primary.svg"
+                class="c-icon u-no--mg-rt c-icon--additional-service"></ion-icon>
+              <!-- /Icon -->
+              <!-- Icon -->
+              <ion-icon src="../../../../assets/images/fill-notification-indication--color-blue.svg"
+                class="c-icon u-no--mg-rt u-position--absolute c-icon--notification-indication u-no--position-top">
+              </ion-icon>
+              <!-- /Icon -->
+            </ion-buttons>
+            <!-- /Button -->
+          </ion-item>
+          <!-- /Item -->
+          <!-- Item -->
+          <ion-item class="c-item ion-no-padding u-no--pad-top u-no--pad-bot c-item--additional-service">
+            <!-- Button -->
+            <ion-buttons>
+              <!-- Icon -->
+              <ion-icon src="../../../../assets/images/fill-setting--color-primary.svg"
+                class="c-icon u-no--mg-rt c-icon--additional-service"></ion-icon>
+              <!-- /Icon -->
+            </ion-buttons>
+            <!-- /Button -->
+          </ion-item>
+          <!-- /Item -->
+        </ion-item-group>
+        <!-- /Item group -->
+      </ion-list>
+      <!-- /List -->
+    </ion-toolbar>
+    <!-- /Main wrapper -->
+  </ion-header>
+  <!-- /Header -->
+  <ion-content>
+    <!-- Main wrapper -->
+    <div class="l-main-wrapper l-main-wrapper--get-started l-main-wrapper--notifications-list">
+      <!-- Form -->
+      <div class="l-form u-no--height u-no--pad-top u-no--pad-bot">
+        <!-- List -->
+        <ion-list class="c-list u-no--bg ion-no-padding u-no--pad-bot">
+          <!-- Item group -->
+          <ion-item-group
+            class="c-item-group u-no--pad-top u-no--pad-bot u-no--mg-top u-no--mg-bot c-item-group--pickup-location">
+            <!-- Item -->
+            <ion-item class="c-item ion-no-padding u-no--pad-top u-no--pad-bot c-item--notifications-list">
+              <!-- Card -->
+              <ion-card
+                class="c-card ion-no-margin u-no--box-shadow u-no--mg-bot c-card--addition-services c-card--width-100p u-no--height u-no--border-radius c-card--border-color-primary-1-5 c-card--notification-list">
+                <!-- Row -->
+                <ion-row class="l-row u-no--mg l-row--pickup-location">
+                  <ion-col class="u-display--flex u-no--pad-top u-no--pad-bot u-no--pad-lt" size="9">
+                    <!-- Icon -->
+                    <div class="c-icon c-icon--notifications c-icon--bg-color-primary-1-4 c-icon--notifications-list">
+                      <!-- Icon -->
+                      <ion-icon src="../../../../assets/images/fill-notification-indication--color-brand-1-1.svg"
+                        class="c-icon u-no--mg-rt u-position--absolute u-no--border-radius c-icon--width-8px c-icon--height-8px c-icon--notification-list-indication">
+                      </ion-icon>
+                      <!-- /Icon -->
+                    </div>
+                    <!-- /Icon -->
+                    <!-- Card wrap -->
+                    <div class="c-card__wrap">
+                      <!-- Title -->
+                      <div class="c-title ion-no-padding c-title--inter-medium c-title--h1-inter-14px">
+                        <!-- Title h1 -->
+                        <h1 class="c-title__h1">A dummy notification title</h1>
+                        <!-- /Title h1 -->
+                      </div>
+                      <!-- /Title -->
+                      <!-- List -->
+                      <ion-list class="c-list u-no--bg ion-no-padding u-no--pad-bot c-list--reviews u-no--mg-bot">
+                        <!-- Item group -->
+                        <ion-item-group
+                          class="c-item-group u-no--mg-top u-no--mg-bot u-no--pad-top u-no--pad-bot u-display--flex u-align-items--center c-item-group--additional-service c-item-group--reviews">
+                          <!-- Item -->
+                          <ion-item
+                            class="c-item ion-no-padding u-no--pad-top u-no--pad-bot c-item--additional-service c-item--reviews">
+                            <!-- Content -->
+                            <div
+                              class="c-content u-no--mg-top c-content--color-primary-1-2 c-content--view-vendor-quote c-content--p-inter-medium c-content--login c-content--p-inter-12px c-content--notification-list-indication">
+                              <!-- Content p -->
+                              <p class="c-content__p">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas gravida est et sodales
+                                laoreet.
+                              </p>
+                              <!-- /Content p -->
+                            </div>
+                            <!-- /Content -->
+                          </ion-item>
+                          <!-- /Item -->
+                        </ion-item-group>
+                        <!-- /Item group -->
+                      </ion-list>
+                      <!-- /List -->
+                    </div>
+                    <!-- /Card wrap -->
+                  </ion-col>
+                  <ion-col class="u-display--flex u-justify-content--flex-end u-no--pad-top u-no--pad-bot u-no--pad-rt">
+                    <!-- Title -->
+                    <div
+                      class="ion-no-padding c-title u-position--absolute c-title--inter-medium c-title--tag c-title--h1-color-brand-1-1 u-no--position">
+                      <!-- Title h1 -->
+                      <h1 class="c-title__h1">4 hour ago</h1>
+                      <!-- /Title h1 -->
+                    </div>
+                    <!-- /Title -->
+                  </ion-col>
+                </ion-row>
+                <!-- /Row -->
+              </ion-card>
+              <!-- /Card -->
+            </ion-item>
+            <!-- /Item -->
+            <!-- Item -->
+            <ion-item class="c-item ion-no-padding u-no--pad-top u-no--pad-bot c-item--notifications-list">
+              <!-- Card -->
+              <ion-card
+                class="c-card ion-no-margin u-no--box-shadow u-no--mg-bot c-card--addition-services c-card--width-100p u-no--height u-no--border-radius c-card--border-color-primary-1-5 c-card--notification-list">
+                <!-- Row -->
+                <ion-row class="l-row u-no--mg l-row--pickup-location">
+                  <ion-col class="u-display--flex u-no--pad-top u-no--pad-bot u-no--pad-lt" size="9">
+                    <!-- Icon -->
+                    <div class="c-icon c-icon--notifications c-icon--bg-color-primary-1-4 c-icon--notifications-list">
+                      <!-- Icon -->
+                      <ion-icon src="../../../../assets/images/fill-notification-indication--color-brand-1-1.svg"
+                        class="c-icon u-no--mg-rt u-position--absolute u-no--border-radius c-icon--width-8px c-icon--height-8px c-icon--notification-list-indication">
+                      </ion-icon>
+                      <!-- /Icon -->
+                    </div>
+                    <!-- /Icon -->
+                    <!-- Card wrap -->
+                    <div class="c-card__wrap">
+                      <!-- Title -->
+                      <div class="c-title ion-no-padding c-title--inter-medium c-title--h1-inter-14px">
+                        <!-- Title h1 -->
+                        <h1 class="c-title__h1">A dummy notification title</h1>
+                        <!-- /Title h1 -->
+                      </div>
+                      <!-- /Title -->
+                      <!-- List -->
+                      <ion-list class="c-list u-no--bg ion-no-padding u-no--pad-bot c-list--reviews u-no--mg-bot">
+                        <!-- Item group -->
+                        <ion-item-group
+                          class="c-item-group u-no--mg-top u-no--mg-bot u-no--pad-top u-no--pad-bot u-display--flex u-align-items--center c-item-group--additional-service c-item-group--reviews">
+                          <!-- Item -->
+                          <ion-item
+                            class="c-item ion-no-padding u-no--pad-top u-no--pad-bot c-item--additional-service c-item--reviews">
+                            <!-- Content -->
+                            <div
+                              class="c-content u-no--mg-top c-content--color-primary-1-2 c-content--view-vendor-quote c-content--p-inter-medium c-content--login c-content--p-inter-12px c-content--notification-list-indication">
+                              <!-- Content p -->
+                              <p class="c-content__p">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas gravida est et sodales
+                                laoreet.
+                              </p>
+                              <!-- /Content p -->
+                            </div>
+                            <!-- /Content -->
+                          </ion-item>
+                          <!-- /Item -->
+                        </ion-item-group>
+                        <!-- /Item group -->
+                      </ion-list>
+                      <!-- /List -->
+                    </div>
+                    <!-- /Card wrap -->
+                  </ion-col>
+                  <ion-col class="u-display--flex u-justify-content--flex-end u-no--pad-top u-no--pad-bot u-no--pad-rt">
+                    <!-- Title -->
+                    <div
+                      class="ion-no-padding c-title u-position--absolute c-title--inter-medium c-title--tag c-title--h1-color-brand-1-1 u-no--position">
+                      <!-- Title h1 -->
+                      <h1 class="c-title__h1">4 hour ago</h1>
+                      <!-- /Title h1 -->
+                    </div>
+                    <!-- /Title -->
+                  </ion-col>
+                </ion-row>
+                <!-- /Row -->
+              </ion-card>
+              <!-- /Card -->
+            </ion-item>
+            <!-- /Item -->
+            <!-- Item -->
+            <ion-item class="c-item ion-no-padding u-no--pad-top u-no--pad-bot c-item--notifications-list">
+              <!-- Card -->
+              <ion-card
+                class="c-card ion-no-margin u-no--box-shadow u-no--mg-bot c-card--addition-services c-card--width-100p u-no--height u-no--border-radius c-card--border-color-primary-1-5 c-card--notification-list">
+                <!-- Row -->
+                <ion-row class="l-row u-no--mg l-row--pickup-location">
+                  <ion-col class="u-display--flex u-no--pad-top u-no--pad-bot u-no--pad-lt" size="9">
+                    <!-- Icon -->
+                    <div class="c-icon c-icon--notifications c-icon--bg-color-primary-1-4 c-icon--notifications-list">
+                      <!-- Icon -->
+                      <ion-icon src="../../../../assets/images/fill-notification-indication--color-brand-1-1.svg"
+                        class="c-icon u-no--mg-rt u-position--absolute u-no--border-radius c-icon--width-8px c-icon--height-8px c-icon--notification-list-indication">
+                      </ion-icon>
+                      <!-- /Icon -->
+                    </div>
+                    <!-- /Icon -->
+                    <!-- Card wrap -->
+                    <div class="c-card__wrap">
+                      <!-- Title -->
+                      <div class="c-title ion-no-padding c-title--inter-medium c-title--h1-inter-14px">
+                        <!-- Title h1 -->
+                        <h1 class="c-title__h1">A dummy notification title</h1>
+                        <!-- /Title h1 -->
+                      </div>
+                      <!-- /Title -->
+                      <!-- List -->
+                      <ion-list class="c-list u-no--bg ion-no-padding u-no--pad-bot c-list--reviews u-no--mg-bot">
+                        <!-- Item group -->
+                        <ion-item-group
+                          class="c-item-group u-no--mg-top u-no--mg-bot u-no--pad-top u-no--pad-bot u-display--flex u-align-items--center c-item-group--additional-service c-item-group--reviews">
+                          <!-- Item -->
+                          <ion-item
+                            class="c-item ion-no-padding u-no--pad-top u-no--pad-bot c-item--additional-service c-item--reviews">
+                            <!-- Content -->
+                            <div
+                              class="c-content u-no--mg-top c-content--color-primary-1-2 c-content--view-vendor-quote c-content--p-inter-medium c-content--login c-content--p-inter-12px c-content--notification-list-indication">
+                              <!-- Content p -->
+                              <p class="c-content__p">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas gravida est et sodales
+                                laoreet.
+                              </p>
+                              <!-- /Content p -->
+                            </div>
+                            <!-- /Content -->
+                          </ion-item>
+                          <!-- /Item -->
+                        </ion-item-group>
+                        <!-- /Item group -->
+                      </ion-list>
+                      <!-- /List -->
+                    </div>
+                    <!-- /Card wrap -->
+                  </ion-col>
+                  <ion-col class="u-display--flex u-justify-content--flex-end u-no--pad-top u-no--pad-bot u-no--pad-rt">
+                    <!-- Title -->
+                    <div
+                      class="ion-no-padding c-title u-position--absolute c-title--inter-medium c-title--tag c-title--h1-color-brand-1-1 u-no--position">
+                      <!-- Title h1 -->
+                      <h1 class="c-title__h1">4 hour ago</h1>
+                      <!-- /Title h1 -->
+                    </div>
+                    <!-- /Title -->
+                  </ion-col>
+                </ion-row>
+                <!-- /Row -->
+              </ion-card>
+              <!-- /Card -->
+            </ion-item>
+            <!-- /Item -->
+            <!-- Item -->
+            <ion-item class="c-item ion-no-padding u-no--pad-top u-no--pad-bot c-item--notifications-list">
+              <!-- Card -->
+              <ion-card
+                class="c-card ion-no-margin u-no--box-shadow u-no--mg-bot c-card--addition-services c-card--width-100p u-no--height u-no--border-radius c-card--border-color-primary-1-5 c-card--notification-list">
+                <!-- Row -->
+                <ion-row class="l-row u-no--mg l-row--pickup-location">
+                  <ion-col class="u-display--flex u-no--pad-top u-no--pad-bot u-no--pad-lt" size="9">
+                    <!-- Icon -->
+                    <div class="c-icon c-icon--notifications c-icon--bg-color-primary-1-4 c-icon--notifications-list">
+                      <!-- Icon -->
+                      <ion-icon src="../../../../assets/images/fill-notification-indication--color-brand-1-1.svg"
+                        class="c-icon u-no--mg-rt u-position--absolute u-no--border-radius c-icon--width-8px c-icon--height-8px c-icon--notification-list-indication">
+                      </ion-icon>
+                      <!-- /Icon -->
+                    </div>
+                    <!-- /Icon -->
+                    <!-- Card wrap -->
+                    <div class="c-card__wrap">
+                      <!-- Title -->
+                      <div class="c-title ion-no-padding c-title--inter-medium c-title--h1-inter-14px">
+                        <!-- Title h1 -->
+                        <h1 class="c-title__h1">A dummy notification title</h1>
+                        <!-- /Title h1 -->
+                      </div>
+                      <!-- /Title -->
+                      <!-- List -->
+                      <ion-list class="c-list u-no--bg ion-no-padding u-no--pad-bot c-list--reviews u-no--mg-bot">
+                        <!-- Item group -->
+                        <ion-item-group
+                          class="c-item-group u-no--mg-top u-no--mg-bot u-no--pad-top u-no--pad-bot u-display--flex u-align-items--center c-item-group--additional-service c-item-group--reviews">
+                          <!-- Item -->
+                          <ion-item
+                            class="c-item ion-no-padding u-no--pad-top u-no--pad-bot c-item--additional-service c-item--reviews">
+                            <!-- Content -->
+                            <div
+                              class="c-content u-no--mg-top c-content--color-primary-1-2 c-content--view-vendor-quote c-content--p-inter-medium c-content--login c-content--p-inter-12px c-content--notification-list-indication">
+                              <!-- Content p -->
+                              <p class="c-content__p">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas gravida est et sodales
+                                laoreet.
+                              </p>
+                              <!-- /Content p -->
+                            </div>
+                            <!-- /Content -->
+                          </ion-item>
+                          <!-- /Item -->
+                        </ion-item-group>
+                        <!-- /Item group -->
+                      </ion-list>
+                      <!-- /List -->
+                    </div>
+                    <!-- /Card wrap -->
+                  </ion-col>
+                  <ion-col class="u-display--flex u-justify-content--flex-end u-no--pad-top u-no--pad-bot u-no--pad-rt">
+                    <!-- Title -->
+                    <div
+                      class="ion-no-padding c-title u-position--absolute c-title--inter-medium c-title--tag c-title--h1-color-brand-1-1 u-no--position">
+                      <!-- Title h1 -->
+                      <h1 class="c-title__h1">4 hour ago</h1>
+                      <!-- /Title h1 -->
+                    </div>
+                    <!-- /Title -->
+                  </ion-col>
+                </ion-row>
+                <!-- /Row -->
+              </ion-card>
+              <!-- /Card -->
+            </ion-item>
+            <!-- /Item -->
+            <!-- Item -->
+            <ion-item class="c-item ion-no-padding u-no--pad-top u-no--pad-bot c-item--notifications-list">
+              <!-- Card -->
+              <ion-card
+                class="c-card ion-no-margin u-no--box-shadow u-no--mg-bot c-card--addition-services c-card--width-100p u-no--height u-no--border-radius c-card--border-color-primary-1-5 c-card--notification-list">
+                <!-- Row -->
+                <ion-row class="l-row u-no--mg l-row--pickup-location">
+                  <ion-col class="u-display--flex u-no--pad-top u-no--pad-bot u-no--pad-lt" size="9">
+                    <!-- Icon -->
+                    <div class="c-icon c-icon--notifications c-icon--bg-color-primary-1-4 c-icon--notifications-list">
+                      <!-- Icon -->
+                      <ion-icon src="../../../../assets/images/fill-notification-indication--color-brand-1-1.svg"
+                        class="c-icon u-no--mg-rt u-position--absolute u-no--border-radius c-icon--width-8px c-icon--height-8px c-icon--notification-list-indication">
+                      </ion-icon>
+                      <!-- /Icon -->
+                    </div>
+                    <!-- /Icon -->
+                    <!-- Card wrap -->
+                    <div class="c-card__wrap">
+                      <!-- Title -->
+                      <div class="c-title ion-no-padding c-title--inter-medium c-title--h1-inter-14px">
+                        <!-- Title h1 -->
+                        <h1 class="c-title__h1">A dummy notification title</h1>
+                        <!-- /Title h1 -->
+                      </div>
+                      <!-- /Title -->
+                      <!-- List -->
+                      <ion-list class="c-list u-no--bg ion-no-padding u-no--pad-bot c-list--reviews u-no--mg-bot">
+                        <!-- Item group -->
+                        <ion-item-group
+                          class="c-item-group u-no--mg-top u-no--mg-bot u-no--pad-top u-no--pad-bot u-display--flex u-align-items--center c-item-group--additional-service c-item-group--reviews">
+                          <!-- Item -->
+                          <ion-item
+                            class="c-item ion-no-padding u-no--pad-top u-no--pad-bot c-item--additional-service c-item--reviews">
+                            <!-- Content -->
+                            <div
+                              class="c-content u-no--mg-top c-content--color-primary-1-2 c-content--view-vendor-quote c-content--p-inter-medium c-content--login c-content--p-inter-12px c-content--notification-list-indication">
+                              <!-- Content p -->
+                              <p class="c-content__p">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas gravida est et sodales
+                                laoreet.
+                              </p>
+                              <!-- /Content p -->
+                            </div>
+                            <!-- /Content -->
+                          </ion-item>
+                          <!-- /Item -->
+                        </ion-item-group>
+                        <!-- /Item group -->
+                      </ion-list>
+                      <!-- /List -->
+                    </div>
+                    <!-- /Card wrap -->
+                  </ion-col>
+                  <ion-col class="u-display--flex u-justify-content--flex-end u-no--pad-top u-no--pad-bot u-no--pad-rt">
+                    <!-- Title -->
+                    <div
+                      class="ion-no-padding c-title u-position--absolute c-title--inter-medium c-title--tag c-title--h1-color-brand-1-1 u-no--position">
+                      <!-- Title h1 -->
+                      <h1 class="c-title__h1">4 hour ago</h1>
+                      <!-- /Title h1 -->
+                    </div>
+                    <!-- /Title -->
+                  </ion-col>
+                </ion-row>
+                <!-- /Row -->
+              </ion-card>
+              <!-- /Card -->
+            </ion-item>
+            <!-- /Item -->
+            <!-- Item -->
+            <ion-item class="c-item ion-no-padding u-no--pad-top u-no--pad-bot c-item--notifications-list">
+              <!-- Card -->
+              <ion-card
+                class="c-card ion-no-margin u-no--box-shadow u-no--mg-bot c-card--addition-services c-card--width-100p u-no--height u-no--border-radius c-card--border-color-primary-1-5 c-card--notification-list">
+                <!-- Row -->
+                <ion-row class="l-row u-no--mg l-row--pickup-location">
+                  <ion-col class="u-display--flex u-no--pad-top u-no--pad-bot u-no--pad-lt" size="9">
+                    <!-- Icon -->
+                    <div class="c-icon c-icon--notifications c-icon--bg-color-primary-1-4 c-icon--notifications-list">
+                      <!-- Icon -->
+                      <ion-icon src="../../../../assets/images/fill-notification-indication--color-brand-1-1.svg"
+                        class="c-icon u-no--mg-rt u-position--absolute u-no--border-radius c-icon--width-8px c-icon--height-8px c-icon--notification-list-indication">
+                      </ion-icon>
+                      <!-- /Icon -->
+                    </div>
+                    <!-- /Icon -->
+                    <!-- Card wrap -->
+                    <div class="c-card__wrap">
+                      <!-- Title -->
+                      <div class="c-title ion-no-padding c-title--inter-medium c-title--h1-inter-14px">
+                        <!-- Title h1 -->
+                        <h1 class="c-title__h1">A dummy notification title</h1>
+                        <!-- /Title h1 -->
+                      </div>
+                      <!-- /Title -->
+                      <!-- List -->
+                      <ion-list class="c-list u-no--bg ion-no-padding u-no--pad-bot c-list--reviews u-no--mg-bot">
+                        <!-- Item group -->
+                        <ion-item-group
+                          class="c-item-group u-no--mg-top u-no--mg-bot u-no--pad-top u-no--pad-bot u-display--flex u-align-items--center c-item-group--additional-service c-item-group--reviews">
+                          <!-- Item -->
+                          <ion-item
+                            class="c-item ion-no-padding u-no--pad-top u-no--pad-bot c-item--additional-service c-item--reviews">
+                            <!-- Content -->
+                            <div
+                              class="c-content u-no--mg-top c-content--color-primary-1-2 c-content--view-vendor-quote c-content--p-inter-medium c-content--login c-content--p-inter-12px c-content--notification-list-indication">
+                              <!-- Content p -->
+                              <p class="c-content__p">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas gravida est et sodales
+                                laoreet.
+                              </p>
+                              <!-- /Content p -->
+                            </div>
+                            <!-- /Content -->
+                          </ion-item>
+                          <!-- /Item -->
+                        </ion-item-group>
+                        <!-- /Item group -->
+                      </ion-list>
+                      <!-- /List -->
+                    </div>
+                    <!-- /Card wrap -->
+                  </ion-col>
+                  <ion-col class="u-display--flex u-justify-content--flex-end u-no--pad-top u-no--pad-bot u-no--pad-rt">
+                    <!-- Title -->
+                    <div
+                      class="ion-no-padding c-title u-position--absolute c-title--inter-medium c-title--tag c-title--h1-color-brand-1-1 u-no--position">
+                      <!-- Title h1 -->
+                      <h1 class="c-title__h1">4 hour ago</h1>
+                      <!-- /Title h1 -->
+                    </div>
+                    <!-- /Title -->
+                  </ion-col>
+                </ion-row>
+                <!-- /Row -->
+              </ion-card>
+              <!-- /Card -->
+            </ion-item>
+            <!-- /Item -->
+            <!-- Item -->
+            <ion-item class="c-item ion-no-padding u-no--pad-top u-no--pad-bot c-item--notifications-list">
+              <!-- Card -->
+              <ion-card
+                class="c-card ion-no-margin u-no--box-shadow u-no--mg-bot c-card--addition-services c-card--width-100p u-no--height u-no--border-radius c-card--border-color-primary-1-5 c-card--notification-list">
+                <!-- Row -->
+                <ion-row class="l-row u-no--mg l-row--pickup-location">
+                  <ion-col class="u-display--flex u-no--pad-top u-no--pad-bot u-no--pad-lt" size="9">
+                    <!-- Icon -->
+                    <div class="c-icon c-icon--notifications c-icon--bg-color-primary-1-4 c-icon--notifications-list">
+                      <!-- Icon -->
+                      <ion-icon src="../../../../assets/images/fill-notification-indication--color-brand-1-1.svg"
+                        class="c-icon u-no--mg-rt u-position--absolute u-no--border-radius c-icon--width-8px c-icon--height-8px c-icon--notification-list-indication">
+                      </ion-icon>
+                      <!-- /Icon -->
+                    </div>
+                    <!-- /Icon -->
+                    <!-- Card wrap -->
+                    <div class="c-card__wrap">
+                      <!-- Title -->
+                      <div class="c-title ion-no-padding c-title--inter-medium c-title--h1-inter-14px">
+                        <!-- Title h1 -->
+                        <h1 class="c-title__h1">A dummy notification title</h1>
+                        <!-- /Title h1 -->
+                      </div>
+                      <!-- /Title -->
+                      <!-- List -->
+                      <ion-list class="c-list u-no--bg ion-no-padding u-no--pad-bot c-list--reviews u-no--mg-bot">
+                        <!-- Item group -->
+                        <ion-item-group
+                          class="c-item-group u-no--mg-top u-no--mg-bot u-no--pad-top u-no--pad-bot u-display--flex u-align-items--center c-item-group--additional-service c-item-group--reviews">
+                          <!-- Item -->
+                          <ion-item
+                            class="c-item ion-no-padding u-no--pad-top u-no--pad-bot c-item--additional-service c-item--reviews">
+                            <!-- Content -->
+                            <div
+                              class="c-content u-no--mg-top c-content--color-primary-1-2 c-content--view-vendor-quote c-content--p-inter-medium c-content--login c-content--p-inter-12px c-content--notification-list-indication">
+                              <!-- Content p -->
+                              <p class="c-content__p">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas gravida est et sodales
+                                laoreet.
+                              </p>
+                              <!-- /Content p -->
+                            </div>
+                            <!-- /Content -->
+                          </ion-item>
+                          <!-- /Item -->
+                        </ion-item-group>
+                        <!-- /Item group -->
+                      </ion-list>
+                      <!-- /List -->
+                    </div>
+                    <!-- /Card wrap -->
+                  </ion-col>
+                  <ion-col class="u-display--flex u-justify-content--flex-end u-no--pad-top u-no--pad-bot u-no--pad-rt">
+                    <!-- Title -->
+                    <div
+                      class="ion-no-padding c-title u-position--absolute c-title--inter-medium c-title--tag c-title--h1-color-brand-1-1 u-no--position">
+                      <!-- Title h1 -->
+                      <h1 class="c-title__h1">4 hour ago</h1>
+                      <!-- /Title h1 -->
+                    </div>
+                    <!-- /Title -->
+                  </ion-col>
+                </ion-row>
+                <!-- /Row -->
+              </ion-card>
+              <!-- /Card -->
+            </ion-item>
+            <!-- /Item -->
+          </ion-item-group>
+          <!-- /Item group -->
+        </ion-list>
+        <!-- /List -->
+      </div>
+      <!-- /Form -->
+    </div>
+    <!-- /Main wrapper -->
+  </ion-content>
+</div>
+
+<!-- Request generated successfully modal -->
+<ion-modal #modal trigger="open-modal"
+  class="c-modal c-modal--video-capture c-modal--height-100vh-360px c-modal--sm-height-100vh-290px">
+  <ng-template>
+
+    <!-- Request generated successfully modal content -->
+    <ion-content>
+
+      <!-- Request generated successfully modal card -->
+      <ion-card class="ion-no-margin u-no--box-shadow">
+
+        <!-- Request generated successfully modal thumbnail -->
+        <ion-thumbnail class="c-thumbnail c-thumbnail--width-80px c-thumbnail--height-80px c-thumbnail--order-details">
+          <!-- Request generated successfully modal icon -->
+          <ion-icon src="../../../../assets/images/order-details/fill-order-completed--color-brand-plus-white-20p.svg"
+            class="u-no--border-radius c-icon--width-100p c-icon--height-100p"></ion-icon>
+          <!-- /Request generated successfully modal icon -->
+        </ion-thumbnail>
+        <!-- /Request generated successfully modal thumbnail -->
+
+        <!-- Request generated successfully modal card header -->
+        <ion-card-header class="ion-no-padding ion-text-center">
+          <!-- Request generated successfully modal card title -->
+          <ion-card-title
+            class="c-card-title c-card-title--inter-20px c-card-title--inter-medium c-card-title--color-black ion-no-margin c-card-title--order-details">
+            REQUEST GENERATED SUCCESSFULLY</ion-card-title>
+          <!-- /Request generated successfully modal card title -->
+        </ion-card-header>
+        <!-- /Request generated successfully modal card header -->
+
+        <!-- Request generated successfully modal card content -->
+        <ion-card-content
+          class="c-card-content ion-no-padding c-card-content--inter-14px c-card-content--inter-medium c-card-content--color-primary c-card-content--order-details ion-text-center u-no--mg-top">
+          Your service request has been recieved. Please click on continue to go to your dashboard and track your
+          order.
+        </ion-card-content>
+        <!-- /Request generated successfully modal card content -->
+
+      </ion-card>
+      <!-- /Request generated successfully modal card -->
+
+    </ion-content>
+    <!-- /Request generated successfully modal content -->
+
+    <!-- Request generated successfully modal footer -->
+    <ion-footer collapse="fade" class="l-footer l-footer--order-completed u-no--pad-bot">
+
+      <!-- Request generated successfully modal continue button -->
+      <ion-button
+        class="c-button ion-no-margin u-no--text-transform c-button--text-inter-16px c-button--text-inter-semibold c-button--text-color-primary u-no--border u-no--bg u-no--border-radius"
+        fill="clear" expand="full" type="submit">
+        CONTINUE
+        <!-- Request generated successfully modal right arrow icon -->
+        <ion-icon src="../../../../assets/images/outline-arrow-right--color-primary-color.svg"
+          class="c-icon c-icon--caret-rt u-no--mg-rt" slot="end"></ion-icon>
+        <!-- /Request generated successfully modal right arrow icon -->
+      </ion-button>
+      <!-- /Request generated successfully modal continue button -->
+
+    </ion-footer>
+    <!-- /Request generated successfully modal footer -->
+
+  </ng-template>
+</ion-modal>
+<!-- /Request generated successfully modal -->

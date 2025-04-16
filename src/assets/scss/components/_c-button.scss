@@ -1,0 +1,212 @@
+// Abstracts
+@use "../abstracts/mixins" as *;
+@use "../abstracts/typography" as *;
+@use "../abstracts/lists" as *;
+@use "../abstracts/colors" as *;
+@use "../abstracts/dimension" as *;
+@use "../abstracts/border-radius" as *;
+
+// Button
+.c-button {
+  $cButton: &;
+
+  @include gradient(to right, $active-button-color-list);
+
+  --color: #ffffff;
+
+  height: $height-50px;
+  border-radius: $border-radius-5px;
+
+  &--margin-top-15px {
+    margin-top: 15px;
+  }
+
+  &--margin-top-25px {
+    margin-top: 25px;
+  }
+
+  &--padding-left-right-10px-bottom-20px{
+    padding-right: 10px;
+    padding-left: 10px;
+    background: $body-bg-gray-1-1;
+    padding-bottom: 20px;
+  }
+
+  &--outline {
+    background: $white;
+    border: 2px solid;
+  }
+
+  &--border-color-primary {
+    border-color: $color-primary;
+  }
+
+  &.is-inactive {
+    @include gradient(to right, $inactive-button-color-list);
+  }
+
+  &--vendor-list {
+    margin: 0 auto;
+    width: $width-185px;
+    border-width: 1px;
+    border-color: $color-primary-1-1;
+    margin-top: 20px;
+  }
+
+  &--vendor-list,
+  &--account-details {
+    height: $height-30px;
+  }
+
+  &--border-color-brand-1-1 {
+    border-color: $color-brand-1-1;
+  }
+
+  &--order-details {
+    --padding-start: 0 !important;
+    --padding-end: 0 !important;
+  }
+
+  &--min-width-195px {
+    min-width: $width-195px;
+  }
+
+  &--width-80px {
+    width: 80px;
+  }
+
+  &--height-35px {
+    height: 35px;
+  }
+
+  &--height-48px {
+    height: 48px;
+  }
+
+  &--bg-color-primary-1-5 {
+    background: $color-primary-1-5;
+  }
+
+  &--min-width-166px {
+    min-width: $width-160px;
+  }
+  &--min-width-228px {
+    min-width: $width-230px;
+  }
+
+  &--min-width-114px {
+    min-width: $width-114px;
+  }
+
+  &--text-inter-18px {
+    font-size: $font-size-18px;
+  }
+
+  &--text-inter-medium {
+    font-weight: $font-weight-500;
+  }
+
+  &--text-color-brand-1-1 {
+    --color: #3da96c;
+  }
+
+  &--text-inter-14px {
+    font-size: $font-size-14px;
+  }
+
+  &--text-inter-13px {
+    font-size: $font-size-13px;
+  }
+
+  &--text-color-primary {
+    --color: #1d2935;
+  }
+
+  &--video-capture {
+    padding-top: 27px;
+  }
+
+  &--text-color-brand {
+    --color: #0c9447;
+  }
+
+  &--text-color-blue {
+    color: $color-violate;
+  }
+
+  &--border-color-brand {
+    border-color: $color-brand;
+  }
+
+  &--text-inter-16px {
+    font-size: $font-size-16px;
+  }
+
+  &--text-inter-semibold {
+    font-weight: $font-weight-600;
+  }
+
+  &--width-40px {
+    width: $width-40px;
+  }
+
+  &--height-40px {
+    height: $height-40px !important;
+  }
+
+  &--chat {
+    border-radius: $border-radius-55p;
+  }
+
+  &--bg-color-red {
+    background: $color-red;
+  }
+
+  &--width-100p {
+    width: $width-100p;
+  }
+
+  &--text-inter-12px {
+    font-size: $font-size-12px;
+  }
+
+  &--text-inter-15px{
+    font-size: 15px;
+  }
+
+  &--margin-5px{
+    margin: 5px;
+  }
+  &--payment {
+    padding: 0 5px;
+  }
+
+  &--bg-color-brand {
+    background: $color-brand;
+  }
+
+  &--height-25px {
+    height: 25px;
+  }
+
+  &--text-inter-10px {
+    font-size: $font-size-10px;
+  }
+  
+}
+/* Ripple effect */
+.ripple {
+  background-position: center;
+  transition: background 0.8s;
+}
+.ripple:hover {
+  background: #47f550 radial-gradient(circle, transparent 1%, #47f564 1%) center/15000%;
+}
+.ripple:active {
+  background-color: $color-brand;
+  background-size: 100%;
+  transition: background 0s;
+}
+ion-button{
+  font-size: $font-size-16px;
+}

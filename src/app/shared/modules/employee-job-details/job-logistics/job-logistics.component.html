@@ -1,0 +1,195 @@
+
+<!-- List -->
+<ion-list class="c-list u-no--bg ion-no-padding u-no--pad-bot c-list--view-vendor-quote">
+
+	<!-- Item group -->
+	<ion-item-group class="c-item-group u-no--pad-top u-no--pad-bot c-item-group--pickup-location">
+		<form>
+
+			<ng-container>
+			
+				<div class="c-item c-item--100p" *ngIf="pickup.length > 0">
+					<!-- {{location | json}} -->
+					<!-- c-title -->
+					<ion-title #titleEle
+						class="ion-no-padding c-title c-title--h1-inter-14px c-title--inter-medium c-title--h1-color-brand c-title--logistics u-position--relative ion-text-start">
+						<!-- <ng-container *ngIf="(logisticsInfo?.serviceCategory === 'moving_long_distance' || logisticsInfo?.serviceCategory === 'moving_short_distance'); else otherServiceTemplate"> -->
+						<ng-container>
+							<!-- Title h1 -->
+							<h1 class="c-title__h1 padding-top-bot-15px padding-bottom-5px" *ngIf="pickup[0]?.pin === 'pickup'">Pick-up</h1>
+							<h1 class="c-title__h1 padding-top-bot-15px padding-bottom-5px" *ngIf="pickup[0]?.pin === 'site'">Site</h1>
+							<!-- <h1 class="c-title__h1" *ngIf="i === 1">Drop off location</h1> -->
+							<!-- /Title h1 -->
+			
+						</ng-container>
+			
+						<ng-container *ngIf="false">
+							<h1 class="c-title__h1">Site</h1>
+							<!-- <span>save</span> -->
+						</ng-container>
+			
+					</ion-title>
+					<!-- /c-title -->
+					<div class="u-display--flex u-align-items--flex-start" *ngFor="let location of pickup">
+						<!-- Icon -->
+						<ion-icon src="../../../../assets/images/fill-location--color-brand-1-2.svg"
+							class="c-icon c-icon--view-vendor-quote"></ion-icon>
+						<!-- /Icon -->
+						<!-- Title -->
+						<!-- <h1>Pick up location</h1> -->
+						<div
+							class="c-title ion-no-padding c-title--h1-color-primary-1-1 c-title--inter-medium c-title--h1-inter-14px u-flex--flex-1 has-input-group">
+							<!-- Title h1 -->
+							<h1 class="c-title__h1">
+								{{location.address}},
+								{{location.city}},
+								{{location.state}},
+								{{location.zipcode}}
+							</h1>
+			
+						</div>
+						<!-- /Title -->
+					</div>
+					<!--Dummmy--location-->
+			
+					<!-- <div class="row-location">
+									<div class="u-display--flex u-align-items--flex-start column-marker" *ngFor="let location of locations">
+										<ion-icon src="../../../../assets/images/fill-location--color-brand-1-2.svg"
+											class="c-icon c-icon--view-vendor-quote icon-position"></ion-icon>
+			
+									</div>
+									<div
+										class="c-title ion-no-padding c-title--h1-color-primary-1-1 c-title--inter-medium c-title--h1-inter-14px u-flex--flex-1 has-input-group column-location">
+										<h1 class="c-title__h1">
+											{{location.address}},
+											{{location.city}},
+											{{location.state}},
+											{{location.zipcode}}
+										</h1>
+			
+									</div>
+			
+			
+								</div> -->
+					<!--Dummmy--location-->
+			
+				</div>
+			
+				<div class="c-item c-item--100p" *ngIf="intermediate.length > 0">
+					<!-- {{location | json}} -->
+					<!-- c-title -->
+					<ion-title #titleEle
+						class="ion-no-padding c-title c-title--h1-inter-14px c-title--inter-medium c-title--h1-color-brand c-title--logistics u-position--relative ion-text-start">
+						<!-- <ng-container *ngIf="(logisticsInfo?.serviceCategory === 'moving_long_distance' || logisticsInfo?.serviceCategory === 'moving_short_distance'); else otherServiceTemplate"> -->
+						<ng-container>
+							<!-- Title h1 -->
+							<h1 class="c-title__h1">Intermediate</h1>
+							<!-- <h1 class="c-title__h1" *ngIf="i === 1">Drop off location</h1> -->
+							<!-- /Title h1 -->
+			
+						</ng-container>
+			
+						<ng-container *ngIf="false">
+							<h1 class="c-title__h1">Site</h1>
+							<!-- <span>save</span> -->
+						</ng-container>
+			
+					</ion-title>
+					<!-- /c-title -->
+					<div class="padding-top-bot-15px u-display--flex u-align-items--flex-start"
+						*ngFor="let location of intermediate">
+						<!-- Icon -->
+						<ion-icon src="../../../../assets/images/fill-location--color-brand-1-2.svg"
+							class="c-icon c-icon--view-vendor-quote"></ion-icon>
+						<!-- /Icon -->
+						<!-- Title -->
+						<!-- <h1>Pick up location</h1> -->
+						<div
+							class=" c-title ion-no-padding c-title--h1-color-primary-1-1 c-title--inter-medium c-title--h1-inter-14px u-flex--flex-1 has-input-group">
+							<!-- Title h1 -->
+							<h1 class="c-title__h1">
+								{{location.address}},
+								{{location.city}},
+								{{location.state}},
+								{{location.zipcode}}
+							</h1>
+			
+						</div>
+						<!-- /Title -->
+					</div>
+					<!--Dummmy--location-->
+			
+					<!-- <div class="row-location">
+									<div class="u-display--flex u-align-items--flex-start column-marker" *ngFor="let location of locations">
+										<ion-icon src="../../../../assets/images/fill-location--color-brand-1-2.svg"
+											class="c-icon c-icon--view-vendor-quote icon-position"></ion-icon>
+			
+									</div>
+									<div
+										class="c-title ion-no-padding c-title--h1-color-primary-1-1 c-title--inter-medium c-title--h1-inter-14px u-flex--flex-1 has-input-group column-location">
+										<h1 class="c-title__h1">
+											{{location.address}},
+											{{location.city}},
+											{{location.state}},
+											{{location.zipcode}}
+										</h1>
+								
+									</div>
+								
+								
+								</div> -->
+					<!--Dummmy--location-->
+			
+				</div>
+			
+				<div class="c-item c-item--100p" *ngIf="dropup.length > 0">
+					<!-- {{location | json}} -->
+					<!-- c-title -->
+					<ion-title #titleEle
+						class="ion-no-padding c-title c-title--h1-inter-14px c-title--inter-medium c-title--h1-color-brand c-title--logistics u-position--relative ion-text-start">
+						<!-- <ng-container *ngIf="(logisticsInfo?.serviceCategory === 'moving_long_distance' || logisticsInfo?.serviceCategory === 'moving_short_distance'); else otherServiceTemplate"> -->
+						<ng-container>
+							<!-- Title h1 -->
+							<h1 class="c-title__h1">Drop-off</h1>
+							<!-- <h1 class="c-title__h1" *ngIf="i === 1">Drop off location</h1> -->
+							<!-- /Title h1 -->
+			
+						</ng-container>
+			
+						<ng-container *ngIf="false">
+							<h1 class="c-title__h1">Site</h1>
+							<!-- <span>save</span> -->
+						</ng-container>
+			
+					</ion-title>
+					<!-- /c-title -->
+					<div class="u-display--flex u-align-items--flex-start" *ngFor="let location of dropup">
+						<!-- Icon -->
+						<ion-icon src="../../../../assets/images/fill-location--color-brand-1-2.svg"
+							class="c-icon c-icon--view-vendor-quote"></ion-icon>
+						<!-- /Icon -->
+						<!-- Title -->
+						<!-- <h1>Pick up location</h1> -->
+						<div
+							class="c-title ion-no-padding c-title--h1-color-primary-1-1 c-title--inter-medium c-title--h1-inter-14px u-flex--flex-1 has-input-group">
+							<!-- Title h1 -->
+							<h1 class="c-title__h1">
+								{{location.address}},
+								{{location.city}},
+								{{location.state}},
+								{{location.zipcode}}
+							</h1>
+			
+						</div>
+						<!-- /Title -->
+					</div>
+				</div>
+			</ng-container>
+
+		</form>
+
+	</ion-item-group>
+	<!-- /Item group -->
+
+</ion-list>
+<!-- /List -->

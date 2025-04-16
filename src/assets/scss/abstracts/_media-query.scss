@@ -1,0 +1,43 @@
+// Abstracts
+@use "../abstracts/device-widths";
+
+@mixin breakpoint($point) {
+
+    @if ($point == small) {
+        @media only screen and (min-width: #{device-widths.$device--small}) {
+            @content;
+
+            .ion-col-width{
+            white-space: nowrap; 
+            width: 340px; 
+            overflow: hidden;
+            text-overflow: ellipsis;   
+            }
+        }
+    }
+
+    @else if ($point == medium) {
+        @media only screen and (min-width: #{device-widths.$device--medium}) {
+            @content;
+            .ion-col-width{
+                white-space: nowrap; 
+                width: 370px; 
+                overflow: hidden;
+                text-overflow: ellipsis;   
+                }
+        }
+    }
+
+    @else if ($point == large) {
+        @media only screen and (min-width: #{device-widths.$device--large}) {
+            @content;
+        }
+    }
+
+
+    @else if ($point == xlarge) {
+        @media only screen and (min-width: #{device-widths.$device--xlarge}) {
+            @content;
+        }
+    }
+}

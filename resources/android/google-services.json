@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "854140978931",
+    "project_id": "ggm-dev-2f06c",
+    "storage_bucket": "ggm-dev-2f06c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:854140978931:android:010a0fc9d750dda4c79986",
+        "android_client_info": {
+          "package_name": "com.goodgreen.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "854140978931-fs4l9hpipcua0pc606siqgc435b07p2v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBmHknXd65faehgJZQPWR1D3QE4s1jPzGE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "854140978931-fs4l9hpipcua0pc606siqgc435b07p2v.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

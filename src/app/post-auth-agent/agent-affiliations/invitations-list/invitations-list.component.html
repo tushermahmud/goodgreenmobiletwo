@@ -1,0 +1,62 @@
+<!-- Order details refresher -->
+<ion-refresher slot="fixed" (ionRefresh)="handlePullRefresh($event)" class="c-refresher c-refresher--color-brand"
+    pullFactor="1" pullMin="100" pullMax="200">
+    <ion-refresher-content pullingText="Pull to refresh" refreshingSpinner="bubbles" refreshingText="Refreshing...">
+    </ion-refresher-content>
+</ion-refresher>
+<!-- /Order details refresher -->
+<ion-list class="o-invitations-list ion-item-vertically-center">
+    <ng-container *ngIf="invitationsData?.affiliations.length > 0">
+
+        <ion-item *ngFor="let affiliation of invitationsData?.affiliations">
+            <ion-col class="padding-top-bot-10px ion-col-width">
+                <ion-label>
+                    <h3 class="font-weight-700-title u-display--flex u-align-items--center"><ion-icon
+                        src="../../../../assets/images/fill-avatar--color-brand-1-2.svg"
+                        class="c-icon c-icon--view-vendor-quote"></ion-icon>{{affiliation.name}}</h3>
+                    <p class="u-display--flex u-align-items--center font-weight-500-email "><ion-icon
+                        src="../../../../assets/images/fill-email--color-brand-1-2.svg"
+                        class="c-icon c-icon--view-vendor-quote"></ion-icon>{{affiliation.email}}</p>
+                    <p class="u-display--flex u-align-items--center font-weight-500-email "><ion-icon
+                        src="../../../../assets/images/fill-phone--color-brand-1-2.svg"
+                        class="c-icon c-icon--view-vendor-quote"></ion-icon>{{affiliation.phoneNumber}}</p>
+                    <p class="u-display--flex u-align-items--center font-weight-500-email"><ion-icon
+                        src="../../../../assets/images/fill-location--color-brand-1-2.svg"
+                        class="c-icon c-icon--view-vendor-quote"></ion-icon>{{affiliation?.address +  affiliation?.city + affiliation?.state + affiliation?.zipcode}}</p>
+                    <div class="accept-reject-btn">
+                        <ion-chip fill="solid" class="background-accepted border-radius-20px" (click)="acceptInvite(affiliation)">Accept</ion-chip>
+                        <ion-chip fill="solid" class="background-rejected border-radius-20px" (click)="rejectInvite(affiliation)">Reject</ion-chip>
+                    </div>
+                </ion-label>
+
+            </ion-col>
+            <!-- <ion-col size="4"> -->
+                <!--div style="display: flex; gap: 8px;">
+                    !--  *ngIf="affiliation.isControlVisible" -->
+                    <!--ion-icon class="background-accepted border-radius-20px" (click)="acceptInvite(affiliation)" name="checkmark"
+                        size="large"></ion-icon>
+                    <ion-icon class="background-rejected border-radius-20px" (click)="rejectInvite(affiliation)"
+                        name="close" size="large"></ion-icon>
+                </div--->
+                
+            <!-- </ion-col> -->
+        </ion-item>
+
+    </ng-container>
+
+
+    <div class="ion-item-vertically-center" *ngIf="invitationsData?.affiliations.length === 0">
+        <ion-item  lines="none">
+            <ion-thumbnail slot="start">
+                <img alt="Silhouette of mountains" src="../../../../assets/images/invite-email.svg" />
+            </ion-thumbnail>
+            <ion-label>
+                No invitations available.
+            </ion-label>
+        </ion-item>
+
+    </div>
+
+
+
+</ion-list>

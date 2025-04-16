@@ -1,0 +1,844 @@
+<!-- View vendor quotes header -->
+<ion-header collapse="fade" mode="md" class="l-header">
+  <app-header [headerMeta]="heraderInfo"></app-header>
+</ion-header>
+<!-- /View vendor quotes header -->
+
+<!-- View vendor quotes content -->
+<ion-content>
+  <!-- View vendor quotes refresher -->
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)" class="c-refresher c-refresher--color-brand"
+    pullFactor="1" pullMin="100" pullMax="200">
+    <ion-refresher-content pullingText="Pull to refresh" refreshingSpinner="bubbles" refreshingText="Refreshing...">
+    </ion-refresher-content>
+  </ion-refresher>
+  <!-- /View vendor quotes refresher -->
+
+  <!-- View vendor quotes main wrapper -->
+  <ion-grid class="l-main-wrapper ion-no-padding l-main-wrapper--get-started">
+    <ion-row>
+      <ion-col class="ion-no-padding">
+        <!-- View vendor quotes header -->
+        <ion-row>
+          <ion-col class="u-display--flex u-align-items--center u-no--pad-top u-no--pad-bot u-no--pad-lt" size="8">
+            <!-- Dollar icon -->
+            <ion-icon src="../../../../assets/images/fill-dollar-envelope--color-brand-plus-primary.svg"
+              class="c-icon u-no--border-radius c-icon--dollar-envelope c-icon--width-20px c-icon--height-20px">
+            </ion-icon>
+            <!-- /Dollar icon -->
+
+            <!-- Quotes business account name -->
+            <ion-text
+              class="ion-no-padding c-title c-title--get-started c-title--our-services c-title--h1-inter-15px c-title--inter-regular c-title--h1-black c-title--video-instructions u-no--mg-top">
+              <h1 class="c-title__h1">{{quote?.businessAccount.name}}</h1>
+            </ion-text>
+            <!-- /Quotes business account name -->
+          </ion-col>
+
+          <ion-col
+            class="u-display--flex u-align-items--center u-justify-content--flex-end u-no--pad-top u-no--pad-bot u-no--pad-rt">
+            <!-- Quote update date -->
+            <ion-text
+              class="ion-no-padding c-title u-no--mg-top c-title--addition-services c-title--h1-inter-12px c-title--h1-color-primary-1-1">
+              <h1 class="c-title__h1">{{quote?.updatedAt | date}}</h1>
+            </ion-text>
+            <!-- /Quote update date -->
+          </ion-col>
+          <!-- /Col -->
+        </ion-row>
+        <!-- /View vendor quotes header -->
+
+        <!-- View vendor quotes wrapper -->
+        <div class="l-form">
+          <!-- View vendor quotes list -->
+          <ion-list class="c-list u-no--bg ion-no-padding u-no--pad-bot c-list--overflow c-list--height-100vh-203px">
+            <ion-item-group class="c-item-group u-no--pad-top u-no--pad-bot c-item-group--pickup-location">
+              <!-- Quote item -->
+              <ion-item class="c-item ion-no-padding">
+                <!-- Quote main wrapper -->
+                <ion-row
+                  class="c-thumbnail c-thumbnail--video-capture c-thumbnail--width-100p c-thumbnail--body-bg-gray-1-1 c-card u-no--mg-bot u-no--height c-card--pickup-location c-card--addition-services">
+                  <ion-col class="ion-no-padding">
+                    <ion-row class="l-row u-no--mg l-row--pickup-location">
+                      <ion-col class="u-no--pad-top u-no--pad-bot u-no--pad-lt" size="7">
+                        <!-- Quote header -->
+                        <ion-row
+                          class="l-row u-no--mg-top u-no--mg-rt u-no--mg-lt l-row--pickup-location l-row--view-vendor-quote">
+                          <ion-col
+                            class="u-display--flex u-align-items--center u-no--pad-top u-no--pad-bot u-no--pad-lt">
+                            <!-- Quote title -->
+                            <ion-text
+                              class="c-title ion-no-padding c-title--h1-color-brand c-title--text-transform c-title--addition-services c-title--h1-inter-12px c-title--view-vendor-quote">
+                              <h1 class="c-title__h1">QUOTE</h1>
+                            </ion-text>
+                            <!-- /Quote title -->
+                          </ion-col>
+                        </ion-row>
+                        <!-- /Quote header -->
+
+                        <!-- Service item list -->
+                        <ion-list class="c-list u-no--bg ion-no-padding u-no--pad-bot c-list--view-vendor-quote">
+                          <ion-item-group class="c-item-group c-item-group--view-vendor-details">
+                            <!-- Service item -->
+                            <ion-item
+                              class="c-item ion-no-padding u-display--flex u-align-items--flex-start c-item--view-vendor-details">
+                              <!-- Dollar icon -->
+                              <ion-icon src="../../../../assets/images/fill-dollar--color-brand-1-2.svg"
+                                class="c-icon c-icon--width-20px c-icon--height-20px"></ion-icon>
+                              <!-- /Dollar icon -->
+
+                              <!-- Service item title -->
+                              <ion-text
+                                class="c-title ion-no-padding c-title--h1-color-primary c-title--inter-medium c-title--h1-inter-14px">
+                                <h1 class="c-title__h1">Service item</h1>
+                                <!-- <h1 class="c-title__h1">Grand Total: ${{quote?.grandTotal}} USD</h1> -->
+                              </ion-text>
+                              <!-- /Service item title -->
+                            </ion-item>
+                            <!-- /Service item -->
+                          </ion-item-group>
+                        </ion-list>
+                        <!-- /Service item list -->
+                      </ion-col>
+
+                      <ion-col
+                        class="u-display--flex u-align-items--center u-justify-content--flex-end u-no--pad-top u-no--pad-bot u-no--pad-rt u-text-overflow--ellipsis u-white-space--nowrap u-overflow--hidden"
+                        size="5">
+                        <!-- Quote grand total figure -->
+                        <ion-text class="o-received-quotes__quotes-amount">
+                          <h2 class="c-title__h1">
+                            ${{quote?.grandTotal}}</h2>
+                        </ion-text>
+                        <!-- /Quote grand total figure -->
+                      </ion-col>
+                    </ion-row>
+                  </ion-col>
+                </ion-row>
+                <!-- /Quote main wrapper -->
+              </ion-item>
+              <!-- /Quote item -->
+
+              <!-- Business info item -->
+              <ion-item class="c-item ion-no-padding">
+                <!-- Business info main wrapper -->
+                <ion-row
+                  class="c-thumbnail c-thumbnail--video-capture c-thumbnail--width-100p c-thumbnail--body-bg-gray-1-1 c-card u-no--mg-bot u-no--height c-card--pickup-location c-card--addition-services">
+                  <ion-col class="ion-no-padding">
+                    <!-- Business info header -->
+                    <ion-row
+                      class="l-row u-no--mg-top u-no--mg-rt u-no--mg-lt l-row--pickup-location l-row--view-vendor-quote">
+                      <ion-col class="u-display--flex u-align-items--center u-no--pad-top u-no--pad-bot u-no--pad-lt"
+                        size="8">
+                        <!-- Business info title -->
+                        <ion-text
+                          class="c-title ion-no-padding c-title--h1-color-brand c-title--text-transform c-title--addition-services c-title--h1-inter-12px c-title--view-vendor-quote">
+                          <h1 class="c-title__h1">Business info</h1>
+                        </ion-text>
+                        <!-- /Business info title -->
+                      </ion-col>
+
+                      <ion-col
+                        class="u-display--flex u-align-items--center u-justify-content--flex-end u-no--pad-top u-no--pad-bot u-no--pad-rt">
+                        <!-- Star rating list -->
+                        <ion-list
+                          class="c-list u-no--bg ion-no-padding u-no--pad-bot u-display--flex u-align-items--center">
+                          <ion-item-group
+                            class="c-item-group u-no--mg-top u-no--mg-bot u-display--flex u-align-items--center">
+                            <!-- Star rating item -->
+                            <ion-item class="c-item ion-no-padding u-no--pad-top u-no--pad-bot">
+                              <!-- Star icon -->
+                              <ion-icon src="../../../assets/images/fill-star--color-brand-1-2.svg"
+                                class="c-icon u-no--mg-rt c-icon--caret-down"></ion-icon>
+                              <!-- /Star icon -->
+                            </ion-item>
+                            <!-- /Star rating item -->
+
+                            <!-- Star rating item -->
+                            <ion-item class="c-item ion-no-padding u-no--pad-top u-no--pad-bot">
+                              <!-- Star icon -->
+                              <ion-icon src="../../../assets/images/fill-star--color-brand-1-2.svg"
+                                class="c-icon u-no--mg-rt c-icon--caret-down"></ion-icon>
+                              <!-- /Star icon -->
+                            </ion-item>
+                            <!-- /Star rating item -->
+
+                            <!-- Star rating item -->
+                            <ion-item class="c-item ion-no-padding u-no--pad-top u-no--pad-bot">
+                              <!-- Star icon -->
+                              <ion-icon src="../../../assets/images/fill-star--color-brand-1-2.svg"
+                                class="c-icon u-no--mg-rt c-icon--caret-down"></ion-icon>
+                              <!-- /Star icon -->
+                            </ion-item>
+                            <!-- /Star rating item -->
+
+                            <!-- Star rating item -->
+                            <ion-item class="c-item ion-no-padding u-no--pad-top u-no--pad-bot">
+                              <!-- Star icon -->
+                              <ion-icon src="../../../assets/images/fill-star--color-brand-1-2.svg"
+                                class="c-icon u-no--mg-rt c-icon--caret-down"></ion-icon>
+                              <!-- /Star icon -->
+                            </ion-item>
+                            <!-- /Star rating item -->
+
+                            <!-- Star rating item -->
+                            <ion-item class="c-item ion-no-padding u-no--pad-top u-no--pad-bot">
+                              <!-- Star icon -->
+                              <ion-icon src="../../../assets/images/outline-star--color-brand-1-2.svg"
+                                class="c-icon u-no--mg-rt c-icon--caret-down"></ion-icon>
+                              <!-- /Star icon -->
+                            </ion-item>
+                            <!-- /Star rating item -->
+                          </ion-item-group>
+                        </ion-list>
+                        <!-- /Star rating list -->
+                      </ion-col>
+                    </ion-row>
+                    <!-- /Business info header -->
+
+                    <!-- Business info list -->
+                    <ion-list class="c-list u-no--bg ion-no-padding u-no--pad-bot c-list--view-vendor-quote">
+                      <ion-item-group class="c-item-group c-item-group--view-vendor-details">
+
+                        <!-- Quote business account name item -->
+                        <ion-item
+                          class="c-item ion-no-padding u-display--flex u-align-items--flex-start c-item--view-vendor-details">
+
+                          <!-- Avatar icon -->
+                          <ion-icon src="../../../../assets/images/fill-avatar--color-brand-1-2.svg"
+                            class="c-icon c-icon--width-20px c-icon--height-20px"></ion-icon>
+                          <!-- /Avatar icon -->
+
+                          <!-- Quote business account name label -->
+                          <ion-text
+                            class="c-title ion-no-padding c-title--h1-color-primary c-title--inter-medium c-title--h1-inter-14px">
+                            <h1 class="c-title__h1">{{quote?.businessAccount.name}}</h1>
+                          </ion-text>
+                          <!-- /Quote business account name label -->
+                        </ion-item>
+                        <!-- /Quote business account name item -->
+
+                        <!-- Quote business account phone item -->
+                        <ion-item
+                          class="c-item ion-no-padding u-display--flex u-align-items--flex-start c-item--view-vendor-details">
+
+                          <!-- Phone icon -->
+                          <ion-icon src="../../../../assets/images/fill-phone--color-brand-1-2.svg"
+                            class="c-icon c-icon--width-20px c-icon--height-20px"></ion-icon>
+                          <!-- /Phone icon -->
+
+                          <!-- Quote business account phone label -->
+                          <ion-text
+                            class="c-title ion-no-padding c-title--h1-color-primary c-title--inter-medium c-title--h1-inter-14px">
+                            <h1 class="c-title__h1">{{quote?.businessAccount.phoneNumber}}</h1>
+                          </ion-text>
+                          <!-- /Quote business account phone label -->
+                        </ion-item>
+                        <!-- /Quote business account phone item -->
+
+                        <!-- Quote business account email item -->
+                        <ion-item
+                          class="c-item ion-no-padding u-display--flex u-align-items--flex-start c-item--view-vendor-details">
+
+                          <!-- Email icon -->
+                          <ion-icon src="../../../../assets/images/fill-email--color-brand-1-2.svg"
+                            class="c-icon c-icon--width-20px c-icon--height-20px"></ion-icon>
+                          <!-- /Email icon -->
+
+                          <!-- Quote business account email label -->
+                          <ion-text
+                            class="c-title ion-no-padding c-title--h1-color-primary c-title--inter-medium c-title--h1-inter-14px">
+                            <h1 class="c-title__h1">{{quote?.businessAccount.email}}</h1>
+                          </ion-text>
+                          <!-- /Quote business account email label -->
+                        </ion-item>
+                        <!-- /Quote business account email item -->
+
+                        <!-- Quote business account address item -->
+                        <ion-item
+                          class="c-item ion-no-padding u-display--flex u-align-items--flex-start c-item--view-vendor-details">
+                          <!-- Location icon -->
+                          <ion-icon src="../../../../assets/images/fill-location--color-brand-1-2.svg"
+                            class="c-icon c-icon--width-20px c-icon--height-20px"></ion-icon>
+                          <!-- /Location icon -->
+
+                          <!-- Quote business account address label -->
+                          <ion-text
+                            class="c-title ion-no-padding c-title--h1-color-primary c-title--inter-medium c-title--h1-inter-14px">
+                            <h1 class="c-title__h1">
+                              {{quote?.businessAccount.address}},
+                              {{quote?.businessAccount.city}},
+                              {{quote?.businessAccount.state}},
+                              {{quote?.businessAccount.zipcode}}
+                            </h1>
+                          </ion-text>
+                          <!-- /Quote business account address label -->
+                        </ion-item>
+                        <!-- /Quote business account address item -->
+                      </ion-item-group>
+                    </ion-list>
+                    <!-- /Business info list -->
+                  </ion-col>
+                </ion-row>
+                <!-- /Business info main wrapper -->
+              </ion-item>
+              <!-- /Business info item -->
+
+              <!-- documents associated -->
+              <!-- <app-service-documents [documents]="documents"></app-service-documents> -->
+              <app-service-documents [documents]="documents"></app-service-documents>
+
+              <!-- Item -->
+              <ion-item class="c-item ion-no-padding" *ngIf="false">
+                <!-- Quote document main wrapper -->
+                <ion-row
+                  class="c-thumbnail c-thumbnail--video-capture c-thumbnail--width-100p c-thumbnail--body-bg-gray-1-1 c-card u-no--mg-bot u-no--height c-card--pickup-location c-card--addition-services">
+                  <ion-col class="ion-no-padding">
+
+                    <!-- Row -->
+                    <ion-row
+                      class="l-row u-no--mg-top u-no--mg-rt u-no--mg-lt l-row--pickup-location l-row--view-vendor-quote">
+                      <ion-col class="u-display--flex u-align-items--center ion-no-padding">
+
+                        <!-- Title -->
+                        <ion-text
+                          class="c-title ion-no-padding c-title--h1-color-brand c-title--text-transform c-title--addition-services c-title--h1-inter-12px c-title--view-vendor-quote">
+
+                          <!-- Title h1 -->
+                          <h1 class="c-title__h1">QUOTE DOCUMENTS</h1>
+                          <!-- /Title h1 -->
+
+                        </ion-text>
+                        <!-- /Title -->
+
+                      </ion-col>
+                    </ion-row>
+                    <!-- /Row -->
+
+                    <!-- Row -->
+                    <ion-row class="l-row l-row--quote-documents">
+
+                      <!-- Col -->
+                      <ion-col class="l-col l-col--view-vendor-quote l-col--vendor-details" (click)="openDoc()">
+
+                        <!-- Card -->
+                        <ion-card
+                          class="c-card ion-no-margin u-no--box-shadow u-display--flex u-align-items--center u-justify-content--center u-flex-direction--column u-no--mg-bot c-card--bg-white c-card--video-upload-and-shoot c-card--height-90px c-card--pickup-location c-card--view-vendor-quote">
+
+                          <!-- Icon -->
+                          <ion-icon src="../../../../assets/images/fill-doc--color-blue.svg"
+                            class="c-icon u-no--mg-rt u-no--border-radius"></ion-icon>
+                          <!-- /Icon -->
+
+                          <!-- Title -->
+                          <ion-text
+                            class="c-title ion-no-padding ion-text-center c-title--video-instructions c-title--h1-color-primary-1-1 c-title--addition-services c-title--h1-inter-12px c-title--quote-documents">
+
+                            <!-- Title h1 -->
+                            <h1 class="c-title__h1">Quote</h1>
+                            <!-- /Title h1 -->
+
+                          </ion-text>
+                          <!-- /Title -->
+
+                        </ion-card>
+                        <!-- /Card -->
+
+                      </ion-col>
+                      <!-- /Col -->
+
+                      <!-- Col -->
+                      <ion-col class="l-col l-col--view-vendor-quote l-col--vendor-details">
+
+                        <!-- Card -->
+                        <ion-card
+                          class="c-card ion-no-margin u-no--box-shadow u-display--flex u-align-items--center u-justify-content--center u-flex-direction--column u-no--mg-bot c-card--bg-white c-card--video-upload-and-shoot c-card--height-90px c-card--pickup-location c-card--view-vendor-quote">
+
+                          <!-- Icon -->
+                          <ion-icon src="../../../../assets/images/fill-pdf--color-red.svg"
+                            class="c-icon u-no--mg-rt u-no--border-radius"></ion-icon>
+                          <!-- /Icon -->
+
+                          <!-- Title -->
+                          <ion-text
+                            class="c-title ion-no-padding ion-text-center c-title--video-instructions c-title--h1-color-primary-1-1 c-title--addition-services c-title--h1-inter-12px c-title--quote-documents">
+
+                            <!-- Title h1 -->
+                            <h1 class="c-title__h1">Contract</h1>
+                            <!-- /Title h1 -->
+
+                          </ion-text>
+                          <!-- /Title -->
+
+                        </ion-card>
+                        <!-- /Card -->
+
+                      </ion-col>
+                      <!-- /Col -->
+
+                      <!-- Col -->
+                      <ion-col class="l-col l-col--view-vendor-quote l-col--vendor-details">
+
+                        <!-- Card -->
+                        <ion-card
+                          class="c-card ion-no-margin u-no--box-shadow u-display--flex u-align-items--center u-justify-content--center u-flex-direction--column u-no--mg-bot c-card--bg-white c-card--video-upload-and-shoot c-card--height-90px c-card--pickup-location c-card--view-vendor-quote">
+
+                          <!-- Icon -->
+                          <ion-icon src="../../../../assets/images/fill-pdf--color-red.svg"
+                            class="c-icon u-no--mg-rt u-no--border-radius"></ion-icon>
+                          <!-- /Icon -->
+
+                          <!-- Title -->
+                          <ion-text
+                            class="c-title ion-no-padding ion-text-center c-title--video-instructions c-title--h1-color-primary-1-1 c-title--addition-services c-title--h1-inter-12px c-title--quote-documents">
+
+                            <!-- Title h1 -->
+                            <h1 class="c-title__h1">Addendum</h1>
+                            <!-- /Title h1 -->
+
+                          </ion-text>
+                          <!-- /Title -->
+
+                        </ion-card>
+                        <!-- /Card -->
+
+                      </ion-col>
+                      <!-- /Col -->
+
+                    </ion-row>
+                    <!-- /Row -->
+                  </ion-col>
+                </ion-row>
+                <!-- /Quote document main wrapper -->
+              </ion-item>
+              <!-- /Item -->
+
+              <!-- Item -->
+              <ion-item class="c-item ion-no-padding" *ngIf="false">
+                <!-- Notes from vendor main wrapper -->
+                <ion-row
+                  class="c-thumbnail c-thumbnail--video-capture c-thumbnail--width-100p c-thumbnail--body-bg-gray-1-1 c-card u-no--mg-bot u-no--height c-card--pickup-location c-card--addition-services">
+                  <ion-col class="ion-no-padding">
+
+                    <!-- Row -->
+                    <ion-row
+                      class="l-row u-no--mg-top u-no--mg-rt u-no--mg-lt l-row--pickup-location l-row--view-vendor-quote">
+                      <ion-col class="u-display--flex u-align-items--center ion-no-padding">
+
+                        <!-- Title -->
+                        <ion-text
+                          class="c-title ion-no-padding c-title--h1-color-brand c-title--text-transform c-title--addition-services c-title--h1-inter-12px c-title--view-vendor-quote">
+
+                          <!-- Title h1 -->
+                          <h1 class="c-title__h1">NOTES FROM VENDOR</h1>
+                          <!-- /Title h1 -->
+
+                        </ion-text>
+                        <!-- /Title -->
+
+                      </ion-col>
+                    </ion-row>
+                    <!-- /Row -->
+
+                    <!-- Content -->
+                    <div
+                      class="c-content c-content--p-inter-14px u-no--mg-top c-content--color-primary-1-2 c-content--view-vendor-quote c-content--p-inter-medium">
+
+                      <!-- Content p -->
+                      <p class="c-content__p">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ut sapien ante. Proin rutrum at
+                        ipsum
+                        sit amet dapibus.
+                      </p>
+                      <!-- /Content p -->
+
+                    </div>
+                    <!-- /Content -->
+                  </ion-col>
+                </ion-row>
+                <!-- /Notes from vendor main wrapper -->
+              </ion-item>
+              <!-- /Item -->
+
+              <!-- Item -->
+              <ion-item class="c-item ion-no-padding" *ngIf="false">
+                <!-- Customer review main wrapper -->
+                <ion-row
+                  class="c-thumbnail c-thumbnail--video-capture c-thumbnail--width-100p c-thumbnail--body-bg-gray-1-1 c-card u-no--mg-bot u-no--height c-card--pickup-location c-card--addition-services">
+                  <ion-col class="ion-no-padding">
+
+                    <!-- Row -->
+                    <ion-row
+                      class="l-row u-no--mg-top u-no--mg-rt u-no--mg-lt l-row--pickup-location l-row--view-vendor-quote">
+                      <ion-col class="u-display--flex u-align-items--center ion-no-padding">
+
+                        <!-- Title -->
+                        <ion-text
+                          class="c-title ion-no-padding c-title--h1-color-brand c-title--text-transform c-title--addition-services c-title--h1-inter-12px c-title--view-vendor-quote">
+
+                          <!-- Title h1 -->
+                          <h1 class="c-title__h1">CUSTOMER REVIEWS</h1>
+                          <!-- /Title h1 -->
+
+                        </ion-text>
+                        <!-- /Title -->
+
+                      </ion-col>
+                    </ion-row>
+                    <!-- /Row -->
+
+                    <!-- List -->
+                    <ion-list class="c-list u-no--bg ion-no-padding u-no--pad-bot c-list--view-vendor-quote">
+
+                      <!-- Item group -->
+                      <ion-item-group class="c-item-group u-no--pad-top u-no--pad-bot c-item-group--pickup-location">
+
+                        <!-- Item -->
+                        <ion-item class="c-item ion-no-padding">
+
+                          <!-- Item wrap -->
+                          <div class="c-item__wrap">
+
+                            <!-- c-title -->
+                            <ion-title
+                              class="ion-no-padding c-title c-title--h1-inter-14px c-title--inter-medium c-title--h1-color-brand-1-1 c-title--customer-review">
+
+                              <!-- Title h1 -->
+                              <h1 class="c-title__h1">Excelent Service</h1>
+                              <!-- /Title h1 -->
+
+                            </ion-title>
+                            <!-- /c-title -->
+
+                            <!-- Row -->
+                            <ion-row class="l-row l-row--quote-documents">
+
+                              <!-- Col -->
+                              <ion-col class="l-col l-col--view-vendor-quote ion-text-center" size="1">
+
+                                <!-- Icon -->
+                                <ion-icon src="../../../../assets/images/fill-star--color-yellow-1-1.svg"
+                                  class="c-icon u-no--border-radius u-no--mg-rt c-icon--customer-reviews"></ion-icon>
+                                <!-- /Icon -->
+
+                                <!-- Title -->
+                                <ion-text
+                                  class="c-title ion-no-padding c-title--h1-color-primary-1-1 c-title--inter-medium c-title--addition-services c-title--h1-inter-12px">
+
+                                  <!-- Title h1 -->
+                                  <h1 class="c-title__h1">4.9</h1>
+                                  <!-- /Title h1 -->
+
+                                </ion-text>
+                                <!-- /Title -->
+
+                              </ion-col>
+                              <!-- /Col -->
+
+                              <!-- Col -->
+                              <ion-col class="l-col l-col--view-vendor-quote">
+
+                                <!-- Content -->
+                                <div
+                                  class="c-content c-content--p-inter-14px u-no--mg-top c-content--color-primary-1-2 c-content--view-vendor-quote c-content--p-inter-medium c-content--customer-reviews">
+
+                                  <!-- Content p -->
+                                  <p class="c-content__p">
+                                    Lorem ipsum dolor sit amet, sectetur adipiscing elit. Proin sed dolor diam lobortis
+                                    nunc a
+                                    dolor pellente.
+                                  </p>
+                                  <!-- /Content p -->
+
+                                </div>
+                                <!-- /Content -->
+
+                                <!-- Title -->
+                                <div
+                                  class="c-title ion-no-padding c-title--h1-color-primary-1-1 c-title--inter-medium c-title--addition-services c-title--h1-inter-12px c-title--user-name ion-text-right">
+
+                                  <!-- Title h1 -->
+                                  <h1 class="c-title__h1">- Jane Doe</h1>
+                                  <!-- /Title h1 -->
+
+                                </div>
+                                <!-- /Title -->
+
+                              </ion-col>
+                              <!-- /Col -->
+
+                            </ion-row>
+                            <!-- /Row -->
+
+                          </div>
+                          <!-- /Item wrap -->
+
+                        </ion-item>
+                        <!-- /Item -->
+
+                        <!-- Item -->
+                        <ion-item class="c-item ion-no-padding">
+
+                          <!-- Item wrap -->
+                          <div class="c-item__wrap">
+
+                            <!-- c-title -->
+                            <ion-title
+                              class="ion-no-padding c-title c-title--h1-inter-14px c-title--inter-medium c-title--h1-color-brand-1-1 c-title--customer-review">
+
+                              <!-- Title h1 -->
+                              <h1 class="c-title__h1">Super Happy With Their Work</h1>
+                              <!-- /Title h1 -->
+
+                            </ion-title>
+                            <!-- /c-title -->
+
+                            <!-- Row -->
+                            <ion-row class="l-row l-row--quote-documents">
+
+                              <!-- Col -->
+                              <ion-col class="l-col l-col--view-vendor-quote ion-text-center" size="1">
+
+                                <!-- Icon -->
+                                <ion-icon src="../../../../assets/images/fill-star--color-yellow-1-1.svg"
+                                  class="c-icon u-no--border-radius u-no--mg-rt c-icon--customer-reviews"></ion-icon>
+                                <!-- /Icon -->
+
+                                <!-- Title -->
+                                <div
+                                  class="c-title ion-no-padding c-title--h1-color-primary-1-1 c-title--inter-medium c-title--addition-services c-title--h1-inter-12px">
+
+                                  <!-- Title h1 -->
+                                  <h1 class="c-title__h1">4.9</h1>
+                                  <!-- /Title h1 -->
+
+                                </div>
+                                <!-- /Title -->
+
+                              </ion-col>
+                              <!-- /Col -->
+
+                              <!-- Col -->
+                              <ion-col class="l-col l-col--view-vendor-quote">
+
+                                <!-- Content -->
+                                <div
+                                  class="c-content c-content--p-inter-14px u-no--mg-top c-content--color-primary-1-2 c-content--view-vendor-quote c-content--p-inter-medium c-content--customer-reviews">
+
+                                  <!-- Content p -->
+                                  <p class="c-content__p">
+                                    Lorem ipsum dolor sit amet, sectetur adipiscing elit. Proin sed dolor diam lobortis
+                                    nunc a
+                                    dolor pellente.
+                                  </p>
+                                  <!-- /Content p -->
+
+                                </div>
+                                <!-- /Content -->
+
+                                <!-- Title -->
+                                <div
+                                  class="c-title ion-no-padding c-title--h1-color-primary-1-1 c-title--inter-medium c-title--addition-services c-title--h1-inter-12px c-title--user-name ion-text-right">
+
+                                  <!-- Title h1 -->
+                                  <h1 class="c-title__h1">- Jane Doe</h1>
+                                  <!-- /Title h1 -->
+
+                                </div>
+                                <!-- /Title -->
+
+                              </ion-col>
+                              <!-- /Col -->
+
+                            </ion-row>
+                            <!-- /Row -->
+
+                          </div>
+                          <!-- /Item wrap -->
+
+                        </ion-item>
+                        <!-- /Item -->
+
+                        <!-- Item -->
+                        <ion-item class="c-item ion-no-padding">
+
+                          <!-- Item wrap -->
+                          <div class="c-item__wrap">
+
+                            <!-- c-title -->
+                            <ion-title
+                              class="ion-no-padding c-title c-title--h1-inter-14px c-title--inter-medium c-title--h1-color-brand-1-1 c-title--customer-review">
+
+                              <!-- Title h1 -->
+                              <h1 class="c-title__h1">Neat & Professional</h1>
+                              <!-- /Title h1 -->
+
+                            </ion-title>
+                            <!-- /c-title -->
+
+                            <!-- Row -->
+                            <ion-row class="l-row l-row--quote-documents">
+
+                              <!-- Col -->
+                              <ion-col class="l-col l-col--view-vendor-quote ion-text-center" size="1">
+
+                                <!-- Icon -->
+                                <ion-icon src="../../../../assets/images/fill-star--color-yellow-1-1.svg"
+                                  class="c-icon u-no--border-radius u-no--mg-rt c-icon--customer-reviews"></ion-icon>
+                                <!-- /Icon -->
+
+                                <!-- Title -->
+                                <div
+                                  class="c-title ion-no-padding c-title--h1-color-primary-1-1 c-title--inter-medium c-title--addition-services c-title--h1-inter-12px">
+
+                                  <!-- Title h1 -->
+                                  <h1 class="c-title__h1">4.9</h1>
+                                  <!-- /Title h1 -->
+
+                                </div>
+                                <!-- /Title -->
+
+                              </ion-col>
+                              <!-- /Col -->
+
+                              <!-- Col -->
+                              <ion-col class="l-col l-col--view-vendor-quote">
+
+                                <!-- Content -->
+                                <div
+                                  class="c-content c-content--p-inter-14px u-no--mg-top c-content--color-primary-1-2 c-content--view-vendor-quote c-content--p-inter-medium c-content--customer-reviews">
+
+                                  <!-- Content p -->
+                                  <p class="c-content__p">
+                                    Lorem ipsum dolor sit amet, sectetur adipiscing elit. Proin sed dolor diam lobortis
+                                    nunc a
+                                    dolor pellente.
+                                  </p>
+                                  <!-- /Content p -->
+
+                                </div>
+                                <!-- /Content -->
+
+                                <!-- Title -->
+                                <div
+                                  class="c-title ion-no-padding c-title--h1-color-primary-1-1 c-title--inter-medium c-title--addition-services c-title--h1-inter-12px c-title--user-name ion-text-right">
+
+                                  <!-- Title h1 -->
+                                  <h1 class="c-title__h1">- Jane Doe</h1>
+                                  <!-- /Title h1 -->
+
+                                </div>
+                                <!-- /Title -->
+
+                              </ion-col>
+                              <!-- /Col -->
+
+                            </ion-row>
+                            <!-- /Row -->
+
+                          </div>
+                          <!-- /Item wrap -->
+
+                        </ion-item>
+                        <!-- /Item -->
+
+                      </ion-item-group>
+                      <!-- /Item group -->
+
+                    </ion-list>
+                    <!-- /List -->
+                  </ion-col>
+                </ion-row>
+                <!-- /Customer review main wrapper -->
+              </ion-item>
+              <!-- /Item -->
+            </ion-item-group>
+            <!-- /Item group -->
+          </ion-list>
+          <!-- /View vendor quotes list -->
+        </div>
+        <!-- /View vendor quotes wrapper -->
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <!-- /View vendor quotes main wrapper -->
+</ion-content>
+<!-- /View vendor quotes content -->
+
+<!-- View vendor quotes footer -->
+<ion-footer collapse="fade" class="l-footer l-footer--order-completed">
+  <!-- View vendor quotes main wrapper -->
+  <ion-toolbar class="l-main-wrapper ion-text-center">
+    <ion-row class="l-row l-row--quote-documents l-row--bg-color-white">
+      <ion-col class="l-col l-col--view-vendor-quote ion-text-center" *ngIf="false">
+        <!-- Chat button - HIDE CHAT for now -->
+        <ion-button
+          class="c-button ion-no-margin u-no--text-transform c-button--outline c-button--border-color-brand c-button--text-color-brand c-button--text-inter-14px c-button--text-inter-medium"
+          fill="clear" expand="full" (click)="openChat()">
+          Chat
+          <!-- Chat button caret right icon -->
+          <ion-icon src="../../../../assets/images/outline-caret-right--color-brand.svg"
+            class="c-icon u-no--mg-rt u-no--border-radius c-icon--caret-down" slot="end"></ion-icon>
+          <!-- /Chat button caret right icon -->
+        </ion-button>
+        <!-- /Chat button -->
+      </ion-col>
+
+      <ion-col class="l-col l-col--view-vendor-quote" *ngIf="quote?.status !== 'accepted' && quote?.status !== 'lost'"
+        (click)="acceptQuote()">
+        <!-- Accept quote button -->
+        <ion-button
+          class="c-button ion-no-margin u-no--text-transform c-button--text-inter-14px c-button--text-inter-medium"
+          fill="clear" expand="full" *ngIf="quote?.status !== 'accepted'">
+          Accept Quote
+          <!-- Accept quote button caret right icon -->
+          <ion-icon src="../../../assets/images/outline-caret-right--color-white.svg"
+            class="c-icon c-icon--caret-rt u-no--mg-rt" slot="end"></ion-icon>
+          <!-- /Accept quote button caret right icon -->
+        </ion-button>
+        <!-- /Accept quote button -->
+
+        <!-- Quote accepted button -->
+        <ion-button
+          class="c-button ion-no-margin u-no--text-transform c-button--text-inter-14px c-button--text-inter-medium"
+          fill="clear" expand="full" *ngIf="quote?.status === 'accepted'">
+          Quote Accepted
+          <!-- Quote accepted button caret right icon -->
+          <ion-icon src="../../../assets/images/outline-caret-right--color-white.svg"
+            class="c-icon c-icon--caret-rt u-no--mg-rt" slot="end"></ion-icon>
+          <!-- /Quote accepted button caret right icon -->
+        </ion-button>
+        <!-- /Quote accepted button -->
+      </ion-col>
+
+      <ion-col class="l-col l-col--view-vendor-quote" *ngIf="quote?.status === 'accepted' && isContratAvailbale && isContractNotSigned && isPaymentPending">
+        <!-- Make payment button -->
+        <ion-button
+          class="c-button ion-no-margin u-no--text-transform c-button--text-inter-14px c-button--text-inter-medium"
+          fill="clear" expand="full" (click)="checkContractSigned()">
+          Sign Contract
+        </ion-button>
+        <!-- /Make payment button -->
+      </ion-col>
+
+      <ion-col class="l-col l-col--view-vendor-quote" *ngIf="quote?.status === 'accepted' && isContratAvailbale && !isContractNotSigned && isPaymentPending">
+        <!-- Make payment button -->
+        <ion-button
+          class="c-button ion-no-margin u-no--text-transform c-button--text-inter-14px c-button--text-inter-medium"
+          fill="clear" expand="full" (click)="openPaymentsScreen($event)">
+          Make Payment
+          <!-- Make payment button caret right icon -->
+          <ion-icon src="../../../assets/images/outline-caret-right--color-white.svg"
+            class="c-icon c-icon--caret-rt u-no--mg-rt" slot="end"></ion-icon>
+          <!-- /Make payment button caret right icon -->
+        </ion-button>
+        <!-- /Make payment button -->
+      </ion-col>
+      <!-- /Col -->
+
+    </ion-row>
+    <!-- /Row -->
+
+  </ion-toolbar>
+  <!-- /View vendor quotes main wrapper -->
+</ion-footer>
+<!-- /View vendor quotes footer -->

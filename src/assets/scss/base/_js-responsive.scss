@@ -1,0 +1,42 @@
+// Abstracts
+@use "../abstracts/colors";
+@use "../abstracts/typography";
+@use "../abstracts/animations";
+@use "../abstracts/functions";
+@use "../abstracts/media-query";
+
+body::after {
+	display: none;
+	content: 'xsmallscreen';
+	@include media-query.breakpoint(small) {
+		content: 'smallscreen';
+	}
+	@include media-query.breakpoint(medium) {
+		content: 'mediumscreen';
+	}
+	@include media-query.breakpoint(large) {
+		content: 'largescreen';
+	}
+	@include media-query.breakpoint(xlarge) {
+		content: 'xlargescreen';
+	}
+}
+
+/**
+Used for responsive js :
+
+var size = window.getComputedStyle(document.body,':before').getPropertyValue('content');
+
+// string search for "smallscreen"
+if (size.indexOf("smallscreen") !=-1) {
+  // small screen JS
+} else if (size.indexOf("mediumscreen") !=-1) {
+  // medium screen JS
+} else if (size.indexOf("largescreen") !=-1) {
+  // large screen JS
+} else if (size.indexOf("xlargescreen") !=-1) {
+  // extra large screen JS
+} else {
+	// extra small screen js
+}
+*/

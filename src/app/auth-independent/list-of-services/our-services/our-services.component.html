@@ -1,0 +1,89 @@
+<!-- Our services header -->
+<ion-header collapse="fade" mode="md" class="l-header">
+  <app-header [headerMeta]="heraderInfo"></app-header>
+</ion-header>
+<!-- /Our services header -->
+
+
+<!-- Our services content -->
+<ion-content>
+  <!-- Our services main wrapper -->
+  <div class="l-main-wrapper l-main-wrapper--get-started l-main-wrapper--min-height-100vh-166px">
+    <ion-grid class="ion-no-padding">
+      <!-- This is for agent to select his affiliation while creating a new request -->
+      <ion-row class="l-row l-row--n-margin-10px" *ngIf="authData?.isAuthenticated  && authData.authMeta.type === 'agent'">
+        <!-- <p>Selection</p> -->
+        <ion-item style="width: 100%;">
+          <ion-label>Select Affiliation</ion-label>
+
+          <ion-select #serviceSelect placeholder="Select affiliation" (ionChange)="onAffiliationChange($event)">
+            <ion-select-option [value]="affiliation.id" *ngFor="let affiliation of affiliationsData?.affiliations">{{affiliation.name}}</ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-row>
+      <!-- This is for agent to select his affiliation while creating a new request -->
+      <!-- Our services row -->
+      <ion-row class="l-row l-row--n-margin-10px" *ngIf="services?.length > 0">
+        <!-- Our services col -->
+        <ion-col class="l-col l-col--padding-10px l-col--our-services" size="6"
+          *ngFor="let service of services; let i = index;" (click)="selectService(i)">
+          <!-- Our services card -->
+          <ion-card
+            class="c-thumbnail c-thumbnail--width-100p c-thumbnail--height-100p c-card c-card--our-services c-thumbnail--background-none ion-no-margin u-no--box-shadow u-display--flex ion-align-items-center ion-justify-content-center u-flex-direction--column u-no--mg-bot"
+            [ngClass]="{'is-selected': selectedServiceId === service.id}">
+            <!-- Our services thumbnail -->
+            <ion-thumbnail class="c-thumbnail c-thumbnail--width-75px">
+              <!-- Our services icon -->
+              <ion-icon [src]="service.logoUrl"
+                class="u-no--border-radius c-icon--width-100p c-icon--height-100p c-icon--uncheck"></ion-icon>
+              <!-- /Our services icon -->
+
+              <!-- Our services icon -->
+              <ion-icon src="../../../../assets/images/all-services/selected-service-check.svg"
+                class="u-no--border-radius c-icon--width-100p c-icon--height-100p c-icon--check"></ion-icon>
+              <!-- /Our services icon -->
+            </ion-thumbnail>
+            <!-- /Our services thumbnail -->
+
+            <!-- Our services card header -->
+            <ion-card-header class="ion-no-padding c-card-header c-card-header--our-services">
+              <!-- Our services card title -->
+              <ion-card-title
+                class="c-card-title c-card-title--inter-16px c-card-title--inter-regular c-card-title--color-black ion-no-margin ion-text-center c-card-title--is-selected-color-white">
+                {{service.label}}</ion-card-title>
+              <!-- /Our services card title -->
+            </ion-card-header>
+            <!-- /Our services card header -->
+          </ion-card>
+          <!-- /Our services card -->
+        </ion-col>
+        <!-- /Our services col -->
+      </ion-row>
+      <!-- /Our services main row -->
+    </ion-grid>
+  </div>
+  <!-- /Our services main wrapper -->
+</ion-content>
+<!-- /Our services content -->
+
+<!-- Our services footer -->
+<div class="o-opp-create">
+<ion-footer collapse="fade" class="l-footer l-footer--order-completed">
+  <!-- Our services main wrapper -->
+  <ion-toolbar class="l-main-wrapper ion-text-center">
+    <!-- Our services next button -->
+    <ion-button
+      class="c-button ion-no-margin u-no--text-transform c-button--text-inter-18px c-button--text-inter-medium"
+      [ngClass]="{'is-inactive': !selectedServiceId}" fill="clear" expand="full" (click)="toVideo()">
+      Next
+      <!-- Next button caret right icon -->
+      <ion-icon src="../../../assets/images/outline-caret-right--color-white.svg"
+        class="c-icon c-icon--caret-rt u-no--mg-rt" slot="end"></ion-icon>
+      <!-- /Next button caret right icon -->
+    </ion-button>
+    <!-- /Our services next button -->
+  </ion-toolbar>
+  <!-- /Our services main wrapper -->
+</ion-footer>
+<!-- /Our services footer -->
+</div>

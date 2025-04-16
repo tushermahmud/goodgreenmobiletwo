@@ -1,0 +1,46 @@
+@use "../abstracts/colors" as *;
+
+.o-affilation{
+
+    .tab{
+
+        &--row-border{
+            border: 1px solid $color-yellow-1-1;
+            border-radius: 5px;
+        }
+        
+        &--background{
+        background: $color-brand;
+        color: $white;
+        border-radius: 5px;
+        }
+
+        &--height-50px{
+            height: 50px;
+        }
+
+        &--display-grid{
+            display: inline-grid;
+        }
+
+        &--align-items-center{
+            align-items: center;
+        }
+
+        &--text-color-white{
+            color: $white;
+        }
+
+        &--text-center{
+            text-align: center;
+        }
+    }
+
+    .name-p-chip{
+        background: $color-brand-service-chip;
+        padding: 4px 12px;
+        border-radius: 13px;
+        color: $color-brand;
+    }
+
+}

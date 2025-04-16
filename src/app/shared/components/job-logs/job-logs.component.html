@@ -1,0 +1,36 @@
+<ion-header collapse="fade" mode="md" class="l-header">
+    <app-header [headerMeta]="headerInfo"></app-header>
+  </ion-header>
+  
+
+  <ion-content class="ion-padding">
+
+    <!--Message : No job logs-->
+  <ion-card *ngIf="jobLogs?.length === 0" class="backgroud-color-card--bg-color no-time-off-card-align">
+    <ion-card-content class="no-time-off pad-left-right-60px">
+      <ion-note class="text-color-time ion-padding">No job logs available</ion-note>
+    </ion-card-content>
+  </ion-card>
+  <!--/Message : No job logs-->
+    
+    <ion-list>
+     
+        <ion-item class="o-job-detail--pad-t-8px" *ngFor="let jobLog of jobLogs">
+            <ion-avatar slot="start">
+              <img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
+            </ion-avatar>
+            <ion-label>
+                {{ jobLog?.employee.fullname }}
+                <!-- <p>{{'Lat: ' + jobLog.geoLat }},</p>
+                <p>{{ 'Lng: ' + jobLog.geoLng }}</p> -->
+                <p>{{ jobLog.time | date: 'MM/dd/yyyy hh:mm a' }}</p>
+            </ion-label>
+            <ion-label class="c-title__label" slot="end">
+                {{ jobLog.type | jobStatus}}
+            </ion-label>
+            <ion-icon size="small" *ngIf="jobLog.type !== null" [color]="jobLog.type === 'clock-in' ? 'success' : 'danger'" slot="end" name="radio-button-on-outline"></ion-icon>
+        </ion-item>
+
+    </ion-list>
+
+  </ion-content>

@@ -1,0 +1,47 @@
+// Abstracts
+@use "../abstracts/dimension" as *;
+@use "../abstracts/colors" as *;
+
+// Footer
+.l-footer {
+  $lFooter: &;
+
+  padding-bottom: 35px;
+
+  &::before {
+    background-image: none;
+  }
+
+  ion-toolbar {
+    &:first-of-type {
+      --border-width: 0;
+    }
+  }
+
+  &--login {
+    width: $width-100p;
+  }
+
+  &--order-status {
+    padding-top: 40px;
+  }
+
+  &--order-completed {
+    padding-top: 20px;
+  }
+
+  &--bg-white {
+    background: $white;
+  }
+
+  &__app-version {
+    text-align: center;
+    padding: 15px 0;
+    color: $color-primary-1-1;
+  }
+}
+
+// global
+ion-footer {
+  background-color: white;
+}

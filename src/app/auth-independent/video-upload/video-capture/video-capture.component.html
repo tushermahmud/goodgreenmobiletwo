@@ -1,0 +1,570 @@
+<!-- Video capture header -->
+<ion-header collapse="fade" mode="md" class="l-header">
+  <app-header [headerMeta]="heraderInfo"></app-header>
+</ion-header>
+<!-- /Video capture header -->
+
+<!-- Video capture content -->
+<ion-content *ngIf="imageList.concat(videoList).length > 0">
+
+  <!-- Video capture main wrapper -->
+  <div class="l-main-wrapper l-main-wrapper--get-started l-main-wrapper--min-height-100vh-166px">
+    <ion-grid class="ion-no-padding">
+
+      <!-- Media gallery -->
+      <ion-row class="l-row l-row--video-capture">
+
+        <!-- Media gallery add col -->
+        <ion-col class="l-col l-col--video-capture" size="4">
+
+          <!-- Media gallery add thumbnail -->
+          <ion-thumbnail
+            class="c-thumbnail c-thumbnail--width-100p c-thumbnail--height-120px c-thumbnail--bg-color-primary-1-5 u-display--flex u-align-items--center u-justify-content--center c-thumbnail--video-capture u-overflow--hidden c-thumbnail--sm-height-112px c-thumbnail--sm-height-107px c-thumbnail--sm-height-89px"
+            id="size-button">
+            <!-- Media gallery add icon -->
+            <ion-icon src="../../../../assets/images/outline-add--color-brand-1-1.svg" class="c-icon c-icon--width-30px c-icon--height-30px u-no--mg-rt">
+            </ion-icon>
+            <!-- /Media gallery add icon -->
+          </ion-thumbnail>
+          <!-- /Media gallery add thumbnail -->
+
+        </ion-col>
+        <!-- /Media gallery add col -->
+
+        <!-- Media gallery col -->
+        <ion-col class="l-col l-col--video-capture" size="4" *ngFor="let video of videoList; let i = index">
+
+          <!-- Media gallery video thumbnail -->
+          <ion-thumbnail (click)="presentActionSheet(i, video)"
+            class="c-thumbnail c-thumbnail--width-100p c-thumbnail--height-120px c-thumbnail--video-capture u-overflow--hidden c-thumbnail--sm-height-112px c-thumbnail--sm-height-107px c-thumbnail--sm-height-89px">
+
+            <!-- Icon -->
+            <ion-icon src="../../../../assets/images/fill-play--color-white.svg"
+              class="c-icon u-no--mg-rt u-no--border-radius u-position--absolute u-top--50p u-left--50p u-transform--translate-minus-50p c-icon--play">
+            </ion-icon>
+            <!-- /Icon -->
+            <!-- <img [src]="video.thumbnail | cdvphotolibrary" alt="Media video image"> -->
+            <ion-img [src]="video?.thumbnail" alt="Video thumbnail"></ion-img>
+            <!-- <video [poster]="win.Ionic.WebView.convertFileSrc(video.fullPath)" controls="controls" preload="auto" webkit-playsinline="webkit-playsinline" class="videoPlayer">
+                                <source [src]="win.Ionic.WebView.convertFileSrc(video.fullPath)" type="video/mp4" />
+                                </video> -->
+          </ion-thumbnail>
+          <!-- /Media gallery video thumbnail -->
+
+        </ion-col>
+        <!-- /Media gallery col -->
+
+        <!-- Media gallery col -->
+        <ion-col class="l-col l-col--video-capture" size="4" *ngFor="let image of imageList; let i = index">
+
+          <!-- Media gallery image thumbnail -->
+          <ion-thumbnail
+            class="c-thumbnail c-thumbnail--width-100p c-thumbnail--height-120px c-thumbnail--video-capture u-overflow--hidden c-thumbnail--sm-height-112px c-thumbnail--sm-height-107px c-thumbnail--sm-height-89px"
+            (click)="presentActionSheet(i, image)">
+            <!-- <img [src]="win.Ionic.WebView.convertFileSrc(image.fullPath)" alt="Media image"> -->
+            <ion-img [src]="image?.thumbnail" alt="Image thumbnail"></ion-img>
+            <!-- <img src="../../../../assets/images/media-video-image.svg" alt="Media image"> -->
+          </ion-thumbnail>
+          <!-- /Media gallery image thumbnail -->
+
+          <!-- Media gallery selected thumbnail -->
+          <ion-thumbnail
+            class="c-thumbnail c-thumbnail--bg-color-primary u-display--flex u-align-items--center u-justify-content--center c-thumbnail--video-capture u-overflow--hidden u-position--absolute u-top--50p u-left--50p u-transform--translate-minus-50p c-thumbnail--width-100p-12px c-thumbnail--height-100p-12px"
+            *ngIf="false">
+            <!-- Media gallery check icon -->
+            <ion-icon src="../../../../assets/images/fill-check--color-brand.svg"
+              class="c-icon c-icon--width-30px c-icon--height-30px u-no--mg-rt">
+            </ion-icon>
+            <!-- /Media gallery check icon -->
+          </ion-thumbnail>
+          <!-- /Media gallery selected thumbnail -->
+
+        </ion-col>
+        <!-- /Media gallery col -->
+
+      </ion-row>
+      <!-- /Media gallery -->
+
+      <!-- Popover -->
+      <ion-popover trigger="size-button" size="cover" [arrow]="false" class="s-popover">
+        <ng-template>
+          <ion-content class="u-no--scrollbar">
+
+            <!-- List -->
+            <ion-list class="c-list ion-no-padding u-no--mg-top u-no--mg-bot u-no--pad-bot c-list--bg-white">
+
+              <!-- Item group -->
+              <ion-item-group
+                class="c-item-group u-no--mg-top u-no--mg-bot c-item-group--video-instructions c-item-group--border-color-primary-1-4"
+                (click)="captureVideo()">
+
+                <!-- Item -->
+                <ion-item class="c-item ion-no-padding u-no--pad-top u-no--pad-bot">
+
+                  <!-- Label -->
+                  <ion-label class="c-label c-label--inter-14px c-label--inter-semibold c-label--black ion-no-margin">
+                    Video
+                  </ion-label>
+                  <!-- /Label -->
+
+                </ion-item>
+                <!-- /Item -->
+
+              </ion-item-group>
+              <!-- /Item group -->
+
+              <!-- Item group -->
+              <ion-item-group
+                class="c-item-group u-no--mg-top u-no--mg-bot c-item-group--video-instructions c-item-group--border-color-primary-1-4"
+                (click)="captureImage()">
+
+                <!-- Item -->
+                <ion-item class="c-item ion-no-padding u-no--pad-top u-no--pad-bot">
+
+                  <!-- Label -->
+                  <ion-label class="c-label c-label--inter-14px c-label--inter-semibold c-label--black ion-no-margin">
+                    Image
+                  </ion-label>
+                  <!-- /Label -->
+
+                </ion-item>
+                <!-- /Item -->
+
+              </ion-item-group>
+              <!-- /Item group -->
+
+              <!-- Item group -->
+              <ion-item-group
+                class="c-item-group u-no--mg-top u-no--mg-bot c-item-group--video-instructions c-item-group--border-color-primary-1-4"
+                (click)="selectMediaFromGallery()">
+
+                <!-- Item -->
+                <ion-item class="c-item ion-no-padding u-no--pad-top u-no--pad-bot">
+
+                  <!-- Label -->
+                  <ion-label class="c-label c-label--inter-14px c-label--inter-semibold c-label--black ion-no-margin">
+                    Gallery
+                  </ion-label>
+                  <!-- /Label -->
+
+                </ion-item>
+                <!-- /Item -->
+
+              </ion-item-group>
+              <!-- /Item group -->
+
+            </ion-list>
+            <!-- /List -->
+          </ion-content>
+        </ng-template>
+      </ion-popover>
+      <!-- /Popover -->
+
+    </ion-grid>
+  </div>
+  <!-- /Video capture main wrapper -->
+
+</ion-content>
+
+<ion-content *ngIf="imageList.concat(videoList).length === 0">
+  <!-- Video capture main wrapper -->
+  <ion-grid class="l-main-wrapper ion-no-padding l-main-wrapper--get-started l-main-wrapper--min-height-100vh-166px">
+    <ion-row>
+      <ion-col class="ion-no-padding">
+        <!-- How to request an estimate title -->
+        <ion-text
+          class="ion-no-padding c-title c-title--get-started c-title--our-services c-title--h1-inter-16px c-title--inter-regular c-title--h1-black ion-text-center c-title--video-instructions">
+          <h1 class="c-title__h1">How to request an estimate?</h1>
+        </ion-text>
+        <!-- /How to request an estimate title -->
+
+        <!-- How to request an estimate main wrapper -->
+        <ion-row
+          class="c-thumbnail c-thumbnail--video-capture c-thumbnail--width-100p c-thumbnail--body-bg-gray-1-1 c-card u-no--mg-bot u-no--height c-card--video-instructions c-card--video-capture c-card--min-height-100vh-262px">
+          <ion-col class="ion-no-padding">
+            <!-- How to request an estimate list -->
+            <ion-list class="c-list u-no--bg ion-no-padding">
+
+              <!-- How to request an estimate item group -->
+              <ion-item-group class="c-item-group">
+
+                <!-- How to request an estimate item -->
+                <ion-item class="c-item ion-no-padding c-item--video-instructions">
+
+                  <!-- Check icon -->
+                  <ion-icon src="../../../../assets/images/fill-check--color-brand.svg"
+                    class="c-icon c-icon--video-instructions c-icon--width-24px c-icon--height-24px"></ion-icon>
+                  <!-- /Check icon -->
+
+                  <!-- First point -->
+                  <p
+                    class="c-card-content ion-no-padding c-card-content--inter-14px c-card-content--color-black u-no--mg-top">
+                    You have 15 minutes to record your video estimate.
+                  </p>
+                  <!-- /First point -->
+
+                </ion-item>
+                <!-- /How to request an estimate item -->
+
+                <!-- How to request an estimate item -->
+                <ion-item class="c-item ion-no-padding c-item--video-instructions">
+
+                  <!-- Icon -->
+                  <ion-icon src="../../../../assets/images/fill-check--color-brand.svg"
+                    class="c-icon c-icon--video-instructions c-icon--width-24px c-icon--height-24px"></ion-icon>
+                  <!-- /Icon -->
+
+                  <!-- Second point -->
+                  <p
+                    class="c-card-content ion-no-padding c-card-content--inter-14px c-card-content--color-black u-no--mg-top">
+                    Record each room from left to right.
+                  </p>
+                  <!-- /Second point -->
+
+                </ion-item>
+                <!-- /How to request an estimate item -->
+
+                <!-- How to request an estimate item -->
+                <ion-item class="c-item ion-no-padding c-item--video-instructions">
+
+                  <!-- Icon -->
+                  <ion-icon src="../../../../assets/images/fill-check--color-brand.svg"
+                    class="c-icon c-icon--video-instructions c-icon--width-24px c-icon--height-24px"></ion-icon>
+                  <!-- /Icon -->
+
+                  <!-- Third point -->
+                  <p
+                    class="c-card-content ion-no-padding c-card-content--inter-14px c-card-content--color-black u-no--mg-top">
+                    Open all closets.
+                  </p>
+                  <!-- /Third point -->
+
+                </ion-item>
+                <!-- /How to request an estimate item -->
+
+                <!-- How to request an estimate item -->
+                <ion-item class="c-item ion-no-padding c-item--video-instructions">
+
+                  <!-- Icon -->
+                  <ion-icon src="../../../../assets/images/fill-check--color-brand.svg"
+                    class="c-icon c-icon--video-instructions c-icon--width-24px c-icon--height-24px"></ion-icon>
+                  <!-- /Icon -->
+
+                  <!-- Forth point -->
+                  <p
+                    class="c-card-content ion-no-padding c-card-content--inter-14px c-card-content--color-black u-no--mg-top">
+                    Open drawers and cabinates for Pack, Move, Unpack & Organizing Service Requests.
+                  </p>
+                  <!-- /Forth point -->
+
+                </ion-item>
+                <!-- /How to request an estimate item -->
+
+                <!-- How to request an estimate item -->
+                <ion-item class="c-item ion-no-padding c-item--video-instructions">
+
+                  <!-- Icon -->
+                  <ion-icon src="../../../../assets/images/fill-check--color-brand.svg"
+                    class="c-icon c-icon--video-instructions c-icon--width-24px c-icon--height-24px"></ion-icon>
+                  <!-- /Icon -->
+
+                  <!-- Fifth point -->
+                  <p
+                    class="c-card-content ion-no-padding c-card-content--inter-14px c-card-content--color-black u-no--mg-top">
+                    Please describe everything that has to be moved, incase some items will be donated/left behind.
+                  </p>
+                  <!-- /Fifth point -->
+
+                </ion-item>
+                <!-- /How to request an estimate item -->
+
+              </ion-item-group>
+              <!-- /How to request an estimate item group -->
+
+            </ion-list>
+            <!-- /How to request an estimate list -->
+
+            <!-- Upload Existing Video or Shoot New title -->
+            <ion-text
+              class="ion-no-padding ion-text-center c-title c-title--video-instructions c-title--login c-title--h1-black">
+              <h1 class="c-title__h1">Upload Existing Video or Shoot New</h1>
+            </ion-text>
+            <!-- /Upload Existing Video or Shoot New title -->
+
+            <!-- Upload existing video or shoot new wrapper -->
+            <ion-row class="l-row l-row--video-instructions l-row--quote-documents">
+              <!-- Upload existing video or shoot col -->
+              <ion-col class="l-col l-col--view-vendor-quote" size="4">
+                <!-- Upload button -->
+                <ion-button
+                  class="c-thumbnail c-thumbnail--width-100p c-thumbnail--height-108px c-thumbnail--bg-color-white c-button--video-capture-padding u-overflow--hidden c-thumbnail--sm-height-100px c-thumbnail--sm-height-95px c-thumbnail--sm-height-83px ion-no-margin c-button--text-inter-14px c-button--text-inter-medium c-button--text-color-primary c-button--video-capture"
+                  fill="clear" expand="full" (click)="selectMediaFromGallery()">
+                  <!-- Upload icon -->
+                  <ion-icon src="../../../../assets/images/fill-upload--color-brand.svg"
+                    class="c-icon u-no--mg-rt c-icon--width-24px c-icon--height-24px c-icon--sm-width-22px c-icon--sm-height-22px u-position--absolute c-icon--video-capture">
+                  </ion-icon>
+                  <!-- /Upload icon -->
+                  <span class="c-button--video-capture">Upload</span>
+                </ion-button>
+                <!-- /Upload button -->
+              </ion-col>
+              <!-- /Upload existing video or shoot col -->
+
+              <!-- Upload existing video or shoot col -->
+              <ion-col class="l-col l-col--view-vendor-quote" size="4">
+                <!-- Upload button -->
+                <ion-button
+                  class="c-thumbnail c-thumbnail--width-100p c-thumbnail--height-108px c-thumbnail--bg-color-white c-button--video-capture-padding u-overflow--hidden c-thumbnail--sm-height-100px c-thumbnail--sm-height-95px ion-no-margin c-button--text-inter-14px c-button--text-inter-medium c-button--text-color-primary c-button--video-capture"
+                  fill="clear" expand="full" id="size-button" (click)="captureVideo()">
+                  <!-- Upload icon -->
+                  <ion-icon src="../../../../assets/images/fill-video--color-brand.svg"
+                    class="c-icon u-no--mg-rt c-icon--width-24px c-icon--height-24px c-icon--sm-width-22px c-icon--sm-height-22px u-position--absolute c-icon--video-capture">
+                  </ion-icon>
+                  <!-- /Upload icon -->
+                  <span class="c-button--video-capture">Record</span>
+                </ion-button>
+                <!-- /Upload button -->
+              </ion-col>
+              <!-- /Upload existing video or shoot col -->
+
+              <!-- Upload existing video or shoot col -->
+              <ion-col class="l-col l-col--view-vendor-quote" size="4">
+                <!-- Upload button -->
+                <ion-button
+                  class="c-thumbnail c-thumbnail--width-100p c-thumbnail--height-108px c-thumbnail--bg-color-white c-button--video-capture-padding u-overflow--hidden c-thumbnail--sm-height-100px c-thumbnail--sm-height-95px c-thumbnail--sm-height-83px ion-no-margin c-button--text-inter-14px c-button--text-inter-medium c-button--text-color-primary c-button--video-capture"
+                  fill="clear" expand="full" (click)="captureImage()">
+                  <!-- Upload icon -->
+                  <ion-icon src="../../../../assets/images/media/fill-camera--color-brand.svg"
+                    class="c-icon u-no--mg-rt c-icon--width-24px c-icon--height-24px c-icon--sm-width-22px c-icon--sm-height-22px u-position--absolute c-icon--video-capture">
+                  </ion-icon>
+                  <!-- /Upload icon -->
+                  <span class="c-button--video-capture">Camera</span>
+                </ion-button>
+                <!-- /Upload button -->
+              </ion-col>
+              <!-- /Upload existing video or shoot col -->
+            </ion-row>
+            <!-- /Upload existing video or shoot new wrapper -->
+            
+            <!-- This app needs permission... -->
+            <p *ngIf="!isPermissionGranted?.hasPermission"
+              class="c-card-content ion-no-padding c-card-content--inter-14px c-card-content--inter-medium c-card-content--color-black c-card-content--order-details">
+              This app needs permission to use your device storage, camera, microphone & push notifications.
+              <!-- Know more... link -->
+              <ion-text class="c-link u-no--text-decoration c-link--inter-14px" id="open-modal">Know more, why we need
+                these
+                permissions</ion-text>
+              <!-- /Know more... link -->
+            </p>
+            <!-- /This app needs permission... -->
+
+            <!-- Permissions modal -->
+            <ion-modal trigger="open-modal" (willDismiss)="onWillDismiss($event)" [enterAnimation]="enterAnimation"
+              [leaveAnimation]="leaveAnimation"
+              class="c-modal c-modal--video-capture c-modal--height-100vh-360px c-modal--sm-height-100vh-267px">
+              <ng-template>
+                <!-- Permissions modal swiper -->
+                <swiper class="s-swiper s-swiper--width-100p s-swiper--video-capture" [pagination]="true"
+                  [spaceBetween]="15" (swiper)="onSwiper($event)" (slideChange)="onSlideChange()">
+                  <!-- Permissions modal swiper slide -->
+                  <ng-template swiperSlide class="ion-text-center" *ngIf="false">
+
+                    <!-- Permissions modal card -->
+                    <ion-card class="ion-no-margin u-no--box-shadow u-overflow--initial">
+
+                      <!-- Enable notification icon -->
+                      <ion-item
+                        class="c-item ion-no-padding u-overflow--initial u-no--pad-top u-no--pad-bot c-item--min-height-81px c-icon c-icon--order-status c-icon--bg-color-brand-40-rba">
+                        <ion-icon src="../../../../assets/images/media/fill-enable-notification--color-brand.svg"
+                          class="u-no--border-radius c-icon--width-100p c-icon--height-100p"></ion-icon>
+                      </ion-item>
+                      <!-- /Enable notification icon -->
+
+                      <!-- Enable notification card header -->
+                      <ion-card-header class="ion-no-padding">
+                        <!-- Enable notification card title -->
+                        <ion-card-title
+                          class="c-card-title c-card-title--inter-16px c-card-title--inter-bold c-card-title--color-primary-1-1 ion-no-margin">
+                          ENABLE NOTIFICATION</ion-card-title>
+                        <!-- /Enable notification card title -->
+                      </ion-card-header>
+                      <!-- /Enable notification card header -->
+
+                      <!-- Enable notification card content -->
+                      <ion-card-content
+                        class="c-card-content ion-no-padding c-card-content--inter-16px c-card-content--color-primary-1-1 c-card-content--sm-inter-14px c-card-content--sm-get-started c-card-content--video-capture">
+                        Enable notifications from Good Green to receive timely updates on your upcoming service
+                        reminders
+                        &
+                        updates in real time.
+                      </ion-card-content>
+                      <!-- /Enable notification card content -->
+
+                    </ion-card>
+                    <!-- /Permissions modal card -->
+
+                  </ng-template>
+                  <!-- /Permissions modal swiper slide -->
+
+                  <!-- Permissions modal swiper slide -->
+                  <ng-template swiperSlide class="ion-text-center">
+
+                    <!-- Enable camera icon -->
+                    <ion-item
+                      class="c-item ion-no-padding u-overflow--initial u-no--pad-top u-no--pad-bot c-item--min-height-81px c-icon c-icon--order-status c-icon--bg-color-brand-40-rba">
+                      <ion-icon src="../../../../assets/images/media/fill-enable-camera--color-brand.svg"
+                        class="u-no--border-radius c-icon--width-100p c-icon--height-100p"></ion-icon>
+                    </ion-item>
+                    <!-- /Enable camera icon -->
+
+                    <!-- Enable camera card header -->
+                    <ion-card-header class="ion-no-padding">
+                      <!-- Enable camera card title -->
+                      <ion-card-title
+                        class="c-card-title c-card-title--inter-16px c-card-title--inter-bold c-card-title--color-primary-1-1 ion-no-margin">
+                        ENABLE CAMERA</ion-card-title>
+                      <!-- /Enable camera card title -->
+                    </ion-card-header>
+                    <!-- /Enable camera card header -->
+
+                    <!-- Enable camera card content -->
+                    <ion-card-content
+                      class="c-card-content ion-no-padding c-card-content--inter-16px c-card-content--color-primary-1-1 c-card-content--sm-inter-14px c-card-content--sm-get-started c-card-content--video-capture">
+                      Camera permission is required so that you can record the items to be moved, packed, organized
+                      etc.
+                    </ion-card-content>
+                    <!-- /Enable camera card content -->
+
+                  </ng-template>
+                  <!-- /Permissions modal swiper slide -->
+
+                  <!-- Permissions modal swiper slide -->
+                  <ng-template swiperSlide class="ion-text-center">
+
+                    <!-- Enable microphone icon -->
+                    <ion-item
+                      class="c-item ion-no-padding u-overflow--initial u-no--pad-top u-no--pad-bot c-item--min-height-81px c-icon c-icon--order-status c-icon--bg-color-brand-40-rba">
+                      <ion-icon src="../../../../assets/images/media/fill-enable-microphone--color-brand.svg"
+                        class="u-no--border-radius c-icon--width-100p c-icon--height-100p"></ion-icon>
+                    </ion-item>
+                    <!-- /Enable microphone icon -->
+
+                    <!-- Enable microphone card header -->
+                    <ion-card-header class="ion-no-padding">
+                      <!-- Enable microphone card title -->
+                      <ion-card-title
+                        class="c-card-title c-card-title--inter-16px c-card-title--inter-bold c-card-title--color-primary-1-1 ion-no-margin">
+                        ENABLE MICROPHONE</ion-card-title>
+                      <!-- /Enable microphone card title -->
+                    </ion-card-header>
+                    <!-- /Enable microphone card header -->
+
+                    <!-- Enable microphone card content -->
+                    <ion-card-content
+                      class="c-card-content ion-no-padding c-card-content--inter-16px c-card-content--color-primary-1-1 c-card-content--sm-inter-14px c-card-content--sm-get-started c-card-content--video-capture">
+                      Microphone permission is required for the app to record your voice while recording your items to
+                      be
+                      moved, packed, organized etc.
+                    </ion-card-content>
+                    <!-- /Enable microphone card content -->
+
+                  </ng-template>
+                  <!-- /Permissions modal swiper slide -->
+
+                  <!-- Permissions modal swiper slide -->
+                  <ng-template swiperSlide class="ion-text-center">
+
+                    <!-- Enable device-storage icon -->
+                    <ion-item
+                      class="c-item ion-no-padding u-overflow--initial u-no--pad-top u-no--pad-bot c-item--min-height-81px c-icon c-icon--order-status c-icon--bg-color-brand-40-rba">
+                      <ion-icon src="../../../../assets/images/media/fill-enable-device-storage--color-brand.svg"
+                        class="u-no--border-radius c-icon--width-100p c-icon--height-100p"></ion-icon>
+                    </ion-item>
+                    <!-- /Enable device-storage icon -->
+
+                    <!-- Enable device-storage card header -->
+                    <ion-card-header class="ion-no-padding">
+                      <!-- Enable device-storage card title -->
+                      <ion-card-title
+                        class="c-card-title c-card-title--inter-16px c-card-title--inter-bold c-card-title--color-primary-1-1 ion-no-margin">
+                        ENABLE DEVICE STORAGE</ion-card-title>
+                      <!-- /Enable device-storage card title -->
+                    </ion-card-header>
+                    <!-- /Enable device-storage card header -->
+
+                    <!-- Enable device-storage card content -->
+                    <ion-card-content
+                      class="c-card-content ion-no-padding c-card-content--inter-16px c-card-content--color-primary-1-1 c-card-content--sm-inter-14px c-card-content--sm-get-started c-card-content--video-capture">
+                      Permission to attach your existing images or videos from your gallery while creating a new
+                      service
+                      request with Good Green.
+                    </ion-card-content>
+                    <!-- /Enable device-storage card content -->
+
+                    <!-- Permissions modal footer -->
+                    <ion-footer collapse="fade"
+                      class="l-header u-no--pad-bot l-footer u-position--absolute u-no--position-bot">
+                      <!-- Skip & grant permission buttons row -->
+                      <ion-row class="l-row l-row--quote-documents">
+                        <!-- Skip & grant permission buttons left col -->
+                        <ion-col class="l-col l-col--view-vendor-quote ion-text-center">
+                          <!-- Skip button -->
+                          <ion-button *ngIf="false"
+                            class="c-button ion-no-margin u-no--text-transform c-button--border-color-brand-1-1 c-button--width-80px c-button--height-35px c-button--bg-color-primary-1-5 c-button--text-inter-14px c-button--text-inter-medium c-button--sm-text-inter-13px c-button--text-color-primary"
+                            fill="clear" expand="full" (click)="cancel()">SKIP</ion-button>
+                          <!-- /Skip button -->
+                        </ion-col>
+                        <!-- /Skip & grant permission buttons left col -->
+
+                        <!-- Skip & grant permission buttons left col -->
+                        <ion-col class="l-col l-col--view-vendor-quote">
+                          <!-- Grant permission button -->
+                          <ion-button
+                            class="c-button ion-no-margin u-no--text-transform c-button--height-35px c-button--min-width-166px c-button--sm-min-width-157px c-button--text-inter-14px c-button--text-inter-medium c-button--sm-text-inter-13px"
+                            fill="clear" expand="full" (click)="confirm()">GOT IT</ion-button>
+                          <!-- /Grant permission button -->
+                        </ion-col>
+                        <!-- /Skip & grant permission buttons left col -->
+                      </ion-row>
+                      <!-- /Skip & grant permission buttons row -->
+                    </ion-footer>
+                    <!-- /Permissions modal footer -->
+                  </ng-template>
+                  <!-- /Permissions modal swiper slide -->
+                </swiper>
+                <!-- /Permissions modal swiper -->
+              </ng-template>
+            </ion-modal>
+            <!-- /Permissions modal -->
+
+          </ion-col>
+        </ion-row>
+        <!-- /How to request an estimate main wrapper -->
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <!-- /Video capture main wrapper -->
+</ion-content>
+<!-- /Video capture content -->
+
+<!-- Video capture footer -->
+<div class="o-opp-create">
+<ion-footer collapse="fade" class="l-footer l-footer--order-completed">
+  <!-- Video capture main wrapper -->
+  <ion-toolbar class="l-main-wrapper ion-text-center">
+    <!-- Next button -->
+    <ion-button
+      class="c-button ion-no-margin u-no--text-transform c-button--text-inter-18px c-button--text-inter-medium"
+      fill="clear" expand="full" (click)="submitVideo()">
+      Next
+      <!-- Next button caret right icon -->
+      <ion-icon src="../../../../assets/images/outline-caret-right--color-white.svg"
+        class="c-icon c-icon--caret-rt u-no--mg-rt" slot="end"></ion-icon>
+      <!-- /Next button caret right icon -->
+    </ion-button>
+    <!-- /Next button -->
+  </ion-toolbar>
+  <!-- /Video capture main wrapper -->
+</ion-footer>
+<!-- /Video capture footer -->
+</div>

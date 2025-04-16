@@ -1,0 +1,19 @@
+// Abstracts
+@use "../abstracts/colors" as *;
+@use "../abstracts/typography" as *;
+
+// Refresher
+.c-refresher {
+  $cRefresher: &;
+
+  z-index: 10;
+
+  .refresher-pulling-icon,
+  .refresher-refreshing-icon {
+    color: $color-brand;
+  }
+
+  &--color-brand {
+    --color: $color-brand;
+  }
+}

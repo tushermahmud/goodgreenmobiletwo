@@ -1,0 +1,22 @@
+@use "../abstracts/colors" as *;
+@use "../utilities/u-center-position";
+@use "../utilities/u-flexbox";
+@use "../abstracts/typography";
+
+.avatar-thumbnail-150px{
+  width: 100%;
+  height: auto;
+}
+
+.emp-display-flex{
+  align-items: center;
+}
+
+h2.emp-name {
+    font-size: 24px;
+}
+
+.is_not-editable{
+  background: $body-bg-gray-1-1;
+  color: #c1bebe;
+}

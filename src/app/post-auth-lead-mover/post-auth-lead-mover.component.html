@@ -1,0 +1,24 @@
+<ion-tabs #tabs (ionTabsDidChange)="getSelectedTab()">
+  <ion-header collapse="fade" mode="md" class="l-header">
+    <app-header [headerMeta]="headerInfo"></app-header>
+  </ion-header>
+  <ion-tab-bar slot="bottom">
+
+        <ion-tab-button tab="employee-dashboard">
+            <ion-label>Dashboard</ion-label>
+            <ion-icon name="home"></ion-icon>
+        </ion-tab-button>
+   
+        <ion-tab-button tab="employee-jobs">
+            <!-- <ion-badge>5</ion-badge> -->
+            <ion-label>Jobs</ion-label>
+            <ion-icon name="clipboard"></ion-icon>
+        </ion-tab-button>
+
+        <ion-tab-button tab="employee-notifications">
+          <ion-label>More</ion-label>
+          <ion-icon name="menu"></ion-icon>
+      </ion-tab-button>
+
+  </ion-tab-bar>
+</ion-tabs>

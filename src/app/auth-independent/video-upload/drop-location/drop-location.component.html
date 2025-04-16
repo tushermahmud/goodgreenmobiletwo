@@ -1,0 +1,237 @@
+<!-- Drop off location header -->
+<ion-header collapse="fade" mode="md" class="l-header">
+  <app-header [headerMeta]="heraderInfo"></app-header>
+</ion-header>
+<!-- /Drop off location header -->
+
+<!-- Drop off location content -->
+<ion-content>
+  <!-- Drop off location main wrapper -->
+  <ion-grid class="l-main-wrapper ion-no-padding l-main-wrapper--get-started">
+    <ion-row>
+      <ion-col class="ion-no-padding">
+        <!-- Drop off location header -->
+        <ion-row>
+          <!-- Drop off location header col left -->
+          <ion-col class="u-display--flex u-align-items--center u-no--pad-top u-no--pad-bot u-no--pad-lt">
+            <!-- Drop off location title -->
+            <ion-text
+              class="ion-no-padding c-title c-title--get-started c-title--our-services c-title--h1-inter-16px c-title--inter-regular c-title--h1-black c-title--video-instructions u-no--mg-top">
+              <h1 class="c-title__h1">Drop Off Location</h1>
+            </ion-text>
+            <!-- /Drop off location title -->
+          </ion-col>
+          <!-- /Drop off location header col left -->
+
+          <!-- Drop off location header col right -->
+          <ion-col
+            class="u-display--flex u-align-items--center u-justify-content--flex-end u-no--pad-top u-no--pad-bot u-no--pad-rt">
+            <!-- Step info -->
+            <ion-text
+              class="ion-no-padding c-title c-title--login c-title--h1-color-primary c-title--pickup-location c-title--inter-regular u-no--mg-top">
+              <h1 class="c-title__h1">
+                <span class="c-title__span">Step {{currentStep}}</span>
+                of {{totalSteps}}
+              </h1>
+            </ion-text>
+            <!-- /Step info -->
+          </ion-col>
+          <!-- /Drop off location header col right -->
+        </ion-row>
+        <!-- /Drop off location header -->
+
+        <!-- Drop off location form -->
+        <form class="l-form l-form--pickup-location" [formGroup]="dropForm" (ngSubmit)="onSubmit()" novalidate>
+          <!-- Drop off location main wrapper -->
+          <ion-row
+            class="c-thumbnail c-thumbnail--video-capture c-thumbnail--width-100p c-thumbnail--body-bg-gray-1-1 c-card u-no--mg-bot u-no--height c-card--pickup-location c-card--min-height-100vh-215px">
+            <ion-col class="ion-no-padding">
+              <!-- Drop off location main field wrapper -->
+              <ion-row class="c-item-group-wrapper">
+                <ion-col class="ion-no-padding">
+                  <!-- Final destination field wrapper -->
+                  <ion-item-group class="c-item-group c-item-group--pickup-location">
+                    <!-- Final destination label wrapper -->
+                    <ion-item class="c-item ion-no-padding">
+                      <!-- Final destination title -->
+                      <ion-text
+                        class="c-title ion-no-padding c-title--h1-color-brand c-title--text-transform c-title--addition-services c-title--h1-inter-12px c-title--view-vendor-quote">
+                        <h1 class="c-title__h1">Final Destination</h1>
+                      </ion-text>
+                      <!-- /Final destination title -->
+                    </ion-item>
+                    <!-- /Final destination label wrapper -->
+
+                    <!-- Address input wrapper -->
+                    <ion-item class="c-item ion-no-padding" [ngClass]="{'has-error': submitted && f.address.errors}">
+                      <ion-row class="c-input-wrapper c-input-wrapper--width-100p">
+                        <ion-col class="ion-no-padding">
+                          <!-- Address textarea -->
+                          <ion-textarea class="c-input c-input--white ion-no-margin" formControlName="address"
+                            placeholder="Address" #address (ionInput)="updateSearchResults(address.value)"
+                            (ionClear)="clearAutocomplete()"></ion-textarea>
+                          <!-- /Address textarea -->
+
+                          <!-- Address field validation error -->
+                          <p class="c-content c-content--inter-12px c-content--login c-content--color-red c-content--form-message"
+                            *ngIf="submitted && f.address.errors">
+                            Address cannot be empty
+                          </p>
+                          <!-- /Address field validation error -->
+
+                          <!-- Address list -->
+                          <ion-list [hidden]="autocompleteItems.length === 0"
+                            class="c-list c-list--bg-white c-list--border-color-primary-1-5 c-list--pickup-location u-no--pad-top u-no--pad-bot">
+                            <!-- Address item -->
+                            <ion-item *ngFor="let item of autocompleteItems" tappable (click)="selectSearchResult(item)"
+                              class="c-item c-item--pickup-location c-item--border-color-primary-1-5">
+                              <!-- Addresses -->
+                              <ion-text class="c-title ion-no-padding c-title--h1-inter-13px">
+                                <span class="c-title__h1 u-no--font-weight-initial">{{ item.description }}</span>
+                              </ion-text>
+                              <!-- /Addresses -->
+                            </ion-item>
+                            <!-- /Address item -->
+                          </ion-list>
+                          <!-- /Address list -->
+                        </ion-col>
+                      </ion-row>
+                    </ion-item>
+                    <!-- /Address input wrapper -->
+
+                    <!-- City input wrapper -->
+                    <ion-item class="c-item ion-no-padding" [ngClass]="{'has-error': submitted && f.city.errors}">
+                      <!-- City input -->
+                      <ion-input class="c-input c-input--white" formControlName="city" placeholder="City"></ion-input>
+                      <!-- /City input -->
+
+                      <!-- City field validation error -->
+                      <p class="c-content c-content--inter-12px c-content--login c-content--color-red c-content--form-message"
+                        *ngIf="submitted && f.city.errors">
+                        City cannot be empty
+                      </p>
+                      <!-- /City field validation error -->
+                    </ion-item>
+                    <!-- /City input wrapper -->
+
+                    <!-- State & zipcode input wrapper -->
+                    <ion-item class="c-item ion-no-padding">
+                      <!-- State & zipcode input row -->
+                      <ion-row class="l-row u-no--mg l-row--pickup-location">
+                        <!-- State input col -->
+                        <ion-col
+                          class="u-display--flex u-align-items--center u-no--pad-top u-no--pad-bot u-no--pad-lt l-col l-col--view-vendor-quote l-col--pick-up-location"
+                          [ngClass]="{'has-error': submitted && f.state.errors}">
+                          <!-- State input -->
+                          <ion-input class="c-input c-input--white" formControlName="state" placeholder="State">
+                          </ion-input>
+                          <!-- /State input -->
+
+                          <!-- State field validation error -->
+                          <p class="c-content c-content--inter-12px c-content--login c-content--color-red c-content--form-message"
+                            *ngIf="submitted && f.state.errors">
+                            State cannot be empty
+                          </p>
+                          <!-- /State field validation error -->
+                        </ion-col>
+                        <!-- /State input col -->
+
+                        <!-- Zipcode input col -->
+                        <ion-col
+                          class="u-display--flex u-align-items--center u-justify-content--flex-end u-no--pad-top u-no--pad-bot u-no--pad-rt l-col l-col--view-vendor-quote l-col--pick-up-location"
+                          [ngClass]="{'has-error': submitted && f.zipCode.errors}">
+                          <!-- Zipcode input -->
+                          <ion-input class="c-input c-input--white" formControlName="zipCode" minlength="5" maxlength="6" type="text" (keypress)="noDecimal($event)"
+                            placeholder="Zip Code"></ion-input>
+                          <!-- /Zipcode input -->
+
+                          <!-- Zipcode field validation error -->
+                          <p class="c-content c-content--inter-12px c-content--login c-content--color-red c-content--form-message"
+                            *ngIf="submitted && f.zipCode.errors && !f?.zipCode?.dirty">
+                            Zipcode cannot be empty
+                          </p>
+                          <!-- /Zipcode field validation error -->
+
+                           <!-- Zipcode field validation error -->
+                           <p class="c-content c-content--inter-12px c-content--login c-content--color-red c-content--form-message"
+                           *ngIf="submitted && f.zipCode.errors && f?.zipCode?.dirty">
+                           Please enter valid zipcode
+                         </p>
+                         <!-- /Zipcode field validation error -->
+                        </ion-col>
+                        <!-- /Zipcode input col -->
+                      </ion-row>
+                      <!-- State & zipcode input row -->
+                    </ion-item>
+                    <!-- /State & zipcode input wrapper -->
+
+                    <!-- Phone input wrapper -->
+                    <ion-item class="c-item ion-no-padding" [ngClass]="{'has-error': submitted && f.phone.errors}"
+                      *ngIf="false">
+                      <!-- Phone input -->
+                      <ion-input class="c-input c-input--white" type="number" placeholder="Phone Number"
+                        formControlName="phoneNumber"></ion-input>
+                      <!-- Phone input -->
+
+                      <!-- Phone field validation error -->
+                      <p class="c-content c-content--inter-12px c-content--login c-content--color-red c-content--form-message"
+                        *ngIf="submitted && f.phone.errors">
+                        Phone cannot be empty
+                      </p>
+                      <!-- /Phone field validation error -->
+                    </ion-item>
+                    <!-- /Phone input wrapper -->
+
+                    <!-- Additional notes textarea wrapper -->
+                    <ion-item class="c-item ion-no-padding" [ngClass]="{'has-error': submitted && f.notes.errors}"
+                      *ngIf="false">
+                      <!-- Additional notes textarea -->
+                      <ion-textarea class="c-input c-input--white ion-no-margin c-input--additional-notes"
+                        formControlName="notes" placeholder="Additional Notes"></ion-textarea>
+                      <!-- /Additional notes textarea -->
+
+                      <!-- Additional notes textarea field validation error -->
+                      <p class="c-content c-content--inter-12px c-content--login c-content--color-red c-content--form-message"
+                        *ngIf="submitted && f.notes.errors">
+                        Notes cannot be empty
+                      </p>
+                      <!-- /Additional notes textarea field validation error -->
+                    </ion-item>
+                    <!-- /Additional notes textarea wrapper -->
+                  </ion-item-group>
+                  <!-- /Final destination field wrapper -->
+                </ion-col>
+              </ion-row>
+              <!-- /Drop off location main field wrapper -->
+            </ion-col>
+          </ion-row>
+          <!-- /Drop off location main wrapper -->
+
+          <!-- Drop off location footer -->
+          <ion-footer collapse="fade"
+            class="l-header l-footer u-position--fixed u-no--position-bot u-left--50p u-transform--translate-x-minus-50p l-footer--bg-white">
+            <!-- Drop off location main wrapper -->
+            <ion-toolbar class="l-main-wrapper">
+              <!-- Next button -->
+              <ion-button
+                class="c-button ion-no-margin u-no--text-transform c-button--text-inter-18px c-button--text-inter-medium"
+                [ngClass]="{'is-inactive': !dropForm.valid}" fill="clear" expand="full" type="submit">
+                Next
+                <!-- Next button caret right icon -->
+                <ion-icon src="../../../assets/images/outline-caret-right--color-white.svg"
+                  class="c-icon c-icon--caret-rt u-no--mg-rt" slot="end"></ion-icon>
+                <!-- /Next button caret right icon -->
+              </ion-button>
+              <!-- /Next button -->
+            </ion-toolbar>
+            <!-- /Drop off location main wrapper -->
+          </ion-footer>
+          <!-- /Drop off location footer -->
+        </form>
+        <!-- /Drop off location form -->
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <!-- /Drop off location main wrapper -->
+</ion-content>
+<!-- /Drop off location content -->

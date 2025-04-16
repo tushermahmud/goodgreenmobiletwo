@@ -1,0 +1,59 @@
+// Display
+.u-display {
+  &--flex {
+    display: flex;
+  }
+
+  &--block {
+    display: block;
+  }
+
+  &--inline-flex{
+    display: inline-flex;
+    align-items: center;
+  }
+}
+
+// Align items
+.u-align-items {
+  &--center {
+    align-items: center;
+  }
+
+  &--flex-start {
+    align-items: flex-start;
+  }
+}
+
+// Justify content
+.u-justify-content {
+  &--center {
+    justify-content: center;
+  }
+
+  &--flex-end {
+    justify-content: flex-end;
+  }
+
+  &--space-between {
+    justify-content: space-between;
+  }
+}
+
+// Flex direction
+.u-flex-direction {
+  &--column {
+    flex-direction: column;
+  }
+}
+
+// Flex grow
+.u-flex {
+  &--flex-1 {
+    flex: 1;
+  }
+
+  &--flex-initial {
+    flex: initial
+  }
+}

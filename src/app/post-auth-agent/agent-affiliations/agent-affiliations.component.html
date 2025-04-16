@@ -1,0 +1,23 @@
+<ion-header collapse="fade" mode="md" class="l-header">
+    <app-header [headerMeta]="headerInfo"></app-header>
+</ion-header>
+
+<ion-content class="ion-padding o-affilation">
+  <ion-grid fixed>
+    <ion-row class="tab--row-border">
+        <ion-col class="tab--height-50px tab--display-grid tab--align-items-center tab--text-center" size="6" (click)="changeTab('affiliations')" [ngClass]="{'tab--background ': selectedTab ==='affiliations'}">Affiliations</ion-col>
+        <ion-col class="tab--height-50px tab--display-grid tab--align-items-center tab--text-center" size="6" (click)="changeTab('invites')" [ngClass]="{'tab--background ': selectedTab ==='invites'}">Invites</ion-col>
+    </ion-row>
+    <ng-container>
+        
+        <div *ngIf="selectedTab === 'affiliations'">
+            <app-affiliations-list></app-affiliations-list>
+        </div>
+        <div *ngIf="selectedTab === 'invites'">
+            <app-invitations-list></app-invitations-list>
+        </div>
+    </ng-container>
+    
+    
+  </ion-grid>
+</ion-content>

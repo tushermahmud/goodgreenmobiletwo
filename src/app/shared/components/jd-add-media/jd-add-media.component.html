@@ -1,0 +1,57 @@
+<ion-header collapse="fade" mode="md" class="l-header">
+    <app-header [headerMeta]="headerInfo"></app-header>
+</ion-header>
+
+<ion-content class="ion-padding">
+    <ion-item>
+        <ion-label>
+            <b>Tag</b>
+        </ion-label>
+    </ion-item>
+    <ion-searchbar [(ngModel)]="searchTag"  (ionChange)="handleChange($event)"></ion-searchbar>
+
+    <ion-list style="height: 350px; overflow-y: scroll;">
+        <ng-container *ngIf="!showNotFoundUi">
+
+                <ion-radio-group [allowEmptySelection]="true" [(ngModel)]="selectedRadioButton" (ionChange)="onSelectedTag($event)">
+                    {{selectedRadioButton}}
+                    <ion-item *ngFor="let result of results">
+                      <ion-label>{{result}}</ion-label>
+                      <ion-radio slot="end"  value="{{result}}"></ion-radio>
+                    </ion-item>
+                </ion-radio-group>
+
+        </ng-container>
+
+        <ng-container *ngIf="showNotFoundUi">
+            <ion-item>
+                <ion-col size="12">
+                    <ion-label><b> {{searchTag}}</b> not found</ion-label>
+                    <ion-button (click)="addTag()" expand="block" fill="clear" shape="round">
+                        Add tag
+                    </ion-button>
+                </ion-col>
+              </ion-item>
+        </ng-container>
+      
+    </ion-list>
+    <ion-item-divider></ion-item-divider>
+    <ion-item>
+        <ion-label>
+            <b>Media</b>
+        </ion-label>
+    </ion-item>
+
+    <ion-button  expand="block" [disabled]="!selectedRadioButton" (click)="mediaUploadActionSheet();" fill="clear" shape="round">
+       Add Media
+    </ion-button>
+   
+</ion-content>
+
+<ion-footer>
+    <ion-toolbar>
+        <ion-button (click)="onClose()" expand="block" fill="clear" shape="round">
+            Close
+        </ion-button>
+    </ion-toolbar>
+</ion-footer>

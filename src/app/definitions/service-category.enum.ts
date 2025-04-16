@@ -1,0 +1,22 @@
+export enum ServiceCategory {
+  MOVING_LONG_DISTANCE = 'moving_long_distance',
+  MOVING_SHORT_DISTANCE = 'moving_short_distance',
+  ORGANIZING = 'organizing',
+  CLEANING = 'cleaning',
+  HAULING = 'hauling',
+  INTERIOR_DESIGN = 'interior_design',
+  HANDYMAN = 'handyman',
+  PAINTING = 'painting',
+  TILES = 'tiles',
+  GENERAL_CONTRACTOR = 'general_contractor',
+  DEMOLITION = 'demolition',
+  LANDSCAPE = 'landscape',
+  LEAK_DETECTION='leak_detection',
+  PLUMBING='plumbing',
+  ELECTRICAL='electrical',
+  SOLAR_PANELS='solar_panels',
+  FLOORING='flooring',
+  BIN_RENTAL = 'bin_rental',
+  TRUCK_RENTAL ='truck_rental',
+  SECURE_STORAGE = 'secure_storage'
+}

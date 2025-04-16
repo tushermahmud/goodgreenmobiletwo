@@ -1,0 +1,227 @@
+<!-- Dashboard header -->
+<!-- <app-header [isBackBtnVisible]="false" [headerText]="Your Dashboard" [isnotificationIconVisible]="true" [isUserProfileVisible]="true"></app-header> -->
+<ion-header collapse="fade" mode="md" class="l-header">
+  <app-header [headerMeta]="heraderInfo"></app-header>
+</ion-header>
+<!-- /Dashboard header -->
+
+<!-- Dashboard content -->
+<ion-content>
+  <!-- Dashboard refresher -->
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)" class="c-refresher c-refresher--color-brand"
+    pullFactor="1" pullMin="100" pullMax="200">
+    <ion-refresher-content pullingText="Pull to refresh" refreshingSpinner="bubbles" refreshingText="Refreshing...">
+    </ion-refresher-content>
+  </ion-refresher>
+  <!-- /Dashboard refresher -->
+
+  <!-- Dashboard main wrapper -->
+  <ion-grid class="l-main-wrapper ion-no-padding l-main-wrapper--get-started">
+    <ion-row>
+      <ion-col class="ion-no-padding">
+        <!-- Dashboard header -->
+        <ion-row>
+          <!-- Dashboard header col left -->
+          <ion-col class="u-display--flex u-align-items--center u-no--pad-top u-no--pad-bot u-no--pad-lt">
+            <!-- Create orders title -->
+            <ion-text
+              class="ion-no-padding c-title c-title--get-started c-title--our-services c-title--h1-inter-16px c-title--inter-regular c-title--h1-black c-title--video-instructions u-no--mg-top">
+              <h1 class="c-title__h1">Current Orders</h1>
+            </ion-text>
+            <!-- /Create orders title -->
+          </ion-col>
+          <!-- /Dashboard header col left -->
+
+          <!-- Dashboard header col right -->
+          <ion-col
+            class="u-display--flex u-align-items--center u-justify-content--flex-end u-no--pad-top u-no--pad-bot u-no--pad-rt">
+            <!-- Step info -->
+            <ion-text
+              class="ion-no-padding c-title c-title--login c-title--h1-color-primary c-title--pickup-location c-title--inter-regular u-no--mg-top c-title--header">
+              <h1 class="c-title__h1">
+                <span class="c-title__span">Showing {{orders.length}}</span>
+                of {{orders.length}}
+              </h1>
+            </ion-text>
+            <!-- /Step info -->
+
+            <!-- Step caret right icon -->
+            <ion-icon src="../../../assets/images/outline-caret-right--color-primary-1-2.svg"
+              class="c-icon u-no--mg-rt c-icon--header-outline-caret-right"></ion-icon>
+            <!-- /Step caret right icon -->
+          </ion-col>
+          <!-- /Dashboard header col right -->
+        </ion-row>
+        <!-- /Dashboard header -->
+
+        <!-- Current orders form -->
+        <form class="l-form">
+          <!-- Current orders accordion group -->
+          <ion-accordion-group
+            class="c-accordion-group c-accordion-group--height-100vh-203px c-accordion-group--overflow" #accordionGroup>
+            <!-- Current orders accordion -->
+            <ion-accordion *ngFor="let order of orders; let i = index;"
+              class="c-accordion c-accordion--wrapper-bg-color-brand-8-rba c-accordion--border-color-primary-1-5 c-accordion--wrapper-border-color-primary-1-5 c-accordion--width-100vw-32px">
+              <!-- Current orders accordion header -->
+              <ion-item slot="header" lines="none">
+                <!-- Current orders card -->
+                <ion-card
+                  class="c-card ion-no-margin u-no--box-shadow u-display--flex u-align-items--center u-justify-content--center u-flex-direction--column c-card--our-services u-no--mg-bot c-card--addition-services c-card--width-100p u-no--height c-card--dashboard u-no--border u-no--border-radius c-card--bg-white">
+                  <!-- Current orders card row -->
+                  <ion-row class="l-row u-no--mg l-row--pickup-location">
+                    <!-- Current orders card col left -->
+                    <ion-col class="u-display--flex u-align-items--center u-no--pad-top u-no--pad-bot u-no--pad-lt"
+                      size="10">
+                      <!-- Current orders card icon -->
+                      <ion-icon src="../../../assets/images/fill-truck--color-brand-plus-primary.svg"
+                        class="c-icon u-no--border-radius c-icon--organizing c-icon--width-24px c-icon--height-24px c-icon--dollar-envelope">
+                      </ion-icon>
+                      <!-- /Current orders card icon -->
+
+                      <!-- Current orders card wrap -->
+                      <div class="c-card__wrap">
+                        <!-- Order name -->
+                        <ion-text class="ion-no-padding c-title c-title--h1-color-primary-1-1 c-title--h1-inter-14px">
+                          <h1 class="c-title__h1">{{order.name}}</h1>
+                        </ion-text>
+                        <!-- /Order name -->
+
+                        <!-- Ordered on -->
+                        <ion-text
+                          class="ion-no-padding c-title c-title--addition-services c-title--h1-inter-12px c-title--h1-color-primary-1-2 c-title--inter-medium c-title--ordered-on u-display--block">
+                          <h1 class="c-title__h1">Ordered on {{order.createdAt | date}}</h1>
+                        </ion-text>
+                        <!-- /Ordered on -->
+
+                        <!-- Services -->
+                        <ion-text
+                          class="ion-no-padding c-title u-position--absolute c-title--inter-medium c-title--tag c-title--h1-color-yellow-1-3 u-no--position">
+                          <h1 class="c-title__h1">{{order.serviceItemsCount}} service(s)</h1>
+                        </ion-text>
+                        <!-- /Services -->
+                      </div>
+                      <!-- /Current orders card wrap -->
+                    </ion-col>
+                    <!-- /Current orders card col left -->
+
+                    <!-- Current orders card col right -->
+                    <ion-col
+                      class="u-display--flex u-align-items--center u-justify-content--flex-end u-no--pad-top u-no--pad-bot u-no--pad-rt">
+
+                      <!-- Icon -->
+                      <ion-icon src="../../../assets/images/outline-caret-down--color-primary.svg"
+                        class="c-icon u-no--mg-rt u-no--border-radius c-icon--card-outline-caret-right ion-accordion-toggle-icon">
+                      </ion-icon>
+                      <!-- /Icon -->
+
+                      <!-- Icon -->
+                      <!-- <ion-icon src="../../../assets/images/fill-bell--color-blue.svg" class="c-icon u-no--mg-rt u-no--border-radius c-icon--card-fill-bell"></ion-icon> -->
+                      <!-- /Icon -->
+
+                    </ion-col>
+                    <!-- /Current orders card col right -->
+                  </ion-row>
+                  <!-- /Current orders card row -->
+                </ion-card>
+                <!-- /Current orders card -->
+              </ion-item>
+              <!-- /Current orders accordion header -->
+
+              <!-- Current orders accordion content -->
+              <div class="o-accordion-service-items-list" slot="content">
+                <!-- Service item list -->
+                <ion-list class="c-list u-no--bg ion-no-padding u-no--pad-bot">
+                  <!-- Service item group -->
+                  <ion-item-group>
+                    <!-- Service item -->
+                    <ion-item class="c-item u-no--pad-top u-no--pad-bot u-position--relative c-item--service-item"
+                      *ngFor="let item of order?.serviceItems; let i = index;" (click)="getDetails(order.id, item)">
+                      <!-- Service card -->
+                      <ion-card
+                        class="c-card ion-no-margin u-no--box-shadow u-display--flex u-align-items--center u-justify-content--center u-flex-direction--column u-no--mg-bot c-card--addition-services c-card--width-100p u-no--height u-no--bg u-no--border-radius c-card--service-item o-service-item">
+                        <!-- Service card row -->
+                        <ion-row class="l-row u-no--mg l-row--pickup-location">
+                          <!-- Service card col -->
+                          <ion-col
+                            class="u-display--flex u-align-items--center u-no--pad-top u-no--pad-bot u-no--pad-lt"
+                            size="10">
+                            <!-- Service card icon -->
+                            <ion-icon [src]="item?.logoUrl"
+                              class="c-icon u-no--border-radius c-icon--packing c-icon--service-item">
+                            </ion-icon>
+                            <!-- /Service card icon -->
+
+                            <!-- Service card wrap -->
+                            <div class="c-card__wrap">
+
+                              <!-- Service label -->
+                              <ion-text
+                                class="ion-no-padding c-title c-title--h1-inter-12px c-title--h1-inter-semibold c-title--customer-review u-display--block">
+                                <h1 class="c-title__h1">{{item?.serviceLabel}}</h1>
+                              </ion-text>
+                              <!-- /Service label -->
+
+                              <!-- Service status -->
+                              <div
+                                class="ion-no-padding c-title u-position--absolute c-title--inter-medium c-title--h1-color-yellow-1-2 u-no--position c-title--h1-inter-10px">
+                                <div class="c-card--service-item__info">
+                                  <div>
+                                    <span
+                                      class="o-service-item__status o-service-item__status__{{item?.status?.state }}">
+                                      <span *ngIf="item.status.newQuoteReceived">&bull;</span>
+                                      {{ item?.status?.state  === 'done' ? 'completed' : item?.status?.state | replaceHyphen | titlecase }}
+                                    </span>
+                                  </div>
+                                </div>
+                              </div>
+                              <!-- /Service status -->
+                            </div>
+                            <!-- /Service card wrap -->
+                          </ion-col>
+                          <!-- /Service card col -->
+
+                          <!-- Service card col right -->
+                          <ion-col
+                            class="u-display--flex u-align-items--center u-justify-content--flex-end u-no--pad-top u-no--pad-bot u-no--pad-rt">
+                            <!-- Service card caret right icon -->
+                            <ion-icon src="../../../assets/images/outline-caret-right--color-primary-1-2.svg"
+                              class="c-icon u-no--mg-rt u-no--border-radius c-icon--card-outline-caret-right">
+                            </ion-icon>
+                            <!-- /Service card caret right icon -->
+                          </ion-col>
+                          <!-- /Service card col right -->
+                        </ion-row>
+                        <!-- /Service card row -->
+                      </ion-card>
+                      <!-- /Service card -->
+                    </ion-item>
+                    <!-- /Service item -->
+                  </ion-item-group>
+                  <!-- /Service item group -->
+                </ion-list>
+                <!-- /Service item list -->
+              </div>
+              <!-- /Current orders accordion content -->
+            </ion-accordion>
+            <!-- /Current orders accordion -->
+          </ion-accordion-group>
+          <!-- /Current orders accordion group -->
+
+        </form>
+        <!-- /Current orders form -->
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <!-- /Dashboard main wrapper -->
+
+  <!-- Create new service request -->
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="createNewRequest()">
+      <ion-icon name="add-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+  <!-- /Create new service request -->
+
+  
+</ion-content>
+<!-- /Dashboard content -->

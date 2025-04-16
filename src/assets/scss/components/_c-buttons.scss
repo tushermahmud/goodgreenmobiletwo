@@ -1,0 +1,12 @@
+// Abstracts
+@use "../abstracts/colors" as *;
+@use "../abstracts/typography" as *;
+
+// Buttons
+.c-buttons {
+  $cButtons: &;
+
+  &--chat {
+    right: 10px;
+  }
+}

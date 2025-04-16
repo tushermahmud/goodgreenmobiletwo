@@ -1,0 +1,72 @@
+// Abstracts
+@use "../abstracts/colors" as *;
+@use "../abstracts/dimension" as *;
+@use "../abstracts/border-radius" as *;
+@use "../abstracts/mixins" as *;
+
+
+// Radio button
+.c-radio-button {
+   $cRadioButton: &;
+   --color-checked: $color-brand;
+
+   margin: 0 10px;
+   margin-left: 15px;
+
+   &.md,
+   &.ios {
+      &.radio-checked {
+         &::part(container) {
+            border-color: $color-brand;
+         }
+      }
+   }
+
+   &.radio-checked {
+      &::part(mark) {
+         background: $color-brand;
+      }
+   }
+
+   &.ios {
+      &::part(mark) {
+         background: transparent;
+         color: $color-brand;
+      }
+   }
+
+   // &.ios {
+   //    width: $width-20px;
+   //    height: $height-20px;
+
+   //    &::part(container),
+   //    &::part(mark) {
+   //       border-radius: $border-radius-55p;
+   //    }
+
+   //    &::part(container) {
+   //       border: $width-2px solid $color-primary-1-4;
+   //    }
+
+   //    &::part(mark) {
+   //       @include ease-in-out-quad(all 210ms cubic-bezier(0.455, 0.030, 0.515, 0.955));
+
+   //       width: $width-10px;
+   //       height: $height-10px;
+   //       transform: scale3d(0, 0, 0);
+   //       border: none;
+   //    }
+
+   //    &.radio-checked {
+   //       &::part(mark) {
+   //          transform: scale3d(1, 1, 1);
+   //       }
+   //    }
+   // }
+
+   &--border-color-primary-1-4 {
+      &::part(container) {
+         border-color: $color-primary-1-4;
+      }
+   }
+}

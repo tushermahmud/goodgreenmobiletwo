@@ -1,0 +1,9 @@
+// Abstracts
+@use "../abstracts/colors" as *;
+
+// Checkbox
+.c-checkbox {
+  $cCheckbox: &;
+
+  margin-right: 10px;
+}

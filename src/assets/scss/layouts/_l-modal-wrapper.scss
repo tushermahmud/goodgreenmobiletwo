@@ -1,0 +1,13 @@
+// Abstracts
+@use "../abstracts/dimension" as *;
+
+// Modal wrapper
+.l-modal-wrapper {
+   $lModalWrapper: &;
+
+   height: $height-100p;
+
+   &--order-completed {
+      display: none;
+   }
+}

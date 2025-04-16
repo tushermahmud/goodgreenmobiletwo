@@ -1,0 +1,133 @@
+// Abstracts
+@use "../abstracts/colors" as *;
+
+
+$list-of-anchor-pseudo-classes: (
+  "link",
+  "visited",
+  "hover",
+  "active",
+  "focus"
+) !default;
+
+$list-of-buttons: (
+  "button",
+  "[type='button']",
+  "[type='reset']",
+  "[type='submit']"
+) !default;
+
+$list-of-directions: (
+  "top",
+  "top-right",
+  "right",
+  "bottom-right",
+  "bottom",
+  "bottom-left",
+  "left",
+  "top-left"
+) !default;
+
+$list-of-text-inputs: (
+  "[type='color']",
+  "[type='date']",
+  "[type='datetime']",
+  "[type='datetime-local']",
+  "[type='email']",
+  "[type='month']",
+  "[type='number']",
+  "[type='password']",
+  "[type='search']",
+  "[type='tel']",
+  "[type='text']",
+  "[type='time']",
+  "[type='url']",
+  "[type='week']",
+  "input:not([type])",
+  "textarea"
+) !default;
+
+$list-of-absolute-length-units: (
+  "cm",
+  "mm",
+  "Q",
+  "in",
+  "pc",
+  "pt",
+  "px"
+) !default;
+
+$list-of-relative-length-units: (
+  "em",
+  "ex",
+  "ch",
+  "rem",
+  "lh",
+  "vw",
+  "vh",
+  "vmin",
+  "vmax"
+) !default;
+
+$list-of-counter-styles: (
+  "arabic-indic",
+  "armenian",
+  "bengali",
+  "cambodian",
+  "circle",
+  "cjk-decimal",
+  "cjk-earthly-branch",
+  "cjk-heavenly-stem",
+  "decimal",
+  "decimal-leading-zero",
+  "devanagari",
+  "disc",
+  "disclosure-closed",
+  "disclosure-open",
+  "ethiopic-numeric",
+  "georgian",
+  "gujarati",
+  "gurmukhi",
+  "hebrew",
+  "hiragana",
+  "hiragana-iroha",
+  "japanese-formal",
+  "japanese-informal",
+  "kannada",
+  "katakana",
+  "katakana-iroha",
+  "khmer",
+  "korean-hangul-formal",
+  "korean-hanja-formal",
+  "korean-hanja-informal",
+  "lao",
+  "lower-alpha",
+  "lower-alpha",
+  "lower-armenian",
+  "lower-greek",
+  "lower-latin",
+  "lower-roman",
+  "malayalam",
+  "mongolian",
+  "myanmar",
+  "oriya",
+  "persian",
+  "simp-chinese-formal",
+  "simp-chinese-informal",
+  "square",
+  "tamil",
+  "telugu",
+  "thai",
+  "tibetan",
+  "trad-chinese-formal",
+  "trad-chinese-informal",
+  "upper-alpha",
+  "upper-armenian",
+  "upper-latin",
+  "upper-roman"
+) !default;
+
+
+// Button bg color list
+$active-button-color-list: $color-bg-salem, $color-bg-mountain-meadow;
+$inactive-button-color-list: $color-primary-1-2, $color-primary-1-3;

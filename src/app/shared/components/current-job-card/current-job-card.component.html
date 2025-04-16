@@ -1,0 +1,113 @@
+ <!--Day and Time-->
+ <ion-item class="u-no--pad-top u-no--pad-bot" lines="none">
+  <!-- <ion-label>My Day Today</ion-label> -->
+  <ion-col size="8" >My Day Today</ion-col>
+  <ion-col size="4" class="date-col--date">{{ job?.scheduledDateTime | date }}</ion-col>
+</ion-item>
+<!--/Day and Time-->
+
+<ion-card class="card-background ion-text-wrap ion-no-margin" *ngIf="jobData !== null; else AllCaughtUpTemplate">
+  <ion-card-content class="align-v-center pad-l-r10px" >
+    <!-- <ion-spinner name="circular" *ngIf="isCardLoading" color="light"></ion-spinner> -->
+
+    <ng-container>
+      <ion-item class="u-no--pad-top u-no--pad-bot bg-color" lines="none">
+        <ion-icon name="sunny-outline" size="large" class="pad-0 text-color-time" slot="start"></ion-icon>
+        <!-- <ion-label class="row-text1--ellipsis"> -->
+          <ion-label class="row-text1--ellipsis">
+          <h2 class="row-text1--h2"><span class="text-color-time">{{ jobCard?.projectDetails?.name }}</span></h2>
+          <p><span class="text-color-time">Scheduled @ {{ job?.scheduledDateTime | date: 'shortTime' }}</span></p>
+        </ion-label>
+      </ion-item>
+
+      <ion-item class="bg-color" lines="none">
+        <!-- class="no-margin button-color-red button-status--border-radius" -->
+        <ion-chip slot="start"  class="no-margin button-status--border-radius" [outline]="true"
+          [color]="job?.currentStatus === 'pending' ? 'warning' : job?.currentStatus === 'clock-in' ? 'primary' : 'danger'">
+          {{  job?.currentStatus | jobStatus }}
+        </ion-chip>
+      </ion-item>
+
+      <ion-item class="line-t-b text-13px bg-color" lines="none">
+        <ion-icon size="small" class="flex-center" src="../../../../assets\images\pin.svg" slot="start"></ion-icon>
+        <ion-label class="">
+          <p><span class="text-color-time">{{ jobCard?.locations[0].address }} 
+            {{ jobCard?.locations[0].city }} {{ jobCard?.locations[0].state }} {{ jobCard?.locations[0].zipcode }}</span></p>
+          
+        </ion-label>
+      </ion-item>
+
+      <ion-row class="check-in-btn btn-display-contents">
+
+        <!-- <ion-button class="margin-10-12px" (click)="checkIn()" *ngIf="!checkdInValue; else jobActionTemplate"  expand="block">Check In</ion-button> -->
+
+        <ion-grid>
+          <ion-row *ngIf="job?.role === 'lead'">
+            <ion-col>
+              <ng-container *ngIf="jobCard?.status && (jobCard.status === 'new' || jobCard.status === 'in-progress')">
+
+                <ion-button class="margin-10-12px" (click)="presentModal('start')" *ngIf="jobCard.status === 'new'" expand="block">Start Job</ion-button>
+                <ion-button class="margin-10-12px" (click)="endJob('end')" *ngIf="jobCard.status === 'in-progress'" color="danger"  expand="block">End Job</ion-button>
+              </ng-container>
+
+              <ng-container *ngIf="jobCard?.status === 'completed'">
+                <ion-icon class="firework-icon" src="../../../../assets/images/firework.svg"></ion-icon>
+                <!-- class="c-icon c-icon--view-vendor-quote" -->
+                <h5 class="c-title">Congratulations!</h5>
+                <h6>The Job is now completed!</h6>
+                <h6>Thank you for the effort!</h6>
+              </ng-container>
+
+            </ion-col>
+          </ion-row>
+
+          <ion-row class="u-display--flex u-align-items--center">
+            <ion-col *ngIf="job?.checkedIn !== null">
+              <ion-button class="margin-10-12px c-button--min-width-114px" (click)="checkIn()" *ngIf="!job?.checkedIn"  expand="block">Check In</ion-button>
+              <ion-button class="c-button--min-width-114px" fill="outline" [disabled]="true" *ngIf="job?.checkedIn">Checked In</ion-button>
+            </ion-col>
+            <ion-col>
+              <ion-button class="margin-10-12px c-button--min-width-114px" [disabled]="jobCard?.status === 'completed'" (click)="clockInOrOut('clock-in')" *ngIf="job?.currentStatus === 'clock-out' || job?.currentStatus === 'pending'" color="primary">Clock In</ion-button>
+              <ion-button class="c-button--min-width-114px" [disabled]="jobCard?.status === 'completed'" (click)="clockInOrOut('clock-out')" *ngIf="job?.currentStatus === 'clock-in'" color="primary">Clock out</ion-button>
+            </ion-col>
+          </ion-row>
+
+        </ion-grid>
+
+
+
+      </ion-row>
+
+      <ion-row class="flex-center ion-text-wrap text-color-time text-12px row-text1" lines="none">
+        <p *ngIf="!job?.checkedIn"><span class="text-color-time">Please tap check in button to start your day</span></p>
+        <p *ngIf="job?.checkedIn"><span class="text-color-time">Clock In or Clock Out to mark your presence</span></p>
+        <p *ngIf="job?.checkedIn && job?.role === 'lead' && jobCard.status === 'in-progress'"><span class="text-color-time">Tap on end job button to close this job</span></p>
+        <p *ngIf="false">Start the Job by Tapping Start Job Button Clock In your presence by Tapping Clock In</p>
+      </ion-row>
+
+      <ion-row class="pad-t-20px text-color-time line view-btn flex-center" (click)="openDetails($event, jobData)">
+        <ion-label>View Job</ion-label>
+        <ion-icon name="chevron-forward-outline" size="small"></ion-icon>
+      </ion-row>
+
+    </ng-container>
+
+  </ion-card-content>
+
+</ion-card>
+
+<ng-template #AllCaughtUpTemplate>
+  <ion-card class="ion-no-margin">
+    <img class="l-footer--order-completed u-display--block c-img--margin-vertical-auto"  src="../../../../assets/images/order-details/person.png" />
+
+    <ion-card-header style="text-align: center;">
+      <ion-card-title text-center>Hooray!</ion-card-title>
+    </ion-card-header>
+    <ion-card-content style="text-align: center;" class=""><p>
+      You are caught up with all assigned jobs! Take a well deserved break. <ion-icon class="icon-bg-ongoing-job icon-bg-radius smiley-size-20px" src="../../../assets/images/smiley.svg"></ion-icon></p>
+      <!--<ion-icon class="icon-bg-ongoing-job icon-bg-radius icon-padding7px" src="../../../assets/images/smiley.svg" size="large"></ion-icon>-->
+    </ion-card-content>
+  </ion-card>
+
+</ng-template>
+

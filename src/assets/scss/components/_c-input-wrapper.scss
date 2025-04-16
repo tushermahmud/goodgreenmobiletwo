@@ -1,0 +1,12 @@
+// Abstracts
+@use "../abstracts/dimension" as *;
+
+
+// Input wrapper
+.c-input-wrapper {
+   $cInputWrapper: &;
+
+   &--width-100p {
+      width: $width-100p;
+   }
+}

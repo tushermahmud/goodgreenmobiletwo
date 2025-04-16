@@ -1,0 +1,815 @@
+<ion-header>
+    <app-header [headerMeta]="headerInfo"></app-header>
+</ion-header>
+
+<ion-content mode="ios">
+ 
+    <!-- Pickup location main wrapper -->
+    <ion-grid class="l-main-wrapper ion-no-padding l-main-wrapper--get-started">
+        <ion-row>
+            <ion-col>
+                <!-- Addendum title -->
+                <ion-row>
+                    <!-- Pickup location header col left -->
+                    <ion-col class="u-display--flex u-align-items--center u-no--pad-top u-no--pad-bot u-no--pad-lt">
+                    <!-- Site location title -->
+                    <ion-text
+                        class="ion-no-padding c-title c-title--get-started c-title--our-services c-title--h1-inter-16px c-title--inter-regular c-title--h1-black c-title--video-instructions u-no--mg-top">
+                        <h1 class="c-title__h1" *ngIf="formType === 'schedules'">Configure additional days</h1>
+                        <h1 class="c-title__h1" *ngIf="formType === 'trucks'">Add Trucks</h1>
+                        <h1 class="c-title__h1" *ngIf="formType === 'supplies'">Add extra supplies required</h1>
+                        <h1 class="c-title__h1" *ngIf="formType === 'notes'">Record any notes</h1>
+                    </ion-text>
+                    <!-- /Site location title -->
+                    </ion-col>
+                    <!-- /Pickup location header col left -->
+                </ion-row>
+                <!-- /Addendum title -->
+
+                <!-- truck form -->
+                <form [formGroup]="addendumForm" class="l-form l-form--pickup-location" novalidate> 
+                    <!-- Add schedule main wrapper -->
+
+                    <!-- Schedule block -->
+                    <div *ngIf="formType === 'schedules'">
+                        <ion-row
+                            class="c-thumbnail c-thumbnail--video-capture c-thumbnail--width-100p c-thumbnail--body-bg-gray-1-1 c-card u-no--mg-bot u-no--height c-card--pickup-location">
+                            <ion-col class="ion-no-padding">
+                                <!-- Add schedule main field wrapper -->
+                                <ion-row class="c-item-group-wrapper">
+                                    <ion-col class="ion-no-padding">
+                                        <!-- Contact person field wrapper -->
+                                        <ion-item-group class="c-item-group c-item-group--pickup-location">
+                                        <!-- Contact person label wrapper -->
+                                            <ion-item class="c-item ion-no-padding">
+                                                <!-- Contact person title -->
+                                                <ion-text
+                                                class="c-title ion-no-padding c-title--h1-color-brand c-title--text-transform c-title--addition-services c-title--h1-inter-12px c-title--view-vendor-quote">
+                                                <h1 class="c-title__h1">Schedule</h1>
+                                                </ion-text>
+                                                <!-- /Contact person title -->
+                                            </ion-item>
+                                            <!-- /Contact person label wrapper --> 
+                                            <ng-container formArrayName="schedules" *ngFor="let schedule of addendumForm.get('schedules')['controls']; let i = index;">
+                                               
+                                                <ion-item-divider>
+                                                    <ion-row class="l-row u-no--mg l-row--pickup-location">
+                                                        <ion-col class="u-no--pad-top u-no--pad-bot u-no--pad-lt" size="8">
+                                                          <ion-row
+                                                            class="l-row u-no--mg-top u-no--mg-rt u-no--mg-lt l-row--pickup-location l-row--view-vendor-quote">
+                                                            <ion-col
+                                                              class="u-display--flex u-align-items--center u-no--pad-top u-no--pad-bot u-no--pad-lt">
+                                                              <!-- Job details -->
+                                                              <ion-text
+                                                                class="o-job-detail--pad-t-8px c-title ion-no-padding c-title--h1-color-brand c-title--text-transform c-title--addition-services c-title--h1-inter-12px c-title--view-vendor-quote">
+                                                                <ion-label>Additional Day {{i +1}}</ion-label>
+                                                              </ion-text>
+                                                              <!-- /Job details -->
+                                                            </ion-col>
+                                                          </ion-row>
+                                                        </ion-col>
+                                  
+                                                        <ion-col
+                                                          class="u-no--pad-top u-no--pad-bot u-no--pad-rt u-display--flex u-align-items--center u-justify-content--flex-end" *ngIf="schedulesControls.length > 1">
+                                                          <ion-button (click)="removeScheduleBlock(i)" fill="clear"><ion-icon name="trash"></ion-icon>
+                                                          </ion-button>
+                                                          <!-- /View quotes button -->
+                                  
+                                                        </ion-col>
+                                                      </ion-row>
+                                                      <!-- /Job details row -->
+                                                    <!-- <ion-row style="align-items: center;">
+                                                        <ion-col size="6" class="ion-no-padding">
+                                                            <ion-label>Day {{i +1}}</ion-label>
+                                                        </ion-col>
+                                                        <ion-col size="6" class="ion-no-padding" *ngIf="schedulesControls.length > 1">
+                                                            <ion-button (click)="removeScheduleBlock(i)" fill="clear"><ion-icon name="trash"></ion-icon>
+                                                            </ion-button>
+                                                        </ion-col>
+                                                    </ion-row> -->
+                                                </ion-item-divider>
+                                                
+                                                <div [formGroupName]="i">
+                                                    <!-- First & last name input wrapper -->
+                                                    <ion-item class="c-item ion-no-padding">
+                                                        
+                                                        <!-- First & last name input row -->
+                                                        <ion-row class="l-row u-no--mg l-row--pickup-location">
+                                                            <!-- First name input col -->
+                                                            <ion-col class="l-col--view-vendor-quote"> 
+
+                                                                <!-- First name input -->
+                                                                <ion-label position="stacked">Date & Time</ion-label>
+                                                                <!-- /Estimated date & time picker modal -->
+                                                                <ion-input formControlName="datetime" class="c-input c-input--white" value="{{ schedule?.controls['datetime']?.value | date:'medium'  }}" trim placeholder="Date" (ionFocus)="presentTimeStartsPicker(schedule)">
+                                                                </ion-input >
+                                                                 <!-- Estimated date & time picker -->
+                                                              
+                                                          
+                                                            </ion-col>
+                                                            <!-- /First name input col -->
+                        
+                                                            <!-- Last name input col -->
+                                                            <ion-col class="l-col--view-vendor-quote" *ngIf="false">
+                                                                <!-- Last name input -->
+                                                                <ion-label position="stacked">Time</ion-label>
+                                                                <ion-input formControlName="time" class="c-input c-input--white" trim placeholder="Time">
+                                                                </ion-input>
+                                                                <!-- /Last name input -->
+                                                            </ion-col>
+                                                            <!-- /Last name input col -->
+                                                        </ion-row>
+                                                        <!-- /First & last name input row -->
+                                                    </ion-item>
+                                                    <!-- /First & last name input wrapper -->
+                    
+                                                    <!-- Email input wrapper -->
+                                                    <ion-item class="c-item ion-no-padding">
+                                                        <ion-row class="l-row u-no--mg l-row--pickup-location">
+                    
+                                                            <ion-col class="l-col--view-vendor-quote">
+                        
+                                                                <!-- Duration input -->
+                                                                <ion-label position="stacked">Duration (hrs)</ion-label>
+                                                                <ion-input class="c-input c-input--white" type="number" (keypress)="noDecimal($event)" formControlName="duration" 
+                                                                trim placeholder="Duration" maxlength="3" min="0">
+                                                                </ion-input>
+                                                                <!-- /Duration input -->
+
+                                                                <!-- <p class="c-content c-content--inter-12px c-content--login c-content--color-red c-content--form-message"
+                                                                    *ngIf="schedule.controls?.duration?.value === 0 && schedule.controls?.duration?.touched">
+                                                                    duration can not be empty
+                                                                </p> -->
+
+                                                                <p class="c-content c-content--inter-12px c-content--login c-content--color-red c-content--form-message"
+                                                                    *ngIf="!addendumForm.valid && schedule.controls?.duration?.status === 'INVALID'">
+                                                                    This field is mandatory
+                                                                </p>
+                                                            </ion-col>
+                                                            <ion-col size="6">
+                        
+                                                            </ion-col>
+                                                        </ion-row>
+                                                    </ion-item>
+                                                    <!-- /Email input wrapper -->
+                    
+                                                    <ion-item class="c-item ion-no-padding">
+                                                        <ion-row>
+                                                            <ion-col  class="l-col--view-vendor-quote">
+                                                                <!-- Lead input -->
+                                                                <ion-label position="stacked">Lead</ion-label>
+                                                                <ion-input class="c-input c-input--white" formControlName="leads" (keypress)="noDecimal($event)"
+                                                                maxlength="3" placeholder="Leads" type="number" min="0"></ion-input>
+                                                                <!-- Lead input -->
+
+                                                                <p class="c-content c-content--inter-12px c-content--login c-content--color-red c-content--form-message"
+                                                                    *ngIf="!addendumForm.valid && schedule.controls?.leads?.status === 'INVALID'">
+                                                                    This field is mandatory
+                                                                </p>
+
+                                                            </ion-col>
+                                                            <ion-col class="l-col--view-vendor-quote" size="6">
+                                                                <!-- Helper input -->
+                                                                <ion-label position="stacked">Helper</ion-label>
+                                                                <ion-input class="c-input c-input--white" formControlName="helpers" (keypress)="noDecimal($event)"
+                                                                maxlength="3"  placeholder="Helpers" type="number" min="0"></ion-input>
+                                                                <!-- Helper input -->
+
+                                                                <p class="c-content c-content--inter-12px c-content--login c-content--color-red c-content--form-message"
+                                                                    *ngIf="!addendumForm.valid && schedule.controls?.helpers?.status === 'INVALID'">
+                                                                    This field is mandatory
+                                                                </p>
+                                                            </ion-col>
+                                                        </ion-row>
+                                                    </ion-item>
+                    
+                                                    <ion-item class="c-item ion-no-padding">
+                                                        <ion-row>
+                                                            <ion-col class="l-col--view-vendor-quote">
+                                                                <!-- Phone input -->
+                                                                <ion-label position="stacked">Plan of action</ion-label>
+                                                                <ion-textarea  class="c-input c-input--white" formControlName="planOfAction" placeholder="Plan of action" [autoGrow]="true"></ion-textarea>
+                                                                <!-- <ion-input class="c-input c-input--white"  placeholder="Plan of action"></ion-input> -->
+                                                                <!-- Phone input -->
+                            
+                                                            </ion-col>
+                                                        </ion-row>
+                                                    </ion-item>
+    
+                                                </div>
+    
+                                            </ng-container>
+                                        </ion-item-group>
+                                        <!-- /Contact person field wrapper -->
+                                    </ion-col>
+                                </ion-row>
+                                <!-- /schedule main field wrapper -->
+                            </ion-col>
+                        </ion-row>
+    
+                        <div class="ion-text-center margin--margin-top-bottom-20px ">
+                        <ion-text (click)="addSchedulesForm()"
+                            class="c-title ion-padding c-title--h1-color-brand c-title--text-transform c-title--addition-services c-title--h1-inter-12px c-title--view-vendor-quote ios hydrated">
+                            <h1 class="c-title__h1"><ion-icon name="add-outline"></ion-icon> Add another day</h1>
+                        </ion-text>
+                        </div>
+    
+                        <!-- <ion-button class="margin-10-12px" expand="block">Save <ion-icon size="small" name="chevron-forward-outline"></ion-icon></ion-button> -->
+                        <!-- /schedule main wrapper -->
+                    </div>
+                    <!-- /Schedule block -->
+
+                    <!-- Trucks block -->
+                    <div *ngIf="formType === 'trucks'">
+                        <ion-row
+                            class="c-thumbnail c-thumbnail--video-capture c-thumbnail--width-100p c-thumbnail--body-bg-gray-1-1 c-card u-no--mg-bot u-no--height c-card--pickup-location">
+                            <ion-col class="ion-no-padding">
+                                <ion-row class="c-item ion-no-padding l-form l-form--pickup-location">
+                                <ion-col size="6">
+                                    <ion-text class="c-title ion-no-padding c-title--h1-color-brand c-title--text-transform c-title--addition-services c-title--h1-inter-12px c-title--view-vendor-quote">
+                                        <h1 class="c-title__h1">Trucks</h1>
+                                    </ion-text>
+                                </ion-col>
+                            
+                                </ion-row>
+                                <!-- Pickup location main field wrapper -->
+                                <ion-row class="c-item-group-wrapper">
+                                    <ion-col class="ion-no-padding">
+                                        <!-- Contact person field wrapper -->
+                                        <ion-item-group class="c-item-group c-item-group--pickup-location">
+                                            <ng-container formArrayName="trucks" *ngFor="let truck of addendumForm.get('trucks')['controls']; let i = index;">
+                                                <!--/Day and remove icon-->
+                                                <ion-item-divider>
+                                                    <ion-row class="l-row u-no--mg l-row--pickup-location">
+                                                        <ion-col class="u-no--pad-top u-no--pad-bot u-no--pad-lt" size="8">
+                                                          <ion-row
+                                                            class="l-row u-no--mg-top u-no--mg-rt u-no--mg-lt l-row--pickup-location l-row--view-vendor-quote">
+                                                            <ion-col
+                                                              class="u-display--flex u-align-items--center u-no--pad-top u-no--pad-bot u-no--pad-lt">
+                                                              <!-- Job details -->
+                                                              <ion-text
+                                                                class="o-job-detail--pad-t-8px c-title ion-no-padding c-title--h1-color-brand c-title--text-transform c-title--addition-services c-title--h1-inter-12px c-title--view-vendor-quote">
+                                                                <ion-label>Additional Day {{i +1}}</ion-label>
+                                                              </ion-text>
+                                                              <!-- /Job details -->
+                                                            </ion-col>
+                                                          </ion-row>
+                                                        </ion-col>
+                                  
+                                                        <ion-col
+                                                          class="u-no--pad-top u-no--pad-bot u-no--pad-rt u-display--flex u-align-items--center u-justify-content--flex-end" *ngIf="trucksControls.length > 1">
+                                                          <ion-button (click)="removeTruckBlock(i)" fill="clear"><ion-icon name="trash"></ion-icon>
+                                                          </ion-button>
+                                                          <!-- /View quotes button -->
+                                  
+                                                        </ion-col>
+                                                      </ion-row>
+                                                </ion-item-divider>
+                                                <!--/Day and remove icon-->
+                                               
+                                                <div [formGroupName]="i">
+                                                    <!-- First & last name input wrapper -->
+                                                    <ion-item class="c-item ion-no-padding">
+                                                        <!-- First & last name input row -->
+                                                        <ion-row class="l-row u-no--mg l-row--pickup-location">
+                                                            <!-- First name input col -->
+                                                            <ion-col class="l-col--view-vendor-quote">
+                                                                <!-- First name input -->
+                                                                <ion-label position="stacked">Date & Time</ion-label>
+                                                                <ion-input formControlName="datetime" class="c-input c-input--white" value="{{ truck?.controls['datetime']?.value | date:'medium'  }}" trim placeholder="Date" (ionFocus)="presentTimeStartsPicker(truck)">
+                                                                </ion-input >
+                                                                <!-- /First name input -->
+                        
+                                                                <!-- First name field validation error -->
+                                                                <p class="c-content c-content--inter-12px c-content--login c-content--color-red c-content--form-message" *ngIf="false">
+                                                                Firstname cannot be empty
+                                                                </p>
+                                                                <!-- /First name field validation error -->
+                                                            </ion-col>
+                                                            <!-- /First name input col -->
+                        
+                                                            <!-- Last name input col -->
+                                                            <ion-col class="l-col--view-vendor-quote" *ngIf="false">
+                                                             
+                                                            </ion-col>
+                                                            <!-- /Last name input col -->
+                                                        </ion-row>
+                                                        <!-- /First & last name input row -->
+                                                    </ion-item>
+                                                    <!-- /First & last name input wrapper -->
+                    
+                                                    <!-- Email input wrapper -->
+                                                    <ion-item class="c-item ion-no-padding">
+                                                        <ion-row class="l-row u-no--mg l-row--pickup-location">
+                    
+                                                        <ion-col class="l-col--view-vendor-quote">
+                                                            <!-- Last name input -->
+                                                            <ion-label position="stacked">Van</ion-label>
+                                                            <ion-input  formControlName="vans" min="0" maxlength="3" type="number" (keypress)="noDecimal($event)" class="c-input c-input--white" trim placeholder="Van">
+                                                            </ion-input>
+                                                            <!-- /Last name input -->
+
+                                                            <!-- Last name field validation error -->
+                                                            <p class="c-content c-content--inter-12px c-content--login c-content--color-red c-content--form-message" *ngIf="false">
+                                                            Lastname cannot be empty
+                                                            </p>
+                                                            <!-- /Last name field validation error -->
+                                                        </ion-col>
+                                                        
+                                                        <ion-col  class="l-col--view-vendor-quote">
+                                                            <!-- Email input -->
+                                                            <ion-label position="stacked">Shuttles</ion-label>
+                                                            <ion-input  formControlName="shuttles" min="0" maxlength="3" type="number" (keypress)="noDecimal($event)" class="c-input c-input--white" trim placeholder="Shuttles">
+                                                            </ion-input>
+                                                            <!-- /Email input -->
+                    
+                                                            <!-- Email field validation error -->
+                                                            <p  *ngIf="false" class="c-content c-content--inter-12px c-content--login c-content--color-red c-content--form-message">
+                                                            Email cannot be empty
+                                                            </p>
+                                                            <!-- /Email field validation error -->
+                                                           
+                                                        </ion-col>
+                    
+                                                        </ion-row>
+                                                    </ion-item>
+                                                    <!-- /Email input wrapper -->
+                    
+                                                    <ion-item class="c-item ion-no-padding">
+                                                        <ion-row>
+                                                        <ion-col class="l-col--view-vendor-quote">
+                                                             <!-- Phone input -->
+                                                             <ion-label position="stacked">Pickup Trucks</ion-label>
+                                                             <ion-input class="c-input c-input--white" min="0" maxlength="3" type="number" (keypress)="noDecimal($event)" formControlName="pickupTrucks" placeholder="Pickup Trucks"></ion-input>
+                                                             <!-- Phone input -->
+                     
+                                                             <!-- Phone field validation error -->
+                                                             <p *ngIf="false" class="c-content c-content--inter-12px c-content--login c-content--color-red c-content--form-message">
+                                                                 Phone cannot be empty
+                                                             </p>
+                                                             <!-- /Phone field validation error -->
+                                                        </ion-col>
+                                                        <ion-col class="l-col--view-vendor-quote">
+
+                                                            <!-- Phone input -->
+                                                            <ion-label position="stacked">"14” Trucks</ion-label>
+                                                            <ion-input class="c-input c-input--white" min="0" maxlength="3" type="number" (keypress)="noDecimal($event)" formControlName="fourteenTrucks" placeholder="14” Trucks"></ion-input>
+                                                            <!-- Phone input -->
+                    
+                                                            <!-- Phone field validation error -->
+                                                            <p *ngIf="false" class="c-content c-content--inter-12px c-content--login c-content--color-red c-content--form-message">
+                                                            Phone cannot be empty
+                                                            </p>
+                                                            <!-- /Phone field validation error -->
+                                                           
+                                                        </ion-col>
+                                                        </ion-row>
+                                                    </ion-item>
+                    
+                                                    <ion-item class="c-item ion-no-padding">
+                                                        <ion-row>
+                                                        <ion-col class="l-col--view-vendor-quote">
+                                                            <!-- Phone input -->
+                                                            <ion-label position="stacked">"16” Trucks</ion-label>
+                                                            <ion-input class="c-input c-input--white" min="0" maxlength="3" type="number" (keypress)="noDecimal($event)" formControlName="sixteenTrucks" placeholder="16” Trucks"></ion-input>
+                                                            <!-- Phone input -->
+
+                                                            <!-- Phone field validation error -->
+                                                            <p *ngIf="false" class="c-content c-content--inter-12px c-content--login c-content--color-red c-content--form-message">
+                                                            Phone cannot be empty
+                                                            </p>
+                                                            <!-- /Phone field validation error -->
+                                                            <!-- </ion-item> -->
+
+                                                        </ion-col>
+                                                        <ion-col class="l-col--view-vendor-quote">
+                                                            <!-- Phone input -->
+                                                            <ion-label position="stacked">"20” Trucks</ion-label>
+                                                            <ion-input class="c-input c-input--white" min="0" maxlength="3" type="number" (keypress)="noDecimal($event)"  formControlName="twentyTrucks" placeholder="20” Trucks"></ion-input>
+                                                            <!-- Phone input -->
+                    
+                                                            <!-- Phone field validation error -->
+                                                            <p *ngIf="false" class="c-content c-content--inter-12px c-content--login c-content--color-red c-content--form-message">
+                                                            Phone cannot be empty
+                                                            </p>
+                                                            <!-- /Phone field validation error -->
+                    
+                                                           
+                    
+                                                        </ion-col>
+                                                        </ion-row>
+                                                    </ion-item>
+                                                    
+                                                    <ion-item class="c-item ion-no-padding">
+                                                        <ion-row>
+                                                            <ion-col size="6">
+
+                                                                 <!-- Phone input -->
+                                                                <ion-label position="stacked">"24” Trucks</ion-label>
+                                                                <ion-input class="c-input c-input--white" min="0" maxlength="3" type="number" (keypress)="noDecimal($event)" formControlName="twentyFourTrucks" placeholder="24” Trucks"></ion-input>
+                                                                <!-- Phone input -->
+                        
+                                                                <!-- Phone field validation error -->
+                                                                <p *ngIf="false" class="c-content c-content--inter-12px c-content--login c-content--color-red c-content--form-message">
+                                                                Phone cannot be empty
+                                                                </p>
+                                                                <!-- /Phone field validation error -->
+                                                                <!-- </ion-item> -->
+                                                                
+                                                            </ion-col>
+                                                            <ion-col class="l-col--view-vendor-quote">
+                                                                <!-- Phone input -->
+                                                                <ion-label position="stacked">"26” Trucks</ion-label>
+                                                                <ion-input class="c-input c-input--white" min="0" maxlength="3" type="number" (keypress)="noDecimal($event)" formControlName="twentySixTrucks" placeholder="26” Trucks"></ion-input>
+                                                                <!-- Phone input -->
+                        
+                                                                <!-- Phone field validation error -->
+                                                                <p *ngIf="false" class="c-content c-content--inter-12px c-content--login c-content--color-red c-content--form-message">
+                                                                Phone cannot be empty
+                                                                </p>
+                                                                <!-- /Phone field validation error -->
+                        
+                                                            </ion-col>
+                                                        </ion-row>
+                                                    </ion-item>
+                                                </div>
+                                                
+                                            </ng-container>
+                                        </ion-item-group>
+                                        <!-- /Contact person field wrapper -->
+                                    </ion-col>
+                                </ion-row>
+                                <!-- /Pickup location main field wrapper -->
+                            </ion-col>
+                        </ion-row>
+    
+                        <!-- Add another block btn -->
+                        <div class="ion-text-center margin--margin-top-bottom-20px ">
+                            <ion-text (click)="addTruckForm()"
+                                class="c-title ion-padding c-title--h1-color-brand c-title--text-transform c-title--addition-services c-title--h1-inter-12px c-title--view-vendor-quote ios hydrated">
+                                <h1 class="c-title__h1"><ion-icon name="add-outline"></ion-icon> Add another day</h1>
+                            </ion-text>
+                        </div>
+                        <!-- /Add another block btn -->
+
+                        <!-- total coat -->
+                        <ion-row style="margin-top: 8px;"
+                            class="c-thumbnail c-thumbnail--video-capture c-thumbnail--width-100p c-thumbnail--body-bg-gray-1-1 c-card u-no--mg-bot u-no--height c-card--pickup-location border-background--border-1px-solid-brand-color border-background--background-color-brand-8-rba">
+                            <ion-col class="ion-no-padding">
+                                <!-- Pickup location main field wrapper -->
+                                <ion-row class="c-item-group-wrapper">
+                                <ion-col class="ion-no-padding">
+                                    <!-- Contact person field wrapper -->
+                                    <ion-item-group class="c-item-group c-item-group--pickup-location">
+                                        <!-- Contact person label wrapper -->
+                                        <ion-item class="c-item ion-no-padding">
+                                        <ion-row class="u-display--flex u-align-items--center">
+                                            <ion-col class="c-title ion-no-padding c-title--h1-color-brand c-title--text-transform c-title--addition-services c-title--h1-inter-12px c-title--view-vendor-quote">
+    
+                                            <!-- Contact person title -->
+                                            <ion-text
+                                                class="c-title ion-no-padding c-title--h1-color-brand c-title--text-transform c-title--addition-services c-title--h1-inter-12px c-title--view-vendor-quote">
+                                                <h1 class="c-title__h1">Total cost</h1>
+                                            </ion-text>
+                                            <!-- /Contact person title -->
+                                            </ion-col>
+                                            <ion-col class="u-display--flex u-align-items--center u-justify-content--flex-end u-no--pad-top u-no--pad-bot u-no--pad-rt l-col l-col--view-vendor-quote l-col--pick-up-location">
+                                                <!-- Email input -->
+                                                <ion-input class="c-input c-input--white c-button--min-width-228px border-background--border-1px-solid-brand-color" formControlName="totalTrucksCost" trim placeholder="Truck" readonly>
+                                                </ion-input>
+                                                <!-- /Email input -->
+                                            </ion-col>
+                                        </ion-row>
+                                        </ion-item>
+                                        <!-- /Contact person label wrapper -->
+                                    </ion-item-group>
+                                    <!-- /Contact person field wrapper -->
+    
+                                </ion-col>
+                                </ion-row>
+                                <!-- /Pickup location main field wrapper -->
+                            </ion-col>
+                        </ion-row>
+                        <!-- /total cost -->
+    
+                        <!-- <ion-button class="margin-10-12px" expand="block">Save <ion-icon size="small" name="chevron-forward-outline"></ion-icon></ion-button> -->
+                    </div>
+                    <!-- /Trucks block -->
+                    
+                    <!-- Supplies block -->
+                    <div *ngIf="formType === 'supplies'">
+                        <!-- Supplies -->
+                        <ion-row
+                            class="c-thumbnail c-thumbnail--video-capture c-thumbnail--width-100p c-thumbnail--body-bg-gray-1-1 c-card u-no--mg-bot u-no--height c-card--pickup-location">
+                            <ion-col class="ion-no-padding">
+                                <!-- Pickup location main field wrapper -->
+                                <ion-row class="c-item-group-wrapper">
+                                    <ion-col class="ion-no-padding">
+                                        <!-- Contact person field wrapper -->
+                                        <ion-item-group class="c-item-group c-item-group--pickup-location">
+                                            
+                                            <!-- Contact person label wrapper -->
+                                            <ion-item class="c-item ion-no-padding">
+                                                <!-- Contact person title -->
+                                                <ion-text
+                                                class="c-title ion-no-padding c-title--h1-color-brand c-title--text-transform c-title--addition-services c-title--h1-inter-12px c-title--view-vendor-quote">
+                                                <h1 class="c-title__h1">Supplies</h1>
+                                                </ion-text>
+                                                <!-- /Contact person title -->
+                                            </ion-item>
+                                            <!-- /Contact person label wrapper -->
+                                            
+                                            <ng-container formArrayName="supplies" *ngFor="let schedule of addendumForm.get('supplies')['controls']; let i = index;">
+                                                <div [formGroupName]="i">
+
+                                                    <!--/Day and remove icon-->
+                                                <ion-item-divider>
+                                                    <ion-row class="l-row u-no--mg l-row--pickup-location">
+                                                        <ion-col class="u-no--pad-top u-no--pad-bot u-no--pad-lt" size="8">
+                                                          <ion-row
+                                                            class="l-row u-no--mg-top u-no--mg-rt u-no--mg-lt l-row--pickup-location l-row--view-vendor-quote">
+                                                            <ion-col
+                                                              class="u-display--flex u-align-items--center u-no--pad-top u-no--pad-bot u-no--pad-lt">
+                                                              <!-- Job details -->
+                                                              <ion-text
+                                                                class="o-job-detail--pad-t-8px c-title ion-no-padding c-title--h1-color-brand c-title--text-transform c-title--addition-services c-title--h1-inter-12px c-title--view-vendor-quote">
+                                                                <ion-label>Supply Item {{i +1}}</ion-label>
+                                                              </ion-text>
+                                                              <!-- /Job details -->
+                                                            </ion-col>
+                                                          </ion-row>
+                                                        </ion-col>
+                                  
+                                                        <ion-col
+                                                          class="u-no--pad-top u-no--pad-bot u-no--pad-rt u-display--flex u-align-items--center u-justify-content--flex-end" *ngIf="suppliesControls.length > 1">
+                                                          <ion-button (click)="removeSupplyBlock(i)" fill="clear"><ion-icon name="trash"></ion-icon>
+                                                          </ion-button>
+                                                          <!-- /View quotes button -->
+                                  
+                                                        </ion-col>
+                                                      </ion-row>
+                                                </ion-item-divider>
+                                    <!--/Day and remove icon-->
+
+                                                    <!-- First & last name input wrapper -->
+                                                    <ion-item class="c-item ion-no-padding">
+                                                        <!-- First & last name input row -->
+                                                        <ion-row class="l-row u-no--mg l-row--pickup-location">
+                                                            <!-- First name input col -->
+                                                            <ion-col class="l-col--view-vendor-quote">
+                                                                <!-- Item name input -->
+                                                                <ion-label position="stacked">Item Name</ion-label>
+                                                                <ion-select formControlName="name" (ionChange)="handleChange($event)">
+                                                                    <ion-select-option *ngFor="let item of suppliesList">
+                                                                        {{item?.name}}
+                                                                    </ion-select-option>
+                                                                </ion-select>
+                                                              
+                                                                <!-- /First name input -->
+                        
+                                                                <!-- First name field validation error -->
+                                                                <p class="c-content c-content--inter-12px c-content--login c-content--color-red c-content--form-message" *ngIf="false">
+                                                                Firstname cannot be empty
+                                                                </p>
+                                                                <!-- /First name field validation error -->
+                                                            </ion-col>
+                                                            <!-- /First name input col -->
+                    
+                                                      
+                                                        </ion-row>
+                                                        <!-- /First & last name input row -->
+                                                    </ion-item>
+                                                    <!-- /First & last name input wrapper -->
+                    
+                                                    <!-- Email input wrapper -->
+                                                    <ion-item class="c-item ion-no-padding">
+                                                        <ion-row class="l-row u-no--mg l-row--pickup-location">
+                                                        <!-- Last name input col -->
+                                                        <ion-col class="l-col--view-vendor-quote" >
+                                                            
+                                                            <!-- Last name input -->
+                                                            <ion-label position="stacked">Number of items</ion-label>
+                                                            <ion-input formControlName="quantity" min="0" maxlength="3" type="number" (keypress)="noDecimal($event)" class="c-input c-input--white" trim
+                                                            placeholder="Number of items">
+                                                            </ion-input>
+                                                            <!-- /Last name input -->
+                    
+                                                            <!-- Last name field validation error -->
+                                                            <p class="c-content c-content--inter-12px c-content--login c-content--color-red c-content--form-message" *ngIf="false">
+                                                            Lastname cannot be empty
+                                                            </p>
+                                                            <!-- /Last name field validation error -->
+                                                        </ion-col>
+                                                        <!-- /Last name input col -->
+                    
+                                                        <ion-col class="l-col--view-vendor-quote">
+                    
+                                                            <!-- Email input -->
+                                                            <ion-label position="stacked">Item price ($)</ion-label>
+                                                            <ion-input min="0" maxlength="3" type="number" (keypress)="noDecimal($event)" formControlName="price" class="c-input c-input--white" trim placeholder="Item price ($)">
+                                                            </ion-input>
+                                                            <!-- /Email input -->
+                    
+                                                            <!-- Email field validation error -->
+                                                            <p  *ngIf="false" class="c-content c-content--inter-12px c-content--login c-content--color-red c-content--form-message">
+                                                            Email cannot be empty
+                                                            </p>
+                                                            <!-- /Email field validation error -->
+                                                        </ion-col>
+                    
+                                                        </ion-row>
+                                                    </ion-item>
+                                                    <!-- /Email input wrapper -->
+                    
+                                                </div>
+                                            </ng-container>
+                                        </ion-item-group>
+                                        <!-- /Contact person field wrapper -->
+                                    </ion-col>
+                                </ion-row>
+                                <!-- /Pickup location main field wrapper -->
+                            </ion-col>
+                        </ion-row>
+                        <!-- /Supplies -->
+    
+                        <!-- total coat -->
+                        <ion-row style="margin-top: 8px;"
+                            class="c-thumbnail c-thumbnail--video-capture c-thumbnail--width-100p c-thumbnail--body-bg-gray-1-1 c-card u-no--mg-bot u-no--height c-card--pickup-location border-background--border-1px-solid-brand-color border-background--background-color-brand-8-rba">
+                            <ion-col class="ion-no-padding">
+                                <!-- Pickup location main field wrapper -->
+                                <ion-row class="c-item-group-wrapper">
+                                    <ion-col class="ion-no-padding">
+                                            <!-- Contact person field wrapper -->
+                                            <ion-item-group class="c-item-group c-item-group--pickup-location">
+                                            <!-- Contact person label wrapper -->
+                                            <ion-item class="c-item ion-no-padding">
+                                            <ion-row class="u-display--flex u-align-items--center">
+                                                <ion-col class="c-title ion-no-padding c-title--h1-color-brand c-title--text-transform c-title--addition-services c-title--h1-inter-12px c-title--view-vendor-quote">
+    
+                                                <!-- Contact person title -->
+                                                <ion-text
+                                                    class="c-title ion-no-padding c-title--h1-color-brand c-title--text-transform c-title--addition-services c-title--h1-inter-12px c-title--view-vendor-quote">
+                                                    <h1 class="c-title__h1">Total cost</h1>
+                                                </ion-text>
+                                                <!-- /Contact person title -->
+                                                </ion-col>
+                                                <ion-col class="u-display--flex u-align-items--center u-justify-content--flex-end u-no--pad-top u-no--pad-bot u-no--pad-rt l-col l-col--view-vendor-quote l-col--pick-up-location">
+                                                    <!-- Email input -->
+                                                    <ion-input class="c-input c-input--white c-button--min-width-228px border-background--border-1px-solid-brand-color" formControlName="totalSuppliesCost" trim placeholder="Supplies" readonly>
+                                                    </ion-input>
+                                                    <!-- /Email input -->
+                                                </ion-col>
+                                            </ion-row>
+                                            </ion-item>
+                                            <!-- /Contact person label wrapper -->
+                                        </ion-item-group>
+                                        <!-- /Contact person field wrapper -->
+    
+                                    </ion-col>
+                                </ion-row>
+                                <!-- /Pickup location main field wrapper -->
+                            </ion-col>
+                        </ion-row>
+                        <!-- /total coat -->
+    
+                        <!--Add another block-->
+                        <div class="ion-text-center margin--margin-top-bottom-20px">
+                            <ion-text (click)="addSuppliesForm()"
+                                class="c-title ion-padding c-title--h1-color-brand c-title--text-transform c-title--addition-services c-title--h1-inter-12px c-title--view-vendor-quote ios hydrated">
+                                <h1 class="c-title__h1"><ion-icon name="add-outline"></ion-icon> Add more supplies</h1>
+                            </ion-text>
+                        </div>
+                        <!--/Add another block-->
+                    </div>
+                    <!-- /Supplies block -->
+
+                    <div *ngIf="formType === 'notes'">
+
+                        <!-- Additional notes item -->
+                        <ion-item class="c-item ion-no-padding">
+                            <!-- Additional notes main wrapper -->
+                            <ion-row
+                                class="c-thumbnail c-thumbnail--video-capture c-thumbnail--width-100p c-thumbnail--body-bg-gray-1-1 c-card u-no--mg-bot u-no--height c-card--pickup-location c-card--addition-services">
+                                <ion-col class="ion-no-padding">
+                                    <!-- Additional notes header -->
+                                    <ion-row
+                                        class="l-row u-no--mg-top u-no--mg-rt u-no--mg-lt l-row--pickup-location l-row--view-vendor-quote">
+                                        <ion-col class="u-display--flex u-align-items--center u-no--pad-top u-no--pad-bot u-no--pad-lt"
+                                        size="8">
+                                        <!-- Additional notes title -->
+                                        <ion-text
+                                            class="c-title ion-no-padding c-title--h1-color-brand c-title--text-transform c-title--addition-services c-title--h1-inter-12px c-title--view-vendor-quote">
+                                            <h1 class="c-title__h1">Items to be moved</h1>
+                                        </ion-text>
+                                        <!-- /Additional notes title -->
+                                        </ion-col>
+                                        <ion-col
+                                        class="u-display--flex u-align-items--center u-justify-content--flex-end u-no--pad-top u-no--pad-bot u-no--pad-rt">
+                                        <!-- action icon removed -->
+                                        </ion-col>
+                                    </ion-row>
+                                    <!-- /Additional notes header -->
+    
+                                    <!-- Additional notes textarea -->
+                                    <ion-textarea class="c-input c-input--white order-details-additional-notes" formControlName="itemsToBeMoved" ></ion-textarea>
+                                    <!-- /Additional notes textarea -->
+                                </ion-col>
+                            </ion-row>
+                            <!-- /Additional notes main wrapper -->
+                        </ion-item>
+                        <!-- /Additional notes item -->
+    
+                        <!-- Additional notes item -->
+                        <ion-item class="c-item ion-no-padding">
+                            <!-- Additional notes main wrapper -->
+                            <ion-row
+                                class="c-thumbnail c-thumbnail--video-capture c-thumbnail--width-100p c-thumbnail--body-bg-gray-1-1 c-card u-no--mg-bot u-no--height c-card--pickup-location c-card--addition-services">
+                                <ion-col class="ion-no-padding">
+                                <!-- Additional notes header -->
+                                <ion-row
+                                    class="l-row u-no--mg-top u-no--mg-rt u-no--mg-lt l-row--pickup-location l-row--view-vendor-quote">
+                                    <ion-col class="u-display--flex u-align-items--center u-no--pad-top u-no--pad-bot u-no--pad-lt"
+                                    size="8">
+                                        <!-- Additional notes title -->
+                                        <ion-text
+                                            class="c-title ion-no-padding c-title--h1-color-brand c-title--text-transform c-title--addition-services c-title--h1-inter-12px c-title--view-vendor-quote">
+                                            <h1 class="c-title__h1">Items to be packed</h1>
+                                        </ion-text>
+                                        <!-- /Additional notes title -->
+                                    </ion-col>
+    
+                                    <ion-col
+                                    class="u-display--flex u-align-items--center u-justify-content--flex-end u-no--pad-top u-no--pad-bot u-no--pad-rt">
+                                    <!-- action icon removed -->
+                                    </ion-col>
+                                    
+                                </ion-row>
+                                <!-- /Additional notes header -->
+    
+                                <!-- Additional notes textarea -->
+                                <ion-textarea class="c-input c-input--white order-details-additional-notes" formControlName="itemsToBePacked"></ion-textarea>
+                                <!-- /Additional notes textarea -->
+                                </ion-col>
+                            </ion-row>
+                            <!-- /Additional notes main wrapper -->
+                        </ion-item>
+                        <!-- /Additional notes item -->
+    
+                        <!-- Additional notes item -->
+                        <ion-item class="c-item ion-no-padding">
+                            <!-- Additional notes main wrapper -->
+                            <ion-row
+                                class="c-thumbnail c-thumbnail--video-capture c-thumbnail--width-100p c-thumbnail--body-bg-gray-1-1 c-card u-no--mg-bot u-no--height c-card--pickup-location c-card--addition-services">
+                                <ion-col class="ion-no-padding">
+                                    <!-- Additional notes header -->
+                                    <ion-row
+                                        class="l-row u-no--mg-top u-no--mg-rt u-no--mg-lt l-row--pickup-location l-row--view-vendor-quote">
+                                        <ion-col class="u-display--flex u-align-items--center u-no--pad-top u-no--pad-bot u-no--pad-lt"
+                                        size="8">
+                                            <!-- Additional notes title -->
+                                            <ion-text
+                                                class="c-title ion-no-padding c-title--h1-color-brand c-title--text-transform c-title--addition-services c-title--h1-inter-12px c-title--view-vendor-quote">
+                                                <h1 class="c-title__h1">Items to be disposed</h1>
+                                            </ion-text>
+                                            <!-- /Additional notes title -->
+                                        </ion-col>
+                                        <ion-col
+                                        class="u-display--flex u-align-items--center u-justify-content--flex-end u-no--pad-top u-no--pad-bot u-no--pad-rt">
+                                        <!-- action icon removed -->
+    
+                                        </ion-col>
+                                    </ion-row>
+                                    <!-- /Additional notes header -->
+    
+                                    <!-- Additional notes textarea -->
+                                    <ion-textarea class="c-input c-input--white order-details-additional-notes" formControlName="itemsToBeDisposed"></ion-textarea>
+                                    <!-- /Additional notes textarea -->
+                                </ion-col>
+                            </ion-row>
+                            <!-- /Additional notes main wrapper -->
+                        </ion-item>
+                        <!-- /Additional notes item -->
+
+                    </div>
+
+                </form>
+                <!-- /truck form -->
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+    <!-- /Pickup location main wrapper -->
+
+</ion-content>
+
+<ion-footer>
+    <ion-row>
+        <ion-col size="6">
+            <ion-button class="c-button ion-no-margin u-no--text-transform c-button--outline c-button--border-color-brand c-button--text-color-brand c-button--text-inter-14px c-button--text-inter-medium"
+                fill="clear" expand="full" (click)="close()">Cancel</ion-button>
+        </ion-col>
+        <ion-col size="6">
+            <ion-button class="c-button ion-no-margin u-no--text-transform c-button--text-inter-18px c-button--text-inter-medium" expand="block" (click)="addOrUpdateForm(addendumForm.value)"  fill="clear" shape="round">
+                {{formMode === 'add' ? 'Add' : 'Update'}}</ion-button>
+        </ion-col>
+    </ion-row>
+</ion-footer>

@@ -1,0 +1,36 @@
+@use "../abstracts/colors" as *;
+
+.has-input-group {
+
+  ion-item {
+
+    &::part(native) {
+      border-radius: 5px;
+    }
+  }
+}
+
+ion-item {
+
+  &.order-details-ion-item-input-group {
+    background-color: $white;
+    color: $color-primary-1-1;
+  }
+}
+
+.order-details-additional-notes {
+  height: 150px;
+
+  .native-textarea {
+    height: 150px;
+    max-height: 150px;
+    overflow: auto;
+  }
+}
+
+.edit-save-icon-button {
+  color: $color-brand;
+  max-width: none;
+  width: 24px;
+  height: 24px;
+}

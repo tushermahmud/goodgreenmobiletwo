@@ -1,0 +1,43 @@
+// Abstracts
+@use "../abstracts/colors" as *;
+@use "../abstracts/dimension" as *;
+@use "../abstracts/typography" as *;
+@use "../abstracts/border-radius" as *;
+
+// Select
+.c-select {
+  $cSelect: &;
+
+  --placeholder-color: #4a545d;
+  --placeholder-opacity: 1;
+
+  border: 1px solid $color-primary-1-1;
+  border-radius: $border-radius-5px;
+  color: $color-primary;
+  padding: 0 10px;
+  min-height: $height-35px;
+  font-size: $font-size-14px;
+}
+
+// @media (prefers-color-scheme: dark) {
+//   .alert-wrapper.sc-ion-alert-ios,
+//   .alert-wrapper.sc-ion-alert-md {
+//     background: $black;
+//   }
+
+//   .alert-radio-label.sc-ion-alert-ios,
+//   .alert-radio-label.sc-ion-alert-md {
+//     color: $white;
+//   }
+
+//   .alert-radio-group.sc-ion-alert-ios,
+//   .alert-radio-group.sc-ion-alert-md {
+//     border: 1px solid $white;
+//     border-right: none;
+//     border-left: none;
+//   }
+
+//   .alert-button.sc-ion-alert-ios {
+//     border-right: 1px solid $white;
+//   }
+// }

@@ -1,0 +1,87 @@
+@use "../abstracts/colors" as *;
+
+.o-emp-notification{
+    
+    .tab-background, div{
+        background-color: $color-brand;
+    }
+
+    .tab-color-white{
+        color: $white;
+    }
+
+    .padding-15px{
+        padding: 15px;
+    }
+
+    .border-radius-30px{
+        border-radius: 30px 0px 0px 30px;
+    }
+
+    .margin-right-10px{
+        margin-right: 10px;
+    }
+
+    &--icon-font-size{
+        font-size: 25px;
+    }
+
+    ion-item {
+  --background: #0c9447;
+  --detail-icon-color: white;
+  --detail-icon-opacity: 1;
+  --detail-icon-font-size: 20px;
+  margin-bottom: 10px;
+    }
+
+    ion-item::part(detail-icon){
+        padding: 10px;
+    }
+
+    .display-flex-label{
+        display: flex;
+        align-items: center;
+    }
+
+    &--font-weight-700{
+        font-weight: 700;
+    }
+
+    &--border-bot-1px-gray{
+        border-bottom: 1px solid $color-bg-light-gray;
+        padding-bottom: 7px;
+    }
+}
+
+.margin-right-5px{
+    margin-right: 10px;
+}
+
+.margin-left-5px{
+    margin-left: 5px;
+}
+
+.margin-bottom-7px{
+    margin-bottom: 7px;
+}
+
+// .o-time-offs{
+//     ion-button{
+//         // --padding-top: 10px;
+//         // --padding-bottom: 10px;
+//         margin: 10px 0px;
+//         height: 45px;
+//         width: 100%;
+//     }
+
+//     ion-item{
+//         padding-top: 10px;
+//         padding-bottom: 10px;
+//     }
+
+//     .textarea-note-placeholder{
+//         border: 1px solid #e9eaeb;
+//         padding: 5px;
+//         border-radius: 8px 8px 0px 0px;
+//     }
+// }

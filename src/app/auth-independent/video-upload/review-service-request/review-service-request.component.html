@@ -1,0 +1,584 @@
+<!-- Service request review header -->
+<ion-header collapse="fade" mode="md" class="l-header">
+  <app-header [headerMeta]="heraderInfo"></app-header>
+</ion-header>
+<!-- /Service request review header -->
+
+<!-- Service request review content -->
+<ion-content>
+  <!-- Service request review main wrapper -->
+  <ion-grid class="l-main-wrapper ion-no-padding l-main-wrapper--get-started">
+    <ion-row>
+      <ion-col class="ion-no-padding">
+        <!-- Service request review header -->
+        <ion-row>
+          <!-- Service request review header col left -->
+          <ion-col class="u-display--flex u-align-items--center u-no--pad-top u-no--pad-bot u-no--pad-lt" size="8">
+            <!-- Service request review title -->
+            <ion-text
+              class="ion-no-padding c-title c-title--get-started c-title--our-services c-title--h1-inter-16px c-title--inter-regular c-title--h1-black c-title--video-instructions u-no--mg-top">
+              <h1 class="c-title__h1">Service Request Review</h1>
+            </ion-text>
+            <!-- /Service request review title -->
+          </ion-col>
+          <!-- /Service request review header col left -->
+
+          <!-- Service request review header col right -->
+          <ion-col
+            class="u-display--flex u-align-items--center u-justify-content--flex-end u-no--pad-top u-no--pad-bot u-no--pad-rt">
+            <!-- Step info -->
+            <ion-text
+              class="ion-no-padding c-title c-title--login c-title--h1-color-primary c-title--pickup-location c-title--inter-regular u-no--mg-top">
+              <h1 class="c-title__h1">
+                <span class="c-title__span">Step {{currentStep}}</span>
+                of {{totalSteps}}
+              </h1>
+            </ion-text>
+            <!-- /Step info -->
+          </ion-col>
+          <!-- /Service request review header col right -->
+        </ion-row>
+        <!-- /Service request review header -->
+
+        <!-- Service request review form -->
+        <form class="l-form l-form--pickup-location">
+          <!-- Service request review main wrapper -->
+          <ion-row
+            class="c-thumbnail c-thumbnail--video-capture c-thumbnail--width-100p c-thumbnail--body-bg-gray-1-1 c-card u-no--mg-bot u-no--height c-card--pickup-location">
+            <ion-col class="ion-no-padding">
+              <!-- Service request review main field wrapper -->
+              <ion-row class="c-item-group-wrapper">
+                <ion-col class="ion-no-padding">
+                  <!-- Contact person field wrapper -->
+                  <ion-item-group class="c-item-group c-item-group--pickup-location">
+                    <!-- Status label wrapper -->
+                    <ion-item class="c-item ion-no-padding">
+                      <!-- Status title -->
+                      <ion-text
+                        class="c-title ion-no-padding c-title--h1-color-brand c-title--text-transform c-title--addition-services c-title--h1-inter-12px c-title--view-vendor-quote">
+                        <h1 class="c-title__h1">STATUS</h1>
+                      </ion-text>
+                      <!-- /Status title -->
+                    </ion-item>
+                    <!-- /Status label wrapper -->
+
+                    <!-- Service requested label wrapper -->
+                    <ion-item class="c-item ion-no-padding">
+                      <!-- Service requested label -->
+                      <ion-label
+                        class="c-label c-label--inter-13px c-label--inter-medium c-label--color-primary-1-1 ion-no-margin">
+                        Service Requested</ion-label>
+                      <!-- /Service requested label -->
+                    </ion-item>
+                    <!-- /Service requested label wrapper -->
+
+                    <!-- Service requested input wrapper -->
+                    <ion-item class="c-item ion-no-padding">
+                      <!-- Service requested input -->
+                      <ion-input class="c-input c-input--white" name="local-moving" placeholder="Local Moving"
+                        [value]="orderData?.service?.label" readonly></ion-input>
+                      <!-- /Service requested input -->
+
+                      <!-- Service requested input edit icon -->
+                      <ion-icon src="../../../../assets/images/fill-edit--color-blue.svg"
+                        class="c-icon u-no--mg-rt c-icon--button u-position--absolute u-top--50p u-transform--translate-y-minus-50p c-icon--review-service-request"
+                        (click)="goToServices()" *ngIf="false"></ion-icon>
+                      <!-- /Service requested input edit icon -->
+                    </ion-item>
+                    <!-- /Service requested input wrapper -->
+                  </ion-item-group>
+                  <!-- /Contact person field wrapper -->
+
+                  <!-- Item divider -->
+                  <ion-item-divider
+                    class="ion-no-padding c-item-divider c-item-divider--width-100p c-item-divider--min-height-2px">
+                  </ion-item-divider>
+                  <!-- /Item divider -->
+
+                  <!-- Contact details field wrapper -->
+                  <ion-item-group class="c-item-group c-item-group--pickup-location">
+                    <!-- Contact details label wrapper -->
+                    <ion-item class="c-item ion-no-padding">
+                      <!-- Contact details title -->
+                      <ion-text
+                        class="c-title ion-no-padding c-title--h1-color-brand c-title--text-transform c-title--addition-services c-title--h1-inter-12px c-title--view-vendor-quote">
+                        <h1 class="c-title__h1">CONTACT DETAILS</h1>
+                      </ion-text>
+                      <!-- /Contact details title -->
+                    </ion-item>
+                    <!-- /Contact details label wrapper -->
+
+                    <!-- Name label wrapper -->
+                    <ion-item class="c-item ion-no-padding">
+                      <!-- Name label -->
+                      <ion-label
+                        class="c-label c-label--inter-13px c-label--inter-medium c-label--color-primary-1-1 ion-no-margin">
+                        Name</ion-label>
+                      <!-- /Name label -->
+                    </ion-item>
+                    <!-- /Name label wrapper -->
+
+                    <!-- Name input wrapper -->
+                    <ion-item class="c-item ion-no-padding">
+                      <!-- Name input -->
+                      <ion-input class="c-input c-input--white" name="first-name" placeholder="John"
+                        [value]="orderData?.contact?.firstname + ' ' + orderData?.contact?.lastname" readonly>
+                      </ion-input>
+                      <!-- /Name input -->
+
+                      <!-- Name input edit icon -->
+                      <ion-icon src="../../../../assets/images/fill-edit--color-blue.svg"
+                        class="c-icon u-no--mg-rt c-icon--button u-position--absolute u-top--50p u-transform--translate-y-minus-50p c-icon--review-service-request"
+                        (click)="goToPickup()" *ngIf="false"></ion-icon>
+                      <!-- /Name input edit icon -->
+                    </ion-item>
+                    <!-- /Name input wrapper -->
+
+                    <!-- Email label wrapper -->
+                    <ion-item class="c-item ion-no-padding">
+                      <!-- Email label -->
+                      <ion-label
+                        class="c-label c-label--inter-13px c-label--inter-medium c-label--color-primary-1-1 ion-no-margin">
+                        Email</ion-label>
+                      <!-- /Email label -->
+                    </ion-item>
+                    <!-- /Email label wrapper -->
+
+                    <!-- Email input wrapper -->
+                    <ion-item class="c-item ion-no-padding">
+                      <!-- Email input -->
+                      <ion-input class="c-input c-input--white" name="phone-number" type="text" placeholder="email"
+                        [value]="orderData?.contact?.email" readonly></ion-input>
+                      <!-- /Email input -->
+                    </ion-item>
+                    <!-- /Email input wrapper -->
+
+                    <!-- Phone number label wrapper -->
+                    <ion-item class="c-item ion-no-padding">
+                      <!-- Phone number label -->
+                      <ion-label
+                        class="c-label c-label--inter-13px c-label--inter-medium c-label--color-primary-1-1 ion-no-margin">
+                        Phone number</ion-label>
+                      <!-- /Phone number label -->
+                    </ion-item>
+                    <!-- /Phone number label wrapper -->
+
+                    <!-- Phone input wrapper -->
+                    <ion-item class="c-item ion-no-padding">
+                      <!-- Phone input -->
+                      <ion-input class="c-input c-input--white" name="phone-number" type="text"
+                        placeholder="phoneNumber" [value]="orderData?.contact?.phoneNumber" readonly></ion-input>
+                      <!-- Phone input -->
+                    </ion-item>
+                    <!-- /Phone input wrapper -->
+                  </ion-item-group>
+                  <!-- /Contact person field wrapper -->
+
+                  <!-- Item divider -->
+                  <ion-item-divider
+                    class="ion-no-padding c-item-divider c-item-divider--width-100p c-item-divider--min-height-2px">
+                  </ion-item-divider>
+                  <!-- /Item divider -->
+
+                  <!-- Pick up location field wrapper -->
+                  <ion-item-group class="c-item-group c-item-group--pickup-location">
+                    <!-- Pick up location label wrapper -->
+                    <ion-item class="c-item ion-no-padding">
+                      <!-- Pick up location title -->
+                      <ion-text
+                        class="c-title ion-no-padding c-title--h1-color-brand c-title--text-transform c-title--addition-services c-title--h1-inter-12px c-title--view-vendor-quote">
+                        <h1 class="c-title__h1">PICK UP LOCATION</h1>
+                      </ion-text>
+                      <!-- /Pick up location title -->
+                    </ion-item>
+                    <!-- /Pick up location label wrapper -->
+
+                    <!-- Address label wrapper -->
+                    <ion-item class="c-item ion-no-padding">
+                      <!-- Address label -->
+                      <ion-label
+                        class="c-label c-label--inter-13px c-label--inter-medium c-label--color-primary-1-1 ion-no-margin">
+                        Address</ion-label>
+                      <!-- /Address label -->
+                    </ion-item>
+                    <!-- /Address label wrapper -->
+
+                    <!-- Address textarea wrapper -->
+                    <ion-item class="c-item ion-no-padding">
+                      <!-- Address textarea -->
+                      <ion-textarea class="c-input c-input--white ion-no-margin" name="address" placeholder="Address"
+                        [value]="orderData?.pickupAddress?.address" readonly></ion-textarea>
+                      <!-- /Address textarea -->
+
+                      <!-- Address textarea edit icon -->
+                      <ion-icon src="../../../../assets/images/fill-edit--color-blue.svg"
+                        class="c-icon u-no--mg-rt c-icon--button u-position--absolute u-top--50p u-transform--translate-y-minus-50p c-icon--review-service-request"
+                        (click)="goToPickup()" *ngIf="false"></ion-icon>
+                      <!-- /Address textarea edit icon -->
+                    </ion-item>
+                    <!-- /Address textarea wrapper -->
+
+                    <!-- City & state input wrapper -->
+                    <ion-item class="c-item ion-no-padding">
+                      <!-- City & state input row -->
+                      <ion-row class="l-row u-no--mg l-row--pickup-location">
+                        <!-- City input col -->
+                        <ion-col
+                          class="u-display--flex u-align-items--center u-no--pad-top u-no--pad-bot u-no--pad-lt l-col l-col--view-vendor-quote l-col--pick-up-location">
+                          <!-- City input -->
+                          <ion-input class="c-input c-input--white" placeholder="City"
+                            [value]="orderData?.pickupAddress?.city" required readonly>
+                          </ion-input>
+                          <!-- /City input -->
+                        </ion-col>
+                        <!-- /City input col -->
+
+                        <!-- State input col -->
+                        <ion-col
+                          class="u-display--flex u-align-items--center u-justify-content--flex-end u-no--pad-top u-no--pad-bot u-no--pad-rt l-col l-col--view-vendor-quote l-col--pick-up-location">
+                          <!-- State input -->
+                          <ion-input class="c-input c-input--white" placeholder="State"
+                            [value]="orderData?.pickupAddress?.state" required readonly>
+                          </ion-input>
+                          <!-- /State input -->
+                        </ion-col>
+                        <!-- /State input col -->
+                      </ion-row>
+                      <!-- City & state input row -->
+                    </ion-item>
+                    <!-- /City & state input wrapper -->
+
+                    <!-- Country & zipcode input wrapper -->
+                    <ion-item class="c-item ion-no-padding">
+                      <!-- Country & zipcode input row -->
+                      <ion-row class="l-row u-no--mg l-row--pickup-location">
+                        <!-- Country input col -->
+                        <ion-col
+                          class="u-display--flex u-align-items--center u-no--pad-top u-no--pad-bot u-no--pad-lt l-col l-col--view-vendor-quote l-col--pick-up-location">
+                          <!-- Country input -->
+                          <ion-input class="c-input c-input--white" placeholder="Country"
+                            [value]="orderData?.pickupAddress?.country || 'US'" required readonly>
+                          </ion-input>
+                          <!-- /Country input -->
+                        </ion-col>
+                        <!-- /Country input col -->
+
+                        <!-- Zipcode input col -->
+                        <ion-col
+                          class="u-display--flex u-align-items--center u-justify-content--flex-end u-no--pad-top u-no--pad-bot u-no--pad-rt l-col l-col--view-vendor-quote l-col--pick-up-location">
+                          <!-- Zipcode input -->
+                          <ion-input class="c-input c-input--white" type="number" placeholder="Zipcode"
+                            [value]="orderData?.pickupAddress?.zipcode" required readonly>
+                          </ion-input>
+                          <!-- /Zipcode input -->
+                        </ion-col>
+                        <!-- /Zipcode input col -->
+                      </ion-row>
+                      <!-- Country & zipcode input row -->
+                    </ion-item>
+                    <!-- /Country & zipcode input wrapper -->
+
+                    <!-- Date & time label wrapper -->
+                    <ion-item class="c-item ion-no-padding" *ngIf="false">
+                      <!-- Date & time label -->
+                      <ion-label
+                        class="c-label c-label--inter-13px c-label--inter-medium c-label--color-primary-1-1 ion-no-margin">
+                        Date & Time</ion-label>
+                      <!-- /Date & time label -->
+                    </ion-item>
+                    <!-- /Date & time label wrapper -->
+
+                    <!-- Date & time input wrapper -->
+                    <ion-item class="c-item ion-no-padding" *ngIf="false">
+                      <!-- Date & time input row -->
+                      <ion-row class="l-row u-no--mg l-row--pickup-location">
+                        <!-- Date input col -->
+                        <ion-col
+                          class="u-display--flex u-align-items--center u-no--pad-top u-no--pad-bot u-no--pad-lt l-col l-col--view-vendor-quote l-col--pick-up-location">
+                          <!-- Date input -->
+                          <ion-input class="c-input c-input--white" name="date" type="date" placeholder="Date">
+                          </ion-input>
+                          <!-- /Date input -->
+                        </ion-col>
+                        <!-- /Date input col -->
+
+                        <!-- Time input col -->
+                        <ion-col
+                          class="u-display--flex u-align-items--center u-justify-content--flex-end u-no--pad-top u-no--pad-bot u-no--pad-rt l-col l-col--view-vendor-quote l-col--pick-up-location">
+                          <!-- Time input -->
+                          <ion-input class="c-input c-input--white" name="time" type="time" placeholder="Time" required>
+                          </ion-input>
+                          <!-- /Time input -->
+                        </ion-col>
+                        <!-- /Time input col -->
+                      </ion-row>
+                      <!-- Date & time input row -->
+                    </ion-item>
+                    <!-- /Date & time input wrapper -->
+                  </ion-item-group>
+                  <!-- /Pick up location field wrapper -->
+
+                  <!-- Drop off up location field wrapper -->
+                  <ion-item-group class="c-item-group c-item-group--pickup-location" *ngIf="orderData?.service?.id === 1001 || orderData?.service?.id === 1002">
+                    <!-- Pick up location label wrapper -->
+                    <ion-item class="c-item ion-no-padding">
+                      <!-- Pick up location title -->
+                      <ion-text
+                        class="c-title ion-no-padding c-title--h1-color-brand c-title--text-transform c-title--addition-services c-title--h1-inter-12px c-title--view-vendor-quote">
+                        <h1 class="c-title__h1">DROP OFF LOCATION</h1>
+                      </ion-text>
+                      <!-- /Pick up location title -->
+                    </ion-item>
+                    <!-- /Pick up location label wrapper -->
+
+                    <!-- Address label wrapper -->
+                    <ion-item class="c-item ion-no-padding">
+                      <!-- Address label -->
+                      <ion-label
+                        class="c-label c-label--inter-13px c-label--inter-medium c-label--color-primary-1-1 ion-no-margin">
+                        Address</ion-label>
+                      <!-- /Address label -->
+                    </ion-item>
+                    <!-- /Address label wrapper -->
+
+                    <!-- Address textarea wrapper -->
+                    <ion-item class="c-item ion-no-padding">
+                      <!-- Address textarea -->
+                      <ion-textarea class="c-input c-input--white ion-no-margin" name="address" placeholder="Address"
+                        [value]="orderData?.dropAddress?.address" readonly></ion-textarea>
+                      <!-- /Address textarea -->
+                    </ion-item>
+                    <!-- /Address textarea wrapper -->
+
+                    <!-- City & state input wrapper -->
+                    <ion-item class="c-item ion-no-padding">
+                      <!-- City & state input row -->
+                      <ion-row class="l-row u-no--mg l-row--pickup-location">
+                        <!-- City input col -->
+                        <ion-col
+                          class="u-display--flex u-align-items--center u-no--pad-top u-no--pad-bot u-no--pad-lt l-col l-col--view-vendor-quote l-col--pick-up-location">
+                          <!-- City input -->
+                          <ion-input class="c-input c-input--white" placeholder="City"
+                            [value]="orderData?.dropAddress?.city" required readonly>
+                          </ion-input>
+                          <!-- /City input -->
+                        </ion-col>
+                        <!-- /City input col -->
+
+                        <!-- State input col -->
+                        <ion-col
+                          class="u-display--flex u-align-items--center u-justify-content--flex-end u-no--pad-top u-no--pad-bot u-no--pad-rt l-col l-col--view-vendor-quote l-col--pick-up-location">
+                          <!-- State input -->
+                          <ion-input class="c-input c-input--white" placeholder="State"
+                            [value]="orderData?.dropAddress?.state" required readonly>
+                          </ion-input>
+                          <!-- /State input -->
+                        </ion-col>
+                        <!-- /State input col -->
+                      </ion-row>
+                      <!-- City & state input row -->
+                    </ion-item>
+                    <!-- /City & state input wrapper -->
+
+                    <!-- Country & zipcode input wrapper -->
+                    <ion-item class="c-item ion-no-padding">
+                      <!-- Country & zipcode input row -->
+                      <ion-row class="l-row u-no--mg l-row--pickup-location">
+                        <!-- Country input col -->
+                        <ion-col
+                          class="u-display--flex u-align-items--center u-no--pad-top u-no--pad-bot u-no--pad-lt l-col l-col--view-vendor-quote l-col--pick-up-location">
+                          <!-- Country input -->
+                          <ion-input class="c-input c-input--white" placeholder="Country"
+                            [value]="orderData?.dropAddress?.country || 'US'" required readonly>
+                          </ion-input>
+                          <!-- /Country input -->
+                        </ion-col>
+                        <!-- /Country input col -->
+
+                        <!-- Zipcode input col -->
+                        <ion-col
+                          class="u-display--flex u-align-items--center u-justify-content--flex-end u-no--pad-top u-no--pad-bot u-no--pad-rt l-col l-col--view-vendor-quote l-col--pick-up-location">
+                          <!-- Zipcode input -->
+                          <ion-input class="c-input c-input--white" type="number" placeholder="Zipcode"
+                            [value]="orderData?.dropAddress?.zipcode" required readonly>
+                          </ion-input>
+                          <!-- /Zipcode input -->
+                        </ion-col>
+                        <!-- /Zipcode input col -->
+                      </ion-row>
+                      <!-- Country & zipcode input row -->
+                    </ion-item>
+                    <!-- /Country & zipcode input wrapper -->
+
+                    
+                  </ion-item-group>
+                  <!-- /Drop off location field wrapper -->
+
+
+                  <!-- Intermediate up location field wrapper -->
+                  <div *ngIf="intermediateLocations?.length > 0">
+                    <ion-item-group class="c-item-group c-item-group--pickup-location"
+                      *ngFor="let location of intermediateLocations; let i=index">
+                      <!-- Pick up location label wrapper -->
+                      <ion-item class="c-item ion-no-padding">
+                        <!-- Pick up location title -->
+                        <ion-text
+                          class="c-title ion-no-padding c-title--h1-color-brand c-title--text-transform c-title--addition-services c-title--h1-inter-12px c-title--view-vendor-quote">
+                          <h1 class="c-title__h1">INTERMEDIATE LOCATION {{1+i}}</h1>
+                        </ion-text>
+                        <!-- /Pick up location title -->
+                      </ion-item>
+                      <!-- /Pick up location label wrapper -->
+                  
+                      <!-- Address label wrapper -->
+                      <ion-item class="c-item ion-no-padding">
+                        <!-- Address label -->
+                        <ion-label class="c-label c-label--inter-13px c-label--inter-medium c-label--color-primary-1-1 ion-no-margin">
+                          Address</ion-label>
+                        <!-- /Address label -->
+                      </ion-item>
+                      <!-- /Address label wrapper -->
+                  
+                      <!-- Address textarea wrapper -->
+                      <ion-item class="c-item ion-no-padding">
+                        <!-- Address textarea -->
+                        <ion-textarea class="c-input c-input--white ion-no-margin" name="address" placeholder="Address"
+                          [value]="location?.address" readonly></ion-textarea>
+                        <!-- /Address textarea -->
+                      </ion-item>
+                      <!-- /Address textarea wrapper -->
+                  
+                      <!-- City & state input wrapper -->
+                      <ion-item class="c-item ion-no-padding">
+                        <!-- City & state input row -->
+                        <ion-row class="l-row u-no--mg l-row--pickup-location">
+                          <!-- City input col -->
+                          <ion-col
+                            class="u-display--flex u-align-items--center u-no--pad-top u-no--pad-bot u-no--pad-lt l-col l-col--view-vendor-quote l-col--pick-up-location">
+                            <!-- City input -->
+                            <ion-input class="c-input c-input--white" placeholder="City" [value]="location?.city" required readonly>
+                            </ion-input>
+                            <!-- /City input -->
+                          </ion-col>
+                          <!-- /City input col -->
+                  
+                          <!-- State input col -->
+                          <ion-col
+                            class="u-display--flex u-align-items--center u-justify-content--flex-end u-no--pad-top u-no--pad-bot u-no--pad-rt l-col l-col--view-vendor-quote l-col--pick-up-location">
+                            <!-- State input -->
+                            <ion-input class="c-input c-input--white" placeholder="State" [value]="location?.state" required
+                              readonly>
+                            </ion-input>
+                            <!-- /State input -->
+                          </ion-col>
+                          <!-- /State input col -->
+                        </ion-row>
+                        <!-- City & state input row -->
+                      </ion-item>
+                      <!-- /City & state input wrapper -->
+                  
+                      <!-- Country & zipcode input wrapper -->
+                      <ion-item class="c-item ion-no-padding">
+                        <!-- Country & zipcode input row -->
+                        <ion-row class="l-row u-no--mg l-row--pickup-location">
+                          <!-- Country input col -->
+                          <ion-col
+                            class="u-display--flex u-align-items--center u-no--pad-top u-no--pad-bot u-no--pad-lt l-col l-col--view-vendor-quote l-col--pick-up-location">
+                            <!-- Country input -->
+                            <ion-input class="c-input c-input--white" placeholder="Country" [value]="location?.country || 'US'" required
+                              readonly>
+                            </ion-input>
+                            <!-- /Country input -->
+                          </ion-col>
+                          <!-- /Country input col -->
+                  
+                          <!-- Zipcode input col -->
+                          <ion-col
+                            class="u-display--flex u-align-items--center u-justify-content--flex-end u-no--pad-top u-no--pad-bot u-no--pad-rt l-col l-col--view-vendor-quote l-col--pick-up-location">
+                            <!-- Zipcode input -->
+                            <ion-input class="c-input c-input--white" type="number" placeholder="Zipcode" [value]="location?.zipcode"
+                              required readonly>
+                            </ion-input>
+                            <!-- /Zipcode input -->
+                          </ion-col>
+                          <!-- /Zipcode input col -->
+                        </ion-row>
+                        <!-- Country & zipcode input row -->
+                      </ion-item>
+                      <!-- /Country & zipcode input wrapper -->
+                  
+                    </ion-item-group>
+                  </div>
+                  <!-- /Intermediate location field wrapper -->
+                  
+                  <!-- Item divider -->
+                  <ion-item-divider
+                    class="ion-no-padding c-item-divider c-item-divider--width-100p c-item-divider--min-height-2px">
+                  </ion-item-divider>
+                  <!-- /Item divider -->
+
+                  <!-- time section -->
+                  <!-- Drop off up location field wrapper -->
+                  <ion-item-group class="c-item-group c-item-group--pickup-location">
+                    <!-- Pick up location label wrapper -->
+                    <ion-item class="c-item ion-no-padding">
+                      <!-- Pick up location title -->
+                      <ion-text
+                        class="c-title ion-no-padding c-title--h1-color-brand c-title--text-transform c-title--addition-services c-title--h1-inter-12px c-title--view-vendor-quote">
+                        <h1 class="c-title__h1">Service Date  </h1>
+                      </ion-text>
+                      <!-- /Pick up location title -->
+                    </ion-item>
+                    <!-- /Pick up location label wrapper -->
+
+                    
+                      <!-- Estimated date & time picker -->
+                      <ion-datetime-button datetime="datetime" class="c-datetime-button"></ion-datetime-button>
+                      <!-- /Estimated date & time picker -->
+
+                      <!-- Estimated date & time picker modal -->
+                      <ion-modal [keepContentsMounted]="true" class="c-modal c-modal--pickup-location" color="light">
+                        <ng-template>
+                          <ion-datetime id="datetime" hourCycle="h24" [preferWheel]="true" [value]="estDateTime | date:'yyyy-MM-ddTHH:mm:ss.SSS':'+0:00'"
+                            (ionChange)="onDateTimeChanged($event)"></ion-datetime>
+                        </ng-template>
+                      </ion-modal>
+                      <!-- /Estimated date & time picker modal -->
+                  
+                  </ion-item-group>
+                  <!-- /time section -->
+                </ion-col>
+              </ion-row>
+              <!-- /Service request review main field wrapper -->
+            </ion-col>
+          </ion-row>
+          <!-- /Service request review main wrapper -->
+
+          <!-- Service request review footer -->
+          <ion-footer collapse="fade"
+            class="l-header l-footer u-position--fixed u-no--position-bot u-left--50p u-transform--translate-x-minus-50p l-footer--bg-white">
+            <!-- Service request review main wrapper -->
+            <ion-toolbar class="l-main-wrapper">
+              <!-- Next button -->
+              <ion-button
+                class="c-button ion-no-margin u-no--text-transform c-button--text-inter-18px c-button--text-inter-medium"
+                fill="clear" expand="full" (click)="next()">
+                Next
+                <!-- Next button caret right icon -->
+                <ion-icon src="../../../assets/images/outline-caret-right--color-white.svg"
+                  class="c-icon c-icon--caret-rt u-no--mg-rt" slot="end"></ion-icon>
+                <!-- /Next button caret right icon -->
+              </ion-button>
+              <!-- /Next button -->
+            </ion-toolbar>
+            <!-- /Service request review main wrapper -->
+          </ion-footer>
+          <!-- /Service request review footer -->
+        </form>
+        <!-- /Service request review form -->
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <!-- /Service request review main wrapper -->
+</ion-content>
+<!-- /Service request review content -->

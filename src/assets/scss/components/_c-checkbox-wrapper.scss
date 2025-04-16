@@ -1,0 +1,13 @@
+// Abstracts
+@use "../abstracts/colors" as *;
+
+// Checkbox
+.c-checkbox-wrapper {
+  $cCheckboxWrapper: &;
+
+  margin-top: 10px;
+
+  &:focus {
+    background: transparent;
+  }
+}

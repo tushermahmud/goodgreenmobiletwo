@@ -1,0 +1,17 @@
+<ion-header>
+    <ion-toolbar color="primary">
+      <ion-title>{{title}}</ion-title>
+  
+      <ion-buttons slot="primary" (click)="closeDocViewer()">
+        <ion-button>
+          <ion-icon slot="icon-only" name="close"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+  
+<ion-content>
+    <!-- <ion-label class="c-label c-label--inter-14px c-label--inter-semibold c-label--color-primary-1-1 ion-no-margin" *ngIf="doc.isSigned">This contract has been signed by all parties</ion-label> -->
+    <iframe  [src]="navUrl  | safeurl"  (load)="onLoad()" frameborder="0"  style="width: 100%; height: 100%;"></iframe>
+</ion-content>
+  

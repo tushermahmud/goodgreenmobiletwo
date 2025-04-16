@@ -1,0 +1,112 @@
+@use "../abstracts/colors" as *;
+
+// service list accordion
+.o-accordion-service-items-list {
+  //border-top: 1px solid $color-primary-1-5;
+  background: rgba($color: $color-primary, $alpha: 0.03);
+}
+
+// single service items
+.o-service-item {
+  border: none;
+  border-top: 1px solid $color-primary-1-5;
+
+  &__status {
+    font-size: 11px;
+    border: 1px solid;
+    border-radius: 3px;
+    padding: 3px 5px;
+    display: inline-flex;
+    align-items: center;
+    font-weight: 500;
+
+    span {
+      font-size: 13px;
+      color: $color-blue;
+      color: $white;
+      margin-right: 3px;
+    }
+
+    // variations
+    &__new-request {
+      /* color: $color-violate;
+      background-color: rgba($color: $color-violate, $alpha: 0.05);
+      border-color: rgba($color: $color-violate, $alpha:0.15); */
+      color: $white;
+      background-color: $color-violate;
+      border-color: $color-violate;
+    }
+    
+    &__quotes-received {
+      /* color: $color-yellow-1-1;
+      background-color: rgba($color: $color-yellow-1-1, $alpha: 0.05);
+      border-color: rgba($color: $color-yellow-1-1, $alpha:0.15); */
+      color: $white;
+      background-color: rgba($color: $color-yellow-1-1, $alpha: 1);
+      border-color: rgba($color: $color-yellow-1-1, $alpha: 1);
+    }
+    
+    &__quote-accepted {
+      /* color: $color-yellow;
+      background-color: rgba($color: $color-yellow, $alpha: 0.05);
+      border-color: rgba($color: $color-yellow, $alpha:0.15); */
+      color: $white;
+      background-color: rgba($color: $color-yellow, $alpha: 1);
+      border-color: rgba($color: $color-yellow, $alpha: 1);
+    }
+    
+    &__waiting-for-contract {
+      /* color: $color-blue;
+      background-color: rgba($color: $color-blue, $alpha: 0.05);
+      border-color: rgba($color: $color-blue, $alpha:0.15); */
+      color: $white;
+      background-color: rgba($color: $color-blue, $alpha:1);
+      border-color: rgba($color: $color-blue, $alpha:1);
+    }
+    
+    &__contract-received {
+      /* color: $color-yellow-1-1;
+      background-color: rgba($color: $color-yellow-1-1, $alpha: 0.05);
+      border-color: rgba($color: $color-yellow-1-1, $alpha:0.15); */
+      color: $white;
+      background-color: rgba($color: $color-yellow-1-1, $alpha: 1);
+      border-color: rgba($color: $color-yellow-1-1, $alpha:1);
+    }
+    
+    &__make-payment {
+      /* color: $color-red;
+      background-color: rgba($color: $color-red, $alpha: 0.05);
+      border-color: rgba($color: $color-red, $alpha:0.15); */
+      color: $white;
+      background-color: rgba($color: $color-red, $alpha: 1);
+      border-color: rgba($color: $color-red, $alpha:1);
+    }
+
+    &__payment-completed {
+      /* color: $color-red;
+      background-color: rgba($color: $color-red, $alpha: 0.05);
+      border-color: rgba($color: $color-red, $alpha:0.15); */
+      color: $white;
+      background-color: rgba($color: $color-yellow-1-2, $alpha: 1);
+      border-color: rgba($color: $color-yellow-1-1, $alpha:1);
+    }
+    
+    &__scheduled {
+      /* color: $color-brand;
+      background-color: rgba($color: $color-brand, $alpha: 0.05);
+      border-color: rgba($color: $color-brand, $alpha:0.15); */
+      color: $white;
+      background-color: rgba($color: $color-brand, $alpha: 1);
+      border-color: rgba($color: $color-brand, $alpha:1);
+    }
+    
+    &__done {
+      /* color: $color-brand;
+      background-color: rgba($color: $color-brand, $alpha: 0.05);
+      border-color: rgba($color: $color-brand, $alpha:0.15); */
+      color: $white;
+      background-color: rgba($color: $color-brand, $alpha: 1);
+      border-color: rgba($color: $color-brand, $alpha:1);
+    }
+  }
+}

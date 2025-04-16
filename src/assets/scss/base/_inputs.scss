@@ -1,0 +1,39 @@
+.input {
+    -webkit-appearance: none;        // removing inner shadow on iOS inputs
+    -webkit-font-smoothing: inherit;
+    background: none;
+    box-shadow: none;
+    border-radius: 0;                // remove the iOS input radius
+
+    &:invalid {
+        box-shadow: none;            // fixes mozilla red outline (shadow)
+    }
+
+    &[readonly] {
+        cursor: text;
+    }
+
+    &::-ms-clear {
+        display: none;               // remove IE clear icon
+    }
+}
+
+.input[type="search"] {
+    -webkit-appearance: textfield;
+}
+
+.input[type="search"]::-webkit-search-decoration,
+.input[type="search"]::-webkit-search-cancel-button {
+    -webkit-appearance: none;
+}
+
+/* IE select reset */
+.select::-ms-expand {
+    display: none;
+}
+
+/* FF remove outline from select */
+.select:-moz-focusring {
+    color: transparent;
+    text-shadow: 0 0 0 #000;
+}

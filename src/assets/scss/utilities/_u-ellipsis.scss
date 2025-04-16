@@ -1,0 +1,24 @@
+// Text overflow
+.u-text-overflow {
+  &--ellipsis {
+    text-overflow: ellipsis;
+  }
+}
+
+// White space
+.u-white-space {
+  &--nowrap {
+    white-space: nowrap;
+  }
+}
+
+// Overflow
+.u-overflow {
+  &--hidden {
+    overflow: hidden;
+  }
+
+  &--initial {
+    overflow: initial;
+  }
+}

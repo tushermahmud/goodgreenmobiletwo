@@ -1,0 +1,57 @@
+<ion-header collapse="fade" mode="md" class="l-header">
+  <app-header [headerMeta]="headerInfo"></app-header>
+</ion-header>
+
+<ion-content mode="ios">
+
+  <ng-container *ngFor="let form of addendumFormsData | keyvalue: sortNull">
+    <!-- {{form.value.isChecked}} -->
+    <ion-card button detail="false" (click)="onCardClick($event,form.key)">
+      <ion-card-header>
+        <ion-row>
+          <ion-col class="u-display--flex u-align-items--center" size="2" (click)="$event.stopPropagation()">
+            <ion-checkbox [(ngModel)]="form.value.isChecked" [checked]="form.value.isChecked" (ionChange)="checkboxClicked($event)" [value]="form.key" ></ion-checkbox>
+
+          </ion-col>
+          <ion-col size="10">
+            
+            <ion-item lines="none">
+              <!-- <ion-icon class="c-button--margin-5px" src="../../../../assets/images/fill-check--color-brand.svg"></ion-icon> -->
+        
+              <!-- (click)="$event.stopPropagation()" (ionChange)="onToggle($event, form.key)" [value]="form.key" -->
+       
+              <ion-label >{{form.key === 'schedules' ? 'Schedule/Team' : form.key | titlecase }}</ion-label>
+              <ion-icon color="primary" name="chevron-forward-outline" slot="end"></ion-icon>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+      </ion-card-header>
+      <ion-card-content *ngIf="form.value.isChecked && form.value.formData !== null">
+          <p *ngIf="form.key !== 'notes'; else NotesContentTemplate">{{form.value.formData.length }} - {{form.key}} </p>
+          <ng-template #NotesContentTemplate>
+            <p>Additional notes added</p>
+          </ng-template>
+          
+      </ion-card-content>
+    </ion-card>
+
+  </ng-container>
+  
+</ion-content>
+
+<ion-footer>
+  <ion-row>
+    <ion-col size="6">
+      <!-- <ion-button class="c-button ion-no-margin u-no--text-transform c-button--text-inter-18px c-button--text-inter-medium" (click)="onResetForm()" [disabled]="hasFormData() === false ? true : false" expand="block" fill="clear" shape="round">
+        Reset<ion-icon name="chevron-forward-outline" size="small"></ion-icon>
+    </ion-button> -->
+    <ion-button class="c-button ion-no-margin u-no--text-transform c-button--outline c-button--border-color-brand c-button--text-color-brand c-button--text-inter-14px c-button--text-inter-medium"
+      (click)="onResetForm()" [disabled]="hasFormData() === false ? true : false"fill="clear" expand="block">Reset</ion-button>
+    </ion-col>
+    <ion-col size="6">
+      <ion-button class="c-button ion-no-margin u-no--text-transform c-button--text-inter-18px c-button--text-inter-medium" (click)="showSubmitAddendumAlert()" [disabled]="hasFormData() === false ? true :false" expand="block" fill="clear" shape="round">
+        Create <ion-icon name="chevron-forward-outline" size="small" *ngIf="false"></ion-icon>
+    </ion-button>
+    </ion-col>
+  </ion-row>
+</ion-footer>

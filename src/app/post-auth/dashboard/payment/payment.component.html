@@ -1,0 +1,769 @@
+<!-- Payment header -->
+<ion-header collapse="fade" mode="md" class="l-header">
+  <app-header [headerMeta]="heraderInfo"></app-header>
+</ion-header>
+<!-- /Payment header -->
+
+<!-- Payment content -->
+<ion-content>
+  <!-- Payment main wrapper -->
+  <ion-grid class="l-main-wrapper ion-no-padding l-main-wrapper--get-started l-main-wrapper--min-height-100vh-166px">
+    <ion-row>
+      <ion-col class="ion-no-padding">
+        <!-- Pending & custom amount main wrapper -->
+        <ion-row>
+          <!-- Pending & custom amount list -->
+          <ion-list class="c-list u-no--bg ion-no-padding c-list--width-100p c-list--payment">
+            <ion-radio-group class="c-item-group u-no--pad-top u-no--pad-bot c-item-group--pickup-location"
+
+              (ionChange)="paymentSelection($event)" [(ngModel)]="paymentMode">
+              <!-- Pending & custom amount item -->
+              <ion-item class="c-item ion-no-padding">
+                <!-- Pending amount card -->
+                <ion-card
+                  class="c-card ion-no-margin u-no--box-shadow u-display--flex u-align-items--center u-justify-content--center u-flex-direction--column u-no--mg-bot c-card--video-instructions c-card--addition-services c-card--width-100p u-no--bg u-no--height u-no--pad">
+                  <ion-row class="l-row u-no--mg l-row--pickup-location">
+                    <ion-col class="u-display--flex u-align-items--center u-no--pad-top u-no--pad-bot u-no--pad-lt"
+                      size="7">
+                      <!-- Pending amount item -->
+                      <ion-item
+                        class="c-item u-no--pad-top u-no--pad-bot c-item--min-height-54px u-display--flex u-align-items--center c-item--flex-1 c-item--payment">
+                        <!-- Pending amount label -->
+                        <ion-text class="c-title ion-no-padding c-title--h1-color-primary-1-1 c-title--h1-inter-14px">
+                          <h1 class="c-title__h1">{{paymentLabel}}</h1>
+                        </ion-text>
+                        <!-- /Pending amount label -->
+
+                        <!-- Radio button -->
+                        <ion-radio slot="start" value="full"
+                          class="c-radio-button c-radio-button--border-color-primary-1-4"></ion-radio>
+                        <!-- /Radio button -->
+                      </ion-item>
+                      <!-- /Pending amount item -->
+                    </ion-col>
+
+                    <ion-col
+                      class="u-display--flex u-align-items--center u-justify-content--flex-end u-no--pad-top u-no--pad-bot u-no--pad-rt">
+                      <!-- Pending amount input -->
+                      <ion-input type="number" class="c-input c-input--payment" value="fullpaymentValue"
+                        [(ngModel)]="fullpaymentValue" [ngModelOptions]="{standalone: true}" disabled></ion-input>
+                      <!-- /Pending amount input -->
+                    </ion-col>
+                  </ion-row>
+                </ion-card>
+                <!-- /Pending amount card -->
+              </ion-item>
+              <!-- /Pending & custom amount item -->
+
+              <!-- Pending & custom amount item -->
+              <ion-item class="c-item ion-no-padding">
+                <!-- Custom amount card -->
+                <ion-card
+                  class="c-card ion-no-margin u-no--box-shadow u-display--flex u-align-items--center u-justify-content--center u-flex-direction--column u-no--mg-bot c-card--video-instructions c-card--addition-services c-card--width-100p u-no--bg u-no--height u-no--pad">
+                  <ion-row class="l-row u-no--mg l-row--pickup-location">
+                    <ion-col class="u-display--flex u-align-items--center u-no--pad-top u-no--pad-bot u-no--pad-lt"
+                      size="7">
+                      <!-- Custom amount item -->
+                      <ion-item
+                        class="c-item u-no--pad-top u-no--pad-bot c-item--min-height-54px u-display--flex u-align-items--center c-item--flex-1 c-item--payment">
+                        <!-- Custom amount label -->
+                        <ion-text class="c-title ion-no-padding c-title--h1-color-primary-1-1 c-title--h1-inter-14px">
+                          <h1 class="c-title__h1">Custom amount</h1>
+                        </ion-text>
+                        <!-- Custom amount label -->
+
+                        <!-- Radio button -->
+                        <ion-radio slot="start" value="partial"
+                          class="c-radio-button c-radio-button--border-color-primary-1-4"></ion-radio>
+                        <!-- /Radio button -->
+                      </ion-item>
+                      <!-- /Custom amount item -->
+                    </ion-col>
+
+                    <ion-col
+                      class="u-display--flex u-align-items--center u-justify-content--flex-end u-no--pad-top u-no--pad-bot u-no--pad-rt">
+                      <!-- Custom amount input -->
+                      <ion-input type="number" class="c-input c-input--payment" value="customPaymentValue"
+                        [(ngModel)]="customPaymentValue" [ngModelOptions]="{standalone: true}"
+                        placeholder="Enter amount">
+                      </ion-input>
+                      <!-- /Custom amount input -->
+                    </ion-col>
+                  </ion-row>
+                </ion-card>
+                <!-- /Custom amount card -->
+              </ion-item>
+              <!-- /Pending & custom amount item -->
+
+            </ion-radio-group>
+          </ion-list>
+          <!-- /Pending & custom amount list -->
+        </ion-row>
+        <!-- /Pending & custom amount main wrapper -->
+
+        <ion-row *ngIf="this.paymentCustomerId">
+           <!-- Save card details wrapper -->
+           <ion-item class="c-item ion-no-padding c-checkbox-wrapper">
+            <!-- Save card details checkbox -->
+            <ion-checkbox slot="start" class="c-checkbox ion-no-margin" [checked]="isSavedCardSelected" (ionChange)="onSelectSavedCard($event)"></ion-checkbox>
+            <!-- /Save card details checkbox -->
+          
+            <!-- Save card details label -->
+            <ion-label class="ion-no-margin c-label--inter-14px u-no--white-space">Use saved card</ion-label>
+            <!-- /Save card details label -->
+          </ion-item>
+          <!-- /Save card details wrapper -->
+        </ion-row>
+
+        <ion-row *ngIf="this.paymentCustomerId">
+          <!-- Save card details wrapper -->
+          <ion-item class="c-item ion-no-padding c-checkbox-wrapper">
+           <!-- Save card details checkbox -->
+           <ion-checkbox slot="start" class="c-checkbox ion-no-margin" [checked]="isNewCardSelected" (ionChange)="addNewCard($event)"></ion-checkbox>
+           <!-- /Save card details checkbox -->
+         
+           <!-- Save card details label -->
+           <ion-label class="ion-no-margin c-label--inter-14px u-no--white-space">Add new card</ion-label>
+           <!-- /Save card details label -->
+         </ion-item>
+         <!-- /Save card details wrapper -->
+       </ion-row>
+
+        <!-- Fill up card details wrapper -->
+        <ion-row *ngIf="isNewCardSelected">
+          <ion-col *ngIf="false" class="ion-no-padding" size="12">
+            <!-- Fill up card details label -->
+            <ion-text
+              class="ion-no-padding c-title c-title--get-started c-title--our-services c-title--h1-inter-16px c-title--inter-regular c-title--h1-black c-title--video-instructions u-no--mg-top">
+              <h1 class="c-title__h1">Add Card Details</h1>
+              <span *ngIf="!production">(test card details populated below)</span>
+            </ion-text>
+            <!-- /Fill up card details label -->
+          </ion-col>
+
+          <ion-col class="ion-no-padding" size="12">
+            <!-- Card details form -->
+            <form [formGroup]="cardForm" class="l-form l-form--pickup-location" novalidate>
+              <!-- Card details main wrapper -->
+              <ion-row
+                class="c-thumbnail c-thumbnail--video-capture c-thumbnail--width-100p c-thumbnail--body-bg-gray-1-1 c-card u-no--mg-bot u-no--height c-card--pickup-location">
+                <ion-col class="ion-no-padding">
+                  <!-- Card details main field wrapper -->
+                  <ion-row class="c-item-group-wrapper">
+                    <ion-col class="ion-no-padding">
+                      <ion-item-group class="c-item-group c-item-group--pickup-location">
+                        <!-- Card number input wrapper -->
+                        <ion-item class="c-item ion-no-padding">
+                          <!-- Card number input -->
+                          <ion-input class="c-input c-input--white" formControlName="cardNumber" type="number"
+                            placeholder="Your card number">
+                          </ion-input>
+                          <!-- /Card number input -->
+
+                          <!-- Card number field validation error -->
+                          <p class="c-content c-content--inter-12px c-content--login c-content--color-red c-content--form-message"
+                            *ngIf="false">
+                            Card number cannot be empty
+                          </p>
+                          <!-- /Card number field validation error -->
+                        </ion-item>
+                        <!-- /Card number input wrapper -->
+
+                        <!-- Name input wrapper -->
+                        <ion-item class="c-item ion-no-padding">
+                          <!-- Name input -->
+                          <ion-input class="c-input c-input--white" formControlName="cardName"
+                            placeholder="Name as displayed on the card">
+                          </ion-input>
+                          <!-- /Name input -->
+
+                          <!-- Name field validation error -->
+                          <p class="c-content c-content--inter-12px c-content--login c-content--color-red c-content--form-message"
+                            *ngIf="false">
+                            Name cannot be empty
+                          </p>
+                          <!-- /Name field validation error -->
+                        </ion-item>
+                        <!-- /Name input wrapper -->
+
+                        <!-- Expiry month & year input wrapper -->
+                        <ion-item class="c-item ion-no-padding">
+                          <ion-row class="l-row u-no--mg l-row--pickup-location">
+                            <ion-col
+                              class="u-display--flex u-align-items--center u-no--pad-top u-no--pad-bot u-no--pad-lt l-col l-col--view-vendor-quote l-col--pick-up-location">
+                              <!-- Expiry month input -->
+                              <ion-input class="c-input c-input--white" formControlName="cardExpiryMonth" type="number"
+                                placeholder="Expiry month">
+                              </ion-input>
+                              <!-- /Expiry month input -->
+
+                              <!-- Expiry month field validation error -->
+                              <p class="c-content c-content--inter-12px c-content--login c-content--color-red c-content--form-message"
+                                *ngIf="false">
+                                Expiry month cannot be empty
+                              </p>
+                              <!-- /Expiry month field validation error -->
+                            </ion-col>
+
+                            <ion-col
+                              class="u-display--flex u-align-items--center u-justify-content--flex-end u-no--pad-top u-no--pad-bot u-no--pad-rt l-col l-col--view-vendor-quote l-col--pick-up-location">
+                              <!-- Expiry year input -->
+                              <ion-input class="c-input c-input--white" type="number" formControlName="cardExpiryYear"
+                                trim placeholder="Expiry year">
+                              </ion-input>
+                              <!-- /Expiry year input -->
+
+                              <!-- Expiry year field validation error -->
+                              <p class="c-content c-content--inter-12px c-content--login c-content--color-red c-content--form-message"
+                                *ngIf="false">
+                                Expiry year cannot be empty
+                              </p>
+                              <!-- /Expiry year field validation error -->
+                            </ion-col>
+                          </ion-row>
+                        </ion-item>
+                        <!-- /Expiry month & year input wrapper -->
+
+                        <!-- CVV input wrapper -->
+                        <ion-item class="c-item ion-no-padding">
+                          <!-- CVV input -->
+                          <ion-input class="c-input c-input--white" formControlName="cardCvc" trim type="number"
+                            placeholder="CVV">
+                          </ion-input>
+                          <!-- CVV input -->
+
+                          <!-- CVV field validation error -->
+                          <p class="c-content c-content--inter-12px c-content--login c-content--color-red c-content--form-message"
+                            *ngIf="false">
+                            CVV cannot be empty
+                          </p>
+                          <!-- /CVV field validation error -->
+                        </ion-item>
+                        <!-- /CVV input wrapper -->
+
+                        <!-- Save card details wrapper -->
+                        <ion-item class="c-item ion-no-padding c-checkbox-wrapper">
+                          <!-- Save card details checkbox -->
+                          <ion-checkbox (ionChange)="onSelectCheckBox($event)" [checked]="isNewCardSelected" slot="start" class="c-checkbox ion-no-margin"></ion-checkbox>
+                          <!-- /Save card details checkbox -->
+
+                          <!-- Save card details label -->
+                          <ion-label class="ion-no-margin c-label--inter-14px u-no--white-space">Save card details for
+                            future
+                            transactions</ion-label>
+                          <!-- /Save card details label -->
+                        </ion-item>
+                        <!-- /Save card details wrapper -->
+                      </ion-item-group>
+                    </ion-col>
+                  </ion-row>
+                  <!-- /Card details main field wrapper -->
+                </ion-col>
+              </ion-row>
+              <!-- /Card details main wrapper -->
+
+              <!-- Proceed to pay wrapper -->
+              <ion-footer collapse="fade"
+                class="l-header l-footer u-position--fixed u-no--position-bot u-left--50p u-transform--translate-x-minus-50p l-footer--bg-white">
+                <!-- Proceed to pay main wrapper -->
+                <ion-toolbar class="l-main-wrapper">
+                  <!-- Proceed to pay button -->
+                  <ion-button
+                    class="c-button ion-no-margin u-no--text-transform c-button--text-inter-18px c-button--text-inter-medium"
+                    fill="clear" expand="full" type="submit">
+                    Proceed to pay!
+                    <!-- Proceed to pay caret right icon -->
+                    <ion-icon src="../../../assets/images/outline-caret-right--color-white.svg"
+                      class="c-icon c-icon--caret-rt u-no--mg-rt" *ngIf="false" slot="end"></ion-icon>
+                    <!-- /Proceed to pay caret right icon -->
+                  </ion-button>
+                  <!-- /Proceed to pay button -->
+                </ion-toolbar>
+                <!-- /Proceed to pay main wrapper -->
+              </ion-footer>
+              <!-- /Proceed to pay wrapper -->
+            </form>
+            <!-- /Card details form -->
+          </ion-col>
+        </ion-row>
+        <!-- /Fill up card details wrapper -->
+
+        <!-- Fill up card details wrapper -->
+        <ion-row *ngIf="!this.paymentCustomerId">
+          <ion-col class="ion-no-padding" size="12">
+            <!-- Fill up card details label -->
+            <ion-text
+              class="ion-no-padding c-title c-title--get-started c-title--our-services c-title--h1-inter-16px c-title--inter-regular c-title--h1-black c-title--video-instructions u-no--mg-top">
+              <h1 class="c-title__h1">Add Card Details</h1>
+              <span *ngIf="!production">(test card details populated below)</span>
+            </ion-text>
+            <!-- /Fill up card details label -->
+          </ion-col>
+
+          <ion-col class="ion-no-padding" size="12">
+            <!-- Card details form -->
+            <form [formGroup]="cardForm" class="l-form l-form--pickup-location" novalidate>
+              <!-- Card details main wrapper -->
+              <ion-row
+                class="c-thumbnail c-thumbnail--video-capture c-thumbnail--width-100p c-thumbnail--body-bg-gray-1-1 c-card u-no--mg-bot u-no--height c-card--pickup-location">
+                <ion-col class="ion-no-padding">
+                  <!-- Card details main field wrapper -->
+                  <ion-row class="c-item-group-wrapper">
+                    <ion-col class="ion-no-padding">
+                      <ion-item-group class="c-item-group c-item-group--pickup-location">
+                        <!-- Card number input wrapper -->
+                        <ion-item class="c-item ion-no-padding">
+                          <!-- Card number input -->
+                          <ion-input class="c-input c-input--white" formControlName="cardNumber" type="number"
+                            placeholder="Your card number">
+                          </ion-input>
+                          <!-- /Card number input -->
+
+                          <!-- Card number field validation error -->
+                          <p class="c-content c-content--inter-12px c-content--login c-content--color-red c-content--form-message"
+                            *ngIf="false">
+                            Card number cannot be empty
+                          </p>
+                          <!-- /Card number field validation error -->
+                        </ion-item>
+                        <!-- /Card number input wrapper -->
+
+                        <!-- Name input wrapper -->
+                        <ion-item class="c-item ion-no-padding">
+                          <!-- Name input -->
+                          <ion-input class="c-input c-input--white" formControlName="cardName"
+                            placeholder="Name as displayed on the card">
+                          </ion-input>
+                          <!-- /Name input -->
+
+                          <!-- Name field validation error -->
+                          <p class="c-content c-content--inter-12px c-content--login c-content--color-red c-content--form-message"
+                            *ngIf="false">
+                            Name cannot be empty
+                          </p>
+                          <!-- /Name field validation error -->
+                        </ion-item>
+                        <!-- /Name input wrapper -->
+
+                        <!-- Expiry month & year input wrapper -->
+                        <ion-item class="c-item ion-no-padding">
+                          <ion-row class="l-row u-no--mg l-row--pickup-location">
+                            <ion-col
+                              class="u-display--flex u-align-items--center u-no--pad-top u-no--pad-bot u-no--pad-lt l-col l-col--view-vendor-quote l-col--pick-up-location">
+                              <!-- Expiry month input -->
+                              <ion-input class="c-input c-input--white" formControlName="cardExpiryMonth" type="number"
+                                placeholder="Expiry month">
+                              </ion-input>
+                              <!-- /Expiry month input -->
+
+                              <!-- Expiry month field validation error -->
+                              <p class="c-content c-content--inter-12px c-content--login c-content--color-red c-content--form-message"
+                                *ngIf="false">
+                                Expiry month cannot be empty
+                              </p>
+                              <!-- /Expiry month field validation error -->
+                            </ion-col>
+
+                            <ion-col
+                              class="u-display--flex u-align-items--center u-justify-content--flex-end u-no--pad-top u-no--pad-bot u-no--pad-rt l-col l-col--view-vendor-quote l-col--pick-up-location">
+                              <!-- Expiry year input -->
+                              <ion-input class="c-input c-input--white" type="number" formControlName="cardExpiryYear"
+                                trim placeholder="Expiry year">
+                              </ion-input>
+                              <!-- /Expiry year input -->
+
+                              <!-- Expiry year field validation error -->
+                              <p class="c-content c-content--inter-12px c-content--login c-content--color-red c-content--form-message"
+                                *ngIf="false">
+                                Expiry year cannot be empty
+                              </p>
+                              <!-- /Expiry year field validation error -->
+                            </ion-col>
+                          </ion-row>
+                        </ion-item>
+                        <!-- /Expiry month & year input wrapper -->
+
+                        <!-- CVV input wrapper -->
+                        <ion-item class="c-item ion-no-padding">
+                          <!-- CVV input -->
+                          <ion-input class="c-input c-input--white" formControlName="cardCvc" trim type="number"
+                            placeholder="CVV">
+                          </ion-input>
+                          <!-- CVV input -->
+
+                          <!-- CVV field validation error -->
+                          <p class="c-content c-content--inter-12px c-content--login c-content--color-red c-content--form-message"
+                            *ngIf="false">
+                            CVV cannot be empty
+                          </p>
+                          <!-- /CVV field validation error -->
+                        </ion-item>
+                        <!-- /CVV input wrapper -->
+
+                        <!-- Save card details wrapper -->
+                        <ion-item class="c-item ion-no-padding c-checkbox-wrapper">
+                          <!-- Save card details checkbox -->
+                          <ion-checkbox (ionChange)="onSelectCheckBox($event)" [checked]="saveCardChecked" slot="start" class="c-checkbox ion-no-margin"></ion-checkbox>
+                          <!-- /Save card details checkbox -->
+
+                          <!-- Save card details label -->
+                          <ion-label class="ion-no-margin c-label--inter-14px u-no--white-space">Save card details for
+                            future
+                            transactions</ion-label>
+                          <!-- /Save card details label -->
+                        </ion-item>
+                        <!-- /Save card details wrapper -->
+                      </ion-item-group>
+                    </ion-col>
+                  </ion-row>
+                  <!-- /Card details main field wrapper -->
+                </ion-col>
+              </ion-row>
+              <!-- /Card details main wrapper -->
+
+              <!-- Proceed to pay wrapper -->
+              <ion-footer collapse="fade"
+                class="l-header l-footer u-position--fixed u-no--position-bot u-left--50p u-transform--translate-x-minus-50p l-footer--bg-white">
+                <!-- Proceed to pay main wrapper -->
+                <ion-toolbar class="l-main-wrapper">
+                  <!-- Proceed to pay button -->
+                  <ion-button
+                    class="c-button ion-no-margin u-no--text-transform c-button--text-inter-18px c-button--text-inter-medium"
+                    fill="clear" expand="full" type="submit">
+                    Proceed to pay!
+                    <!-- Proceed to pay caret right icon -->
+                    <ion-icon src="../../../assets/images/outline-caret-right--color-white.svg"
+                      class="c-icon c-icon--caret-rt u-no--mg-rt" *ngIf="false" slot="end"></ion-icon>
+                    <!-- /Proceed to pay caret right icon -->
+                  </ion-button>
+                  <!-- /Proceed to pay button -->
+                </ion-toolbar>
+                <!-- /Proceed to pay main wrapper -->
+              </ion-footer>
+              <!-- /Proceed to pay wrapper -->
+            </form>
+            <!-- /Card details form -->
+          </ion-col>
+        </ion-row>
+        <!-- /Fill up card details wrapper -->
+
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>
+<!-- /Payment content -->
+
+<!-- Payment footer -->
+<ion-footer collapse="fade" class="l-footer l-footer--order-completed">
+  <!-- Payment main wrapper -->
+  <ion-toolbar class="l-main-wrapper ion-text-center">
+    <ion-row *ngIf="!this.paymentCustomerId || isNewCardSelected; else PaybySavedCard" class="l-row l-row--quote-documents l-row--bg-color-white">
+      <ion-col class="l-col l-col--view-vendor-quote">
+        <!-- Pay now button -->
+        <ion-button [disabled]="(paymentMode && !cardForm.valid) || isPaymentClicked"
+          class="c-button ion-no-margin u-no--text-transform c-button--min-width-195px c-button--text-inter-13px c-button--text-inter-medium"
+          fill="clear" expand="full" (click)="makePayment(cardForm.value)">
+          Pay Now
+          <!-- Icon -->
+          <ion-icon src="../../../../assets/images/outline-caret-right--color-white.svg"
+            class="c-icon u-no--mg-rt u-no--border-radius c-icon--caret-down" slot="end"></ion-icon>
+          <!-- /Icon -->
+        </ion-button>
+        <!-- /Pay now button -->
+      </ion-col>
+    </ion-row>
+
+    <ng-template #PaybySavedCard>
+      <ion-row class="l-row l-row--quote-documents l-row--bg-color-white">
+        <ion-col class="l-col l-col--view-vendor-quote">
+          <!-- Pay now button -->
+          <ion-button [disabled]="!saveCardChecked && !isSavedCardSelected"
+            class="c-button ion-no-margin u-no--text-transform c-button--min-width-195px c-button--text-inter-13px c-button--text-inter-medium"
+            fill="clear" expand="full" (click)="makePaymentBySavedCard()">
+            Pay Now
+            <!-- Icon -->
+            <ion-icon src="../../../../assets/images/outline-caret-right--color-white.svg"
+              class="c-icon u-no--mg-rt u-no--border-radius c-icon--caret-down" slot="end"></ion-icon>
+            <!-- /Icon -->
+          </ion-button>
+          <!-- /Pay now button -->
+        </ion-col>
+      </ion-row>
+    </ng-template>
+  </ion-toolbar>
+  <!-- /Payment main wrapper -->
+</ion-footer>
+<!-- /Payment footer -->
+
+<!-- add new card -->
+<div style="display: none">
+  <!-- Header -->
+  <ion-header collapse="fade" class="l-header u-no--pad-top u-no--pad-bot">
+
+    <!-- Main wrapper -->
+    <ion-toolbar class="l-main-wrapper">
+      <ion-buttons class="u-position--absolute u-top--50p u-transform--translate-y-minus-50p">
+
+        <!-- Icon -->
+        <ion-icon src="../../../assets/images/header/outline-caret-left--color-brand.svg"
+          class="c-icon c-icon--caret-lt u-no--mg-rt"></ion-icon>
+        <!-- /Icon -->
+
+      </ion-buttons>
+
+      <!-- c-title -->
+      <ion-title class="ion-no-padding c-title c-title--login c-title--h1-black u-no--mg-top ion-text-center">
+
+        <!-- Title h1 -->
+        <h1 class="c-title__h1">Add New Card</h1>
+        <!-- /Title h1 -->
+
+      </ion-title>
+      <!-- /c-title -->
+
+    </ion-toolbar>
+    <!-- /Main wrapper -->
+
+  </ion-header>
+  <!-- /Header -->
+
+  <ion-content>
+
+    <!-- Main wrapper -->
+    <div class="l-main-wrapper l-main-wrapper--get-started l-main-wrapper--min-height-100vh-166px">
+
+      <!-- Row -->
+      <ion-row>
+
+        <!-- Col -->
+        <ion-col class="u-display--flex u-align-items--center u-no--pad-top u-no--pad-bot u-no--pad-lt">
+
+          <!-- Title -->
+          <div
+            class="ion-no-padding c-title c-title--get-started c-title--our-services c-title--h1-inter-16px c-title--inter-regular c-title--h1-black c-title--video-instructions u-no--mg-top">
+
+            <!-- Title h1 -->
+            <h1 class="c-title__h1">Fill Up Card Details</h1>
+            <!-- /Title h1 -->
+
+          </div>
+          <!-- /Title -->
+
+        </ion-col>
+        <!-- /Col -->
+
+        <!-- Col -->
+        <ion-col
+          class="u-display--flex u-align-items--center u-justify-content--flex-end u-no--pad-top u-no--pad-bot u-no--pad-rt">
+
+          <!-- Button -->
+          <ion-button
+            class="c-button ion-no-margin u-no--text-transform c-button--outline c-button--border-color-primary u-no--border u-no--bg c-button--order-details u-no--height"
+            fill="clear" expand="full">
+
+            <!-- Title -->
+            <ion-title
+              class="ion-no-padding c-title c-title--inter-medium u-no--flex c-title--h1-color-brand-1-1 c-title--inter-medium c-title--h1-inter-16px c-title--h1-inter-semibold c-title--h1-inter-14px c-title--about-us-button">
+
+              <!-- Title h1 -->
+              <h1 class="c-title__h1">Cancel</h1>
+              <!-- /Title h1 -->
+
+            </ion-title>
+            <!-- /Title -->
+
+          </ion-button>
+          <!-- /Button -->
+
+        </ion-col>
+        <!-- /Col -->
+
+      </ion-row>
+      <!-- /Row -->
+
+      <!-- Form -->
+      <form class="l-form l-form--height-100vh-120px">
+
+        <!-- Content wrapper -->
+        <div
+          class="c-card ion-no-margin u-no--box-shadow u-no--mg-bot c-card--video-instructions u-no--mg-top l-content-wrapper l-content-wrapper--pickup-location">
+
+          <!-- Item group wrapper -->
+          <ion-item-group class="c-item-group-wrapper">
+
+            <!-- Item group -->
+            <ion-item-group class="c-item-group c-item-group--pickup-location">
+
+              <!-- Item -->
+              <ion-item class="c-item ion-no-padding">
+
+                <!-- Input -->
+                <ion-input class="c-input c-input--white" type="number" placeholder="Card Number"></ion-input>
+                <!-- /Input -->
+
+                <!-- Content -->
+                <div
+                  class="c-content c-content--login c-content--p-inter-12px c-content--color-red c-content--form-message">
+
+                  <!-- Content p -->
+                  <p class="c-content__p">
+                    Card Number cannot be empty
+                  </p>
+                  <!-- /Content p -->
+
+                </div>
+                <!-- /Content -->
+
+              </ion-item>
+              <!-- /Item -->
+
+              <!-- Item -->
+              <ion-item class="c-item ion-no-padding">
+
+                <!-- Input -->
+                <ion-input class="c-input c-input--white" placeholder="Name of the card"></ion-input>
+                <!-- /Input -->
+
+                <!-- Content -->
+                <div
+                  class="c-content c-content--login c-content--p-inter-12px c-content--color-red c-content--form-message">
+
+                  <!-- Content p -->
+                  <p class="c-content__p">
+                    Name of the card cannot be empty
+                  </p>
+                  <!-- /Content p -->
+
+                </div>
+                <!-- /Content -->
+
+              </ion-item>
+              <!-- /Item -->
+
+              <!-- Item -->
+              <ion-item class="c-item ion-no-padding">
+
+                <!-- Row -->
+                <ion-row class="l-row u-no--mg l-row--pickup-location">
+                  <ion-col
+                    class="u-display--flex u-align-items--center u-no--pad-top u-no--pad-bot u-no--pad-lt l-col l-col--view-vendor-quote l-col--pick-up-location">
+
+                    <!-- Input -->
+                    <ion-input class="c-input c-input--white" placeholder="Expiry month"></ion-input>
+                    <!-- /Input -->
+
+                    <!-- Content -->
+                    <div
+                      class="c-content c-content--login c-content--p-inter-12px c-content--color-red c-content--form-message">
+
+                      <!-- Content p -->
+                      <p class="c-content__p">
+                        Expiry month cannot be empty
+                      </p>
+                      <!-- /Content p -->
+
+                    </div>
+                    <!-- /Content -->
+
+                  </ion-col>
+
+                  <ion-col
+                    class="u-display--flex u-align-items--center u-justify-content--flex-end u-no--pad-top u-no--pad-bot u-no--pad-rt l-col l-col--view-vendor-quote l-col--pick-up-location">
+
+                    <!-- Input -->
+                    <ion-input class="c-input c-input--white" type="number" placeholder="Expiry year">
+                    </ion-input>
+                    <!-- /Input -->
+
+                    <!-- Content -->
+                    <div
+                      class="c-content c-content--login c-content--p-inter-12px c-content--color-red c-content--form-message">
+
+                      <!-- Content p -->
+                      <p class="c-content__p">
+                        Expiry year cannot be empty
+                      </p>
+                      <!-- /Content p -->
+
+                    </div>
+                    <!-- /Content -->
+
+                  </ion-col>
+                </ion-row>
+                <!-- /Row -->
+
+              </ion-item>
+              <!-- /Item -->
+
+              <!-- Item -->
+              <ion-item class="c-item ion-no-padding">
+
+                <!-- Input -->
+                <ion-input class="c-input c-input--white" type="number" placeholder="CVV"></ion-input>
+                <!-- /Input -->
+
+                <!-- Content -->
+                <div
+                  class="c-content c-content--login c-content--p-inter-12px c-content--color-red c-content--form-message">
+
+                  <!-- Content p -->
+                  <p class="c-content__p">
+                    CVV cannot be empty
+                  </p>
+                  <!-- /Content p -->
+
+                </div>
+                <!-- /Content -->
+
+              </ion-item>
+              <!-- /Item -->
+
+            </ion-item-group>
+            <!-- /Item group -->
+
+          </ion-item-group>
+          <!-- /Item group wrapper -->
+
+        </div>
+        <!-- /Content wrapper -->
+
+        <!-- Footer -->
+        <ion-footer collapse="fade" class="l-footer l-footer--order-completed">
+
+          <!-- Button -->
+          <ion-button class="c-button ion-no-margin u-no--text-transform" fill="clear" expand="full" type="submit">
+
+            <!-- Title -->
+            <ion-title
+              class="ion-no-padding c-title c-title--inter-medium c-title--h1-inter-18px u-no--flex  c-title--h1-white">
+
+              <!-- Title h1 -->
+              <h1 class="c-title__h1">
+                Save Card
+
+                <!-- Icon -->
+                <ion-icon src="../../../assets/images/outline-caret-right--color-white.svg"
+                  class="c-icon c-icon--caret-rt u-no--mg-rt" slot="end"></ion-icon>
+                <!-- /Icon -->
+
+              </h1>
+              <!-- /Title h1 -->
+
+            </ion-title>
+            <!-- /Title -->
+
+          </ion-button>
+          <!-- /Button -->
+
+        </ion-footer>
+        <!-- /Footer -->
+
+      </form>
+      <!-- /Form -->
+
+    </div>
+    <!-- /Main wrapper -->
+
+  </ion-content>
+</div>

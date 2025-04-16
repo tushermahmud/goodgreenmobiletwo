@@ -1,0 +1,247 @@
+<!-- Header -->
+<ion-header collapse="fade" mode="md" class="l-header">
+  <!-- Main wrapper -->
+  <ion-toolbar class="l-main-wrapper">
+    <!-- Logo -->
+    <ion-img src="../../../assets/images/get-started/logo.svg"
+      class="c-img c-img--width-230px c-img--margin-vertical-auto">
+    </ion-img>
+    <!-- /Logo -->
+  </ion-toolbar>
+  <!-- /Main wrapper -->
+</ion-header>
+<!-- /Header -->
+
+
+<ion-content scroll-y="false">
+
+  <!-- Main wrapper -->
+  <div class="l-main-wrapper l-main-wrapper--get-started l-main-wrapper--min-height-100vh-166px">
+
+    <!-- Swiper -->
+    <swiper class="s-swiper s-swiper--list-of-services" [pagination]="true" [spaceBetween]="15"
+      (swiper)="onSwiper($event)" (slideChange)="onSlideChange($event[0])">
+      <ng-template swiperSlide class="ion-text-center">
+
+        <!-- Card -->
+        <ion-card
+          class="c-card ion-no-margin u-no--box-shadow u-display--flex u-align-items--center u-justify-content--center">
+
+          <!-- Icon -->
+          <ion-icon src="../../../assets/images/fill-save--color-brand-plus-primary.svg"
+            class="c-icon c-icon--get-started u-no--mg-rt"></ion-icon>
+          <!-- /Icon -->
+
+        </ion-card>
+        <!-- /Card -->
+
+        <!-- Title -->
+        <ion-title class="ion-no-padding c-title c-title--get-started">
+
+          <!-- Title h1 -->
+          <h1 class="c-title__h1">Select a Service</h1>
+          <!-- /Title h1 -->
+
+        </ion-title>
+        <!-- /Title -->
+
+        <!-- Content -->
+        <div class="c-content c-content--p-color-primary-1-1 c-content--get-started">
+
+          <!-- Content p -->
+          <p class="c-content__p">
+            Choose from a number of services such as moving, packing, organizing, and hauling.
+          </p>
+          <!-- /Content p -->
+
+        </div>
+        <!-- /Content -->
+
+      </ng-template>
+
+      <ng-template swiperSlide class="ion-text-center">
+
+        <!-- Card -->
+        <ion-card
+          class="c-card ion-no-margin u-no--box-shadow u-display--flex u-align-items--center u-justify-content--center">
+
+          <!-- Icon -->
+          <ion-icon src="../../../assets/images/fill-phone--color-brand-plus-primary.svg"
+            class="c-icon c-icon--get-started u-no--mg-rt"></ion-icon>
+          <!-- /Icon -->
+
+        </ion-card>
+        <!-- /Card -->
+
+        <!-- Title -->
+        <ion-title class="ion-no-padding c-title c-title--get-started">
+
+          <!-- Title h1 -->
+          <h1 class="c-title__h1">Input your Info</h1>
+          <!-- /Title h1 -->
+
+        </ion-title>
+        <!-- /Title -->
+
+        <!-- Content -->
+        <div class="c-content c-content--p-color-primary-1-1 c-content--get-started">
+
+          <!-- Content p -->
+          <p class="c-content__p">
+            Provide us with your information so we can get out there and get the job done!
+          </p>
+          <!-- /Content p -->
+
+        </div>
+        <!-- /Content -->
+
+      </ng-template>
+
+      <ng-template swiperSlide class="ion-text-center">
+
+        <!-- Card -->
+        <ion-card
+          class="c-card ion-no-margin u-no--box-shadow u-display--flex u-align-items--center u-justify-content--center">
+
+          <!-- Icon -->
+          <ion-icon src="../../../assets/images/fill-done--color-brand-plus-primary.svg"
+            class="c-icon c-icon--get-started u-no--mg-rt"></ion-icon>
+          <!-- /Icon -->
+
+        </ion-card>
+        <!-- /Card -->
+
+        <!-- Title -->
+        <ion-title class="ion-no-padding c-title c-title--get-started">
+
+          <!-- Title h1 -->
+          <h1 class="c-title__h1">Professionals Get the Job Done!</h1>
+          <!-- /Title h1 -->
+
+        </ion-title>
+        <!-- /Title -->
+
+        <!-- Content -->
+        <div class="c-content c-content--p-color-primary-1-1 c-content--get-started">
+
+          <!-- Content p -->
+          <p class="c-content__p">
+            Our licensed and insured professionals will ensure that the job gets done on time with the highest quality
+            and attention to detail.
+          </p>
+          <!-- /Content p -->
+
+        </div>
+        <!-- /Content -->
+
+      </ng-template>
+
+      <ng-template swiperSlide class="ion-text-center">
+
+        <!-- Card -->
+        <ion-card
+          class="c-card ion-no-margin u-no--box-shadow u-display--flex u-align-items--center u-justify-content--center">
+
+          <!-- Icon -->
+          <ion-icon src="../../../assets/images/fill-panda--color-brand-plus-primary.svg"
+            class="c-icon c-icon--get-started u-no--mg-rt"></ion-icon>
+          <!-- /Icon -->
+
+        </ion-card>
+        <!-- /Card -->
+
+        <!-- Title -->
+        <ion-title class="ion-no-padding c-title c-title--get-started">
+
+          <!-- Title h1 -->
+          <h1 class="c-title__h1">Looking out for the Environment</h1>
+          <!-- /Title h1 -->
+
+        </ion-title>
+        <!-- /Title -->
+
+        <!-- Content -->
+        <div class="c-content c-content--p-color-primary-1-1 c-content--get-started">
+
+          <!-- Content p -->
+          <p class="c-content__p">
+            Good Green is dedicated to rebuilding habitats around the world.
+          </p>
+          <!-- /Content p -->
+
+        </div>
+        <!-- /Content -->
+
+      </ng-template>
+    </swiper>
+    <!-- /Swiper -->
+
+  </div>
+  <!-- /Main wrapper -->
+
+</ion-content>
+
+
+<!-- Footer -->
+<ion-footer collapse="fade" class="l-footer l-footer--order-completed">
+
+  <!-- Main wrapper -->
+  <ion-toolbar class="l-main-wrapper ion-text-center">
+
+    <!-- Button -->
+    <ion-button class="c-button ion-no-margin u-no--text-transform c-button--outline c-button--border-color-primary"
+      fill="clear" expand="full" *ngIf="!finalButton" (click)="toOurServices()">
+
+      <!-- Title -->
+      <ion-title
+        class="ion-no-padding c-title c-title--inter-medium c-title--h1-inter-18px u-no--flex c-title--h1-color-primary">
+
+        <!-- Title h1 -->
+        <h1 class="c-title__h1">
+          Skip
+
+          <!-- Icon -->
+          <ion-icon src="../../../assets/images/outline-caret-right--color-primary.svg"
+            class="c-icon c-icon--caret-rt u-no--mg-rt" slot="end"></ion-icon>
+          <!-- /Icon -->
+
+        </h1>
+        <!-- /Title h1 -->
+
+      </ion-title>
+      <!-- /Title -->
+
+    </ion-button>
+    <!-- /Button -->
+
+    <!-- Button -->
+    <ion-button class="c-button ion-no-margin u-no--text-transform" fill="clear" expand="full" *ngIf="finalButton"
+      (click)="toOurServices()">
+
+      <!-- Title -->
+      <ion-title
+        class="ion-no-padding c-title c-title--inter-medium c-title--h1-inter-18px   c-title--h1-white u-no--flex">
+
+        <!-- Title h1 -->
+        <h1 class="c-title__h1">
+          Let’s Get Started
+
+          <!-- Icon -->
+          <ion-icon src="../../../assets/images/outline-caret-right--color-white.svg"
+            class="c-icon c-icon--caret-rt u-no--mg-rt" slot="end"></ion-icon>
+          <!-- /Icon -->
+
+        </h1>
+        <!-- /Title h1 -->
+
+      </ion-title>
+      <!-- /Title -->
+
+    </ion-button>
+    <!-- /Button -->
+
+  </ion-toolbar>
+  <!-- /Main wrapper -->
+
+</ion-footer>
+<!-- /Footer -->

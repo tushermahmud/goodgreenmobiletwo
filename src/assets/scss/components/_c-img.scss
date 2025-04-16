@@ -1,0 +1,19 @@
+// Abstracts
+@use "../abstracts/dimension" as *;
+
+// Ruleset for img
+.c-img {
+  $cImg: &;
+
+  &--width-230px {
+    width: $width-230px;
+  }
+
+  &--margin-vertical-auto {
+    margin: 0 auto;
+  }
+
+  &--margin-bottom-20px {
+    margin-bottom: 20px;
+  }
+}

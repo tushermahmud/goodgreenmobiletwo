@@ -1,0 +1,7 @@
+@use "../abstracts/colors" as *;
+@use "../abstracts/typography" as *;
+
+// ion-select
+ion-select {
+  font-size: $font-size-14px;
+}

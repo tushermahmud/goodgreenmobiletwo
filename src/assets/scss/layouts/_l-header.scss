@@ -1,0 +1,32 @@
+// Header
+.l-header {
+  $lHeader: &;
+
+  padding: 0;
+
+  &--pt-20 {
+    padding-top: 20px;
+  }
+
+  &--pb-20 {
+    padding-bottom: 20px;
+  }
+
+  &.header-ios {
+    padding: 6px 0;
+  }
+
+  &::after {
+    background-image: none;
+  }
+}
+
+// global
+ion-header {
+  background-color: white;
+  box-shadow: 0px 2px 10px 0px rgba(34, 36, 40, 0.15);
+
+  &.has-no-shadow {
+    box-shadow: none;
+  }
+}

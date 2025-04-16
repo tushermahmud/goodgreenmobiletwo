@@ -1,0 +1,25 @@
+// Theme comment, version, description and charset are located in style.css
+
+// --Abstracts
+@use "abstracts/__abstracts-dir";
+
+// --Base
+@use "base/__base-dir";
+
+// --Flexbox
+@use "utilities/__utilities-dir";
+
+// --Components
+@use "components/__components-dir";
+
+// --Layouts
+@use "layouts/__layouts-dir";
+
+// --Pages
+@use "pages/__pages-dir";
+
+// --Scopes
+@use "scopes/__scopes-dir";
+
+// --Responsive
+@use "./media-queries/_responsive-dir";

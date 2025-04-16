@@ -1,0 +1,38 @@
+<ion-header collapse="fade" mode="md" class="l-header">
+    <ion-toolbar class="l-main-wrapper u-no--mg l-main-wrapper--width-100p">
+        <!-- Header title -->
+        <ion-title
+            class="ion-no-padding ion-text-center c-title c-title--color-black c-title--inter-bold c-title--service-item"
+            size="small">Add location</ion-title>
+        <!-- /Header title -->
+        <ion-buttons slot="end">
+            <ion-button fill="clear" (click)="close()"
+                class="c-list u-no--bg ion-no-padding u-no--mg-top u-no--mg-bot u-no--pad-bot u-position--absolute u-top--50p u-transform--translate-y-minus-50p u-no--position-rt c-list--header">
+                <ion-icon name="close">Close</ion-icon>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <form>
+        <ion-searchbar placeholder="Search" [debounce]="1000" #address
+            (ionInput)="updateSearchResults(address.value)"></ion-searchbar>
+
+        <!-- Address list -->
+        <ion-list [hidden]="autocompleteItems?.length === 0"
+            class="c-list c-list--bg-white c-list--border-color-primary-1-5 c-list--pickup-location u-no--pad-top u-no--pad-bot">
+            <!-- Address item -->
+            <ion-item *ngFor="let item of autocompleteItems" tappable (click)="selectSearchResult(item)"
+                class="c-item c-item--pickup-location c-item--border-color-primary-1-5">
+                <!-- Addresses -->
+                <ion-text class="c-title ion-no-padding c-title--h1-inter-13px">
+                    <span class="c-title__h1 u-no--font-weight-initial">{{ item.description }}</span>
+                </ion-text>
+                <!-- /Addresses -->
+            </ion-item>
+            <!-- /Address item -->
+        </ion-list>
+        <!-- /Address list -->
+    </form>
+</ion-content>

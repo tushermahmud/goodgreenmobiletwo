@@ -1,0 +1,113 @@
+<ion-content [fullscreen]="true" class="ion-padding">
+  <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <ng-container>
+  <!--Ongoing Job-->
+  <!--ion-item lines="none" class="ion-no-padding"--> <!--padding-top-bot-15px-->
+    <!-- <ion-label class="o-service-item__font-weight-500">Ongoing Jobs</ion-label>
+  </ion-item> -->
+
+  <ion-row
+      class="l-row u-no--mg-top u-no--mg-rt u-no--mg-lt l-row--pickup-location l-row--view-vendor-quote padding-top-bot-15px">
+      <ion-col class="u-display--flex u-align-items--center u-no--pad-top u-no--pad-bot u-no--pad-lt" size="8">
+        <!-- ongoing Job title -->
+        <ion-text
+          class="c-title ion-no-padding c-title--h1-color-brand c-title--text-transform c-title--addition-services c-title--h1-inter-12px ">
+          <h1 class="o-service-item__font-weight-500">Ongoing Jobs</h1>
+        </ion-text>
+
+        <!-- /ongoing Job title -->
+      </ion-col>
+  </ion-row>
+
+  <!--Ongoing Job-->
+  <ng-container *ngFor="let onGoingJob of onGoingJobCard">
+    <ion-card class="bg-color backgroud-color-card--bg-color margin-0-bottom-15px" (click)="openJobCard(onGoingJob)">
+      <!-- <ion-card-header class="pad-l-r10px row-text"> -->
+        <ion-card-content class="ion-no-padding">
+          <ion-row>
+            <ion-col class="service-name-and-status-one-line pad-bot-10px">
+                    <ion-card-title class="text-color-time text-20px title-text-ellipsis">{{onGoingJob?.projectDetails?.name}}</ion-card-title>
+                    <ion-chip class="float-right text-color-time chip-border ion-text-center chip-min-width-120 status-chip-oj" size="small" [outline]="true">{{onGoingJob?.status}}</ion-chip>
+            </ion-col>
+          </ion-row>
+          <ion-row class="row-text line-top services-row-padding-ongoing">
+            <ion-col size="2"> <ion-icon class="icon-bg-ongoing-job icon-bg-radius icon-padding7px truck-icon"
+                src={{onGoingJob?.serviceInfo?.logoUrl}}></ion-icon>
+              </ion-col>
+            <ion-col size="9" class="padding-left-right-10px">
+              <ion-card-subtitle class="text-color-time text-14px">{{onGoingJob?.serviceInfo?.label}}</ion-card-subtitle>
+              <ion-note class="text-color-time text-12px-weight-500" *ngIf="onGoingJob?.locations.length > 0">
+                {{onGoingJob?.locations[0].address }}
+                {{ onGoingJob?.locations[0].state }} {{ onGoingJob?.locations[0].city }} {{
+                onGoingJob?.locations[0].zipcode }}
+              </ion-note>
+              <br>
+              <ion-note class="text-color-time text-12px-weight-500">
+                {{onGoingJob?.scheduleRange?.startDate | date: 'MM/dd/yyyy'}} - {{onGoingJob?.scheduleRange?.endDate | date: 'MM/dd/yyyy'}}</ion-note>
+            </ion-col>
+            <ion-col size="1"> <ion-icon class="" name="chevron-forward-outline" size="small"></ion-icon></ion-col>
+          </ion-row>
+        </ion-card-content>
+        <!-- </ion-card-header> -->
+      </ion-card>
+  </ng-container>
+
+  <!--For no ongoing jobs-->
+  <ng-container *ngIf="onGoingJobCard?.length === 0">
+    <ion-card class="backgroud-color-card--bg-color margin-top-10px">
+      <ion-card-content class="row-text display-flex">
+        <ion-note class="text-color-time ion-padding">No ongoing jobs</ion-note>
+      </ion-card-content>
+    </ion-card>
+  </ng-container>
+  <!--For no ongoing jobs-->
+
+</ng-container>
+
+
+  <!--/Ongoing Job-->
+  <ion-row
+      class="l-row u-no--mg-top u-no--mg-rt u-no--mg-lt l-row--pickup-location l-row--view-vendor-quote padding-top-bot-15px">
+      <ion-col class="u-display--flex u-align-items--center u-no--pad-top u-no--pad-bot u-no--pad-lt" size="8">
+        <!-- Upcoming Job title -->
+        <ion-text
+          class="c-title ion-no-padding c-title--h1-color-brand c-title--text-transform c-title--addition-services c-title--h1-inter-12px c-title--view-vendor-quote">
+          <h1 class="o-service-item__font-weight-500">Upcoming Jobs</h1>
+        </ion-text>
+
+        <!-- /Upcoming Job title -->
+      </ion-col>
+  </ion-row>
+  <!--Upcoming Job-->
+  <ng-container *ngFor="let upComingJob of upComingJobs">
+    <ion-card class="backgroud-color-card uj-border margin-top-10px" (click)="openJobDetails(upComingJob,'upcoming')">
+      <ion-card-content class="ion-no-padding">
+        <ion-row class="row-text">
+          <ion-col size="2" > <ion-icon class="upcoming-job-ion-bg icon-bg-radius icon-padding7px truck-icon" src={{upComingJob?.jobCard?.serviceInfo?.logoUrl}}></ion-icon></ion-col>
+          <ion-col class="padding-left-right-10px">
+            <ion-card-subtitle class="text-color-uj text-14px">{{ upComingJob?.jobCard?.projectDetails.name}}</ion-card-subtitle>
+            <ion-note class="text-color-uj text-12px-weight-500">{{ upComingJob?.jobCard?.locations[0].address }} 
+              {{ upComingJob?.jobCard?.locations[0].state }} {{ upComingJob?.jobCard?.locations[0].city }} {{ upComingJob.jobCard?.locations[0].zipcode }}</ion-note><br>
+            <ion-note class="backgroud-color-card--font-size">{{ upComingJob?.job?.scheduledDateTime | date:'longDate' }} @ {{ upComingJob?.job?.scheduledDateTime | date: 'shortTime'}}</ion-note>
+          </ion-col>
+          <ion-col size="1"> <ion-icon name="chevron-forward-outline" color="dark" size="small"></ion-icon></ion-col>
+        </ion-row>
+      </ion-card-content>
+    </ion-card>
+  </ng-container>
+  <!--/Upcoming Job-->
+
+  <!--For no upcoming jobs-->
+  <ng-container *ngIf="upComingJobs?.length === 0">
+    
+    <ion-card class="uj-border margin-top-10px">
+      <ion-card-content class="row-text display-flex">
+        <ion-note class="text-color-uj ion-padding">No jobs scheduled</ion-note>
+      </ion-card-content>
+    </ion-card>
+  </ng-container>
+  <!--For no upcoming jobs-->
+</ion-content>

@@ -1,0 +1,70 @@
+// Abstracts
+@use "../abstracts/colors" as *;
+@use "../abstracts/border-radius" as *;
+@use "../abstracts/typography" as *;
+
+// Chip
+.c-chip {
+  $cChip: &;
+
+  border-radius: $border-radius-5px;
+
+  &--bg-color-red {
+    --background: #ec5656;
+  }
+
+  &--color-white {
+    --color: white;
+  }
+
+  &--bg-color-brand {
+    --background: #0c9447;
+  }
+
+  &--inter-12px {
+    font-size: $font-size-12px;
+  }
+
+  &--inter-14px {
+    font-size: $font-size-14px;
+  }
+
+  &--status-chip{
+    color: $color-brand;
+    border: 1px solid $color-brand;
+    border-radius: $border-radius-5px;
+    padding: 1px 6px 1px 6px;
+  }
+
+  &--background-pending-status{
+    background: $color-bg-light-orange;
+    padding: 7px;
+    border-radius: 7px;
+  }
+
+  &--background-rejected-status{
+    background: $color-bg-light-red;
+    padding: 7px;
+    border-radius: 7px;
+  }
+
+  &--background-accepted-status{
+    background: $color-bg-light-brand-color;
+    padding: 7px;
+    border-radius: 7px;
+  }
+
+  &--is-color-red{
+    color: $color-red;
+  }
+
+  &--is-color-brand-color{
+    color: $color-brand;
+  }
+
+  &--is-color-orange{
+    color: $color-yellow-1-1;
+  }
+
+  
+}

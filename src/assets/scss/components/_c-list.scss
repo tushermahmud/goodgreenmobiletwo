@@ -1,0 +1,81 @@
+// Abstracts
+@use "../abstracts/dimension" as *;
+@use "../abstracts/colors" as *;
+@use "../abstracts/border-radius" as *;
+
+// List
+body {
+  .c-list {
+    $cList: &;
+
+    padding-bottom: 40px;
+
+    &--height-100vh-200px {
+      height: $height-100vh-200px;
+    }
+
+    &--overflow {
+      overflow-y: auto;
+      overflow-x: hidden;
+
+      &::-webkit-scrollbar {
+        display: none;
+      }
+    }
+
+    &--reviews {
+      margin: 5px 0;
+    }
+
+    &--rating {
+      margin-right: -5px;
+      margin-left: -5px;
+    }
+
+    &--height-100vh-203px {
+      height: $height-100vh-203px;
+    }
+
+    &--order-completed {
+      margin-bottom: 15px;
+    }
+
+    &--height-100vh-223px {
+      height: $height-100vh-223px;
+    }
+
+    &--height-100vh-85px {
+      height: $height-100vh-85px;
+    }
+
+    &--bg-white {
+      background: $white;
+    }
+
+    &--pickup-location {
+      border-radius: $border-radius-5px;
+      border: 1px solid;
+      margin-top: 2px;
+    }
+
+    &--border-color-primary-1-5 {
+      border-color: $color-primary-1-5;
+    }
+
+    &--width-100p {
+      width: $width-100p;
+    }
+
+    &--payment {
+      padding-bottom: 20px;
+    }
+
+    &--height-100vh-125px {
+      height: $height-100vh-125px;
+    }
+
+    &--header {
+      padding-right: 15px;
+    }
+  }
+}

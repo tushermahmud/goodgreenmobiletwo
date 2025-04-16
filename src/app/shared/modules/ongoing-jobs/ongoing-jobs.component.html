@@ -1,0 +1,363 @@
+<ion-header collapse="fade" mode="md" class="l-header">
+    <app-header [headerMeta]="headerInfo"></app-header>
+</ion-header>
+
+
+<ion-content>
+    <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
+        <ion-refresher-content></ion-refresher-content>
+      </ion-refresher>
+      
+    <ion-grid class="l-main-wrapper ion-no-padding l-main-wrapper--get-started">
+        <ion-row>
+            <ion-col class="ion-no-padding">
+                <!-- Job details header -->
+                <ion-row>
+                    <ion-col class="u-display--flex u-align-items--center u-no--pad-top u-no--pad-bot">
+                        <!-- Job details header icon -->
+                        <!-- <ion-icon src="{{item?.logoUrl}}"
+                                  class="c-icon u-no--border-radius c-icon--dollar-envelope c-icon--width-20px c-icon--height-20px">
+                                </ion-icon> -->
+                        <!-- /Job details header icon -->
+
+                        <ion-row>
+                            <ion-col class="u-no--pad-top u-no--pad-bot">
+                                <!-- Service label -->
+                                <ion-text
+                                    class="ion-no-padding c-title c-title--get-started c-title--our-services c-title--h1-inter-16px c-title--inter-regular c-title--h1-black c-title--video-instructions u-no--mg-top">
+                                    <h1 class="c-title__h1">{{jobCardData?.projectDetails?.name}}</h1>
+                                </ion-text>
+                                <!-- /Service label -->
+
+                                <!-- Service date -->
+                                <ion-text *ngIf="false"
+                                    class="ion-no-padding c-title--addition-services c-title--h1-inter-12px c-title--h1-color-primary-1-1 c-title--time-stamp">
+                                    <h1 class="c-title__h1">{{jobDetailsData?.jobDetails?.job.scheduledDateTime | date:
+                                        'longDate'}} @ {{jobDetailsData?.jobDetails?.job.scheduledDateTime | date:
+                                        'shortTime'}}</h1>
+                                </ion-text>
+                                <!-- /Service date -->
+                            </ion-col>
+                        </ion-row>
+                    </ion-col>
+                </ion-row>
+                <!-- /Job details header -->
+
+                <!-- Job details wrapper -->
+                <div class="l-form">
+                    <!-- Job details list -->
+                    <ion-list class="c-list u-no--bg ion-no-padding u-no--pad-bot c-list--dashboard">
+                        <!-- Job details item group -->
+                        <ion-item-group class="c-item-group u-no--pad-top u-no--pad-bot c-item-group--pickup-location">
+
+                            <!-- Job details item -->
+                            <ion-item class="c-item ion-no-padding">
+                                <!-- Job details main wrapper -->
+                                <ion-row
+                                    class="c-thumbnail c-thumbnail--video-capture c-thumbnail--width-100p c-thumbnail--body-bg-gray-1-1 c-card u-no--mg-bot u-no--height c-card--pickup-location c-card--addition-services">
+                                    <ion-col class="ion-no-padding">
+                                        <ion-row class="l-row u-no--mg l-row--pickup-location">
+                                            <ion-col class="u-no--pad-top u-no--pad-bot u-no--pad-lt" size="8">
+                                                <ion-row
+                                                    class="l-row u-no--mg-top u-no--mg-rt u-no--mg-lt l-row--pickup-location l-row--view-vendor-quote">
+                                                    <ion-col
+                                                        class="u-display--flex u-align-items--center u-no--pad-top u-no--pad-bot u-no--pad-lt">
+                                                        <!-- Job details -->
+                                                        <ion-text
+                                                            class="c-title ion-no-padding c-title--h1-color-brand c-title--text-transform c-title--addition-services c-title--h1-inter-12px c-title--view-vendor-quote">
+                                                            <h1 class="c-title__h1">Job details</h1>
+                                                        </ion-text>
+                                                        <!-- /Job details -->
+                                                    </ion-col>
+                                                </ion-row>
+
+                                                <!-- Job details id -->
+                                                <ion-text
+                                                    class="c-title ion-no-padding c-title--h1-color-primary c-title--h1-inter-14px c-title--h1-inter-semibold">
+                                                    <h1 class="c-title__h1">ID {{jobCardData?.id}}</h1>
+                                                </ion-text>
+                                                <!-- /Job details id -->
+                                            </ion-col>
+
+                                            <ion-col
+                                                class="u-no--pad-top u-no--pad-bot u-no--pad-rt u-display--flex u-align-items--center u-justify-content--flex-end">
+                                                <!-- View quotes button -->
+                                                <!-- <ion-button
+                                                class="c-button ion-no-margin u-no--text-transform c-button--text-inter-10px c-button--text-inter-medium c-button--height-25px c-button--bg-color-brand"
+                                                fill="clear" expand="full"> Ongoing 1</ion-button> -->
+                                                <ion-chip class="no-margin c-chip--status-chip" size="small"
+                                                    [outline]="true">{{jobCardData?.status}}</ion-chip>
+                                                <!-- /View quotes button -->
+
+                                            </ion-col>
+                                        </ion-row>
+                                        <!-- /Job details row -->
+                                    </ion-col>
+                                </ion-row>
+                                <!-- /Job details main wrapper -->
+                            </ion-item>
+                            <!-- /Job details item -->
+
+                            <!-- Job details item -->
+                            <ion-item *ngIf="isLead" class="c-item ion-no-padding">
+                                <!-- Job details main wrapper -->
+                                <ion-row
+                                    class="c-thumbnail c-thumbnail--video-capture c-thumbnail--width-100p c-thumbnail--body-bg-gray-1-1 c-card u-no--mg-bot u-no--height c-card--pickup-location c-card--addition-services">
+                                    <ion-col class="ion-no-padding">
+                                        <ion-row class="l-row u-no--mg l-row--pickup-location">
+                                            <ion-col class="u-no--pad-top u-no--pad-bot u-no--pad-lt" size="7">
+                                                <ion-row
+                                                    class="l-row u-no--mg-top u-no--mg-rt u-no--mg-lt l-row--pickup-location l-row--view-vendor-quote">
+                                                    <ion-col class="u-display--flex u-align-items--center u-no--pad-top u-no--pad-bot u-no--pad-lt">
+                                                        <!-- Job details -->
+                                                        <ion-text
+                                                            class="c-title ion-no-padding c-title--h1-color-brand c-title--text-transform c-title--addition-services c-title--h1-inter-12px c-title--view-vendor-quote">
+                                                            <h1 class="c-title__h1">Quick Actions</h1>
+                                                        </ion-text>
+                                                        <!-- /Job details -->
+                                                    </ion-col>
+                                                </ion-row>
+                                            </ion-col>
+                                        </ion-row>
+                                        <!-- /Job details row -->
+
+                                        <ion-row *ngIf="isDueDate" class="flex-center ion-text-wrap text-color-time text-12px row-text1 ion-text-center" lines="none">
+                                            <!-- <ion-label class="no-text-ellipsis"> -->
+                                                <p style="color:red">You have missed to end the job! All the schedules are complete.</p>
+                                                <p style="color:red">Click on the button below to end the job.</p>
+                                            <!-- </ion-label> -->
+                                        </ion-row>
+                            
+                                        <!--Buttons Clock Out and End Job-->
+                                        <ion-row style="padding-top: 10px;">
+                                            <ion-col class="ion-text-center">
+                                                <ion-button class="min-width-btn-100 c-button--height-48px ripple"
+                                                    *ngIf="jobCardData?.status === 'new'" color="primary" expand="block">Start Job</ion-button>
+                                                <!--c-button--min-width-114px margin-10-12px classes removed from buttotns to make it fullwidth-->
+                                                <ion-button class="min-width-btn-100 c-button--height-48px ripple"
+                                                (click)="endJob('end')" *ngIf="jobCardData?.status === 'in-progress'" color="danger" expand="block">End Job</ion-button>
+                                            </ion-col>
+                                        </ion-row>
+                                        <!--Buttons Clock Out and End Job-->
+
+                                        <ion-row *ngIf="!isDueDate" class="ion-justify-content-center">
+                                            <ion-label>
+                                                <p>Tap above button to end the job</p>
+                                            </ion-label>
+                                        </ion-row>
+                            
+                                    </ion-col>
+                            
+                                </ion-row>
+                                <!-- /Job details main wrapper -->
+                            </ion-item>
+                            <!-- /Job details item -->
+
+                            <!-- Job details item -->
+                            <ion-item class="c-item ion-no-padding">
+                                <!-- Job details main wrapper -->
+                                <ion-row
+                                    class="c-thumbnail c-thumbnail--video-capture c-thumbnail--width-100p c-thumbnail--body-bg-gray-1-1 c-card u-no--mg-bot u-no--height c-card--pickup-location c-card--addition-services">
+                                    <ion-col class="ion-no-padding">
+                                        <ion-row class="l-row u-no--mg l-row--pickup-location">
+                                            <ion-col class="u-no--pad-top u-no--pad-bot u-no--pad-lt" size="8">
+                                                <ion-row
+                                                    class="l-row u-no--mg-top u-no--mg-rt u-no--mg-lt l-row--pickup-location l-row--view-vendor-quote">
+                                                    <ion-col
+                                                        class="u-display--flex u-align-items--center u-no--pad-top u-no--pad-bot u-no--pad-lt">
+                                                        <!-- Job details -->
+                                                        <ion-text
+                                                            class="c-title ion-no-padding c-title--h1-color-brand c-title--text-transform c-title--addition-services c-title--h1-inter-12px c-title--view-vendor-quote">
+                                                            <h1 class="c-title__h1">Schedules</h1>
+                                                        </ion-text>
+                                                        <!-- /Job details -->
+                                                    </ion-col>
+                                                </ion-row>
+                                            </ion-col>
+                                        </ion-row>
+                                        <!-- /Job details row -->
+
+                                        <!--job lists-->
+                                        <div class="c-card--bg-white l-col--video-capture">
+                                            <ion-list>
+                                                <ion-item lines="full" class="o-job-detail--pad-t-8px" *ngFor="let jobs of jobCardData?.jobs; let i= index" (click)="goToJobDetail(jobs)"  button detail="true">
+                                                    <ion-label>
+                                                        <ion-text style="font-weight: 500;">Day {{ i+1}}</ion-text>
+                                                        <ion-row class="u-display--flex u-align-items--center">
+                                                            <ion-col>{{jobs?.scheduledDateTime | date:'MM/dd/yyyy'}}</ion-col>
+                                                            <ion-col size="auto" *ngIf="jobs?.leadsCount <= 1"><ion-chip fill="solid" class="backgroud-color-card--bg-color text-color-time">{{jobs?.leadsCount}} lead</ion-chip></ion-col>
+                                                            <ion-col size="auto" *ngIf="jobs?.leadsCount > 1"><ion-chip fill="solid" class="backgroud-color-card--bg-color text-color-time">{{jobs?.leadsCount}} leads</ion-chip></ion-col>
+                                                            <ion-col *ngIf="jobs?.helperCount <= 1"><ion-chip fill="solid" class="backgroud-color-card--bg-color text-color-time">{{jobs?.helperCount}} helper</ion-chip></ion-col>
+                                                            <ion-col *ngIf="jobs?.helperCount > 1"><ion-chip fill="solid" class="backgroud-color-card--bg-color text-color-time">{{jobs?.helperCount}} helpers</ion-chip></ion-col>
+                                                        </ion-row>
+
+                                                    </ion-label>
+                                                    <!-- <ion-grid>
+                                                    </ion-grid> -->
+                                                </ion-item>
+                                            </ion-list>
+                                        </div>
+                                        <!--/job lists-->
+                                    </ion-col>
+                                </ion-row>
+                                <!-- /Job details main wrapper -->
+                            </ion-item>
+                            <!-- /Job details item -->
+
+                            <!-- Contact details item -->
+                            <ion-item class="c-item ion-no-padding">
+                                <!-- Contact details main wrapper -->
+                                <ion-row
+                                    class="c-thumbnail c-thumbnail--video-capture c-thumbnail--width-100p c-thumbnail--body-bg-gray-1-1 c-card u-no--mg-bot u-no--height c-card--pickup-location c-card--addition-services">
+                                    <ion-col class="ion-no-padding">
+                                        <!-- Contact details header -->
+                                        <ion-row
+                                            class="l-row u-no--mg-top u-no--mg-rt u-no--mg-lt l-row--pickup-location l-row--view-vendor-quote">
+                                            <ion-col
+                                                class="u-display--flex u-align-items--center u-no--pad-top u-no--pad-bot u-no--pad-lt"
+                                                size="8">
+                                                <!-- Contact details title -->
+                                                <ion-text
+                                                    class="c-title ion-no-padding c-title--h1-color-brand c-title--text-transform c-title--addition-services c-title--h1-inter-12px c-title--view-vendor-quote">
+                                                    <h1 class="c-title__h1">CONTACT DETAILS</h1>
+                                                </ion-text>
+                                                <!-- /Contact details title -->
+                                            </ion-col>
+                                        </ion-row>
+                                        <!-- /Contact details header -->
+
+                                        <!-- Contact details list -->
+                                        <ion-list
+                                            class="c-list u-no--bg ion-no-padding u-no--pad-bot c-list--view-vendor-quote">
+                                            <ion-item-group
+                                                class="c-item-group u-no--pad-top u-no--pad-bot c-item-group--pickup-location">
+
+                                                <!-- Contact full name item -->
+                                                <ion-item
+                                                    class="c-item ion-no-padding u-display--flex u-align-items--flex-center">
+                                                    <!-- Avatar icon -->
+                                                    <ion-icon
+                                                        src="../../../../assets/images/fill-avatar--color-brand-1-2.svg"
+                                                        class="c-icon c-icon--view-vendor-quote"></ion-icon>
+                                                    <!-- /Avatar icon -->
+
+                                                    <!-- Contact full name label -->
+                                                    <ion-text
+                                                        class="c-title ion-no-padding c-title--h1-color-primary-1-1 c-title--inter-medium c-title--h1-inter-14px">
+                                                        <h1 class="c-title__h1">{{jobCardData?.contactDetails?.fullname}}</h1>
+                                                    </ion-text>
+                                                    <!-- /Contact full name label -->
+                                                </ion-item>
+                                                <!-- /Contact full name item -->
+
+                                                <!-- Contact phone item -->
+                                                <ion-item
+                                                    class="c-item ion-no-padding u-display--flex u-align-items--flex-center">
+                                                    <!-- Phone icon -->
+                                                    <ion-icon
+                                                        src="../../../../assets/images/fill-phone--color-brand-1-2.svg"
+                                                        class="c-icon c-icon--view-vendor-quote"></ion-icon>
+                                                    <!-- /Phone icon -->
+
+                                                    <!-- Contact phone label -->
+                                                    <ion-text
+                                                        class="c-title ion-no-padding c-title--h1-color-primary-1-1 c-title--inter-medium c-title--h1-inter-14px">
+                                                        <h1 class="c-title__h1">{{jobCardData?.contactDetails?.number}}</h1>
+                                                    </ion-text>
+                                                    <!-- Contact phone label -->
+                                                </ion-item>
+                                                <!-- /Contact phone item -->
+
+                                                <!-- Contact email item -->
+                                                <ion-item
+                                                    class="c-item ion-no-padding u-display--flex u-align-items--flex-center">
+                                                    <!-- Email icon -->
+                                                    <ion-icon
+                                                        src="../../../../assets/images/fill-email--color-brand-1-2.svg"
+                                                        class="c-icon c-icon--view-vendor-quote"></ion-icon>
+                                                    <!-- /Email icon -->
+
+                                                    <!-- Contact email label -->
+                                                    <ion-text
+                                                        class="c-title ion-no-padding c-title--h1-color-primary-1-1 c-title--inter-medium c-title--h1-inter-14px">
+                                                        <h1 class="c-title__h1">{{jobCardData?.contactDetails?.email}}</h1>
+                                                    </ion-text>
+                                                    <!-- /Contact email label -->
+                                                </ion-item>
+                                                <!-- /Contact email item -->
+                                            </ion-item-group>
+                                        </ion-list>
+                                        <!-- /Contact details list -->
+                                    </ion-col>
+                                </ion-row>
+                                <!-- /Contact details main wrapper -->
+                            </ion-item>
+                            <!-- /Contact details item -->
+
+                            <!-- Logistics item -->
+                            <ion-item class="c-item ion-no-padding">
+                                <!-- Logistics main wrapper -->
+                                <ion-row
+                                    class="c-thumbnail c-thumbnail--video-capture c-thumbnail--width-100p c-thumbnail--body-bg-gray-1-1 c-card u-no--mg-bot u-no--height c-card--pickup-location c-card--addition-services">
+                                    <ion-col class="ion-no-padding">
+                                        <ion-text
+                                            class="c-title ion-no-padding c-title--h1-color-brand c-title--text-transform c-title--addition-services c-title--h1-inter-12px c-title--view-vendor-quote">
+                                            <h1 class="c-title__h1">Logistics</h1>
+                                        </ion-text>
+                                        <app-job-logistics *ngIf="jobCardData" [locations]="jobLocations"></app-job-logistics>
+                                    </ion-col>
+                                </ion-row>
+                                <!-- /Logistics main wrapper -->
+                            </ion-item>
+                            <!-- /Logistics item -->
+
+                            <!-- Document item -->
+                            <ion-item class="c-item ion-no-padding"><!-- Media main wrapper -->
+                                <ion-row
+                                    class="c-thumbnail c-thumbnail--video-capture c-thumbnail--width-100p c-thumbnail--body-bg-gray-1-1 c-card u-no--mg-bot u-no--height c-card--pickup-location c-card--addition-services">
+                                    <ion-col class="ion-no-padding" size="12">
+                                        <ion-text
+                                            class="c-title ion-no-padding c-title--h1-color-brand c-title--text-transform c-title--addition-services c-title--h1-inter-12px c-title--view-vendor-quote">
+                                            <h1 class="c-title__h1">Documents ({{documents?.length || 0}})</h1>
+                                        </ion-text>
+                                        <app-job-documents *ngIf="jobCardData" [documents]="documents"></app-job-documents>
+                                    </ion-col>
+                                </ion-row>
+                                <!-- /Document main wrapper -->
+                            </ion-item>
+                            <!-- /Document item -->
+
+                            <!-- Media item -->
+                            <ion-item *ngIf="false" class="c-item ion-no-padding"><!-- Media main wrapper -->
+                                <ion-row
+                                    class="c-thumbnail c-thumbnail--video-capture c-thumbnail--width-100p c-thumbnail--body-bg-gray-1-1 c-card u-no--mg-bot u-no--height c-card--pickup-location c-card--addition-services">
+                                    <ion-col class="ion-no-padding" size="12">
+                                        <ion-text
+                                            class="c-title ion-no-padding c-title--h1-color-brand c-title--text-transform c-title--addition-services c-title--h1-inter-12px c-title--view-vendor-quote">
+                                            <h1 class="c-title__h1">Media</h1>
+                                        </ion-text>
+                                        <app-job-media *ngIf="jobDetailsData" [jobMeta]="jobDetailsData"
+                                            [jobMedia]="jobMedia"></app-job-media>
+                                    </ion-col>
+                                </ion-row>
+                                <!-- /Media main wrapper -->
+                            </ion-item>
+                            <!-- /Media item -->
+                        </ion-item-group>
+                        <!-- /Job details item group -->
+                    </ion-list>
+                    <!-- /Job details list -->
+                </div>
+                <!-- /Job details wrapper -->
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+
+    <!--payment buttton-->
+    <ion-card-content  *ngIf="this.jobCardData?.payments?.pendingAmount !== 0 && isLead" class="pad-t-20px">
+        <ion-button (click)="goToPayments()" expand="block">Payments
+            <ion-icon name="chevron-forward-outline" size="small"></ion-icon>
+        </ion-button>
+    </ion-card-content>
+    <!--payment buttton-->
+</ion-content>

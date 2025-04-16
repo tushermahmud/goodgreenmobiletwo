@@ -1,0 +1,387 @@
+<!-- Order details header -->
+<ion-header collapse="fade" mode="md" class="l-header">
+    <app-header [headerMeta]="headerInfo"></app-header>
+  </ion-header>
+  <!-- /Order details header -->
+  
+  <!-- Order details content -->
+<ion-content>
+    <!-- Order details refresher -->
+    <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)" class="c-refresher c-refresher--color-brand"
+      pullFactor="1" pullMin="100" pullMax="200">
+      <ion-refresher-content pullingText="Pull to refresh" refreshingSpinner="bubbles" refreshingText="Refreshing...">
+      </ion-refresher-content>
+    </ion-refresher>
+    <!-- /Order details refresher -->
+  
+    <!-- Order details main wrapper -->
+    <ion-grid class="l-main-wrapper ion-no-padding l-main-wrapper--get-started">
+      <ion-row>
+        <ion-col class="ion-no-padding">
+          <!-- Order details header -->
+          <ion-row>
+            <ion-col class="u-display--flex u-align-items--center u-no--pad-top u-no--pad-bot">
+              <!-- Order details header icon -->
+              <ion-icon src={{item?.logoUrl}}
+                class="c-icon u-no--border-radius c-icon--dollar-envelope c-icon--width-20px c-icon--height-20px">
+              </ion-icon>
+              <!-- /Order details header icon -->
+  
+              <ion-row>
+                <ion-col class="u-no--pad-top u-no--pad-bot">
+                  <!-- Service label -->
+                  <ion-text
+                    class="ion-no-padding c-title c-title--get-started c-title--our-services c-title--h1-inter-16px c-title--inter-regular c-title--h1-black c-title--video-instructions u-no--mg-top">
+                    <h1 class="c-title__h1">{{item?.serviceLabel}}</h1>
+                  </ion-text>
+                  <!-- /Service label -->
+  
+                  <!-- Service date -->
+                  <ion-text
+                    class="ion-no-padding c-title--addition-services c-title--h1-inter-12px c-title--h1-color-primary-1-1 c-title--time-stamp">
+                    <h1 class="c-title__h1">{{item?.serviceDate | date:'EEEE, MMMM d y'}}</h1>
+                  </ion-text>
+                  <!-- /Service date -->
+                </ion-col>
+              </ion-row>
+            </ion-col>
+          </ion-row>
+          <!-- /Order details header -->
+  
+          <!-- Order details wrapper -->
+          <div class="l-form">
+            <!-- Order details list -->
+            <ion-list class="c-list u-no--bg ion-no-padding u-no--pad-bot c-list--dashboard">
+              <!-- Order details item group -->
+              <ion-item-group class="c-item-group u-no--pad-top u-no--pad-bot c-item-group--pickup-location">
+                <!-- Order details item -->
+                <ion-item class="c-item ion-no-padding">
+                  <!-- Order details main wrapper -->
+                  <ion-row
+                    class="c-thumbnail c-thumbnail--video-capture c-thumbnail--width-100p c-thumbnail--body-bg-gray-1-1 c-card u-no--mg-bot u-no--height c-card--pickup-location c-card--addition-services">
+                    <ion-col class="ion-no-padding">
+                      <ion-row class="l-row u-no--mg l-row--pickup-location">
+                        <ion-col class="u-no--pad-top u-no--pad-bot u-no--pad-lt" size="8">
+                          <ion-row
+                            class="l-row u-no--mg-top u-no--mg-rt u-no--mg-lt l-row--pickup-location l-row--view-vendor-quote">
+                            <ion-col
+                              class="u-display--flex u-align-items--center u-no--pad-top u-no--pad-bot u-no--pad-lt">
+                              <!-- Order details -->
+                              <ion-text
+                                class="c-title ion-no-padding c-title--h1-color-brand c-title--text-transform c-title--addition-services c-title--h1-inter-12px c-title--view-vendor-quote">
+                                <h1 class="c-title__h1">ORDER DETAILS</h1>
+                              </ion-text>
+                              <!-- /Order details -->
+                            </ion-col>
+                          </ion-row>
+  
+                          <!-- Order details id -->
+                          <ion-text
+                            class="c-title ion-no-padding c-title--h1-color-primary c-title--h1-inter-14px c-title--h1-inter-semibold">
+                            <h1 class="c-title__h1">ID #{{item?.serviceRequestId}}</h1>
+                          </ion-text>
+                          <!-- /Order details id -->
+                        </ion-col>
+  
+                        <ion-col
+                          class="u-no--pad-top u-no--pad-bot u-no--pad-rt u-display--flex u-align-items--center u-justify-content--flex-end"
+                          size="4">
+                          <!-- View quotes button -->
+                          <!-- <ion-button
+                            class="c-button ion-no-margin u-no--text-transform c-button--text-inter-10px c-button--text-inter-medium c-button--height-25px c-button--bg-color-brand"
+                            fill="clear" expand="full" (click)="viewQuotes()" *ngIf="quotesPresent">
+                            View Quotes
+                          </ion-button> -->
+                          <!-- /View quotes button -->
+  
+                          <!-- No quotes label -->
+                          <ion-text
+                            class="c-title ion-no-padding c-title--h1-color-primary-1-1 c-title--h1-inter-14px c-title--h1-inter-semibold"
+                            *ngIf="!quotesPresent">
+                            <em class="c-title__h1">No quotes</em>
+                          </ion-text>
+                          <!-- /No quotes label -->
+                        </ion-col>
+                      </ion-row>
+                      <!-- /Order details row -->
+                    </ion-col>
+                  </ion-row>
+                  <!-- /Order details main wrapper -->
+                </ion-item>
+                <!-- /Order details item -->
+  
+                <!-- Contact details item -->
+                <ion-item class="c-item ion-no-padding">
+                  <!-- Contact details main wrapper -->
+                  <ion-row
+                    class="c-thumbnail c-thumbnail--video-capture c-thumbnail--width-100p c-thumbnail--body-bg-gray-1-1 c-card u-no--mg-bot u-no--height c-card--pickup-location c-card--addition-services">
+                    <ion-col class="ion-no-padding">
+                      <!-- Contact details header -->
+                      <ion-row
+                        class="l-row u-no--mg-top u-no--mg-rt u-no--mg-lt l-row--pickup-location l-row--view-vendor-quote">
+                        <ion-col class="u-display--flex u-align-items--center u-no--pad-top u-no--pad-bot u-no--pad-lt"
+                          size="8">
+                          <!-- Contact details title -->
+                          <ion-text
+                            class="c-title ion-no-padding c-title--h1-color-brand c-title--text-transform c-title--addition-services c-title--h1-inter-12px c-title--view-vendor-quote">
+                            <h1 class="c-title__h1">CONTACT DETAILS</h1>
+                          </ion-text>
+                          <!-- /Contact details title -->
+                        </ion-col>
+  
+                        <ion-col
+                          class="u-display--flex u-align-items--center u-justify-content--flex-end u-no--pad-top u-no--pad-bot u-no--pad-rt">
+                        </ion-col>
+                      </ion-row>
+                      <!-- /Contact details header -->
+  
+                      <!-- Contact details list -->
+                      <ion-list class="c-list u-no--bg ion-no-padding u-no--pad-bot c-list--view-vendor-quote">
+                        <ion-item-group class="c-item-group u-no--pad-top u-no--pad-bot c-item-group--pickup-location">
+                          <!-- Contact full name item -->
+                          <ion-item class="c-item ion-no-padding u-display--flex u-align-items--flex-center">
+                            <!-- Avatar icon -->
+                            <ion-icon src="../../../../assets/images/fill-avatar--color-brand-1-2.svg"
+                              class="c-icon c-icon--view-vendor-quote"></ion-icon>
+                            <!-- /Avatar icon -->
+  
+                            <!-- Contact full name label -->
+                            <ion-text
+                              class="c-title ion-no-padding c-title--h1-color-primary-1-1 c-title--inter-medium c-title--h1-inter-14px">
+                              <h1 class="c-title__h1">{{contactFullName}}</h1>
+                            </ion-text>
+                            <!-- /Contact full name label -->
+                          </ion-item>
+                          <!-- /Contact full name item -->
+  
+                          <!-- Contact phone item -->
+                          <ion-item class="c-item ion-no-padding u-display--flex u-align-items--flex-center"
+                            *ngIf="contactPhone">
+                            <!-- Phone icon -->
+                            <ion-icon src="../../../../assets/images/fill-phone--color-brand-1-2.svg"
+                              class="c-icon c-icon--view-vendor-quote"></ion-icon>
+                            <!-- /Phone icon -->
+  
+                            <!-- Contact phone label -->
+                            <ion-text
+                              class="c-title ion-no-padding c-title--h1-color-primary-1-1 c-title--inter-medium c-title--h1-inter-14px">
+                              <h1 class="c-title__h1">{{contactPhone}}</h1>
+                            </ion-text>
+                            <!-- Contact phone label -->
+                          </ion-item>
+                          <!-- /Contact phone item -->
+  
+                          <!-- Contact email item -->
+                          <ion-item class="c-item ion-no-padding u-display--flex u-align-items--flex-center">
+                            <!-- Email icon -->
+                            <ion-icon src="../../../../assets/images/fill-email--color-brand-1-2.svg"
+                              class="c-icon c-icon--view-vendor-quote"></ion-icon>
+                            <!-- /Email icon -->
+  
+                            <!-- Contact email label -->
+                            <ion-text
+                              class="c-title ion-no-padding c-title--h1-color-primary-1-1 c-title--inter-medium c-title--h1-inter-14px">
+                              <h1 class="c-title__h1">{{contactEmail}}</h1>
+                            </ion-text>
+                            <!-- /Contact email label -->
+                          </ion-item>
+                          <!-- /Contact email item -->
+                        </ion-item-group>
+                      </ion-list>
+                      <!-- /Contact details list -->
+                    </ion-col>
+                  </ion-row>
+                  <!-- /Contact details main wrapper -->
+                </ion-item>
+                <!-- /Contact details item -->
+  
+                <!-- Logistics item -->
+                <ion-item class="c-item ion-no-padding">
+                  <!-- Logistics main wrapper -->
+                  <ion-row
+                    class="c-thumbnail c-thumbnail--video-capture c-thumbnail--width-100p c-thumbnail--body-bg-gray-1-1 c-card u-no--mg-bot u-no--height c-card--pickup-location c-card--addition-services">
+                    <ion-col class="ion-no-padding">
+                      <ion-text
+                        class="c-title ion-no-padding c-title--h1-color-brand c-title--text-transform c-title--addition-services c-title--h1-inter-12px c-title--view-vendor-quote">
+                        <h1 class="c-title__h1">Logistics</h1>
+                      </ion-text>
+                      <div class="c-item c-item--100p" *ngIf="pickUp.length > 0">
+                        <!-- {{location | json}} -->
+                        <!-- c-title -->
+                        <ion-title #titleEle
+                          class="ion-no-padding c-title c-title--h1-inter-14px c-title--inter-medium c-title--h1-color-brand c-title--logistics u-position--relative ion-text-start">
+                          <!-- <ng-container *ngIf="(logisticsInfo?.serviceCategory === 'moving_long_distance' || logisticsInfo?.serviceCategory === 'moving_short_distance'); else otherServiceTemplate"> -->
+                          <ng-container>
+                            <!-- Title h1 -->
+                            <h1 class="c-title__h1">Pick-up</h1>
+                            <!-- /Title h1 -->
+                          </ng-container>
+                        </ion-title>
+                        <!-- /c-title -->
+                        <div class="u-display--flex u-align-items--flex-start" *ngFor="let location of pickUp">
+                          <!-- Icon -->
+                          <ion-icon src="../../../../assets/images/fill-location--color-brand-1-2.svg"
+                            class="c-icon c-icon--view-vendor-quote"></ion-icon>
+                          <!-- /Icon -->
+                          <!-- Title -->
+                          <!-- <h1>Pick up location</h1> -->
+                          <div
+                            class="c-title ion-no-padding c-title--h1-color-primary-1-1 c-title--inter-medium c-title--h1-inter-14px u-flex--flex-1 has-input-group">
+                            <!-- Title h1 -->
+                            <h1 class="c-title__h1">
+                              {{location.address}},
+                              {{location.city}},
+                              {{location.state}},
+                              {{location.zipcode}}
+                            </h1>
+                      
+                          </div>
+                          <!-- /Title -->
+                        </div>
+                      </div>
+
+
+                      <div class="c-item c-item--100p" *ngIf="intermediate.length > 0">
+                        <!-- c-title -->
+                        <ion-title #titleEle
+                          class="ion-no-padding c-title c-title--h1-inter-14px c-title--inter-medium c-title--h1-color-brand c-title--logistics u-position--relative ion-text-start">
+                          <ng-container>
+                            <!-- Title h1 -->
+                            <h1 class="c-title__h1">intermediate</h1>
+                            <!-- /Title h1 -->
+                          </ng-container>
+                        </ion-title>
+                        <!-- /c-title -->
+                        <div class="u-display--flex u-align-items--flex-start" *ngFor="let location of intermediate">
+                          <!-- Icon -->
+                          <ion-icon src="../../../../assets/images/fill-location--color-brand-1-2.svg"
+                            class="c-icon c-icon--view-vendor-quote"></ion-icon>
+                          <!-- /Icon -->
+                          <!-- Title -->
+                          <div
+                            class="c-title ion-no-padding c-title--h1-color-primary-1-1 c-title--inter-medium c-title--h1-inter-14px u-flex--flex-1 has-input-group">
+                            <!-- Title h1 -->
+                            <h1 class="c-title__h1">
+                              {{location.address}},
+                              {{location.city}},
+                              {{location.state}},
+                              {{location.zipcode}}
+                            </h1>
+                      
+                          </div>
+                          <!-- /Title -->
+                        </div>
+                      </div>
+
+                      <div class="c-item c-item--100p" *ngIf="dropOff.length > 0">
+                        <!-- c-title -->
+                        <ion-title #titleEle
+                          class="ion-no-padding c-title c-title--h1-inter-14px c-title--inter-medium c-title--h1-color-brand c-title--logistics u-position--relative ion-text-start">
+                          <ng-container>
+                            <!-- Title h1 -->
+                            <h1 class="c-title__h1">Drop-off</h1>
+                            <!-- /Title h1 -->
+                          </ng-container>
+                        </ion-title>
+                        <!-- /c-title -->
+                        <div class="u-display--flex u-align-items--flex-start" *ngFor="let location of dropOff">
+                          <!-- Icon -->
+                          <ion-icon src="../../../../assets/images/fill-location--color-brand-1-2.svg"
+                            class="c-icon c-icon--view-vendor-quote"></ion-icon>
+                          <!-- /Icon -->
+                          <!-- Title -->
+                          <div
+                            class="c-title ion-no-padding c-title--h1-color-primary-1-1 c-title--inter-medium c-title--h1-inter-14px u-flex--flex-1 has-input-group">
+                            <!-- Title h1 -->
+                            <h1 class="c-title__h1">
+                              {{location.address}},
+                              {{location.city}},
+                              {{location.state}},
+                              {{location.zipcode}}
+                            </h1>
+                      
+                          </div>
+                          <!-- /Title -->
+                        </div>
+                      </div>
+                    </ion-col>
+                  </ion-row>
+                  <!-- /Logistics main wrapper -->
+                </ion-item>
+                <!-- /Logistics item -->
+  
+                <app-service-documents [documents]="item?.documents" [customerId]="authData?.authMeta?.employee?.id"
+                  [contractId]="item?.contractId"></app-service-documents>
+  
+                <!-- Media item -->
+                <ion-item class="c-item ion-no-padding"><!-- Media main wrapper -->
+                  <ion-row
+                    class="c-thumbnail c-thumbnail--video-capture c-thumbnail--width-100p c-thumbnail--body-bg-gray-1-1 c-card u-no--mg-bot u-no--height c-card--pickup-location c-card--addition-services">
+                    <ion-col class="ion-no-padding" size="12">
+                      <!-- Media header -->
+                      <ion-row class="l-row u-no--mg-top u-no--mg-rt u-no--mg-lt l-row--pickup-location l-row--view-vendor-quote">
+                        <ion-col class="u-display--flex u-align-items--center ion-no-padding">
+                          <!-- Media title -->
+                          <ion-text
+                            class="c-title ion-no-padding c-title--h1-color-brand c-title--text-transform c-title--addition-services c-title--h1-inter-12px c-title--view-vendor-quote">
+                            <h1 class="c-title__h1">MEDIA</h1>
+                          </ion-text>
+                          <!-- /Media title -->
+                        </ion-col>
+                      </ion-row>
+                      <!-- /Media header -->
+                
+                      <!-- Media gallery -->
+                      <ion-row class="l-row l-row--quote-documents">
+                        <!-- <ng-container> -->
+                        <ng-container *ngIf="orderMedie?.length === 0; else mediaThumbTemp">
+                          <ion-col class="l-col l-col--view-vendor-quote" size="12">
+                            <!-- No media uploaded label -->
+                            <ion-text
+                              class="c-title ion-no-padding c-title--h1-color-primary-1-1 c-title--inter-medium c-title--h1-inter-14px">
+                              <h1 class="c-title__h1">No media uploaded</h1>
+                            </ion-text>
+                            <!-- /No media uploaded label -->
+                          </ion-col>
+                        </ng-container>
+                
+                        <ng-template #mediaThumbTemp>
+                          <ion-col class="l-col l-col--view-vendor-quote" size="4" *ngFor="let media of orderMedie ; let i = index">
+                            <!-- Media gallery image thumbnail -->
+                            <ion-thumbnail
+                              class="c-thumbnail c-thumbnail--width-100p c-thumbnail--height-114px c-thumbnail--video-capture u-overflow--hidden c-thumbnail--sm-height-106px c-thumbnail--sm-height-101px c-thumbnail--sm-height-83px"
+                              (click)="presentActionSheet(i)">
+                              <!-- Play iccon -->
+                              <ion-icon src="../../../../assets/images/fill-play--color-white.svg" *ngIf="media?.fileType !== 'image'"
+                                class="c-icon u-no--mg-rt u-no--border-radius u-position--absolute u-top--50p u-left--50p u-transform--translate-minus-50p c-icon--play">
+                              </ion-icon>
+                              <!-- /Play iccon -->
+                
+                              <!-- Uploaded image preview -->
+                              <img [src]="media?.fileType === 'image' ? media?.accessLink : media?.thumbnail" alt="Media">
+                              <!-- /Uploaded image preview -->
+                            </ion-thumbnail>
+                            <!-- /Media gallery image thumbnail -->
+                          </ion-col>
+                        </ng-template>
+                      </ion-row>
+                      <!-- /Media gallery -->
+                    </ion-col>
+                  </ion-row>
+                  <!-- /Media main wrapper -->
+                </ion-item>
+                <!-- /Media item -->
+  
+              </ion-item-group>
+              <!-- /Order details item group -->
+            </ion-list>
+            <!-- /Order details list -->
+          </div>
+          <!-- /Order details wrapper -->
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <!-- /Order details main wrapper -->
+
+  </ion-content>
+  <!-- /Order details content -->

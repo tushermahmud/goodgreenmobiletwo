@@ -1,0 +1,121 @@
+<!-- Log in header -->
+<ion-header collapse="fade" mode="md" class="l-header">
+  <app-header [headerMeta]="heraderInfo"></app-header>
+</ion-header>
+<!-- /Log in header -->
+
+<!-- Log in content -->
+<ion-content>
+  <!-- Log in main wrapper -->
+  <ion-grid class="l-grid l-grid--margin-horizontal-15px l-grid--padding-vertical--20px">
+    <ion-row>
+      <ion-col class="ion-no-padding">
+        <!-- Logo -->
+        <ion-img src="../../../assets/images/get-started/logo.svg"
+          class="c-img c-img--width-230px c-img--margin-bottom-20px">
+        </ion-img>
+        <!-- /Logo -->
+
+        <!-- Login image -->
+        <ion-img src="../../../assets/images/login/login.svg" class="c-img">
+        </ion-img>
+        <!-- /Login image -->
+
+        <!-- Log in form -->
+        <form class="l-form l-form--padding-bottom-170px" [formGroup]="signinForm" novalidate>
+          <!-- Log in main field wrapper -->
+          <ion-row class="c-item-group-wrapper">
+            <ion-col class="ion-no-padding">
+              <!-- Log in field wrapper -->
+              <ion-item-group class="c-item-group c-item-group--pickup-location">
+                <!-- Email input wrapper -->
+                <ion-item class="c-item ion-no-padding" [ngClass]="{'has-error': submitted && f.email.errors}">
+                  <!-- Email input -->
+                  <ion-input formControlName="email" trim type="email" placeholder="Email Address" class="c-input">
+                  </ion-input>
+                  <!-- /Email input -->
+
+                  <!-- Email field validation error -->
+                  <p class="c-content c-content--inter-12px c-content--login c-content--color-red c-content--form-message"
+                    *ngIf="submitted && f.email.errors">
+                    Email cannot be empty
+                  </p>
+                  <!-- /Email field validation error -->
+                </ion-item>
+                <!-- /Email input wrapper -->
+
+                <!-- Password input wrapper -->
+                <ion-item class="c-item ion-no-padding" [ngClass]="{'has-error': submitted && f.password.errors}">
+                  <!-- Password input -->
+                  <ion-input formControlName="password" type="password" placeholder="Password" class="c-input">
+                  </ion-input>
+                  <!-- /Password input -->
+
+                  <!-- Password field validation error -->
+                  <p class="c-content c-content--inter-12px c-content--login c-content--color-red c-content--form-message"
+                    *ngIf="submitted && f.password.errors">
+                    Password cannot be empty
+                  </p>
+                  <!-- /Password field validation error -->
+                </ion-item>
+                <!-- /Password input wrapper -->
+              </ion-item-group>
+              <!-- /Log in field wrapper -->
+            </ion-col>
+          </ion-row>
+          <!-- /Log in main field wrapper -->
+
+          <!-- Forgot password link -->
+          <a href="javascript:void(0)" class="c-link u-no--text-decoration c-link--login u-display--block"
+            (click)="forgotPassword()">Forgot Password?</a>
+          <!-- /Forgot password link -->
+
+
+        </form>
+        <!-- /Log in form -->
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <!-- /Log in main wrapper -->
+</ion-content>
+<!-- /Log in content -->
+
+
+<!-- Log in footer -->
+<ion-footer collapse="fade"
+  class="l-header l-footer u-position--fixed u-no--position-bot u-left--50p u-transform--translate-x-minus-50p l-footer--bg-white">
+  <!-- Log in main wrapper -->
+  <ion-toolbar class="l-main-wrapper">
+    <!-- Terms of service & privacy policy -->
+    <p
+      class="c-content c-content--inter-12px c-content--login c-content--form-message c-content--inter-medium u-no--mg-top">
+      By continuing you agree to our
+      <!-- Terms of service link -->
+      <a href="https://goodgreenapp.com/terms-of-service" target="_blank" rel="noopener noreferrer"
+        class="c-link u-no--text-decoration c-link--terms-and-policy c-link--register">Terms
+        of
+        Service</a>
+      <!-- /Terms of service link -->
+      and
+      <!-- Privacy policy link -->
+      <a href="https://goodgreenapp.com/privacy-policy" target="_blank" rel="noopener noreferrer"
+        class="c-link u-no--text-decoration c-link--terms-and-policy c-link--register">Privacy
+        Policy.</a>
+      <!-- /Privacy policy link -->
+    </p>
+    <!-- /Terms of service & privacy policy -->
+
+    <!-- Log in button -->
+    <ion-button
+      class="c-button ion-no-margin u-no--text-transform c-button--text-inter-18px c-button--text-inter-medium c-button--margin-top-15px"
+      fill="clear" expand="full" (click)="onSubmit()">Log in
+      <!-- Log in button caret right icon -->
+      <ion-icon src="../../../assets/images/outline-caret-right--color-white.svg"
+        class="c-icon c-icon--caret-rt u-no--mg-rt" slot="end"></ion-icon>
+      <!-- /Log in button caret right icon -->
+    </ion-button>
+    <!-- /Log in button -->
+  </ion-toolbar>
+  <!-- /Log in main wrapper -->
+</ion-footer>
+<!-- /Log in footer -->

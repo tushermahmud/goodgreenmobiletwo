@@ -1,0 +1,28 @@
+@use "../abstracts/colors" as *;
+
+.o-received-quotes {
+
+  &__quotes-amount {
+    
+    h2 {
+      font-size: 16px;
+      font-weight: 600;
+      padding: 7px 10px;
+      border-radius: 30px;
+      color: $color-brand;
+      background-color: rgba($color: $color-brand, $alpha: 0.05);
+    }
+  }
+
+  .is-accepted {
+
+    .hidden-accepted {
+      opacity: 0;
+      visibility: hidden;
+    }
+  }
+
+  .c-card {
+    height: 100px;
+  }
+}

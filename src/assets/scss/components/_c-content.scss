@@ -1,0 +1,170 @@
+// Abstracts
+@use "../abstracts/typography" as *;
+@use "../abstracts/colors" as *;
+@use "../abstracts/z-index" as *;
+@use "../abstracts/dimension" as *;
+
+// Content
+.c-content {
+  $cContent: &;
+
+  margin-top: 15px;
+
+  &__p {
+    font-size: $font-size-16px;
+    color: $black;
+  }
+
+  &--inter-16px {
+    font-size: $font-size-16px;
+  }
+
+  &--login {
+    line-height: $line-height-18px;
+  }
+
+  &--inter-12px {
+    font-size: $font-size-12px;
+  }
+
+  &--inter-font-12px{
+    font-size: $font-size-11px !important;
+  }
+
+  &--p-inter-12px {
+    #{$cContent}__p {
+      font-size: $font-size-12px;
+    }
+  }
+
+  &--login {
+    #{$cContent}__p {
+      line-height: $line-height-18px;
+    }
+  }
+
+  &--p-color-primary-1-1 {
+    #{$cContent}__p {
+      color: $color-primary-1-1;
+    }
+  }
+
+  &--get-started {
+    margin: 15px 0;
+
+    #{$cContent}__p {
+      line-height: $line-height-24px;
+    }
+  }
+
+  &--inter-14px {
+    font-size: $font-size-14px;
+  }
+
+  &--p-inter-14px {
+    #{$cContent}__p {
+      font-size: $font-size-14px;
+    }
+  }
+
+  &--inter-medium {
+    font-weight: $font-weight-500;
+  }
+
+  &--p-inter-medium {
+    #{$cContent}__p {
+      font-weight: $font-weight-500;
+    }
+  }
+
+  &--addition-services,
+  &--form-message {
+    margin-top: 5px;
+  }
+
+  &--addition-services {
+    #{$cContent}__p {
+      color: $color-primary-1-2;
+    }
+  }
+
+  &--color-primary-1-2 {
+    color: $color-primary-1-2;
+  }
+
+  &--color-primary-1-2 {
+    #{$cContent}__p {
+      color: $color-primary-1-2;
+    }
+  }
+
+  &--view-vendor-quote {
+    line-height: $line-height-21px;
+  }
+
+  &--view-vendor-quote {
+    #{$cContent}__p {
+      line-height: $line-height-21px;
+    }
+  }
+
+  &--customer-reviews {
+    margin-bottom: 10px;
+  }
+
+  &--form-message {
+    z-index: $z-index-2;
+  }
+
+  &--form-message {
+    #{$cContent}__p {
+      z-index: $z-index-2;
+    }
+  }
+
+  &--color-red {
+    color: $color-red;
+  }
+
+  &--color-red {
+    #{$cContent}__p {
+      color: $color-red;
+    }
+  }
+
+  &--order-status {
+    #{$cContent}__p {
+      font-weight: $font-weight-400;
+    }
+  }
+
+  &--notification-list-indication {
+    #{$cContent}__p {
+      line-height: $line-height-18px;
+    }
+  }
+
+  &--height-100vh-530px {
+    height: $height-100vh-530px;
+  }
+
+  &--video-capture {
+    overflow: auto;
+  }
+
+  &--p-color-white {
+    #{$cContent}__p {
+      color: $white;
+    }
+  }
+
+  &--p-inter-semibold {
+    #{$cContent}__p {
+      font-weight: $font-weight-600;
+    }
+  }
+
+  &--margin-left-5px{
+    margin-left: 5px;
+  }
+}

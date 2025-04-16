@@ -1,0 +1,20 @@
+// Abstracts
+@use "../abstracts/dimension" as *;
+@use "../abstracts/colors" as *;
+
+// Ruleset for l-grid
+.l-grid {
+  $lGrid: &;
+
+  &--margin-horizontal-15px {
+    margin: 0 15px;
+  }
+
+  &--padding-vertical--20px {
+    padding: 20px 0;
+  }
+
+  &--height-100vh-198px {
+    height: $height-100vh-198px;
+  }
+}

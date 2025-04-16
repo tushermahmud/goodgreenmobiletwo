@@ -1,0 +1,111 @@
+// Abstracts
+@use "../abstracts/typography" as *;
+@use "../abstracts/colors" as *;
+@use "../abstracts/dimension" as *;
+
+// Label
+.c-label {
+  $cLabel: &;
+
+  &--inter-14px {
+    font-size: $font-size-14px !important;
+  }
+
+  &--inter-semibold {
+    font-weight: $font-weight-600;
+  }
+
+  &--color-primary-1-1 {
+    color: $color-primary-1-1 !important;
+  }
+
+  &--inter-13px {
+    font-size: $font-size-13px !important;
+  }
+
+  &--inter-medium {
+    font-weight: $font-weight-500;
+  }
+
+  &--color-primary-1-2 {
+    color: $color-primary-1-2 !important;
+  }
+
+  &--register {
+    white-space: pre-wrap !important;
+  }
+
+  &--black {
+    color: $black !important;
+  }
+
+  &--inter-20px {
+    font-size: $font-size-20px !important;
+  }
+
+  &--inter-bold {
+    font-weight: $font-weight-700;
+  }
+
+  &--color-brand-1-1 {
+    color: $color-brand-1-1 !important;
+  }
+
+  &--order-details {
+    margin-right: 5px;
+  }
+
+  &--inter-regular {
+    font-weight: $font-weight-400;
+  }
+
+  &--color-blue {
+    color: $color-blue !important;
+  }
+
+  &--inter-16px {
+    font-size: $font-size-16px !important;
+  }
+
+  &--white {
+    color: $white !important;
+  }
+
+  &--bg-gray-1-1 {
+    background: $body-bg-gray-1-1;
+  }
+
+  &--chat {
+    padding: 20px 25px;
+    border-radius: 5px 30px 30px 20px;
+
+    .chat-time {
+      display: block;
+      margin-bottom: 10px;
+    }
+  }
+
+  &--width-240px {
+    width: $width-240px;
+    -ms-flex: 0 0 $width-240px;
+    flex: 0 0 $width-240px;
+    max-width: $width-240px;
+  }
+
+  &--width-80p {
+    width: 80%;
+    max-width: 80%;
+  }
+
+  &--bg-mountain-meadow {
+    background: $color-bg-mountain-meadow;
+  }
+
+  &--chat-sender {
+    border-radius: 30px 5px 20px 30px;
+  }
+
+  &--text-no-wrap{
+    white-space: normal !important;
+  }
+}

@@ -1,0 +1,170 @@
+<ion-accordion-group>
+
+    <ion-accordion>
+        
+      <ion-item slot="header" color="light">
+        <ion-label >Uploads for start/end ({{ jobCardMedias?.length }})</ion-label>
+      </ion-item>
+
+      <div class="ion-padding" slot="content">
+
+            <!-- Media gallery -->
+            <ion-row class="l-row l-row--quote-documents">
+                <ng-container *ngIf="jobCardMedias?.length === 0">
+
+                    <ion-col class="l-col l-col--view-vendor-quote" size="12">
+                        <!-- No media uploaded label -->
+                        <ion-text
+                        class="c-title ion-no-padding c-title--h1-color-primary-1-1 c-title--inter-medium c-title--h1-inter-14px">
+                        <h1 class="c-title__h1">No media uploaded</h1>
+                        </ion-text>
+                        <!-- /No media uploaded label -->
+                    </ion-col>
+                
+                    <ion-col class="l-col l-col--view-vendor-quote" size="4" *ngIf="false">
+    
+                        <!-- Media gallery add thumbnail -->
+                        <ion-thumbnail *ngIf="jobMeta?.jobDetails?.jobCard?.status !== 'new' || 'completed'" (click)="uploadMedia()"
+                            class="c-thumbnail c-thumbnail--width-100p c-thumbnail--height-114px c-thumbnail--bg-color-white u-display--flex u-align-items--center u-justify-content--center c-thumbnail--video-capture u-overflow--hidden c-thumbnail--sm-height-106px c-thumbnail--sm-height-101px c-thumbnail--sm-height-83px"
+                            id="size-button">
+                            <!-- Media gallery add icon -->
+                            <ion-icon src="../../../../assets/images/outline-add--color-brand-1-1.svg"
+                                class="c-icon c-icon--width-30px c-icon--height-30px u-no--mg-rt">
+                            </ion-icon>
+                            <!-- /Media gallery add icon -->
+                        </ion-thumbnail>
+                        <!-- /Media gallery add thumbnail -->
+    
+                    </ion-col>
+                </ng-container>
+                
+          
+                <ng-container  *ngIf="jobCardMedias?.length > 0">
+                    <ion-col class="l-col l-col--view-vendor-quote" size="4"  *ngIf="false">
+
+                        <!-- Media gallery add thumbnail -->
+                        <ion-thumbnail (click)="uploadMedia()"
+                            class="c-thumbnail c-thumbnail--width-100p c-thumbnail--height-114px c-thumbnail--bg-color-white u-display--flex u-align-items--center u-justify-content--center c-thumbnail--video-capture u-overflow--hidden c-thumbnail--sm-height-106px c-thumbnail--sm-height-101px c-thumbnail--sm-height-83px"
+                            id="size-button">
+
+                            <!-- Media gallery add icon -->
+                            <ion-icon src="../../../../assets/images/outline-add--color-brand-1-1.svg"
+                                class="c-icon c-icon--width-30px c-icon--height-30px u-no--mg-rt">
+                            </ion-icon>
+                            <!-- /Media gallery add icon -->
+
+                        </ion-thumbnail>
+                        <!-- /Media gallery add thumbnail -->
+
+                    </ion-col>
+                
+                    <ion-col class="l-col l-col--view-vendor-quote" size="4" *ngFor="let media of jobCardMedias; let i = index;">
+                        <!-- Media gallery image thumbnail -->
+                        <ion-thumbnail (click)="presentActionSheet(i,media?.tag)"
+                            class="c-thumbnail c-thumbnail--width-100p c-thumbnail--height-114px c-thumbnail--video-capture u-overflow--hidden c-thumbnail--sm-height-106px c-thumbnail--sm-height-101px c-thumbnail--sm-height-83px">
+                            <!-- Play iccon -->
+                            <ion-icon src="../../../../assets/images/fill-play--color-white.svg" *ngIf="media?.fileType !== 'image'"
+                                class="c-icon u-no--mg-rt u-no--border-radius u-position--absolute u-top--50p u-left--50p u-transform--translate-minus-50p c-icon--play">
+                            </ion-icon>
+                            <!-- /Play iccon -->
+                    
+                            <!-- Uploaded image preview -->
+                            <img [src]="media?.fileType === 'image' ? media?.accessLink : media?.thumbnailUrl" alt="Media">
+                        <!-- /Uploaded image preview -->
+                        </ion-thumbnail>
+                        <!-- /Media gallery image thumbnail -->
+                    </ion-col>
+                </ng-container>
+            </ion-row>
+            <!-- /Media gallery -->
+
+      </div>
+    </ion-accordion>
+
+    <ion-accordion>
+        
+      <ion-item slot="header" color="light">
+        <ion-label >My uploads for this job ({{ jobMedias?.length }})</ion-label>
+      </ion-item>
+
+      <div class="ion-padding" slot="content">
+
+        <!-- Media gallery -->
+        <ion-row class="l-row l-row--quote-documents">
+            <!-- <ng-container> -->
+            <ng-container  *ngIf="jobMedias?.length  === 0" >
+
+                <ion-col class="l-col l-col--view-vendor-quote" size="12">
+                    <!-- No media uploaded label -->
+                    <ion-text
+                    class="c-title ion-no-padding c-title--h1-color-primary-1-1 c-title--inter-medium c-title--h1-inter-14px">
+                    <h1 class="c-title__h1">No media uploaded</h1>
+                    </ion-text>
+                    <!-- /No media uploaded label -->
+                </ion-col>
+                
+                <ion-col class="l-col l-col--view-vendor-quote" size="4">
+
+                    <!-- Media gallery add thumbnail -->
+                    <ion-thumbnail *ngIf="type === 'ongoing'" (click)="uploadMedia()"
+                        class="c-thumbnail c-thumbnail--width-100p c-thumbnail--height-114px c-thumbnail--bg-color-white u-display--flex u-align-items--center u-justify-content--center c-thumbnail--video-capture u-overflow--hidden c-thumbnail--sm-height-106px c-thumbnail--sm-height-101px c-thumbnail--sm-height-83px"
+                        id="size-button">
+
+                        <!-- Media gallery add icon -->
+                        <ion-icon src="../../../../assets/images/outline-add--color-brand-1-1.svg"
+                            class="c-icon c-icon--width-30px c-icon--height-30px u-no--mg-rt">
+                        </ion-icon>
+                        <!-- /Media gallery add icon -->
+
+                    </ion-thumbnail>
+                    <!-- /Media gallery add thumbnail -->
+
+                </ion-col>
+            </ng-container>
+        
+            <ng-container  *ngIf="jobMedias?.length  > 0" >
+
+                <ion-col class="l-col l-col--view-vendor-quote" size="4" *ngIf="jobMeta?.jobDetails?.jobCard?.status !== 'completed'">
+
+                    <!-- Media gallery add thumbnail -->
+                    <ion-thumbnail (click)="uploadMedia()"
+                        class="c-thumbnail c-thumbnail--width-100p c-thumbnail--height-114px c-thumbnail--bg-color-white u-display--flex u-align-items--center u-justify-content--center c-thumbnail--video-capture u-overflow--hidden c-thumbnail--sm-height-106px c-thumbnail--sm-height-101px c-thumbnail--sm-height-83px"
+                        id="size-button">
+
+                        <!-- Media gallery add icon -->
+                        <ion-icon src="../../../../assets/images/outline-add--color-brand-1-1.svg"
+                            class="c-icon c-icon--width-30px c-icon--height-30px u-no--mg-rt">
+                        </ion-icon>
+                        <!-- /Media gallery add icon -->
+
+                    </ion-thumbnail>
+                    <!-- /Media gallery add thumbnail -->
+
+                </ion-col>
+            
+                <ion-col class="l-col l-col--view-vendor-quote" size="4" *ngFor="let media of jobMedias; let i=index">
+                    <!-- Media gallery image thumbnail -->
+                    <ion-thumbnail (click)="presentActionSheet(i ,media?.tag)"
+                        class="c-thumbnail c-thumbnail--width-100p c-thumbnail--height-114px c-thumbnail--video-capture u-overflow--hidden c-thumbnail--sm-height-106px c-thumbnail--sm-height-101px c-thumbnail--sm-height-83px">
+
+                        <!-- Play iccon -->
+                        <ion-icon src="../../../../assets/images/fill-play--color-white.svg" *ngIf="media?.fileType !== 'image'"
+                            class="c-icon u-no--mg-rt u-no--border-radius u-position--absolute u-top--50p u-left--50p u-transform--translate-minus-50p c-icon--play">
+                        </ion-icon>
+                        <!-- /Play iccon -->
+                
+                        <!-- Uploaded image preview -->
+                        <img [src]="media?.fileType === 'image' ? media?.accessLink : media?.thumbnailUrl" alt="Media">
+                        <!-- /Uploaded image preview -->
+
+                    </ion-thumbnail>
+                    <!-- /Media gallery image thumbnail -->
+                </ion-col>
+            </ng-container>
+        </ion-row>
+        <!-- /Media gallery -->
+
+      </div>
+    </ion-accordion>
+
+</ion-accordion-group>

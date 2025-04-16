@@ -1,0 +1,237 @@
+<!-- Header -->
+<ion-header collapse="fade" mode="md" class="l-header">
+  <app-header [headerMeta]="heraderInfo"></app-header>
+</ion-header>
+<!-- /Header -->
+
+<ion-content>
+
+  <!-- Main wrapper -->
+  <div class="l-main-wrapper l-main-wrapper--get-started">
+
+    <!-- Row -->
+    <ion-row>
+
+      <!-- Col -->
+      <ion-col class="u-display--flex u-align-items--center u-no--pad-top u-no--pad-bot u-no--pad-lt">
+
+        <!-- Title -->
+        <div
+          class="ion-no-padding c-title c-title--get-started c-title--our-services c-title--h1-inter-16px c-title--inter-regular c-title--h1-black c-title--video-instructions u-no--mg-top">
+
+          <!-- Title h1 -->
+          <h1 class="c-title__h1">Add-on Services</h1>
+          <!-- /Title h1 -->
+
+        </div>
+        <!-- /Title -->
+
+      </ion-col>
+      <!-- /Col -->
+
+      <!-- Col -->
+      <ion-col
+        class="u-display--flex u-align-items--center u-justify-content--flex-end u-no--pad-top u-no--pad-bot u-no--pad-rt">
+
+        <!-- Title -->
+        <div
+          class="ion-no-padding c-title c-title--login c-title--h1-color-primary c-title--pickup-location c-title--inter-regular u-no--mg-top">
+
+          <!-- Title h1 -->
+          <h1 class="c-title__h1">
+
+            <!-- Title span -->
+            <span class="c-title__span">Optional step</span>
+            <!-- /Title span -->
+
+          </h1>
+          <!-- /Title h1 -->
+
+        </div>
+        <!-- /Title -->
+
+      </ion-col>
+      <!-- /Col -->
+
+    </ion-row>
+    <!-- /Row -->
+
+    <!-- Form -->
+    <form class="l-form">
+
+      <!-- List -->
+      <ion-list class="c-list u-no--bg ion-no-padding u-no--pad-bot c-list--height-100vh-200px c-list--overflow">
+
+        <!-- Item group -->
+        <ion-item-group class="c-item-group u-no--pad-top u-no--pad-bot c-item-group--pickup-location">
+
+          <!-- Item -->
+          <ion-item class="c-item ion-no-padding" *ngFor="let service of services; let i = index;"
+            (click)="selectService(i)">
+
+            <!-- Card -->
+            <ion-card class="c-card ion-no-margin u-no--box-shadow u-display--flex u-align-items--center
+              u-justify-content--center u-flex-direction--column c-card--our-services u-no--mg-bot c-card--video-instructions c-card--addition-services
+              c-card--width-100p u-no--bg u-no--height">
+
+              <!-- Row -->
+              <ion-row class="l-row u-no--mg l-row--pickup-location">
+                <ion-col class="u-display--flex u-align-items--center u-no--pad-top u-no--pad-bot u-no--pad-lt"
+                  size="10">
+
+                  <!-- Icon -->
+                  <ion-icon [src]="service.logoUrl"
+                    class="c-icon u-no--border-radius c-icon--organizing c-icon--width-24px c-icon--height-24px">
+                  </ion-icon>
+                  <!-- /Icon -->
+
+                  <!-- Card wrap -->
+                  <div class="c-card__wrap">
+
+                    <!-- Title -->
+                    <div
+                      class="ion-no-padding c-title c-title--addition-services c-title--h1-inter-12px c-title--h1-color-primary-1-1">
+
+                      <!-- Title h1 -->
+                      <h1 class="c-title__h1">{{service.label}}</h1>
+                      <!-- /Title h1 -->
+
+                    </div>
+                    <!-- /Title -->
+
+                    <!-- List -->
+                    <ion-list class="c-list u-no--bg ion-no-padding u-no--pad-bot c-list--reviews"
+                      *ngIf="selectedServiceIds.includes(service.id)">
+
+                      <!-- Item group -->
+                      <ion-item-group class="c-item-group u-no--pad-top u-no--pad-bot c-item-group--pickup-location">
+
+                        <!-- Item -->
+                        <ion-item class="c-item">
+
+                          <!-- Title -->
+                          <div
+                            class="ion-no-padding c-title c-title--addition-services c-title--h1-inter-12px c-title--h1-color-primary-1-2 c-title--inter-medium">
+                            <!-- Title h1 -->
+                            <h1 class="c-title__h1">Choose a location</h1>
+                            <!-- /Title h1 -->
+                          </div>
+                          <!-- /Title -->
+
+                        </ion-item>
+                        <!-- /Item -->
+
+                        <!-- Item -->
+                        <ion-item class="c-item">
+
+                          <!-- Input -->
+                          <select (change)="updateServiceAddressDetail($event, i)" (click)="$event.stopPropagation();"
+                            class="c-input c-input--select u-no--min-height u-no--width" *ngIf="false">
+                            <option value="pickup" [selected]="service.address === 'pickup'">Pickup</option>
+                            <option value="dropoff" [selected]="service.address === 'dropoff'">Dropoff
+                            </option>
+                          </select>
+                          <!-- /Input -->
+
+                          <ion-select placeholder="Select location" (ionChange)="updateServiceAddressDetail($event, i)"
+                            (click)="$event.stopPropagation();" class="c-select">
+                            <ion-select-option *ngFor="let location of locations; let i = index;" [value]="location">
+                              <span>
+                                {{location?.address}},
+                                {{location?.city}},
+                              </span>
+                             <span>
+                              {{location?.state}},
+                              {{location?.zipcode}}
+                            </span>
+                            </ion-select-option>
+                          </ion-select>
+
+                        </ion-item>
+                        <!-- /Item -->
+
+                      </ion-item-group>
+                      <!-- /Item group -->
+
+                    </ion-list>
+                    <!-- /List -->
+
+                  </div>
+                  <!-- /Card wrap -->
+
+                </ion-col>
+
+                <ion-col
+                  class="u-display--flex u-align-items--center u-justify-content--flex-end u-no--pad-top u-no--pad-bot u-no--pad-rt">
+
+                  <!-- Icon -->
+                  <!-- <ion-icon
+                    src="../../../../assets/images/fill-unselected--color-primary-1-5-plus-$color-primary-1-2.svg"
+                    class="c-icon u-no--mg-rt c-icon--card-check c-icon--unselected"
+                    *ngIf="!selectedServiceIds.includes(service.id)"></ion-icon> -->
+                  <!-- /Icon -->
+
+                  <!-- Icon -->
+                  <ion-icon src="../../../../assets/images/fill-check--color-brand.svg"
+                    class="c-icon u-no--mg-rt c-icon--card-check" *ngIf="selectedServiceIds.includes(service.id)">
+                  </ion-icon>
+                  <!-- /Icon -->
+
+                </ion-col>
+              </ion-row>
+              <!-- /Row -->
+
+            </ion-card>
+            <!-- /Card -->
+
+          </ion-item>
+          <!-- /Item -->
+
+        </ion-item-group>
+        <!-- /Item group -->
+
+      </ion-list>
+      <!-- /List -->
+
+      <!-- Footer -->
+      <ion-footer collapse="fade"
+        class="l-header l-footer u-position--fixed u-no--position-bot u-left--50p u-transform--translate-x-minus-50p l-footer--bg-white">
+
+        <!-- Main wrapper -->
+        <ion-toolbar class="l-main-wrapper">
+
+          <!-- Button -->
+          <ion-button class="c-button ion-no-margin u-no--text-transform" fill="clear" expand="full"
+            (click)="toVendorList()" [disabled]="isRequestInProcess">
+
+            <!-- Title -->
+            <ion-title
+              class="ion-no-padding c-title c-title--inter-medium c-title--h1-inter-18px u-no--flex c-title--h1-white">
+              <!-- Title h1 -->
+              <h1 class="c-title__h1">
+                Next
+                <!-- Icon -->
+                <ion-icon src="../../../assets/images/outline-caret-right--color-white.svg"
+                  class="c-icon c-icon--caret-rt u-no--mg-rt" slot="end"></ion-icon>
+                <!-- /Icon -->
+              </h1>
+              <!-- /Title h1 -->
+            </ion-title>
+            <!-- /Title -->
+
+          </ion-button>
+          <!-- /Button -->
+
+        </ion-toolbar>
+        <!-- /Main wrapper -->
+
+      </ion-footer>
+      <!-- /Footer -->
+
+    </form>
+    <!-- /Form -->
+
+  </div>
+  <!-- /Main wrapper -->
+
+</ion-content>

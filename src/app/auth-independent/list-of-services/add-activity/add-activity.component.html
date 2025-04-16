@@ -1,0 +1,149 @@
+<!-- Add activity header -->
+<ion-header collapse="fade" mode="md" class="l-header">
+  <app-header [headerMeta]="heraderInfo"></app-header>
+</ion-header>
+<!-- /Add activity header -->
+
+<!-- Add activity content -->
+<ion-content>
+  <!-- Add activity main wrapper -->
+  <ion-grid class="l-main-wrapper ion-no-padding l-main-wrapper--get-started">
+    <ion-row>
+      <ion-col class="ion-no-padding">
+        <!-- Your selected service header -->
+        <ion-row>
+          <!-- Your selected service col left -->
+          <ion-col class="u-display--flex u-align-items--center u-no--pad-top u-no--pad-bot u-no--pad-lt">
+            <!-- Your selected service title -->
+            <ion-text class="ion-no-padding c-title c-title--h1-inter-16px c-title--h1-black c-title--inter-medium">
+              <h1 class="c-title__h1">Your selected service</h1>
+            </ion-text>
+            <!-- /Your selected service title -->
+          </ion-col>
+          <!-- /Your selected service col left -->
+
+          <!-- Your selected service col right -->
+          <ion-col
+            class="u-display--flex u-align-items--center u-justify-content--flex-end u-no--pad-top u-no--pad-bot u-no--pad-rt">
+            <!-- Change link -->
+            <ion-text
+              class="ion-no-padding c-title c-title--h1-inter-16px c-title--h1-color-brand c-title--inter-regular"
+              (click)="goBack()">
+              <h1 class="c-title__h1">Change</h1>
+            </ion-text>
+            <!-- /Change link -->
+          </ion-col>
+          <!-- /Your selected service col right -->
+        </ion-row>
+        <!-- /Your selected service header -->
+
+        <!-- Add activity form -->
+        <form class="l-form l-form--pickup-location" [formGroup]="activityForm" (ngSubmit)="onSubmit()" novalidate>
+          <!-- Add activity list -->
+          <ion-list class="c-list u-no--bg ion-no-padding u-no--pad-bot c-list--add-activity">
+            <!-- Add activity list item -->
+            <ion-item class="c-item ion-no-padding">
+              <!-- Add activity card -->
+              <ion-card
+                class="c-thumbnail c-thumbnail--width-100p c-thumbnail--body-bg-gray-1-1 c-thumbnail--get-started ion-no-margin c-card u-no--box-shadow u-display--flex u-align-items--center u-justify-content--center u-flex-direction--column u-no--mg-bot c-card--height-208px">
+                <!-- Add activity thumbnail -->
+                <ion-thumbnail class="c-thumbnail c-thumbnail--width-100px c-thumbnail--selected-service">
+                  <!-- Add activity icon -->
+                  <ion-icon [src]="selectedService.logoUrl"
+                    class="u-no--border-radius c-icon--width-100p c-icon--height-100p"></ion-icon>
+                  <!-- /Add activity icon -->
+                </ion-thumbnail>
+                <!-- /Add activity thumbnail -->
+
+                <!-- Add activity card header -->
+                <ion-card-header class="ion-no-padding c-card-header">
+                  <!-- Add activity card title -->
+                  <ion-card-title
+                    class="c-card-title c-card-title--inter-16px c-card-title--inter-medium c-card-title--color-black ion-no-margin ion-text-center c-card-title--is-selected-color-white">
+                    {{selectedService.label}}</ion-card-title>
+                  <!-- /Add activity card title -->
+                </ion-card-header>
+                <!-- /Add activity card header -->
+              </ion-card>
+              <!-- /Add activity card -->
+            </ion-item>
+            <!-- /Add activity list item -->
+
+            <!-- Add activity list item -->
+            <ion-item class="c-item ion-no-padding">
+              <!-- Enter project name main wrapper -->
+              <ion-row
+                class="c-thumbnail c-thumbnail--video-capture c-thumbnail--width-100p c-thumbnail--body-bg-gray-1-1 c-card u-no--mg-bot u-no--height c-card--pickup-location">
+                <ion-col class="ion-no-padding">
+                  <!-- Enter project name main field wrapper -->
+                  <ion-row class="c-item-group-wrapper">
+                    <ion-col class="ion-no-padding">
+                      <!-- Enter project name field wrapper -->
+                      <ion-item-group class="c-item-group c-item-group--pickup-location">
+                        <!-- Enter project name label wrapper -->
+                        <ion-item class="c-item ion-no-padding">
+                          <!-- Enter project name label -->
+                          <ion-label
+                            class="c-label c-label--inter-14px c-label--inter-semibold c-label--color-primary-1-1 ion-no-margin">
+                            Enter Project Name</ion-label>
+                          <!-- /Enter project name label -->
+                        </ion-item>
+                        <!-- /Enter project name label wrapper -->
+
+                        <!-- Enter project name input wrapper -->
+                        <ion-item class="c-item ion-no-padding" [ngClass]="{'has-error': submitted && f.name.errors}">
+                          <!-- Enter project name input -->
+                          <ion-input formControlName="name" type="text" placeholder="Project Name"
+                            class="c-input c-input--white">
+                          </ion-input>
+                          <!-- /Enter project name input -->
+
+                          <!-- Enter project name field validation error -->
+                          <p class="c-content c-content--inter-16px c-content--login c-content--color-red c-content--form-message"
+                            *ngIf="submitted && f.name.errors">
+                            Project name cannot be empty.
+                          </p>
+                          <!-- /Enter project name field validation error -->
+                        </ion-item>
+                        <!-- /Enter project name input wrapper -->
+                      </ion-item-group>
+                      <!-- /Enter project name field wrapper -->
+                    </ion-col>
+                  </ion-row>
+                  <!-- /Enter project name main field wrapper -->
+                </ion-col>
+              </ion-row>
+              <!-- /Enter project name main wrapper -->
+            </ion-item>
+            <!-- /Add activity list item -->
+          </ion-list>
+          <!-- /Add activity list -->
+
+          <!-- Add activity footer -->
+          <ion-footer collapse="fade"
+            class="l-header l-footer u-position--fixed u-no--position-bot u-left--50p u-transform--translate-x-minus-50p l-footer--bg-white">
+            <!-- Add activity main wrapper -->
+            <ion-toolbar class="l-main-wrapper">
+              <!-- Next button -->
+              <ion-button
+                class="c-button ion-no-margin u-no--text-transform c-button--text-inter-18px c-button--text-inter-medium"
+                [ngClass]="{'is-inactive': !activityForm.valid}" fill="clear" expand="full" type="submit">
+                Next
+                <!-- Next button caret right icon -->
+                <ion-icon src="../../../assets/images/outline-caret-right--color-white.svg"
+                  class="c-icon c-icon--caret-rt u-no--mg-rt" slot="end"></ion-icon>
+                <!-- /Next button caret right icon -->
+              </ion-button>
+              <!-- /Next button -->
+            </ion-toolbar>
+            <!-- /Add activity main wrapper -->
+          </ion-footer>
+          <!-- /Add activity footer -->
+        </form>
+        <!-- /Add activity form -->
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <!-- /Add activity main wrapper -->
+</ion-content>
+<!-- /Add activity content -->

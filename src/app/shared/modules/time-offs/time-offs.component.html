@@ -1,0 +1,61 @@
+<ion-header collapse="fade" mode="md" class="l-header o-emp-notification" >
+  <app-header [headerMeta]="headerInfo"></app-header>
+</ion-header>
+
+<ion-content>
+
+  <!--Message : No Timeoff Request-->
+  <ion-card *ngIf="requestedTimeOffs?.length === 0" class="backgroud-color-card--bg-color no-time-off-card-align">
+    <ion-card-content class="no-time-off pad-left-right-60px">
+      <ion-note class="text-color-time ion-padding">You have no timeoff request</ion-note>
+    </ion-card-content>
+  </ion-card>
+  <!--/Message : No Timeoff Request-->
+
+
+  <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)" class="c-refresher c-refresher--color-brand"
+  pullFactor="1" pullMin="100" pullMax="200">
+  <ion-refresher-content pullingText="Pull to refresh" refreshingSpinner="bubbles"
+    refreshingText="Refreshing..."></ion-refresher-content>
+</ion-refresher>
+
+<!--Timeoff Request-->
+  <ion-grid>
+    <ng-container>
+    <ion-row>
+      <ion-col>
+        <ion-list>
+          <ion-item *ngFor="let timeOff of requestedTimeOffs" lines="none" class="o-emp-notification--border-bot-1px-gray">
+            <ion-icon name="calendar" color="primary"></ion-icon>
+            <ion-label class="ion-margin">
+              <h6>{{timeOff?.date | date:'fullDate'}}</h6>
+              <p>{{timeOff?.notes === null ? 'Not available' : timeOff?.notes}}</p>
+            </ion-label>
+            
+
+            <ion-note slot="end">
+              <span class="u-display--flex c-chip--is-color-brand-color c-chip--inter-14px" 
+              [ngClass]="{'c-chip--background-rejected-status c-chip--is-color-red':timeOff?.status === 'rejected',
+                          'c-chip--background-accepted-status c-chip--is-color-brand-color':timeOff?.status === 'approved',
+                          'c-chip--background-pending-status c-chip--is-color-orange': timeOff?.status === 'new-request'}">
+                {{timeOff?.status === 'new-request' ? 'pending' : timeOff?.status}}
+                <ion-icon size="small" slot="end" name="radio-button-on-outline" aria-label="radio button on outline" role="img"
+                  class="md ion-color icon-small hydrated margin-left-5px">
+                </ion-icon>
+              </span>
+            </ion-note>
+
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+  </ng-container>
+  </ion-grid>
+<!--Timeoff Request-->
+</ion-content>
+
+<ion-footer class="o-time-offs ion-padding">
+  <ion-toolbar class="ion-text-center">
+    <ion-button (click)="createNewRequest()">Request Time Off</ion-button>
+  </ion-toolbar>
+</ion-footer>

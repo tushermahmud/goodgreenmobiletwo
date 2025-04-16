@@ -1,0 +1,417 @@
+// Abstracts
+@use "../abstracts/dimension" as *;
+@use "../abstracts/typography" as *;
+
+// Large mobiles potrait only
+@media all and (max-width: 575px) {
+  // Card
+  .c-card {
+    $cCard: &;
+
+    &--width-119px {
+      width: $width-119px;
+    }
+
+    &--height-119px {
+      height: $height-119px;
+    }
+  }
+
+  // Col
+  .l-col {
+    $lCol: &;
+
+    &--width-119px {
+      width: $width-119px;
+      -ms-flex: 0 0 $width-119px;
+      flex: 0 0 $width-119px;
+      max-width: $width-119px;
+    }
+  }
+}
+
+@media all and (max-width: 414px) and (max-height: 736px) {
+  // Thumnail
+  .c-thumbnail {
+    $cThumnail: &;
+
+    &--sm-height-290px {
+      height: $height-290px;
+    }
+  }
+}
+
+@media all and (min-width: 414px) and (max-width: 414px) and (min-height: 896px) and (max-height: 896px) {
+  // Header
+  .l-header {
+    &--padding-top-40px-r {
+      padding-top: 40px;
+    }
+  }
+}
+
+// Small mobiles potrait and very small mobiles lanscape
+@media all and (max-width: 410px) {
+  // Card
+  .c-card {
+    $cCard: &;
+
+    &--width-107px {
+      width: $width-107px;
+    }
+
+    &--height-107px {
+      height: $height-107px;
+    }
+  }
+
+  // Thumnail
+  .c-thumbnail {
+    $cThumnail: &;
+
+    &--sm-height-112px {
+      height: $height-112px;
+    }
+
+    &--sm-height-106px {
+      height: $height-106px;
+    }
+  }
+
+  // Col
+  .l-col {
+    $lCol: &;
+
+    &--width-107px {
+      width: $width-107px;
+      -ms-flex: 0 0 $width-107px;
+      flex: 0 0 $width-107px;
+      max-width: $width-107px;
+    }
+  }
+}
+
+@media all and (max-width: 410px) and (max-height: 667px) {
+  // Thumnail
+  .c-thumbnail {
+    $cThumnail: &;
+
+    &--sm-height-188px {
+      height: $height-188px;
+    }
+  }
+
+  // Icon
+  .c-icon {
+    $cIcon: &;
+
+    &--sm-width-90px {
+      width: $width-90px;
+    }
+
+    &--sm-height-90px {
+      height: $height-90px;
+    }
+  }
+}
+
+@media all and (min-width: 376px) and (max-width: 390px) {
+  // Card
+  .c-card {
+    $cCard: &;
+
+    &--width-112px {
+      width: $width-112px;
+    }
+
+    &--height-112px {
+      height: $height-112px;
+    }
+  }
+
+  // Col
+  .l-col {
+    $lCol: &;
+
+    &--width-112px {
+      width: $width-112px;
+      -ms-flex: 0 0 $width-112px;
+      flex: 0 0 $width-112px;
+      max-width: $width-112px;
+    }
+  }
+
+  // Thumnail
+  .c-thumbnail {
+    $cThumnail: &;
+
+    &--sm-height-100px {
+      height: $height-100px;
+    }
+  }
+}
+
+@media all and (max-width: 375px) {
+  // Thumnail
+  .c-thumbnail {
+    $cThumnail: &;
+
+    &--sm-height-101px {
+      height: $height-101px;
+    }
+
+    &--sm-height-107px {
+      height: $height-107px;
+    }
+
+    &--sm-height-95px {
+      height: $height-95px;
+    }
+  }
+
+  // Button
+  .c-button {
+    $cButton: &;
+
+    &--video-capture {
+      padding-top: 21px;
+    }
+
+    &--video-capture-padding{
+      padding-top: 15px;
+    }
+  }
+
+  // Icon
+  .c-icon {
+    $cIcon: &;
+
+    &--sm-width-22px {
+      width: $width-22px;
+    }
+
+    &--sm-height-22px {
+      height: $height-22px;
+    }
+
+    &--video-capture {
+      top: 0;
+    }
+  }
+
+  // Modal
+  .c-modal {
+    $cModal: &;
+
+    &--sm-height-100vh-290px {
+      --height: calc(100vh - 290px);
+    }
+
+    &--sm-height-100vh-267px {
+      --height: calc(100vh - 267px);
+    }
+  }
+}
+
+// Very small mobiles potrait only
+@media all and (max-width: 360px) {
+  // Card
+  .c-card {
+    $cCard: &;
+
+    &--width-102px {
+      width: $width-102px;
+    }
+
+    &--height-102px {
+      height: $height-102px;
+    }
+  }
+
+  // Thumnail
+  .c-thumbnail {
+    $cThumnail: &;
+
+    &--height-102px {
+      height: $height-102px;
+    }
+  }
+
+  // Col
+  .l-col {
+    $lCol: &;
+
+    &--width-102px {
+      width: $width-102px;
+      -ms-flex: 0 0 $width-102px;
+      flex: 0 0 $width-102px;
+      max-width: $width-102px;
+    }
+  }
+}
+
+// iPhone SE
+@media all and (max-width: 320px) {
+  // Card
+  .c-card {
+    $cCard: &;
+
+    &--width-139px {
+      width: $width-139px;
+    }
+
+    &--height-139px {
+      height: $height-139px;
+    }
+  }
+
+  // Thumnail
+  .c-thumbnail {
+    $cThumnail: &;
+
+    &--height-139px {
+      height: $height-139px;
+    }
+
+    &--sm-height-140px {
+      height: $height-140px;
+    }
+
+    &--sm-height-89px {
+      height: $height-89px;
+    }
+
+    &--sm-height-83px {
+      height: $height-83px;
+    }
+  }
+
+  // Col
+  .l-col {
+    $lCol: &;
+
+    &--width-139px {
+      width: $width-139px;
+      -ms-flex: 0 0 $width-139px;
+      flex: 0 0 $width-139px;
+      max-width: $width-139px;
+    }
+  }
+
+  // Label
+  .c-card-title {
+    $cCardTitle: &;
+
+    &--sm-inter-16px {
+      font-size: $font-size-16px;
+    }
+  }
+
+  // Content
+  .c-content {
+    $cContent: &;
+
+    &__p {
+      font-size: $font-size-14px;
+    }
+
+    &--get-started {
+      #{$cContent}__p {
+        line-height: $line-height-21px;
+      }
+    }
+  }
+
+  // Card content
+  .c-card-content {
+    $cCardContent: &;
+
+    &--sm-inter-14px {
+      font-size: $font-size-14px;
+    }
+
+    &--sm-get-started {
+      line-height: $line-height-21px;
+    }
+  }
+
+  // Icon
+  .c-icon {
+    $cIcon: &;
+
+    &--sm-width-40px {
+      width: $width-40px;
+    }
+
+    &--sm-height-40px {
+      height: $height-40px;
+    }
+
+    &--sm-width-70px {
+      width: $width-70px;
+    }
+
+    &--sm-height-70px {
+      height: $height-70px;
+    }
+  }
+
+  // Title
+  .c-title {
+    $cTitle: &;
+
+    &__h2 {
+      font-size: $font-size-15px;
+    }
+
+    &--sm-h1-span-inter-20px {
+      #{$cTitle}__h1,
+      #{$cTitle}__span {
+        font-size: $font-size-20px;
+      }
+    }
+
+    &--sm-h2-inter-13px {
+      #{$cTitle}__h2 {
+        font-size: $font-size-13px;
+      }
+    }
+  }
+
+  // Button
+  .c-button {
+    $cButton: &;
+
+    &--sm-min-width-157px {
+      min-width: $width-157px;
+    }
+
+    &--sm-text-inter-13px {
+      font-size: $font-size-13px;
+    }
+  }
+
+  // Col
+  .l-col {
+    $lCol: &;
+
+    &--sm-width-40px {
+      width: $width-40px;
+      -ms-flex: 0 0 $width-40px;
+      flex: 0 0 $width-40px;
+      max-width: $width-40px;
+    }
+  }
+}
+
+// Phone range between 320px to 575px
+@media all and (min-width: 320px) and (max-width: 575px) {
+  // List
+  body {
+    .c-list {
+      &--height-100vh-165px {
+        height: $height-100vh-165px;
+      }
+    }
+  }
+}
