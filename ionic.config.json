@@ -1,0 +1,7 @@
+{
+  "name": "goodgreencordovanew",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
