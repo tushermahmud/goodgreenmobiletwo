@@ -5,7 +5,6 @@ import { IonicModule } from '@ionic/angular';
 import { SharedModule } from '../../shared.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TimeOffsRoutingModule } from './time-offs-routing.module';
-
 @NgModule({
   
   imports: [
@@ -14,7 +13,8 @@ import { TimeOffsRoutingModule } from './time-offs-routing.module';
     SharedModule,
     FormsModule,
     ReactiveFormsModule,
-    TimeOffsRoutingModule
+    TimeOffsRoutingModule,
+    TimeOffsComponent
   ]
 })
 export class TimeOffsModule { }

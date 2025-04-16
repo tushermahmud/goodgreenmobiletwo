@@ -1,6 +1,6 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AlertController, ModalController, NavController, RefresherCustomEvent } from '@ionic/angular';
+import { AlertController, IonicModule, ModalController, NavController, RefresherCustomEvent } from '@ionic/angular';
 import { CommonService } from 'src/app/core/services/common/common.service';
 import { IonLoaderService } from 'src/app/core/services/ion-loader/ion-loader.service';
 import { LeadHelperService } from 'src/app/core/services/lead-helper/lead-helper.service';
@@ -13,11 +13,37 @@ import { JdAddMediaComponent } from 'src/app/shared/components/jd-add-media/jd-a
 import { SignaturePadComponent } from '../signature-pad/signature-pad.component';
 import { UNDEFINED_GEO_LAT, UNDEFINED_GEO_LONG } from 'src/app/utils/constants';
 import { MediaUploadService } from 'src/app/core/services/media-upload/media-upload.service';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SharedModule } from '../../shared.module';
+import { JobHistoryRoutingModule } from '../job-history/job-history-routing.module';
+import { NotFoundComponent } from '../../components/not-found/not-found.component';
+import { OrderStatusComponent } from '../../components/order-status/order-status.component';
+import { ServiceDocumentsComponent } from '../../components/service-documents/service-documents.component';
+import { DocumentViewerComponent } from '../../components/document-viewer/document-viewer.component';
+import { JobLogsComponent } from '../../components/job-logs/job-logs.component';
+import { HeaderComponent } from '../../components/header/header.component';
 
 @Component({
+  standalone: true,
   selector: 'app-employee-job-details',
   templateUrl: './employee-job-details.component.html',
-  styleUrls: ['./employee-job-details.component.css']
+  styleUrls: ['./employee-job-details.component.css'],
+  imports: [
+    IonicModule,
+    FormsModule,
+    ReactiveFormsModule,
+    SharedModule,
+    JobHistoryRoutingModule,
+    HeaderComponent,
+    SignaturePadComponent,
+    NotFoundComponent,
+    OrderStatusComponent,
+    ServiceDocumentsComponent,
+    DocumentViewerComponent,
+    AddAddendumComponent,
+    JdAddMediaComponent,
+    JobLogsComponent
+  ]
 })
 export class EmployeeJobDetailsComponent implements OnInit {
   headerInfo: GlobalHeaderObject = {

@@ -9,7 +9,7 @@ import { AuthMeta } from 'src/app/state/auth/auth-meta.state';
 import { selectAuthData } from 'src/app/state/auth/auth.selectors';
 import { AuthState } from 'src/app/state/auth/auth.state';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
-import { ActionSheetController, ModalController, NavParams } from '@ionic/angular';
+import { ActionSheetController, IonicModule, ModalController, NavParams } from '@ionic/angular';
 import { StartOrEndJob } from 'src/app/models/todays-job.model';
 import { MediaUploadService } from 'src/app/core/services/media-upload/media-upload.service';
 import { Camera } from '@awesome-cordova-plugins/camera/ngx';
@@ -20,12 +20,18 @@ import { MediaItems } from 'src/app/post-auth/dashboard/order-details/order-medi
 import { IonLoaderService } from 'src/app/core/services/ion-loader/ion-loader.service';
 import { UNDEFINED_GEO_LAT, UNDEFINED_GEO_LONG } from 'src/app/utils/constants';
 import { MediaStreamingService } from 'src/app/core/services/media-streaming/media-streaming.service';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { HeaderComponent } from '../../components/header/header.component';
 
 
 @Component({
+	standalone: true,
 	selector: 'app-signature-pad',
 	templateUrl: './signature-pad.component.html',
 	styleUrls: ['./signature-pad.component.css'],
+	imports: [CommonModule, IonicModule, FormsModule,HeaderComponent],
+
 })
 export class SignaturePadComponent implements OnInit {
 	@ViewChild('signaturePad') signaturePadEle: ElementRef;

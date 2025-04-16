@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AlertController, ModalController, NavController } from '@ionic/angular';
+import { AlertController, IonicModule, ModalController, NavController } from '@ionic/angular';
 import { CommonService } from 'src/app/core/services/common/common.service';
 import { IonLoaderService } from 'src/app/core/services/ion-loader/ion-loader.service';
 import { LeadHelperService } from 'src/app/core/services/lead-helper/lead-helper.service';
@@ -10,13 +10,23 @@ import { GlobalHeaderObject } from 'src/app/models/global-header.model';
 import { Document, JobDetailsRes, JobMedia } from 'src/app/models/job-details.model';
 import { SignaturePadComponent } from '../signature-pad/signature-pad.component';
 import { UNDEFINED_GEO_LAT, UNDEFINED_GEO_LONG } from 'src/app/utils/constants';
-import { DatePipe } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import * as moment from 'moment';
+import { SharedModule } from '../../shared.module';
+import { EmployeeJobDetailsModule } from '../employee-job-details/employee-job-details.module';
 
 @Component({
+  standalone: true,
   selector: 'app-ongoing-jobs',
   templateUrl: './ongoing-jobs.component.html',
-  styleUrls: ['./ongoing-jobs.component.css']
+  styleUrls: ['./ongoing-jobs.component.css'],
+  imports: [
+    CommonModule,
+    IonicModule,
+    SharedModule,
+    EmployeeJobDetailsModule,
+    DatePipe
+  ]
 })
 export class OngoingJobsComponent implements OnInit {
   headerInfo: GlobalHeaderObject = {

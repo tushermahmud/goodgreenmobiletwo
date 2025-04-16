@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { IonicModule } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
 import { Store } from '@ngrx/store';
@@ -17,7 +19,13 @@ import { RequestTimeoffComponent } from '../../components/request-timeoff/reques
 @Component({
   selector: 'app-time-offs',
   templateUrl: './time-offs.component.html',
-  styleUrls: ['./time-offs.component.css']
+  styleUrls: ['./time-offs.component.css'],
+  standalone: true,
+  imports: [
+    CommonModule,
+    IonicModule
+  ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class TimeOffsComponent implements OnInit {
   headerInfo: GlobalHeaderObject = {
