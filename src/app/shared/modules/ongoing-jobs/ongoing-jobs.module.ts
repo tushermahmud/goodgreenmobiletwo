@@ -8,14 +8,12 @@ import { EmployeeJobDetailsModule } from '../employee-job-details/employee-job-d
 
 
 @NgModule({
-  declarations: [
-    OngoingJobsComponent
-  ],
   imports: [
     CommonModule,
     IonicModule,
     SharedModule,
-    EmployeeJobDetailsModule
+    // EmployeeJobDetailsModule,
+    OngoingJobsComponent
   ],
   exports:[
     OngoingJobsComponent

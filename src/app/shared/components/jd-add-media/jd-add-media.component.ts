@@ -1,16 +1,25 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { ActionSheetController, ModalController } from '@ionic/angular';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { ActionSheetController, IonicModule, ModalController } from '@ionic/angular';
 import { CommonService } from 'src/app/core/services/common/common.service';
 import { LoaderService } from 'src/app/core/services/common/loader.service';
 import { IonLoaderService } from 'src/app/core/services/ion-loader/ion-loader.service';
 import { LeadHelperService } from 'src/app/core/services/lead-helper/lead-helper.service';
 import { MediaUploadService } from 'src/app/core/services/media-upload/media-upload.service';
 import { GlobalHeaderObject } from 'src/app/models/global-header.model';
+import { SharedModule } from '../../shared.module';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-jd-add-media',
   templateUrl: './jd-add-media.component.html',
-  styleUrls: ['./jd-add-media.component.css']
+  styleUrls: ['./jd-add-media.component.css'],
+  standalone: true,
+  imports: [
+    CommonModule,
+    IonicModule,
+    SharedModule,
+  ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class JdAddMediaComponent implements OnInit {
 

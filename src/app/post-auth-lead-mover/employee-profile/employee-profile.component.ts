@@ -1,5 +1,6 @@
+import { CommonModule } from '@angular/common';
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, NgZone, OnInit } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, NgZone, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AppVersion } from '@awesome-cordova-plugins/app-version/ngx';
@@ -9,7 +10,7 @@ import { File } from '@awesome-cordova-plugins/file/ngx';
 import { CaptureImageOptions, MediaCapture } from '@awesome-cordova-plugins/media-capture/ngx';
 import { WebView } from '@ionic-native/ionic-webview/ngx';
 import { NativeGeocoder, NativeGeocoderOptions, NativeGeocoderResult } from '@ionic-native/native-geocoder/ngx';
-import { ActionSheetController, AlertController } from '@ionic/angular';
+import { ActionSheetController, AlertController, IonicModule } from '@ionic/angular';
 import { Store } from '@ngrx/store';
 import phone from 'phone';
 import { Observable } from 'rxjs';
@@ -32,7 +33,13 @@ declare var google;
 @Component({
   selector: 'app-employee-profile',
   templateUrl: './employee-profile.component.html',
-  styleUrls: ['./employee-profile.component.css']
+  styleUrls: ['./employee-profile.component.css'],
+  standalone: true,
+	imports: [
+		CommonModule,
+		IonicModule,
+	],
+	schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class EmployeeProfileComponent implements OnInit {
 

@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Stripe } from '@ionic-native/stripe/ngx';
-import { ActionSheetController, AlertController, NavController } from '@ionic/angular';
+import { ActionSheetController, AlertController, IonicModule, NavController } from '@ionic/angular';
 import { Store } from '@ngrx/store';
 import { CommonService } from 'src/app/core/services/common/common.service';
 import { IonLoaderService } from 'src/app/core/services/ion-loader/ion-loader.service';
@@ -12,11 +13,19 @@ import { PaymentUserType } from 'src/app/definitions/payment-user-type.enum';
 import { GlobalHeaderObject } from 'src/app/models/global-header.model';
 import { selectAuthData } from 'src/app/state/auth/auth.selectors';
 import { environment } from 'src/environments/environment';
+import { SharedModule } from '../../shared.module';
 
 @Component({
   selector: 'app-job-payments',
   templateUrl: './job-payments.component.html',
-  styleUrls: ['./job-payments.component.css']
+  styleUrls: ['./job-payments.component.css'],
+  standalone: true,
+  imports: [
+    CommonModule,
+    IonicModule,
+    SharedModule,
+  ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class JobPaymentsComponent implements OnInit {
 

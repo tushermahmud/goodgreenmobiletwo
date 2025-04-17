@@ -1,12 +1,14 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
-import { AlertController, ModalController } from '@ionic/angular';
+import { AlertController, IonicModule, ModalController } from '@ionic/angular';
 import { CommonService } from 'src/app/core/services/common/common.service';
 import { IonLoaderService } from 'src/app/core/services/ion-loader/ion-loader.service';
 import { LeadHelperService } from 'src/app/core/services/lead-helper/lead-helper.service';
 import { TodaysJob } from 'src/app/models/todays-job.model';
 import { SignaturePadComponent } from '../../modules/signature-pad/signature-pad.component';
 import { UNDEFINED_GEO_LAT, UNDEFINED_GEO_LONG } from 'src/app/utils/constants';
+import { SharedModule } from '../../shared.module';
+import { CommonModule } from '@angular/common';
 
 interface Status {
   clockInClockOut: boolean;
@@ -16,7 +18,14 @@ interface Status {
 @Component({
   selector: 'app-current-job-card',
   templateUrl: './current-job-card.component.html',
-  styleUrls: ['./current-job-card.component.css']
+  styleUrls: ['./current-job-card.component.css'],
+  standalone: true,
+  imports: [
+    CommonModule,
+    IonicModule,
+    SharedModule,
+  ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class CurrentJobCardComponent implements OnInit {
   @Input() authMeta: any;

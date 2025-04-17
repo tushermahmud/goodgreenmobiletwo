@@ -9,14 +9,12 @@ import { EmployeeNotificationsRoutingModule } from './employee-notifications-rou
 
 
 @NgModule({
-  declarations: [
-    EmployeeNotificationsComponent,
-  ],
   imports: [
     CommonModule,
     IonicModule,
     FormsModule,
-    EmployeeNotificationsRoutingModule
+    EmployeeNotificationsRoutingModule,
+    EmployeeNotificationsComponent
     // TimeOffsModule
   ]
 })

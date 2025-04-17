@@ -1,6 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SignaturePadComponent } from './signature-pad.component';
+import { IonicModule } from '@ionic/angular';
+import { SharedModule } from '../../shared.module';
+
+
 import { Camera } from '@awesome-cordova-plugins/camera/ngx';
 import { WebView } from '@ionic-native/ionic-webview/ngx';
 import { MediaCapture } from '@awesome-cordova-plugins/media-capture/ngx';
@@ -12,26 +16,23 @@ import { File } from '@awesome-cordova-plugins/file/ngx';
 import { MediaUploadService } from 'src/app/core/services/media-upload/media-upload.service';
 import { AndroidPermissions } from '@awesome-cordova-plugins/android-permissions/ngx';
 import { PermissionManagerService } from 'src/app/core/services/permissions/permission-manager.service';
-import { IonicModule } from '@ionic/angular';
-import { SharedModule } from '../../shared.module';
 import { MediaStreamingService } from 'src/app/core/services/media-streaming/media-streaming.service';
-
-
+import { Geolocation } from '@awesome-cordova-plugins/geolocation/ngx'; // You reference this in providers
 
 @NgModule({
-  declarations: [
-    SignaturePadComponent
-  ],
   imports: [
     CommonModule,
     IonicModule,
-    SharedModule
+    SharedModule,
+    SignaturePadComponent
+  ],
+  exports: [
+    SignaturePadComponent
   ],
   providers:[
     Geolocation,
     Camera,
     WebView,
-    Camera,
     File,
     FileTransfer,
     MediaCapture,
@@ -43,8 +44,6 @@ import { MediaStreamingService } from 'src/app/core/services/media-streaming/med
     PermissionManagerService,
     MediaStreamingService
   ],
-  exports: [
-    SignaturePadComponent
-  ]
+  
 })
-export class SignaturePadModule { }
+export class SignaturePadModule {}

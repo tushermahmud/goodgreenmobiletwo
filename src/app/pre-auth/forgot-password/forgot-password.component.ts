@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AlertController, LoadingController } from '@ionic/angular';
+import { AlertController, IonicModule, LoadingController } from '@ionic/angular';
 import { MustMatch } from 'src/app/core/helpers/must-match.validator';
 import { AuthService } from 'src/app/core/services/auth/auth.service';
 import { IonLoaderService } from 'src/app/core/services/ion-loader/ion-loader.service';
@@ -11,6 +12,13 @@ import { GlobalHeaderObject } from 'src/app/models/global-header.model';
 	selector: 'app-forgot-password',
 	templateUrl: './forgot-password.component.html',
 	styleUrls: ['./forgot-password.component.scss'],
+	standalone: true,
+	imports: [
+		CommonModule,
+		IonicModule,
+		ReactiveFormsModule
+	],
+	schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class ForgotPasswordComponent implements OnInit {
 

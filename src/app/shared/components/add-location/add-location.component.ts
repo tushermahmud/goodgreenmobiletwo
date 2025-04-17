@@ -1,12 +1,21 @@
-import { Component, NgZone, OnInit } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, NgZone, OnInit } from '@angular/core';
+import { IonicModule, ModalController } from '@ionic/angular';
+import { SharedModule } from '../../shared.module';
+import { CommonModule } from '@angular/common';
 
 declare var google
 
 @Component({
   selector: 'app-add-location',
   templateUrl: './add-location.component.html',
-  styleUrls: ['./add-location.component.css']
+  styleUrls: ['./add-location.component.css'],
+  standalone: true,
+  imports: [
+    CommonModule,
+    IonicModule,
+    SharedModule,
+  ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AddLocationComponent implements OnInit {
   autocomplete: { input: string };

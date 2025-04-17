@@ -1,8 +1,9 @@
-import { ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { ChangeDetectorRef, Component, CUSTOM_ELEMENTS_SCHEMA, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FileTransfer, FileTransferObject, FileUploadOptions } from '@awesome-cordova-plugins/file-transfer/ngx';
 import { PhotoViewer } from '@awesome-cordova-plugins/photo-viewer/ngx';
 import { StreamingMedia, StreamingVideoOptions } from '@awesome-cordova-plugins/streaming-media/ngx';
-import { ActionSheetController, AlertController } from '@ionic/angular';
+import { ActionSheetController, AlertController, IonicModule } from '@ionic/angular';
 import { Observable, Subscription } from 'rxjs';
 import { take, takeLast } from 'rxjs/operators';
 import { CommonService } from 'src/app/core/services/common/common.service';
@@ -15,9 +16,15 @@ import { JobDetailsRes, JobMedia } from 'src/app/models/job-details.model';
 
 
 @Component({
+	standalone: true,
 	selector: 'app-job-media',
 	templateUrl: './job-media.component.html',
-	styleUrls: ['./job-media.component.css']
+	styleUrls: ['./job-media.component.css'],
+	imports: [
+		CommonModule,
+		IonicModule,
+	],
+	schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class JobMediaComponent implements OnInit {
 	@Input() jobMedia: JobMedia;

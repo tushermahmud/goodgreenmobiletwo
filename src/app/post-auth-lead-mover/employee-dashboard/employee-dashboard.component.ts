@@ -1,6 +1,6 @@
-import { Component, OnInit,OnDestroy, ViewChild } from '@angular/core';
+import { Component, OnInit,OnDestroy, ViewChild, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import {  Router } from '@angular/router';
-import { AlertController, IonModal, ModalController, NavController } from '@ionic/angular';
+import { AlertController, IonicModule, IonModal, ModalController, NavController } from '@ionic/angular';
 import { Store } from '@ngrx/store';
 import { Observable, Subject } from 'rxjs';
 import { takeUntil} from 'rxjs/operators';
@@ -12,11 +12,18 @@ import { AuthState } from 'src/app/state/auth/auth.state';;
 import { CommonService } from 'src/app/core/services/common/common.service';
 import { CurrentJobCardComponent } from 'src/app/shared/components/current-job-card/current-job-card.component';
 import { TodaysJob } from 'src/app/models/todays-job.model';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-employee-dashboard',
   templateUrl: './employee-dashboard.component.html',
-  styleUrls: ['./employee-dashboard.component.css']
+  styleUrls: ['./employee-dashboard.component.css'],
+  standalone: true,
+	imports: [
+		CommonModule,
+		IonicModule
+	],
+	schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class EmployeeDashboardComponent implements OnInit , OnDestroy {
 

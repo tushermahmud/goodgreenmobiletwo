@@ -1,12 +1,19 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { IonTabs } from '@ionic/angular';
+import { IonicModule, IonTabs } from '@ionic/angular';
 import { GlobalHeaderObject } from '../models/global-header.model';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-post-auth-lead-mover',
   templateUrl: './post-auth-lead-mover.component.html',
-  styleUrls: ['./post-auth-lead-mover.component.css']
+  styleUrls: ['./post-auth-lead-mover.component.css'],
+  standalone: true,
+	imports: [
+		CommonModule,
+		IonicModule
+	],
+	schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class PostAuthLeadMoverComponent implements OnInit {
   @ViewChild('tabs',{static:false}) tabs: IonTabs;

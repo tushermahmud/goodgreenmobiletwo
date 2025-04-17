@@ -8,14 +8,12 @@ import { JobHistoryRoutingModule } from './job-history-routing.module';
 
 
 @NgModule({
-  declarations: [
-    JobHistoryComponent
-  ],
   imports: [
     CommonModule,
     IonicModule,
     SharedModule,
-    JobHistoryRoutingModule
+    JobHistoryRoutingModule,
+    JobHistoryComponent
   ],
   exports: [
     JobHistoryComponent

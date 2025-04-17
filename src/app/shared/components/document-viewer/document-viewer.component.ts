@@ -1,11 +1,13 @@
-import { Component, ElementRef, Input, OnInit, Renderer2, ViewChild } from '@angular/core';
-import { LoadingController, ModalController } from '@ionic/angular';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, ElementRef, Input, OnInit, Renderer2, ViewChild } from '@angular/core';
+import { IonicModule, LoadingController, ModalController } from '@ionic/angular';
 import { from, Observable } from 'rxjs';
 import { LoaderService } from 'src/app/core/services/common/loader.service';
 import { IonLoaderService } from 'src/app/core/services/ion-loader/ion-loader.service';
 import { OrderService } from 'src/app/core/services/order/order.service';
 import { ServiceItemDocument } from 'src/app/models/service-item-document.model';
 import { environment } from 'src/environments/environment';
+import { SharedModule } from '../../shared.module';
+import { CommonModule } from '@angular/common';
 
 
 const VIEW_TYPE_NA = 'na';
@@ -18,7 +20,14 @@ const VIEW_TYPE_SIGN_CHANGE_ORDER = 'sign-change-order';
 @Component({
 	selector: 'app-document-viewer',
 	templateUrl: './document-viewer.component.html',
-	styleUrls: ['./document-viewer.component.css']
+	styleUrls: ['./document-viewer.component.css'],
+	standalone: true,
+  imports: [
+    CommonModule,
+    IonicModule,
+    SharedModule,
+  ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class DocumentViewerComponent implements OnInit {
 

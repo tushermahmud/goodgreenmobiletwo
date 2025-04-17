@@ -1,8 +1,10 @@
-import { Component, ElementRef, Input, OnInit, Renderer2, ViewChild } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, ElementRef, Input, OnInit, Renderer2, ViewChild } from '@angular/core';
+import { IonicModule, ModalController } from '@ionic/angular';
 import { IonLoaderService } from 'src/app/core/services/ion-loader/ion-loader.service';
 import { Document } from 'src/app/models/job-details.model';
 import { environment } from 'src/environments/environment';
+import { SharedModule } from '../../shared.module';
+import { CommonModule } from '@angular/common';
 
 
 
@@ -16,7 +18,14 @@ const VIEW_TYPE_SIGN_CHANGE_ORDER = 'sign-change-order';
 @Component({
   selector: 'app-jd-doc-viewer',
   templateUrl: './jd-doc-viewer.component.html',
-  styleUrls: ['./jd-doc-viewer.component.css']
+  styleUrls: ['./jd-doc-viewer.component.css'],
+  standalone: true,
+  imports: [
+    CommonModule,
+    IonicModule,
+    SharedModule,
+  ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class JdDocViewerComponent implements OnInit {
 

@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import {
   ChangeDetectorRef,
   Component,
@@ -6,6 +7,7 @@ import {
   OnInit,
   Output,
   OnChanges,
+  CUSTOM_ELEMENTS_SCHEMA,
 } from '@angular/core';
 import {
   FileTransfer,
@@ -20,6 +22,7 @@ import {
 import {
   ActionSheetController,
   AlertController,
+  IonicModule,
   ModalController,
 } from '@ionic/angular';
 import { Store } from '@ngrx/store';
@@ -46,6 +49,12 @@ export interface MediaItems {
   selector: 'app-order-media',
   templateUrl: './order-media.component.html',
   styleUrls: ['./order-media.component.css'],
+  standalone: true,
+	imports: [
+		CommonModule,
+		IonicModule
+	],
+	schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class OrderMediaComponent implements OnInit {
   @Input() orderMedie: MediaItems[];

@@ -1,10 +1,11 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 /* eslint-disable id-blacklist */
-import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { Stripe } from '@ionic-native/stripe/ngx';
-import { AlertController, NavController } from '@ionic/angular';
+import { AlertController, IonicModule, NavController } from '@ionic/angular';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { CommonService } from 'src/app/core/services/common/common.service';
@@ -21,7 +22,13 @@ import { environment } from 'src/environments/environment';
 @Component({
     selector: 'app-payment',
     templateUrl: './payment.component.html',
-    styleUrls: ['./payment.component.css']
+    styleUrls: ['./payment.component.css'],
+    standalone: true,
+	imports: [
+		CommonModule,
+		IonicModule
+	],
+	schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class PaymentComponent implements OnInit {
 

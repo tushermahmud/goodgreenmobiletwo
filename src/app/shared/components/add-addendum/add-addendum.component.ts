@@ -1,7 +1,7 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit, ViewChild } from '@angular/core';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Route, Router } from '@angular/router';
-import { AlertController, IonAccordion, IonAccordionGroup, IonRadio, ModalController, NavController, ToastController, ToastOptions } from '@ionic/angular';
+import { AlertController, IonAccordion, IonAccordionGroup, IonicModule, IonRadio, ModalController, NavController, ToastController, ToastOptions } from '@ionic/angular';
 import { CommonService } from 'src/app/core/services/common/common.service';
 import { IonLoaderService } from 'src/app/core/services/ion-loader/ion-loader.service';
 import { LeadHelperService } from 'src/app/core/services/lead-helper/lead-helper.service';
@@ -9,14 +9,24 @@ import { AddendumForm, FormTypes } from 'src/app/models/addendum.model';
 import { CreateAddendum } from 'src/app/models/create-addendum';
 import { GlobalHeaderObject } from 'src/app/models/global-header.model';
 import { AddendumBuilderComponent } from '../addendum-builder/addendum-builder.component';
-import { KeyValue } from '@angular/common';
+import { CommonModule, KeyValue } from '@angular/common';
+import { SharedModule } from '../../shared.module';
+import { HeaderComponent } from '../header/header.component';
 
 type SortNullFn = (a: KeyValue<string, any>, b: KeyValue<string, any>) => number;
 
 @Component({
   selector: 'app-add-addendum',
   templateUrl: './add-addendum.component.html',
-  styleUrls: ['./add-addendum.component.css']
+  styleUrls: ['./add-addendum.component.css'],
+  standalone: true,
+  imports: [
+    CommonModule,
+    IonicModule,
+    ReactiveFormsModule,
+
+  ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AddAddendumComponent implements OnInit {
  

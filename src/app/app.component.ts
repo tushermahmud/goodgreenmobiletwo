@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit } from '@angular/core';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
-import { Platform } from '@ionic/angular';
+import { IonicModule, Platform } from '@ionic/angular';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { NotificationManagerService } from './core/services/notifications/notification.service';
@@ -9,12 +9,19 @@ import { getAuthData } from './state/auth/auth.actions';
 import { selectAuthData } from './state/auth/auth.selectors';
 import { AuthState } from './state/auth/auth.state';
 import { Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 
 @Component({
     selector: 'app-root',
     templateUrl: 'app.component.html',
     styleUrls: ['app.component.scss'],
+    standalone: true,
+	imports: [
+		CommonModule,
+		IonicModule
+	],
+	schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppComponent implements OnInit {
 

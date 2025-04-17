@@ -10,7 +10,6 @@ import { FormBuilder, FormsModule } from '@angular/forms';
 
 
 @NgModule({
-  declarations: [],
   imports: [
     CommonModule,
     IonicModule,

@@ -21,20 +21,16 @@ import { EmployeeJobDetailsRoutingModule } from './employee-job-details-routing.
 
 
 @NgModule({
-  declarations: [
-    // JobStatusPipe, // added this pipe declaration else the job-details view was showing blank
-    EmployeeJobDetailsComponent,
-    JobLogisticsComponent,
-    JobMediaComponent,
-    JobDocumentsComponent,
-    // JobLogsComponent
-  ],
   imports: [
     CommonModule,
     IonicModule,
     SharedModule,
     SignaturePadModule,
-    EmployeeJobDetailsRoutingModule
+    EmployeeJobDetailsRoutingModule,
+    JobDocumentsComponent,
+    JobMediaComponent,
+    EmployeeJobDetailsComponent,
+    JobLogisticsComponent
   ],
   exports: [
     EmployeeJobDetailsComponent,

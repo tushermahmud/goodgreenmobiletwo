@@ -3,7 +3,7 @@
 /* eslint-disable @typescript-eslint/dot-notation */
 /* eslint-disable curly */
 /* eslint-disable no-var */
-import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, CUSTOM_ELEMENTS_SCHEMA, OnInit, ViewChild } from '@angular/core';
 import { Camera, CameraOptions } from '@awesome-cordova-plugins/camera/ngx';
 import {
     MediaCapture,
@@ -21,6 +21,7 @@ import {
     ActionSheetController,
     AlertController,
     AnimationController,
+    IonicModule,
     IonModal,
     LoadingController,
     NavController,
@@ -42,6 +43,7 @@ import { DevicePlatform } from 'src/app/definitions/device-platform.enum';
 import { AuthState } from 'src/app/state/auth/auth.state';
 import { GlobalHeaderObject } from 'src/app/models/global-header.model';
 import { WebView } from '@ionic-native/ionic-webview/ngx';
+import { CommonModule } from '@angular/common';
 
 
 SwiperCore.use([Pagination]);
@@ -64,6 +66,12 @@ const ALLOWED_IMAGE_MIME_TYPE_PNG = 'image/png';
     selector: 'app-video-capture',
     templateUrl: './video-capture.component.html',
     styleUrls: ['./video-capture.component.css'],
+    standalone: true,
+	imports: [
+		CommonModule,
+		IonicModule
+	],
+	schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class VideoCaptureComponent implements OnInit {
     @ViewChild(IonModal) modal: IonModal;

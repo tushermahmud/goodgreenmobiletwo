@@ -4,10 +4,9 @@ import { CommonModule } from '@angular/common';
 import { GetStartedRoutingModule } from './get-started-routing.module';
 import { GetStartedComponent } from './get-started.component';
 import { SwiperModule } from 'swiper/angular';
-import { IonicModule } from '@ionic/angular';
+import { GestureController, IonicModule } from '@ionic/angular';
 
 @NgModule({
-  declarations: [GetStartedComponent],
-  imports: [CommonModule, GetStartedRoutingModule, SwiperModule, IonicModule],
+  imports: [CommonModule, GetStartedRoutingModule, SwiperModule, IonicModule, GetStartedComponent],
 })
 export class GetStartedModule {}

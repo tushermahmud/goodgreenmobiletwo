@@ -1,12 +1,17 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, Input, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { Document, JobCard } from 'src/app/models/job-details.model';
 import { JdDocViewerComponent } from 'src/app/shared/components/jd-doc-viewer/jd-doc-viewer.component';
 
 @Component({
+  standalone: true,
   selector: 'app-job-documents',
   templateUrl: './job-documents.component.html',
-  styleUrls: ['./job-documents.component.css']
+  styleUrls: ['./job-documents.component.css'],
+  imports: [
+    JdDocViewerComponent
+  ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class JobDocumentsComponent implements OnInit {
 

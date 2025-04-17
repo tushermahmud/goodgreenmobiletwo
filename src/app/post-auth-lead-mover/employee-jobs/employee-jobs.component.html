@@ -91,7 +91,7 @@
             <ion-card-subtitle class="text-color-uj text-14px">{{ upComingJob?.jobCard?.projectDetails.name}}</ion-card-subtitle>
             <ion-note class="text-color-uj text-12px-weight-500">{{ upComingJob?.jobCard?.locations[0].address }} 
               {{ upComingJob?.jobCard?.locations[0].state }} {{ upComingJob?.jobCard?.locations[0].city }} {{ upComingJob.jobCard?.locations[0].zipcode }}</ion-note><br>
-            <ion-note class="backgroud-color-card--font-size">{{ upComingJob?.job?.scheduledDateTime | date:'longDate' }} @ {{ upComingJob?.job?.scheduledDateTime | date: 'shortTime'}}</ion-note>
+            <ion-note class="backgroud-color-card--font-size">{{ upComingJob?.job?.scheduledDateTime | date:'longDate' }}  {{ upComingJob?.job?.scheduledDateTime | date: 'shortTime'}}</ion-note>
           </ion-col>
           <ion-col size="1"> <ion-icon name="chevron-forward-outline" color="dark" size="small"></ion-icon></ion-col>
         </ion-row>

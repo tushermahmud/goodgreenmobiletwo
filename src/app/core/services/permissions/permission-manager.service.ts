@@ -78,8 +78,8 @@ export class PermissionManagerService {
     await this.platform.ready().then((readySource) => {
       console.log('Platform ready from', readySource);
 
-      const isIos = this.platform.is('ios' || 'iphone' || 'ipad');
-      const isAndroid = this.platform.is('android' || 'cordova' || 'desktop' || 'mobile' || 'mobileweb');
+      const isIos = this.platform.is('ios') || this.platform.is('iphone') || this.platform.is('ipad');
+      const isAndroid = this.platform.is('android') || 'cordova' || 'desktop' || 'mobile' || ('mobileweb');
 
       // Platform now ready, check for os type
       if (isAndroid) {

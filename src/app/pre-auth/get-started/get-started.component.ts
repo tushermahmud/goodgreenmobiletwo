@@ -1,6 +1,7 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, CUSTOM_ELEMENTS_SCHEMA, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { NavController } from '@ionic/angular';
+import { IonicModule, NavController } from '@ionic/angular';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { StorageService } from 'src/app/core/services/storage/storage-service.service';
@@ -11,16 +12,24 @@ import { AuthState } from 'src/app/state/auth/auth.state';
 import { getOrderData } from 'src/app/state/order/order.selectors';
 import { selectAllTodos } from 'src/app/state/todos/todo.selectors';
 import SwiperCore, { Pagination, Swiper } from 'swiper';
+import { SwiperModule } from 'swiper/angular';
 SwiperCore.use([Pagination]);
 
 @Component({
   selector: 'app-get-started',
   templateUrl: './get-started.component.html',
   styleUrls: ['./get-started.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: true,
+  imports: [
+    CommonModule,
+    IonicModule,
+    SwiperModule
+  ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class GetStartedComponent implements OnInit {
 
+export class GetStartedComponent implements OnInit {
   public allTodos$ = this.store.select(selectAllTodos);
   private readonly GET_STARTED = 'Get Started';
   private readonly MY_DASHBOARD = 'My Dashboard';

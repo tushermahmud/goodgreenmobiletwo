@@ -1,10 +1,18 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, Input, OnInit } from '@angular/core';
+import { IonicModule } from '@ionic/angular';
 import { Location } from 'src/app/models/job-details.model';
 
 @Component({
+  standalone: true,
   selector: 'app-job-logistics',
   templateUrl: './job-logistics.component.html',
-  styleUrls: ['./job-logistics.component.css']
+  styleUrls: ['./job-logistics.component.css'],
+  imports: [
+    CommonModule,
+    IonicModule,
+  ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class JobLogisticsComponent implements OnInit {
 

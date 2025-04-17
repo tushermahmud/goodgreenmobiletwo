@@ -13,12 +13,6 @@ import { SharedModule } from 'src/app/shared/shared.module';
 
 
 @NgModule({
-  declarations: [
-    ListOfServicesComponent,
-    OurServicesComponent,
-    OurServicesSubCategoryComponent,
-    AddActivityComponent
-  ],
   imports: [
     CommonModule,
     ListOfServicesRoutingModule,
@@ -26,7 +20,11 @@ import { SharedModule } from 'src/app/shared/shared.module';
     FormsModule,
     ReactiveFormsModule,
     IonicModule,
-    SharedModule
+    SharedModule,
+    ListOfServicesComponent,
+    OurServicesComponent,
+    OurServicesSubCategoryComponent,
+    AddActivityComponent
   ]
 })
 export class ListOfServicesModule { }

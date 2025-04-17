@@ -1,7 +1,7 @@
 import { Component, Inject, Injectable, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { IonContent, NavController, ToastController } from '@ionic/angular';
+import { IonContent, IonicModule, NavController, ToastController } from '@ionic/angular';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { GlobalHeaderObject } from 'src/app/models/global-header.model';
@@ -15,11 +15,20 @@ import { Platform } from '@ionic/angular';
 import { NotificationManagerService } from 'src/app/core/services/notifications/notification.service';
 import { NativeStorage } from '@ionic-native/native-storage/ngx';
 import { Device } from '@ionic-native/device/ngx';
+import { CommonModule } from '@angular/common';
+import { HeaderComponent } from 'src/app/shared/components/header/header.component';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
+  standalone: true,
+  imports: [
+    CommonModule,
+    IonicModule,
+    ReactiveFormsModule,
+    HeaderComponent
+  ],
 })
 export class LoginComponent implements OnInit {
   signinForm: FormGroup;

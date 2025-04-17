@@ -1,6 +1,8 @@
+import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { IonicModule } from '@ionic/angular';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { IonLoaderService } from 'src/app/core/services/ion-loader/ion-loader.service';
@@ -10,11 +12,24 @@ import { AppState } from 'src/app/state/app.state';
 import { AuthMeta } from 'src/app/state/auth/auth-meta.state';
 import { selectAuthData } from 'src/app/state/auth/auth.selectors';
 import { AuthState } from 'src/app/state/auth/auth.state';
+import { SharedModule } from '../../shared.module';
+import { JobHistoryRoutingModule } from './job-history-routing.module';
+import { HeaderComponent } from '../../components/header/header.component';
 
 @Component({
+  standalone: true,
   selector: 'app-job-history',
   templateUrl: './job-history.component.html',
-  styleUrls: ['./job-history.component.css']
+  styleUrls: ['./job-history.component.css'],
+  imports: [
+    CommonModule,
+    IonicModule,
+    SharedModule,
+    FormsModule,
+    ReactiveFormsModule,
+    JobHistoryRoutingModule,
+    HeaderComponent
+  ]
 })
 export class JobHistoryComponent implements OnInit {
   headerInfo: GlobalHeaderObject = {

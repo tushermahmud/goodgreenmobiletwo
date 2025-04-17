@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { NavController } from '@ionic/angular';
+import { IonicModule, NavController } from '@ionic/angular';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { OrderService } from 'src/app/core/services/order/order.service';
@@ -13,11 +13,18 @@ import { AuthState } from 'src/app/state/auth/auth.state';
 import { GlobalHeaderObject } from 'src/app/models/global-header.model';
 import { OrderState } from 'src/app/state/order/order.reducers';
 import { addEstimatedDate, addEstimatedTime } from 'src/app/state/order/order.actions';
+import { CommonModule } from '@angular/common';
 
 @Component({
     selector: 'app-review-service-request',
     templateUrl: './review-service-request.component.html',
-    styleUrls: ['./review-service-request.component.css']
+    styleUrls: ['./review-service-request.component.css'],
+    standalone: true,
+	imports: [
+		CommonModule,
+		IonicModule
+	],
+	schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class ReviewServiceRequestComponent implements OnInit {
 

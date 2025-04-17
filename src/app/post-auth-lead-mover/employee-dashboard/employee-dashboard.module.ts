@@ -9,16 +9,14 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
-  declarations: [
-    EmployeeDashboardComponent
-  ],
   imports: [
     CommonModule, 
     EmployeeDashboardRoutingModule,
     FormsModule,
     ReactiveFormsModule,
     IonicModule,
-    SharedModule 
+    SharedModule,
+    EmployeeDashboardComponent
   ],
   exports: [
     EmployeeDashboardComponent

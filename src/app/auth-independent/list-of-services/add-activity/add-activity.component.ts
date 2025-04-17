@@ -1,8 +1,8 @@
-import { Location } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { CommonModule, Location } from '@angular/common';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { NavController } from '@ionic/angular';
+import { IonicModule, NavController } from '@ionic/angular';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { GlobalHeaderObject } from 'src/app/models/global-header.model';
@@ -14,7 +14,14 @@ import { selectSelectedService } from 'src/app/state/order/order.selectors';
 @Component({
     selector: 'app-add-activity',
     templateUrl: './add-activity.component.html',
-    styleUrls: ['./add-activity.component.css']
+    styleUrls: ['./add-activity.component.css'],
+    standalone: true,
+	imports: [
+		CommonModule,
+		IonicModule,
+        ReactiveFormsModule
+	],
+	schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AddActivityComponent implements OnInit {
 

@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AlertController, NavController } from '@ionic/angular';
+import { AlertController, IonicModule, NavController } from '@ionic/angular';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { IonLoaderService } from 'src/app/core/services/ion-loader/ion-loader.service';
@@ -13,7 +14,13 @@ import { AuthState } from 'src/app/state/auth/auth.state';
 @Component({
   selector: 'app-employee-jobs',
   templateUrl: './employee-jobs.component.html',
-  styleUrls: ['./employee-jobs.component.css']
+  styleUrls: ['./employee-jobs.component.css'],
+  standalone: true,
+	imports: [
+		CommonModule,
+		IonicModule
+	],
+	schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class EmployeeJobsComponent implements OnInit {
   getAuthState: Observable<AuthState>;

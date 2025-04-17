@@ -1,6 +1,8 @@
-import { Component, EventEmitter, Input, NgZone, OnInit, Output } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, EventEmitter, Input, NgZone, OnInit, Output } from '@angular/core';
+import { FormArray, FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { NativeGeocoder, NativeGeocoderOptions, NativeGeocoderResult } from '@ionic-native/native-geocoder/ngx';
+import { IonicModule } from '@ionic/angular';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { CommonService } from 'src/app/core/services/common/common.service';
@@ -16,7 +18,14 @@ declare let google;
 @Component({
   selector: 'app-order-logistics',
   templateUrl: './order-logistics.component.html',
-  styleUrls: ['./order-logistics.component.css']
+  styleUrls: ['./order-logistics.component.css'],
+  standalone: true,
+	imports: [
+		CommonModule,
+		IonicModule,
+    ReactiveFormsModule
+	],
+	schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class OrderLogisticsComponent implements OnInit {
 

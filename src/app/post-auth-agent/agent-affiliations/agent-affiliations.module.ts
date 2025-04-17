@@ -11,18 +11,16 @@ import { AgentAffiliationsRoutingModule } from './agent-affiliations-routing.mod
 
 
 @NgModule({
-  declarations: [
-    AgentAffiliationsComponent,
-    AffiliationsListComponent,
-    InvitationsListComponent
-  ],
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
     IonicModule,
     SharedModule,
-    AgentAffiliationsRoutingModule
+    AgentAffiliationsRoutingModule,
+    AgentAffiliationsComponent,
+    AffiliationsListComponent,
+    InvitationsListComponent
   ],
   exports: [
     AgentAffiliationsComponent,

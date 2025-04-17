@@ -26,9 +26,8 @@ import { SharedModule } from './shared/shared.module';
 import { DatePipe } from '@angular/common';
 
 @NgModule({
-    declarations: [AppComponent],
-    entryComponents: [],
     imports: [
+        AppComponent,
         BrowserModule,
         IonicModule.forRoot(),
         AppRoutingModule,

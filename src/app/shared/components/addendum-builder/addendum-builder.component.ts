@@ -1,16 +1,25 @@
-import { DatePipe } from '@angular/common';
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { IonDatetime, ModalController, PopoverController } from '@ionic/angular';
+import { CommonModule, DatePipe } from '@angular/common';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { FormArray, FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { IonDatetime, IonicModule, ModalController, PopoverController } from '@ionic/angular';
 import { CommonService } from 'src/app/core/services/common/common.service';
 import { LeadHelperService } from 'src/app/core/services/lead-helper/lead-helper.service';
 import { FormTypes } from 'src/app/models/addendum.model';
 import { GlobalHeaderObject } from 'src/app/models/global-header.model';
+import { SharedModule } from '../../shared.module';
 
 @Component({
   selector: 'app-addendum-builder',
   templateUrl: './addendum-builder.component.html',
-  styleUrls: ['./addendum-builder.component.css']
+  styleUrls: ['./addendum-builder.component.css'],
+  standalone: true,
+  imports: [
+    CommonModule,
+    IonicModule,
+    SharedModule,
+    ReactiveFormsModule
+  ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AddendumBuilderComponent implements OnInit {
 

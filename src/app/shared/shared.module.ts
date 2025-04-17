@@ -29,7 +29,6 @@ import { Stripe } from '@ionic-native/stripe/ngx';
 
 @NgModule({
     imports: [
-        IonicModule,
         CommonModule,
         IonicModule.forRoot(),
         FormsModule,

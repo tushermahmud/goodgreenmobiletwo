@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { IonicModule } from '@ionic/angular';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { OrderService } from 'src/app/core/services/order/order.service';
@@ -11,7 +13,13 @@ import { AuthState } from 'src/app/state/auth/auth.state';
 @Component({
   selector: 'app-service-request-detail',
   templateUrl: './service-request-detail.component.html',
-  styleUrls: ['./service-request-detail.component.css']
+  styleUrls: ['./service-request-detail.component.css'],
+  standalone: true,
+	imports: [
+		CommonModule,
+		IonicModule
+	],
+	schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class ServiceRequestDetailComponent implements OnInit {
 

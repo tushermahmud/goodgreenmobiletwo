@@ -20,14 +20,15 @@ import { EmailVerificationComponent } from './email-verification/opt-verificatio
 
 
 @NgModule({
-  declarations: [UserProfileComponent, EmailVerificationComponent],
+
   imports: [
     CommonModule,
     IonicModule,
     UserProfileRoutingModule,
     SharedModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    UserProfileComponent, EmailVerificationComponent
   ],
   providers: [
     AppVersion,

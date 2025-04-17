@@ -12,7 +12,6 @@ import { FirebaseX } from '@ionic-native/firebase-x/ngx';
 
 
 @NgModule({
-  declarations: [LoginComponent],
   imports: [
     CommonModule,
     LoginRoutingModule,
@@ -20,7 +19,8 @@ import { FirebaseX } from '@ionic-native/firebase-x/ngx';
     ReactiveFormsModule,
     SharedModule,
     IonicModule,
-    LayoutModule
+    LayoutModule,
+    LoginComponent
   ],
   providers:[
     Device,

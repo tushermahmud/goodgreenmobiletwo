@@ -1,13 +1,15 @@
+import { CommonModule } from '@angular/common';
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AlertController } from '@ionic/angular';
+import { AlertController, IonicModule } from '@ionic/angular';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { MustMatch } from 'src/app/core/helpers/must-match.validator';
 import { AuthService } from 'src/app/core/services/auth/auth.service';
 import { IonLoaderService } from 'src/app/core/services/ion-loader/ion-loader.service';
 import { GlobalHeaderObject } from 'src/app/models/global-header.model';
+import { HeaderComponent } from 'src/app/shared/components/header/header.component';
 import { AppState } from 'src/app/state/app.state';
 import { logInSuccess } from 'src/app/state/auth/auth.actions';
 import { selectAuthData } from 'src/app/state/auth/auth.selectors';
@@ -19,6 +21,13 @@ import { getOrderData } from 'src/app/state/order/order.selectors';
     selector: 'app-register',
     templateUrl: './register.component.html',
     styleUrls: ['./register.component.scss'],
+    standalone: true,
+  imports: [
+    CommonModule,
+    IonicModule,
+    ReactiveFormsModule,
+    HeaderComponent
+  ],
 })
 export class RegisterComponent implements OnInit {
 

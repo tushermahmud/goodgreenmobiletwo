@@ -23,11 +23,7 @@ import { MediaStreamingService } from 'src/app/core/services/media-streaming/med
 
 
 @NgModule({
-  declarations: [
-    OrderDetailsComponent,
-    OrderLogisticsComponent,
-    OrderMediaComponent
-  ],
+
   imports: [
     CommonModule,
     SharedModule,
@@ -35,6 +31,9 @@ import { MediaStreamingService } from 'src/app/core/services/media-streaming/med
     LayoutModule,
     FormsModule,
     ReactiveFormsModule,
+    OrderDetailsComponent,
+    OrderLogisticsComponent,
+    OrderMediaComponent
   ],
   exports: [
     OrderDetailsComponent,

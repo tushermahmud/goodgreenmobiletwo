@@ -1,12 +1,14 @@
-import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { ChangeDetectorRef, Component, CUSTOM_ELEMENTS_SCHEMA, OnInit, ViewChild } from '@angular/core';
 import { Route, Router } from '@angular/router';
-import { IonAccordionGroup, NavController } from '@ionic/angular';
+import { IonAccordionGroup, IonicModule, NavController } from '@ionic/angular';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { AgentService } from 'src/app/core/services/agent/agent.service';
 import { IonLoaderService } from 'src/app/core/services/ion-loader/ion-loader.service';
 import { ServiceRequestList } from 'src/app/models/agend-dashboard';
 import { GlobalHeaderObject } from 'src/app/models/global-header.model';
+import { HeaderComponent } from 'src/app/shared/components/header/header.component';
 import { AppState } from 'src/app/state/app.state';
 import { AuthMeta } from 'src/app/state/auth/auth-meta.state';
 import { selectAuthData } from 'src/app/state/auth/auth.selectors';
@@ -16,7 +18,14 @@ import { changeGetStarted } from 'src/app/state/order/order.actions';
 @Component({
   selector: 'app-agent-dashboard',
   templateUrl: './agent-dashboard.component.html',
-  styleUrls: ['./agent-dashboard.component.css']
+  styleUrls: ['./agent-dashboard.component.css'],
+  standalone: true,
+	imports: [
+		CommonModule,
+		IonicModule,
+    HeaderComponent
+	],
+	schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AgentDashboardComponent implements OnInit {
 

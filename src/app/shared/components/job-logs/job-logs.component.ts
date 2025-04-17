@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { IonLoaderService } from 'src/app/core/services/ion-loader/ion-loader.service';
@@ -6,11 +6,21 @@ import { LeadHelperService } from 'src/app/core/services/lead-helper/lead-helper
 import { GlobalHeaderObject } from 'src/app/models/global-header.model';
 import { JobLogs } from 'src/app/models/job-logs.model';
 import { AppState } from 'src/app/state/app.state';
+import { SharedModule } from '../../shared.module';
+import { IonicModule } from '@ionic/angular';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-job-logs',
   templateUrl: './job-logs.component.html',
-  styleUrls: ['./job-logs.component.css']
+  styleUrls: ['./job-logs.component.css'],
+  standalone: true,
+  imports: [
+    CommonModule,
+    IonicModule,
+    SharedModule,
+  ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class JobLogsComponent implements OnInit {
 

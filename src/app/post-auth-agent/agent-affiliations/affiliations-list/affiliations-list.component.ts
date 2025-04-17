@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit } from '@angular/core';
+import { IonicModule } from '@ionic/angular';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { AgentService } from 'src/app/core/services/agent/agent.service';
@@ -11,7 +13,13 @@ import { AuthState } from 'src/app/state/auth/auth.state';
 @Component({
   selector: 'app-affiliations-list',
   templateUrl: './affiliations-list.component.html',
-  styleUrls: ['./affiliations-list.component.css']
+  styleUrls: ['./affiliations-list.component.css'],
+  standalone: true,
+	imports: [
+		CommonModule,
+		IonicModule
+	],
+	schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AffiliationsListComponent implements OnInit {
 

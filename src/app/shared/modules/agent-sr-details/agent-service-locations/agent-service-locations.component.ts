@@ -1,10 +1,13 @@
-import { Component, EventEmitter, Input, NgZone, OnInit, Output } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, EventEmitter, Input, NgZone, OnInit, Output } from '@angular/core';
+import { FormArray, FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { NativeGeocoder, NativeGeocoderOptions, NativeGeocoderResult } from '@ionic-native/native-geocoder/ngx';
+import { IonicModule } from '@ionic/angular';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { CommonService } from 'src/app/core/services/common/common.service';
 import { OrderService } from 'src/app/core/services/order/order.service';
+import { SharedModule } from 'src/app/shared/shared.module';
 import { AppState } from 'src/app/state/app.state';
 import { selectAuthData } from 'src/app/state/auth/auth.selectors';
 import { AuthState } from 'src/app/state/auth/auth.state';
@@ -14,9 +17,17 @@ import { OrderState } from 'src/app/state/order/order.reducers';
 declare let google;
 
 @Component({
+  standalone: true,
   selector: 'app-agent-service-locations',
   templateUrl: './agent-service-locations.component.html',
-  styleUrls: ['./agent-service-locations.component.css']
+  styleUrls: ['./agent-service-locations.component.css'],
+  imports: [
+    CommonModule,
+    IonicModule,
+    SharedModule,
+    ReactiveFormsModule
+  ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 
 export class AgentServiceLocationsComponent implements OnInit {
