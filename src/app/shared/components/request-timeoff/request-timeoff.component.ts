@@ -1,17 +1,26 @@
-import { DatePipe } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { CommonModule, DatePipe } from '@angular/common';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AlertController, ModalController, NavParams } from '@ionic/angular';
+import { AlertController, IonicModule, ModalController, NavParams } from '@ionic/angular';
 import { IonLoaderService } from 'src/app/core/services/ion-loader/ion-loader.service';
 import { LeadHelperService } from 'src/app/core/services/lead-helper/lead-helper.service';
 import { TimeOffStatus } from 'src/app/definitions/time-off-status.enum';
 import { GlobalHeaderObject } from 'src/app/models/global-header.model';
+import { SharedModule } from '../../shared.module';
 
 @Component({
+  standalone: true,
   selector: 'app-request-timeoff',
   templateUrl: './request-timeoff.component.html',
-  styleUrls: ['./request-timeoff.component.css']
+  styleUrls: ['./request-timeoff.component.css'],
+  imports: [
+    CommonModule,
+    IonicModule,
+    SharedModule,
+    ReactiveFormsModule
+  ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class RequestTimeoffComponent implements OnInit {
 

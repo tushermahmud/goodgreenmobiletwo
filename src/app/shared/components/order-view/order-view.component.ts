@@ -1,7 +1,7 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, CUSTOM_ELEMENTS_SCHEMA, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { StreamingMedia, StreamingVideoOptions } from '@awesome-cordova-plugins/streaming-media/ngx';
-import { ActionSheetController, AlertController, NavController, RefresherCustomEvent } from '@ionic/angular';
+import { ActionSheetController, AlertController, IonicModule, NavController, RefresherCustomEvent } from '@ionic/angular';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { IonLoaderService } from 'src/app/core/services/ion-loader/ion-loader.service';
@@ -14,11 +14,20 @@ import { selectAuthData } from 'src/app/state/auth/auth.selectors';
 import { AuthState } from 'src/app/state/auth/auth.state';
 import { PhotoViewer } from '@awesome-cordova-plugins/photo-viewer/ngx';
 import { MediaStreamingService } from 'src/app/core/services/media-streaming/media-streaming.service';
+import { CommonModule } from '@angular/common';
+import { SharedModule } from '../../shared.module';
 
 @Component({
+  standalone: true,
   selector: 'app-order-view',
   templateUrl: './order-view.component.html',
-  styleUrls: ['./order-view.component.css']
+  styleUrls: ['./order-view.component.css'],
+  imports: [
+    CommonModule,
+    IonicModule,
+    SharedModule,
+  ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class OrderViewComponent implements OnInit {
   requestId: any;
