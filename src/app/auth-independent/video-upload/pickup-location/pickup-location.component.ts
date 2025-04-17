@@ -1,9 +1,9 @@
-import { DatePipe } from '@angular/common';
-import { Component, ElementRef, NgZone, OnInit, ViewChild } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { CommonModule, DatePipe } from '@angular/common';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, ElementRef, NgZone, OnInit, ViewChild } from '@angular/core';
+import { FormArray, FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NativeGeocoder, NativeGeocoderResult, NativeGeocoderOptions } from '@ionic-native/native-geocoder/ngx';
-import { AlertController, ModalController, NavController } from '@ionic/angular';
+import { AlertController, IonicModule, ModalController, NavController } from '@ionic/angular';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { DEFAULT_SERVICE_LABEL,
@@ -35,6 +35,13 @@ declare var google;
     selector: 'app-pickup-location',
     templateUrl: './pickup-location.component.html',
     styleUrls: ['./pickup-location.component.css'],
+    standalone: true,
+	imports: [
+		CommonModule,
+		IonicModule,
+        ReactiveFormsModule
+	],
+	schemas: [CUSTOM_ELEMENTS_SCHEMA]
     // providers:[DatePipe]
 })
 export class PickupLocationComponent implements OnInit {

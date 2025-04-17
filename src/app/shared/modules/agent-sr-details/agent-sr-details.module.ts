@@ -26,7 +26,12 @@ import { AgentSrDetailsRoutingModule } from './agent-sr-details-routing.module';
 
 
 @NgModule({
- 
+  // declarations: [
+  //   AgentSrDetailsComponent,
+  //   AgentServiceDocumetsComponent,
+  //   AgentServiceMediaComponent,
+  //   AgentServiceLocationsComponent
+  // ],
   imports: [
     CommonModule,
     IonicModule,

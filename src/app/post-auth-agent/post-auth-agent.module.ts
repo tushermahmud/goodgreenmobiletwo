@@ -13,9 +13,6 @@ import { AgentSrDetailsModule } from '../shared/modules/agent-sr-details/agent-s
 
 
 @NgModule({
-  declarations: [
-    PostAuthAgentComponent,
-  ],
   imports: [
     CommonModule,
     FormsModule,
@@ -27,6 +24,7 @@ import { AgentSrDetailsModule } from '../shared/modules/agent-sr-details/agent-s
     AgentAffiliationsModule,
     AgentSrDetailsModule,
     // AgentProfileModule
+    PostAuthAgentComponent
   ]
 })
 export class PostAuthAgentModule { }

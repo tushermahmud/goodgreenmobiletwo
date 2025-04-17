@@ -1,10 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit } from '@angular/core';
+import { IonicModule } from '@ionic/angular';
 import { GlobalHeaderObject } from 'src/app/models/global-header.model';
 
 @Component({
   selector: 'app-agent-affiliations',
   templateUrl: './agent-affiliations.component.html',
-  styleUrls: ['./agent-affiliations.component.css']
+  styleUrls: ['./agent-affiliations.component.css'],
+  standalone: true,
+	imports: [
+		CommonModule,
+		IonicModule
+	],
+	schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AgentAffiliationsComponent implements OnInit {
 

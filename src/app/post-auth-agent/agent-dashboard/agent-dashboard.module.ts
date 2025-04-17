@@ -9,16 +9,14 @@ import { SharedModule } from 'src/app/shared/shared.module';
 
 
 @NgModule({
-  declarations: [
-    AgentDashboardComponent,
-  ],
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
     IonicModule,
     SharedModule,
-    AgentDashboardRoutingModule
+    AgentDashboardRoutingModule,
+    AgentDashboardComponent
   ],
   exports: [
     AgentDashboardComponent

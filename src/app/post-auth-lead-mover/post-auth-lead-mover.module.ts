@@ -25,13 +25,6 @@ import { MediaStreamingService } from '../core/services/media-streaming/media-st
 
 
 @NgModule({
-  declarations: [
-    PostAuthLeadMoverComponent,
-    // TimeOffsComponent,
-    // JobHistoryComponent
-    // EmployeeDashboardComponent,
-    // EmployeeJobsComponent
-  ],
   imports: [
     CommonModule,
     FormsModule,
@@ -46,7 +39,8 @@ import { MediaStreamingService } from '../core/services/media-streaming/media-st
     EmployeeNotificationsModule,
     TimeOffsModule,
     JobHistoryModule,
-    OngoingJobsModule
+    OngoingJobsModule,
+    PostAuthLeadMoverComponent
   ],
   providers: [
     Geolocation, 

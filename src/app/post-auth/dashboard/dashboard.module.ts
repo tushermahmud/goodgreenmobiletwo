@@ -23,15 +23,7 @@ import { OrderDetailsModule } from './order-details/order-details.module';
 
 
 @NgModule({
-  declarations: [
-    //pipe
-    DashboardComponent,
-    ViewQuotesComponent,
-    ViewVendorQuoteComponent,
-    ServiceRequestDetailComponent,
-    PaymentComponent,
-    ProcessPaymentsComponent,
-  ],
+
   imports: [
     CommonModule,
     DashboardRoutingModule,
@@ -40,7 +32,13 @@ import { OrderDetailsModule } from './order-details/order-details.module';
     SharedModule,
     IonicModule,
     LayoutModule,
-    OrderDetailsModule
+    OrderDetailsModule,
+    DashboardComponent,
+    ViewQuotesComponent,
+    ViewVendorQuoteComponent,
+    ServiceRequestDetailComponent,
+    PaymentComponent,
+    ProcessPaymentsComponent,
 
   ],
   providers: [Stripe, StreamingMedia, NativeGeocoder, PhotoViewer],

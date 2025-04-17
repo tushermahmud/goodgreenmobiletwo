@@ -9,15 +9,14 @@ import { IonicModule } from '@ionic/angular';
 
 
 @NgModule({
-  declarations: [
-    VendorListComponent
-  ],
+
   imports: [
     CommonModule,
     VendorListRoutingModule,
     IonicModule,
     SharedModule,
-    LayoutModule
+    LayoutModule,
+    VendorListComponent
   ]
 })
 export class VendorListModule { }

@@ -1,6 +1,7 @@
-import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild, ViewChildren } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { AfterViewInit, Component, CUSTOM_ELEMENTS_SCHEMA, OnDestroy, OnInit, ViewChild, ViewChildren } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { IonContent, IonTextarea } from '@ionic/angular';
+import { IonContent, IonicModule, IonTextarea } from '@ionic/angular';
 import { Store } from '@ngrx/store';
 import { Conversation, JSONValue, Message } from '@twilio/conversations';
 import { Observable, Subject } from 'rxjs';
@@ -15,7 +16,13 @@ import { selectAuthData } from 'src/app/state/auth/auth.selectors';
 @Component({
 	selector: 'app-chat',
 	templateUrl: './chat.component.html',
-	styleUrls: ['./chat.component.css']
+	styleUrls: ['./chat.component.css'],
+	standalone: true,
+	imports: [
+		CommonModule,
+		IonicModule
+	],
+	schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class ChatComponent implements OnInit , OnDestroy {
 

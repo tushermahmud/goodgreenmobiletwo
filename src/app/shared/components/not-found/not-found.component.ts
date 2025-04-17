@@ -11,7 +11,7 @@ import { CommonModule } from '@angular/common';
   imports: [
     CommonModule,
     IonicModule,
-    SharedModule,
+    // SharedModule,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

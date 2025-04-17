@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { NavController, RefresherCustomEvent } from '@ionic/angular';
+import { IonicModule, NavController, RefresherCustomEvent } from '@ionic/angular';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { IonLoaderService } from 'src/app/core/services/ion-loader/ion-loader.service';
@@ -14,6 +15,12 @@ import { AuthState } from 'src/app/state/auth/auth.state';
     selector: 'app-view-quotes',
     templateUrl: './view-quotes.component.html',
     styleUrls: ['./view-quotes.component.css'],
+    standalone: true,
+	imports: [
+		CommonModule,
+		IonicModule
+	],
+	schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class ViewQuotesComponent implements OnInit {
     itemId;

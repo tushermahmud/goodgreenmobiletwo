@@ -1,8 +1,9 @@
+import { CommonModule } from '@angular/common';
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AlertController, LoadingController, NavController, ToastController } from '@ionic/angular';
+import { AlertController, IonicModule, LoadingController, NavController, ToastController } from '@ionic/angular';
 import { Store } from '@ngrx/store';
 import { EMPTY, Observable, of } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
@@ -19,7 +20,14 @@ import { getOrderData } from 'src/app/state/order/order.selectors';
 @Component({
   selector: 'app-email-verification',
   templateUrl: './email-verification.component.html',
-  styleUrls: ['./email-verification.component.css']
+  styleUrls: ['./email-verification.component.css'],
+  standalone: true,
+	imports: [
+		CommonModule,
+		IonicModule,
+    ReactiveFormsModule
+	],
+	schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class EmailVerificationComponent implements OnInit {
 

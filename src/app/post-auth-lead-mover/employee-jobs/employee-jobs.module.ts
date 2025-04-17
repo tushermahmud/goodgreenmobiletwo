@@ -7,16 +7,14 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { EmployeeJobsRoutingModule } from './employee-jobs-routing.module';
 
 @NgModule({
-  declarations: [
-    EmployeeJobsComponent
-  ],
   imports: [
     CommonModule,
     IonicModule,
     FormsModule,
     ReactiveFormsModule,
     SharedModule,
-    EmployeeJobsRoutingModule
+    EmployeeJobsRoutingModule,
+    EmployeeJobsComponent
   ],
   exports: [
     EmployeeJobsComponent

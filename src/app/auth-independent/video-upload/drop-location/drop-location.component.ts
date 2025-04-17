@@ -1,8 +1,9 @@
-import { Component, NgZone, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, NgZone, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NativeGeocoder, NativeGeocoderResult, NativeGeocoderOptions } from '@ionic-native/native-geocoder/ngx';
-import { NavController } from '@ionic/angular';
+import { IonicModule, NavController } from '@ionic/angular';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { DEFAULT_SERVICE_LABEL, SERVICE_REQ_MAX_STEPS, SERVICE_REQ_STEP_2 } from 'src/app/auth-independent/video-upload/video-upload-constants';
@@ -18,7 +19,14 @@ declare var google;
 @Component({
     selector: 'app-drop-location',
     templateUrl: './drop-location.component.html',
-    styleUrls: ['./drop-location.component.css']
+    styleUrls: ['./drop-location.component.css'],
+    standalone: true,
+	imports: [
+		CommonModule,
+		IonicModule,
+        ReactiveFormsModule
+	],
+	schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class DropLocationComponent implements OnInit {
 

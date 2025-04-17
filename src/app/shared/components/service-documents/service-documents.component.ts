@@ -9,9 +9,6 @@ import { DocumentViewerComponent } from '../document-viewer/document-viewer.comp
     selector: 'app-service-documents',
     templateUrl: './service-documents.component.html',
     styleUrls: ['./service-documents.component.css'],
-    imports: [
-        DocumentViewerComponent
-    ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class ServiceDocumentsComponent implements OnInit {

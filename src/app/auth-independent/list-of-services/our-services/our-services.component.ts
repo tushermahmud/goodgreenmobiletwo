@@ -1,6 +1,7 @@
-import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { ChangeDetectorRef, Component, CUSTOM_ELEMENTS_SCHEMA, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { AlertController, IonSelect, NavController } from '@ionic/angular';
+import { AlertController, IonicModule, IonSelect, NavController } from '@ionic/angular';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { AgentService } from 'src/app/core/services/agent/agent.service';
@@ -18,7 +19,13 @@ import { selectSelectedService } from 'src/app/state/order/order.selectors';
 @Component({
   selector: 'app-our-services',
   templateUrl: './our-services.component.html',
-  styleUrls: ['./our-services.component.css']
+  styleUrls: ['./our-services.component.css'],
+  standalone: true,
+	imports: [
+		CommonModule,
+		IonicModule
+	],
+	schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class OurServicesComponent implements OnInit {
 

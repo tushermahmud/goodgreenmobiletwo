@@ -1,12 +1,22 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { ChangeDetectorRef, Component, CUSTOM_ELEMENTS_SCHEMA, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { IonicModule } from '@ionic/angular';
 import SwiperCore, { Pagination, SwiperOptions } from 'swiper';
+import { SwiperModule } from 'swiper/angular';
 SwiperCore.use([Pagination]);
 
 @Component({
   selector: 'app-list-of-services',
   templateUrl: './list-of-services.component.html',
-  styleUrls: ['./list-of-services.component.css']
+  styleUrls: ['./list-of-services.component.css'],
+  standalone: true,
+	imports: [
+		CommonModule,
+		IonicModule,
+    SwiperModule
+	],
+	schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class ListOfServicesComponent implements OnInit {
 

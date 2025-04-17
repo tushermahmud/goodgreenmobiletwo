@@ -1,5 +1,5 @@
-import { Component, NgZone, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, NgZone, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Camera, CameraOptions } from '@awesome-cordova-plugins/camera/ngx';
 import { AppVersion } from '@awesome-cordova-plugins/app-version/ngx';
@@ -19,7 +19,7 @@ import {
   NativeGeocoderOptions,
   NativeGeocoderResult,
 } from '@ionic-native/native-geocoder/ngx';
-import { ActionSheetController, LoadingController } from '@ionic/angular';
+import { ActionSheetController, IonicModule, LoadingController } from '@ionic/angular';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { AuthService } from 'src/app/core/services/auth/auth.service';
@@ -45,6 +45,7 @@ import { StorageService } from 'src/app/core/services/storage/storage-service.se
 import { IonLoaderService } from 'src/app/core/services/ion-loader/ion-loader.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import phone from 'phone';
+import { CommonModule } from '@angular/common';
 
 // eslint-disable-next-line no-var
 declare var google;
@@ -54,6 +55,13 @@ declare var google;
   templateUrl: './user-profile.component.html',
   providers: [Camera],
   styleUrls: ['./user-profile.component.css'],
+  standalone: true,
+	imports: [
+		CommonModule,
+		IonicModule,
+    ReactiveFormsModule
+	],
+	schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class UserProfileComponent implements OnInit {
 

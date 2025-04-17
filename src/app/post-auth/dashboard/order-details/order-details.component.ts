@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { Camera, CameraOptions } from '@awesome-cordova-plugins/camera/ngx';
@@ -9,6 +10,7 @@ import {
     StreamingVideoOptions,
 } from '@awesome-cordova-plugins/streaming-media/ngx';
 import {
+    IonicModule,
     ModalController,
     NavController,
     RefresherCustomEvent,
@@ -35,7 +37,13 @@ import { AuthState } from 'src/app/state/auth/auth.state';
 @Component({
     selector: 'app-order-details',
     templateUrl: './order-details.component.html',
-    styleUrls: ['./order-details.component.css']
+    styleUrls: ['./order-details.component.css'],
+    standalone: true,
+	imports: [
+		CommonModule,
+		IonicModule
+	],
+	schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class OrderDetailsComponent implements OnInit {
     // the service-request id

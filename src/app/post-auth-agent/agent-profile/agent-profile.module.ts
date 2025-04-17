@@ -18,9 +18,6 @@ import { HeaderComponent } from 'src/app/shared/components/header/header.compone
 
 
 @NgModule({
-  declarations: [
-    AgentProfileComponent,
-  ],
   imports: [
     CommonModule,
     FormsModule,
@@ -28,6 +25,7 @@ import { HeaderComponent } from 'src/app/shared/components/header/header.compone
     AgentProfileRoutingModule,
     IonicModule,
     SharedModule,
+    AgentProfileComponent
     // HeaderComponent
   ],
   providers:[

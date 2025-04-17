@@ -11,7 +11,6 @@ import { IonicModule } from '@ionic/angular';
 
 
 @NgModule({
-  declarations: [ForgotPasswordComponent],
   imports: [
     CommonModule,
     IonicModule,
@@ -19,7 +18,8 @@ import { IonicModule } from '@ionic/angular';
     SwiperModule,
     FormsModule,
     ReactiveFormsModule,
-    SharedModule
+    SharedModule,
+    ForgotPasswordComponent
   ]
 })
 export class ForgotPasswordModule { }

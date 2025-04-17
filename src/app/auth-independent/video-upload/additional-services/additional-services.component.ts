@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, CUSTOM_ELEMENTS_SCHEMA, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
@@ -7,7 +7,7 @@ import { AppState } from 'src/app/state/app.state';
 import { selectAuthData } from 'src/app/state/auth/auth.selectors';
 import { addAdditionalServices, changeGetStarted } from 'src/app/state/order/order.actions';
 import { getOrderData } from 'src/app/state/order/order.selectors';
-import { AlertController, NavController } from '@ionic/angular';
+import { AlertController, IonicModule, NavController } from '@ionic/angular';
 import { ServiceOffering } from 'src/app/models/service-offering.model';
 import { ServiceCategory } from 'src/app/definitions/service-category.enum';
 import { DEFAULT_SERVICE_LABEL } from 'src/app/auth-independent/video-upload/video-upload-constants';
@@ -19,6 +19,7 @@ import { GlobalHeaderObject } from 'src/app/models/global-header.model';
 import { IonLoaderService } from 'src/app/core/services/ion-loader/ion-loader.service';
 import { CreateNewRequest } from 'src/app/models/agent-createSR.model';
 import { AgentService } from 'src/app/core/services/agent/agent.service';
+import { CommonModule } from '@angular/common';
 
 
 type MediaType = 'video' | 'image';
@@ -26,7 +27,13 @@ type MediaType = 'video' | 'image';
 @Component({
     selector: 'app-additional-services',
     templateUrl: './additional-services.component.html',
-    styleUrls: ['./additional-services.component.css']
+    styleUrls: ['./additional-services.component.css'],
+    standalone: true,
+	imports: [
+		CommonModule,
+		IonicModule
+	],
+	schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AdditionalServicesComponent implements OnInit {
 

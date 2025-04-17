@@ -9,15 +9,13 @@ import { IonicModule } from '@ionic/angular';
 
 
 @NgModule({
-  declarations: [
-    ChatComponent
-  ],
   imports: [
     CommonModule,
     ChatRoutingModule,
     SharedModule,
     FormsModule,
-    IonicModule
+    IonicModule,
+    ChatComponent
   ]
 })
 export class ChatModule { }

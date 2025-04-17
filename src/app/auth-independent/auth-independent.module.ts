@@ -6,7 +6,7 @@ import { IonicModule } from '@ionic/angular';
 
 
 @NgModule({
-  declarations: [],
+
   imports: [
     CommonModule,
     IonicModule,

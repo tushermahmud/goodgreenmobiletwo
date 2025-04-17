@@ -9,14 +9,14 @@ import { SharedModule } from 'src/app/shared/shared.module';
 
 
 @NgModule({
-  declarations: [RegisterComponent],
   imports: [
     CommonModule,
     RegisterRoutingModule,
     FormsModule,
     ReactiveFormsModule,
     SharedModule,
-    IonicModule
+    IonicModule,
+    RegisterComponent
   ]
 })
 export class RegisterModule { }

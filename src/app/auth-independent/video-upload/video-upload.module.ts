@@ -28,15 +28,6 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { WebView } from '@ionic-native/ionic-webview/ngx';
 
 @NgModule({
-    declarations: [
-        VideoUploadComponent,
-        VideoInstructionsComponent,
-        VideoCaptureComponent,
-        PickupLocationComponent,
-        DropLocationComponent,
-        ReviewServiceRequestComponent,
-        AdditionalServicesComponent,
-    ],
     imports: [
         CommonModule,
         VideoUploadRoutingModule,
@@ -44,7 +35,14 @@ import { WebView } from '@ionic-native/ionic-webview/ngx';
         ReactiveFormsModule,
         IonicModule,
         SwiperModule,
-        SharedModule
+        SharedModule,
+        VideoUploadComponent,
+        VideoInstructionsComponent,
+        VideoCaptureComponent,
+        PickupLocationComponent,
+        DropLocationComponent,
+        ReviewServiceRequestComponent,
+        AdditionalServicesComponent,
     ],
     providers: [
         WebView,

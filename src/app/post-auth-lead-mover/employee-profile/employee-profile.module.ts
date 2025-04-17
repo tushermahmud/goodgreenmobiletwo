@@ -18,16 +18,15 @@ import { EmployeeProfileRoutingModule } from './employee-profile-routing.module'
 
 
 @NgModule({
-  declarations: [
-    EmployeeProfileComponent
-  ],
+
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
     IonicModule,
     SharedModule,
-    EmployeeProfileRoutingModule
+    EmployeeProfileRoutingModule,
+    EmployeeProfileComponent,
   ],
   // exports: [
   //   EmployeeProfileComponent

@@ -48,7 +48,7 @@
     "@ionic-native/native-storage": "^5.36.0",
     "@ionic-native/status-bar": "^5.36.0",
     "@ionic-native/stripe": "^5.36.0",
-    "@ionic/angular": "^8.0.0",
+    "@ionic/angular": "^8.5.5",
     "@ionic/storage-angular": "^4.0.0",
     "@ngrx/effects": "^19.1.0",
     "@ngrx/store": "^19.1.0",
@@ -58,9 +58,9 @@
     "ionicons": "^7.0.0",
     "moment": "^2.30.1",
     "phone": "^3.1.58",
-    "rxjs": "~7.8.0",
+    "rxjs": "~6.5.3",
     "signature_pad": "^5.0.7",
-    "swiper": "^11.2.6",
+    "swiper": "^8.4.7",
     "tslib": "^2.3.0",
     "zone.js": "~0.15.0"
   },
@@ -75,6 +75,7 @@
     "@angular/compiler-cli": "^19.0.0",
     "@angular/language-service": "^19.0.0",
     "@ionic/angular-toolkit": "^12.0.0",
+    "@ionic/cordova-builders": "^12.2.0",
     "@types/jasmine": "~5.1.0",
     "@types/moment": "^2.11.29",
     "@types/phone": "^2.4.3",
@@ -120,7 +121,9 @@
       "cordova-plugin-splashscreen": {},
       "cordova-plugin-ionic-webview": {},
       "cordova-plugin-ionic-keyboard": {},
-      "cordova-plugin-camera": {},
+      "cordova-plugin-camera": {
+        "ANDROIDX_CORE_VERSION": "1.6.+"
+      },
       "cordova-plugin-nativegeocoder": {},
       "cordova-plugin-android-permissions": {},
       "cordova-plugin-file": {
