@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
-import { NavController, RefresherCustomEvent } from '@ionic/angular';
+import { ActivatedRoute, NavigationExtras, Router, RouterModule } from '@angular/router';
+import { IonicModule, NavController, RefresherCustomEvent } from '@ionic/angular';
 import { Store } from '@ngrx/store';
 import { log } from 'console';
 import phone from 'phone';
@@ -18,11 +19,22 @@ import { AppState } from 'src/app/state/app.state';
 import { AuthMeta } from 'src/app/state/auth/auth-meta.state';
 import { selectAuthData } from 'src/app/state/auth/auth.selectors';
 import { AuthState } from 'src/app/state/auth/auth.state';
+import { SharedModule } from '../../shared.module';
+import { AgentSrDetailsRoutingModule } from './agent-sr-details-routing.module';
 
 @Component({
+  standalone: true,
   selector: 'app-agent-sr-details',
   templateUrl: './agent-sr-details.component.html',
-  styleUrls: ['./agent-sr-details.component.css']
+  styleUrls: ['./agent-sr-details.component.css'],
+  imports: [
+    CommonModule,
+    IonicModule,
+    RouterModule,
+    SharedModule,
+    AgentSrDetailsRoutingModule,
+  ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AgentSrDetailsComponent implements OnInit {
 

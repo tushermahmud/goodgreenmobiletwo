@@ -1,12 +1,17 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, Input, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { ServiceItemDocument } from 'src/app/models/service-item-document.model';
 import { DocumentViewerComponent } from 'src/app/shared/components/document-viewer/document-viewer.component';
 
 @Component({
+  standalone: true,
   selector: 'app-agent-service-documets',
   templateUrl: './agent-service-documets.component.html',
-  styleUrls: ['./agent-service-documets.component.css']
+  styleUrls: ['./agent-service-documets.component.css'],
+  imports: [
+    DocumentViewerComponent
+  ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AgentServiceDocumetsComponent implements OnInit {
   @Input() documents: any[] = null;

@@ -1,8 +1,9 @@
-import { ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { ChangeDetectorRef, Component, CUSTOM_ELEMENTS_SCHEMA, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FileTransfer, FileTransferObject, FileUploadOptions } from '@awesome-cordova-plugins/file-transfer/ngx';
 import { PhotoViewer } from '@awesome-cordova-plugins/photo-viewer/ngx';
 import { StreamingMedia, StreamingVideoOptions } from '@awesome-cordova-plugins/streaming-media/ngx';
-import { ActionSheetController, AlertController, ModalController } from '@ionic/angular';
+import { ActionSheetController, AlertController, IonicModule, ModalController } from '@ionic/angular';
 import { CommonService } from 'src/app/core/services/common/common.service';
 import { IonLoaderService } from 'src/app/core/services/ion-loader/ion-loader.service';
 import { MediaStreamingService } from 'src/app/core/services/media-streaming/media-streaming.service';
@@ -10,12 +11,20 @@ import { MediaUploadService } from 'src/app/core/services/media-upload/media-upl
 import { OrderService } from 'src/app/core/services/order/order.service';
 import { CustomerServiceItem } from 'src/app/models/customer-service-item.model';
 import { MediaItems } from 'src/app/post-auth/dashboard/order-details/order-media/order-media.component';
+import { SharedModule } from 'src/app/shared/shared.module';
 import { AuthMeta } from 'src/app/state/auth/auth-meta.state';
 
 @Component({
+  standalone: true,
   selector: 'app-agent-service-media',
   templateUrl: './agent-service-media.component.html',
-  styleUrls: ['./agent-service-media.component.css']
+  styleUrls: ['./agent-service-media.component.css'],
+  imports: [
+    CommonModule,
+    IonicModule,
+    SharedModule,
+  ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AgentServiceMediaComponent implements OnInit {
 
